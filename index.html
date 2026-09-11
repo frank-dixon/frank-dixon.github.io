@@ -5,25 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Frank Dixon — Senior Full-Stack Engineer (front-end focus). Django, JavaScript, Tailwind. Undercover Tourist." />
   <meta name="author" content="Frank Dixon" />
-  <meta name="theme-color" content="#0b0f1a" />
+  <meta name="theme-color" content="#F3EEE4" />
   <title>Frank Dixon — Senior Full-Stack Engineer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg: #0b0f1a;
-      --bg-2: #12182a;
-      --fg: #f4f1ea;
-      --muted: #a8b0c4;
-      --lime: #c8f542;
-      --magenta: #ff4ecd;
-      --cyan: #3de7ff;
-      --orange: #ff8a3d;
-      --violet: #8b7cff;
-      --card: #161d32;
-      --border: rgba(255,255,255,0.1);
-      --glow: 0 0 40px rgba(200, 245, 66, 0.15);
+      --paper: #F3EEE4;
+      --paper-2: #E8E0D2;
+      --ink: #1C1916;
+      --ink-soft: #3F3A35;
+      --muted: #6A635B;
+      --rule: #D4CBBE;
+      --berry: #9A3458;
+      --berry-deep: #7A2945;
+      --on-berry: #F8F3EA;
+      --espresso: #241E1B;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
@@ -31,278 +29,365 @@
       html { scroll-behavior: auto; }
       *, *::before, *::after {
         animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
       }
     }
     body {
-      font-family: "Space Grotesk", system-ui, sans-serif;
-      background: var(--bg);
-      color: var(--fg);
+      font-family: "Source Sans 3", system-ui, sans-serif;
+      background: var(--paper);
+      color: var(--ink);
       line-height: 1.55;
       -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
-    }
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: -1;
-      background:
-        radial-gradient(ellipse 80% 50% at 10% -10%, rgba(255, 78, 205, 0.22), transparent 55%),
-        radial-gradient(ellipse 60% 40% at 90% 10%, rgba(61, 231, 255, 0.18), transparent 50%),
-        radial-gradient(ellipse 50% 40% at 70% 90%, rgba(200, 245, 66, 0.12), transparent 50%),
-        radial-gradient(ellipse 40% 30% at 0% 80%, rgba(139, 124, 255, 0.15), transparent 50%);
     }
     a { color: inherit; }
     a:focus-visible, button:focus-visible {
-      outline: 2px solid var(--lime);
+      outline: 2px solid var(--berry);
       outline-offset: 3px;
     }
     .skip {
       position: absolute; left: 1rem; top: -100%; z-index: 100;
-      background: var(--lime); color: #0b0f1a; padding: 0.5rem 1rem;
-      font-weight: 700; border-radius: 0.5rem;
+      background: var(--berry); color: var(--on-berry);
+      padding: 0.5rem 1rem; font-weight: 700;
     }
     .skip:focus { top: 1rem; }
     .wrap {
-      width: min(1120px, calc(100% - 2.5rem));
+      width: min(1120px, calc(100% - 2rem));
       margin-inline: auto;
     }
-    /* Nav */
-    header {
+    @media (min-width: 720px) {
+      .wrap { width: min(1120px, calc(100% - 3.5rem)); }
+    }
+
+    /* Masthead */
+    .masthead {
+      border-bottom: 1px solid var(--rule);
+      background: var(--paper);
       position: sticky; top: 0; z-index: 50;
-      backdrop-filter: blur(14px);
-      background: rgba(11, 15, 26, 0.75);
-      border-bottom: 1px solid var(--border);
     }
     .nav {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 1rem 0; gap: 1rem;
+      display: flex; align-items: baseline; justify-content: space-between;
+      gap: 1rem; padding: 0.95rem 0 0.9rem; flex-wrap: wrap;
     }
-    .logo {
-      font-family: Syne, sans-serif;
-      font-weight: 800;
-      font-size: 1.05rem;
+    .wordmark {
+      font-family: Fraunces, Georgia, serif;
+      font-weight: 600; font-size: 1.15rem;
+      font-optical-sizing: auto;
       letter-spacing: -0.02em;
       text-decoration: none;
-      background: linear-gradient(120deg, var(--lime), var(--cyan));
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
+      color: var(--ink);
     }
+    .wordmark span { color: var(--berry); }
     nav ul {
-      list-style: none; display: flex; gap: 1.25rem; flex-wrap: wrap;
+      list-style: none; display: flex; gap: 0.35rem 1.15rem; flex-wrap: wrap;
     }
     nav a {
-      text-decoration: none; color: var(--muted); font-size: 0.9rem; font-weight: 500;
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
     }
-    nav a:hover { color: var(--fg); }
+    nav a:hover { color: var(--ink); }
+
     /* Hero */
     .hero {
-      padding: 5.5rem 0 4.5rem;
-      position: relative;
+      padding: 2.75rem 0 3.25rem;
+      border-bottom: 3px solid var(--ink);
     }
-    .eyebrow {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      font-size: 0.8rem; font-weight: 600; letter-spacing: 0.06em;
-      text-transform: uppercase; color: var(--lime);
-      margin-bottom: 1.25rem;
+    .issue {
+      display: flex; flex-wrap: wrap; justify-content: space-between;
+      gap: 0.4rem 1.5rem;
+      font-size: 0.75rem; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--berry);
+      margin-bottom: 1.35rem;
     }
-    .eyebrow::before {
-      content: ""; width: 0.55rem; height: 0.55rem; border-radius: 50%;
-      background: var(--lime); box-shadow: 0 0 12px var(--lime);
-    }
+    .issue time, .issue span { color: var(--muted); letter-spacing: 0.1em; }
     h1 {
-      font-family: Syne, sans-serif;
-      font-weight: 800;
-      font-size: clamp(3rem, 9vw, 6.2rem);
-      line-height: 0.95;
-      letter-spacing: -0.04em;
-      max-width: 12ch;
-      margin-bottom: 1.5rem;
+      font-family: Fraunces, Georgia, serif;
+      font-optical-sizing: auto;
+      font-weight: 600;
+      font-size: clamp(4.2rem, 16vw, 9.5rem);
+      line-height: 0.86;
+      letter-spacing: -0.045em;
+      margin-bottom: 1.75rem;
     }
-    h1 .accent {
-      background: linear-gradient(105deg, var(--magenta), var(--orange) 45%, var(--lime));
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
+    h1 em {
+      font-style: italic;
+      font-weight: 500;
+      color: var(--berry);
+    }
+    .hero-grid {
+      display: grid;
+      gap: 1.75rem 3rem;
+      align-items: start;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--rule);
+    }
+    @media (min-width: 800px) {
+      .hero-grid { grid-template-columns: 1.35fr 0.85fr; }
     }
     .lede {
-      font-size: clamp(1.1rem, 2.2vw, 1.35rem);
-      color: var(--muted);
+      font-size: clamp(1.15rem, 2.1vw, 1.4rem);
+      line-height: 1.45;
+      color: var(--ink-soft);
       max-width: 36rem;
-      margin-bottom: 2rem;
     }
-    .cta-row { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+    .lede strong { color: var(--ink); font-weight: 600; }
+    .hero-aside {
+      display: flex; flex-direction: column; gap: 1.15rem;
+    }
+    .aside-meta {
+      font-size: 0.95rem; color: var(--muted);
+      padding-left: 1rem;
+      border-left: 3px solid var(--berry);
+    }
+    .aside-meta strong { display: block; color: var(--ink); font-weight: 600; margin-bottom: 0.15rem; }
+    .cta-row { display: flex; flex-wrap: wrap; gap: 0.55rem; }
     .btn {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      padding: 0.85rem 1.35rem;
-      border-radius: 999px;
-      font-weight: 700;
-      font-size: 0.95rem;
+      display: inline-flex; align-items: center;
+      padding: 0.7rem 1.1rem;
+      font-weight: 600; font-size: 0.92rem;
       text-decoration: none;
-      border: 2px solid transparent;
-      transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+      border: 1.5px solid var(--ink);
+      transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
     }
-    .btn:hover { transform: translateY(-2px); }
-    .btn-lime {
-      background: var(--lime); color: #0b0f1a;
-      box-shadow: var(--glow);
+    .btn-solid {
+      background: var(--berry); color: var(--on-berry); border-color: var(--berry);
     }
-    .btn-ghost {
-      background: transparent; color: var(--fg);
-      border-color: var(--border);
+    .btn-solid:hover { background: var(--berry-deep); border-color: var(--berry-deep); }
+    .btn-ghost { background: transparent; color: var(--ink); }
+    .btn-ghost:hover { background: var(--ink); color: var(--paper); }
+
+    /* Pull quote */
+    .pull {
+      margin: 0;
+      padding: 2.75rem 0;
+      border-bottom: 1px solid var(--rule);
     }
-    .btn-ghost:hover { border-color: var(--cyan); }
-    .btn-mag {
-      background: linear-gradient(120deg, var(--magenta), var(--violet));
-      color: #fff;
+    .pull blockquote {
+      font-family: Fraunces, Georgia, serif;
+      font-optical-sizing: auto;
+      font-style: italic;
+      font-weight: 500;
+      font-size: clamp(1.55rem, 3.4vw, 2.35rem);
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+      max-width: 22ch;
+      color: var(--ink);
     }
-    /* Marquee strip */
-    .strip {
-      border-block: 1px solid var(--border);
-      background: rgba(22, 29, 50, 0.6);
-      overflow: hidden;
-      padding: 0.85rem 0;
+    .pull cite {
+      display: block;
+      margin-top: 1rem;
+      font-style: normal;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--berry);
     }
-    .strip-track {
-      display: flex; gap: 2.5rem; white-space: nowrap;
-      animation: marquee 28s linear infinite;
-      width: max-content;
-      font-weight: 600; font-size: 0.9rem; color: var(--muted);
-    }
-    .strip-track span { display: inline-flex; align-items: center; gap: 0.6rem; }
-    .dot { color: var(--magenta); }
-    @keyframes marquee {
-      from { transform: translateX(0); }
-      to { transform: translateX(-50%); }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .strip-track { animation: none; }
-    }
+
     /* Sections */
-    section { padding: 5rem 0; }
-    .section-kicker {
-      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em;
-      text-transform: uppercase; color: var(--cyan); margin-bottom: 0.75rem;
+    section { padding: 4.25rem 0; border-bottom: 1px solid var(--rule); }
+    .section-head {
+      display: grid; gap: 0.75rem 2.5rem; margin-bottom: 2.25rem;
+    }
+    @media (min-width: 800px) {
+      .section-head { grid-template-columns: 10.5rem 1fr; align-items: baseline; }
+    }
+    .kicker {
+      font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--berry);
     }
     h2 {
-      font-family: Syne, sans-serif;
-      font-weight: 800;
-      font-size: clamp(2rem, 4.5vw, 3rem);
+      font-family: Fraunces, Georgia, serif;
+      font-optical-sizing: auto;
+      font-weight: 600;
+      font-size: clamp(1.85rem, 4vw, 2.85rem);
       letter-spacing: -0.03em;
-      line-height: 1.05;
-      margin-bottom: 1.5rem;
+      line-height: 1.08;
       max-width: 18ch;
     }
-    .prose { color: var(--muted); max-width: 40rem; font-size: 1.05rem; }
+    .prose { color: var(--ink-soft); font-size: 1.05rem; max-width: 40rem; }
     .prose p + p { margin-top: 1rem; }
-    .prose strong { color: var(--fg); font-weight: 600; }
-    /* Cards */
-    .grid {
-      display: grid;
-      gap: 1.1rem;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      margin-top: 2rem;
+    .prose strong { color: var(--ink); font-weight: 600; }
+    .drop::first-letter {
+      font-family: Fraunces, Georgia, serif;
+      font-weight: 600;
+      float: left;
+      font-size: 3.15rem;
+      line-height: 0.78;
+      padding: 0.12em 0.12em 0 0;
+      color: var(--berry);
     }
-    .card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 1.35rem;
-      padding: 1.5rem;
-      position: relative;
-      overflow: hidden;
-      min-height: 100%;
-      display: flex; flex-direction: column;
-      transition: border-color 0.15s ease, transform 0.15s ease;
+
+    /* Work */
+    .work-intro {
+      display: grid; gap: 1.75rem 2.5rem; margin-bottom: 2.5rem;
     }
-    .card:hover {
-      border-color: rgba(200, 245, 66, 0.35);
-      transform: translateY(-3px);
+    @media (min-width: 800px) {
+      .work-intro { grid-template-columns: 1fr 1.15fr; align-items: end; }
     }
-    .card::after {
-      content: "";
-      position: absolute; inset: auto -20% -40% auto;
-      width: 140px; height: 140px; border-radius: 50%;
-      opacity: 0.35; filter: blur(30px); pointer-events: none;
-    }
-    .card.c1::after { background: var(--lime); }
-    .card.c2::after { background: var(--magenta); }
-    .card.c3::after { background: var(--cyan); }
-    .card.c4::after { background: var(--orange); }
-    .card.c5::after { background: var(--violet); }
-    .tag {
-      display: inline-block;
-      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em;
-      text-transform: uppercase;
-      padding: 0.3rem 0.55rem; border-radius: 999px;
-      margin-bottom: 0.85rem; width: fit-content;
-    }
-    .tag-lime { background: rgba(200,245,66,0.15); color: var(--lime); }
-    .tag-mag { background: rgba(255,78,205,0.15); color: var(--magenta); }
-    .tag-cyan { background: rgba(61,231,255,0.15); color: var(--cyan); }
-    .tag-orange { background: rgba(255,138,61,0.15); color: var(--orange); }
-    .tag-violet { background: rgba(139,124,255,0.15); color: var(--violet); }
-    .card h3 {
-      font-family: Syne, sans-serif;
-      font-size: 1.25rem; font-weight: 700;
-      letter-spacing: -0.02em; margin-bottom: 0.6rem;
-    }
-    .card p { color: var(--muted); font-size: 0.95rem; flex: 1; }
     .metric {
-      margin-top: 1rem;
-      font-size: 0.85rem; font-weight: 700; color: var(--lime);
+      border-top: 3px solid var(--berry);
+      padding-top: 1rem;
+    }
+    .metric b {
+      display: block;
+      font-family: Fraunces, Georgia, serif;
+      font-optical-sizing: auto;
+      font-weight: 600;
+      font-size: clamp(3.4rem, 8vw, 5.6rem);
+      line-height: 0.9;
+      letter-spacing: -0.04em;
+      color: var(--berry);
+    }
+    .metric span {
+      display: block;
+      margin-top: 0.55rem;
+      font-size: 0.95rem;
+      color: var(--muted);
+      max-width: 28ch;
+    }
+    .role-line {
+      font-size: 0.95rem; color: var(--muted); margin-bottom: 0.35rem;
+    }
+    .folio { list-style: none; border-top: 1px solid var(--ink); }
+    .folio li {
+      display: grid; gap: 0.65rem 1.75rem;
+      padding: 1.35rem 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    @media (min-width: 720px) {
+      .folio li { grid-template-columns: 4.5rem 11rem 1fr; align-items: baseline; }
+    }
+    .num {
+      font-family: Fraunces, Georgia, serif;
+      font-style: italic;
+      font-weight: 500;
+      color: var(--berry);
+      font-size: 1.15rem;
+    }
+    .folio h3 {
+      font-size: 1.05rem; font-weight: 700; letter-spacing: -0.01em;
+    }
+    .folio p { color: var(--ink-soft); font-size: 0.98rem; }
+    .folio .mark {
+      display: block; margin-top: 0.4rem;
+      font-size: 0.78rem; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--berry);
     }
     .earlier {
-      margin-top: 1.75rem;
-      padding: 1.1rem 1.25rem;
-      border-radius: 1rem;
-      border: 1px dashed rgba(255,255,255,0.18);
+      margin-top: 2rem;
+      padding: 1.25rem 0 0;
+      border-top: 1px dashed var(--rule);
       color: var(--muted);
-      font-size: 0.95rem;
+      font-size: 0.98rem;
+      max-width: 52rem;
     }
-    .earlier strong { color: var(--fg); }
-    /* Stack chips */
+    .earlier strong { color: var(--ink); }
+
+    /* Projects */
+    .spread {
+      display: grid; gap: 1.5rem;
+    }
+    @media (min-width: 800px) {
+      .spread { grid-template-columns: 1.35fr 0.85fr; align-items: stretch; }
+    }
+    .feature, .side {
+      padding: 1.6rem 1.5rem 1.5rem;
+      border: 1px solid var(--rule);
+    }
+    .feature {
+      background: var(--paper-2);
+      border-color: transparent;
+    }
+    .label {
+      font-size: 0.7rem; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--berry); margin-bottom: 0.7rem;
+    }
+    .feature h3, .side h3 {
+      font-family: Fraunces, Georgia, serif;
+      font-optical-sizing: auto;
+      font-weight: 600;
+      font-size: clamp(1.4rem, 2.4vw, 1.85rem);
+      letter-spacing: -0.02em;
+      margin-bottom: 0.65rem;
+    }
+    .feature p, .side p { color: var(--ink-soft); margin-bottom: 1.15rem; }
+    .tiny { font-size: 0.9rem; }
+    .tiny a { color: var(--berry); font-weight: 600; text-underline-offset: 3px; }
+    .tiny a:hover { color: var(--berry-deep); }
+
+    /* Stack */
     .chips {
-      display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.5rem;
       list-style: none;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-top: 1px solid var(--ink);
     }
-    .chip {
-      padding: 0.55rem 0.95rem;
-      border-radius: 999px;
-      font-weight: 600; font-size: 0.88rem;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,0.03);
+    @media (min-width: 700px) {
+      .chips { grid-template-columns: repeat(4, 1fr); }
     }
-    .chip:nth-child(3n+1) { border-color: rgba(200,245,66,0.4); color: var(--lime); }
-    .chip:nth-child(3n+2) { border-color: rgba(61,231,255,0.4); color: var(--cyan); }
-    .chip:nth-child(3n) { border-color: rgba(255,78,205,0.4); color: var(--magenta); }
+    .chips li {
+      padding: 1rem 0.85rem 1rem 0;
+      border-bottom: 1px solid var(--rule);
+      font-weight: 600;
+      font-size: 1.02rem;
+    }
+    .chips li::before {
+      content: "—";
+      color: var(--berry);
+      margin-right: 0.45rem;
+      font-weight: 500;
+    }
+
     /* Contact */
-    .contact-panel {
-      background: linear-gradient(135deg, rgba(255,78,205,0.18), rgba(61,231,255,0.12) 50%, rgba(200,245,66,0.1));
-      border: 1px solid var(--border);
-      border-radius: 1.75rem;
-      padding: clamp(1.75rem, 4vw, 3rem);
+    #contact { border-bottom: none; padding-bottom: 3.5rem; }
+    .contact-grid {
+      display: grid; gap: 1.75rem 3rem;
     }
+    @media (min-width: 800px) {
+      .contact-grid { grid-template-columns: 1.1fr 0.9fr; align-items: end; }
+    }
+    .colophon-links {
+      display: flex; flex-direction: column; gap: 0.35rem;
+      font-size: 1.05rem;
+    }
+    .colophon-links a {
+      color: var(--ink);
+      font-weight: 600;
+      text-decoration: none;
+      border-bottom: 1px solid var(--rule);
+      padding: 0.45rem 0;
+      width: fit-content;
+    }
+    .colophon-links a:hover { border-color: var(--berry); color: var(--berry); }
+
     footer {
-      border-top: 1px solid var(--border);
-      padding: 1.75rem 0 2.5rem;
-      color: var(--muted); font-size: 0.9rem;
-      display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.75rem;
+      background: var(--espresso);
+      color: #C9C0B5;
+      padding: 1.5rem 0 1.85rem;
+      font-size: 0.88rem;
     }
-    .link {
-      color: var(--cyan); font-weight: 600; text-underline-offset: 3px;
+    footer .wrap {
+      display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.5rem 1.5rem;
     }
-    .link:hover { color: var(--lime); }
+    footer strong { color: var(--paper); font-weight: 600; }
   </style>
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
 
-  <header>
+  <header class="masthead">
     <div class="wrap nav">
-      <a class="logo" href="#top">Frank Dixon</a>
+      <a class="wordmark" href="#top">Frank Dixon<span>.</span></a>
       <nav aria-label="Primary">
         <ul>
           <li><a href="#about">About</a></li>
@@ -317,51 +402,47 @@
 
   <main id="main">
     <section class="hero wrap" id="top" aria-labelledby="hero-heading">
-      <p class="eyebrow">Senior Full-Stack · Front-end focus</p>
-      <h1 id="hero-heading">
-        Build the UI.<br />
-        <span class="accent">Ship the stack.</span>
-      </h1>
-      <p class="lede">
-        I’m Frank Dixon — a senior engineer who owns calm, accessible Django-backed front ends for messy real-world e-commerce. Currently at Undercover Tourist.
+      <p class="issue">
+        <span>Senior Full-Stack Engineer · Front-end focus</span>
+        <span>Boston · Hireable, not noisy</span>
       </p>
-      <div class="cta-row">
-        <a class="btn btn-lime" href="mailto:fdixon7@gmail.com">fdixon7@gmail.com</a>
-        <a class="btn btn-ghost" href="https://www.linkedin.com/in/frank-dixon-senior-developer" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-        <a class="btn btn-mag" href="/rabbit/">Open rabbit visualizer →</a>
+      <h1 id="hero-heading">Frank<br /><em>Dixon</em></h1>
+      <div class="hero-grid">
+        <p class="lede">
+          I own calm, accessible <strong>Django-backed front ends</strong> for messy real-world e-commerce. Currently at Undercover Tourist—architecture that ships under live traffic.
+        </p>
+        <div class="hero-aside">
+          <p class="aside-meta">
+            <strong>Available for a conversation</strong>
+            Front-end craft with full-stack teeth. No carnival. Outcomes first.
+          </p>
+          <div class="cta-row">
+            <a class="btn btn-solid" href="mailto:fdixon7@gmail.com">fdixon7@gmail.com</a>
+            <a class="btn btn-ghost" href="resume.pdf">Resume</a>
+            <a class="btn btn-ghost" href="https://www.linkedin.com/in/frank-dixon-senior-developer" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          </div>
+        </div>
       </div>
     </section>
 
-    <div class="strip" aria-hidden="true">
-      <div class="strip-track">
-        <span>Django</span><span class="dot">✦</span>
-        <span>Python</span><span class="dot">✦</span>
-        <span>JavaScript</span><span class="dot">✦</span>
-        <span>HTML / CSS</span><span class="dot">✦</span>
-        <span>Tailwind</span><span class="dot">✦</span>
-        <span>Accessibility</span><span class="dot">✦</span>
-        <span>Performance</span><span class="dot">✦</span>
-        <span>Leadership</span><span class="dot">✦</span>
-        <span>Django</span><span class="dot">✦</span>
-        <span>Python</span><span class="dot">✦</span>
-        <span>JavaScript</span><span class="dot">✦</span>
-        <span>HTML / CSS</span><span class="dot">✦</span>
-        <span>Tailwind</span><span class="dot">✦</span>
-        <span>Accessibility</span><span class="dot">✦</span>
-        <span>Performance</span><span class="dot">✦</span>
-        <span>Leadership</span><span class="dot">✦</span>
-      </div>
+    <div class="wrap pull">
+      <blockquote>
+        “Build the interface people actually use. Keep the payload lean. Leave the product quieter than you found it.”
+        <cite>Working notes · Undercover Tourist</cite>
+      </blockquote>
     </div>
 
     <section id="about" class="wrap" aria-labelledby="about-heading">
-      <p class="section-kicker">About</p>
-      <h2 id="about-heading">Front-end craft with full-stack teeth</h2>
+      <div class="section-head">
+        <p class="kicker">01 — About</p>
+        <h2 id="about-heading">Front-end craft with full-stack teeth</h2>
+      </div>
       <div class="prose">
-        <p>
+        <p class="drop">
           Day to day I own the interfaces people actually use—clear boundaries, thoughtful interaction, and the quiet work of performance and accessibility that makes a product feel trustworthy under real traffic.
         </p>
         <p>
-          At <strong>Undercover Tourist</strong> I work across travel and entertainment e-commerce (Disney, Universal, and related ticketing). I like architecture that ships: in-flight migrations, shared UI systems, and Django-backed surfaces that stay maintainable as the product grows.
+          At <strong>Undercover Tourist</strong> I work across travel and entertainment e-commerce (Disney, Universal, and related ticketing). I like architecture that ships: in-flight migrations, shared UI systems, Django admin, and internal tools that stay maintainable as the product grows.
         </p>
         <p>
           Earlier genomics work at UMass Amherst still feeds a side curiosity—hence the rabbit genetics experiments below. Personal playgrounds, not production products.
@@ -370,99 +451,110 @@
     </section>
 
     <section id="work" class="wrap" aria-labelledby="work-heading">
-      <p class="section-kicker">Selected work</p>
-      <h2 id="work-heading">Outcomes, not activity theater</h2>
-      <p class="prose">Undercover Tourist · Senior Full-Stack Engineer (Front-End Focus) · May 2021–Present</p>
-      <div class="grid">
-        <article class="card c1">
-          <span class="tag tag-lime">Migration</span>
-          <h3>In-flight framework replacement</h3>
-          <p>Replaced a legacy front-end framework while the product stayed live—shipping a bespoke UI layer that cut CSS bundle size by over 50%, raised product velocity, and eased conversion friction.</p>
-          <p class="metric">CSS bundle −50%+ · live cutover</p>
-        </article>
-        <article class="card c2">
-          <span class="tag tag-mag">Leadership</span>
-          <h3>Front-end team of three</h3>
-          <p>Led three front-end specialists on complex hospitality e-commerce—code quality, mentorship, and delivery against shared REST APIs with designers and engineers.</p>
-          <p class="metric">Team of 3 · REST API integrations</p>
-        </article>
-        <article class="card c3">
-          <span class="tag tag-cyan">Quality</span>
-          <h3>ADA compliance &amp; lean payloads</h3>
-          <p>Drove ADA-compliant accessibility across purchase journeys, and refactored legacy scripts while shipping new features so asset payload stayed lean.</p>
-          <p class="metric">ADA · leaner assets</p>
-        </article>
+      <div class="work-intro">
+        <div class="section-head" style="margin-bottom:0;">
+          <p class="kicker">02 — Selected work</p>
+          <h2 id="work-heading">Outcomes, not activity theater</h2>
+        </div>
+        <p class="metric">
+          <b>−50%+</b>
+          <span>CSS bundle size after replacing a legacy front-end framework in flight.</span>
+        </p>
       </div>
+      <p class="role-line">Undercover Tourist · Senior Full-Stack Engineer (Front-End Focus) · May 2021–Present</p>
+      <ol class="folio">
+        <li>
+          <span class="num">01</span>
+          <h3>In-flight framework replacement</h3>
+          <p>Replaced a legacy front-end framework while the product stayed live—shipping a bespoke UI layer that cut CSS bundle size by over 50%, raised product velocity, and eased conversion friction.<span class="mark">CSS bundle −50%+ · live cutover</span></p>
+        </li>
+        <li>
+          <span class="num">02</span>
+          <h3>Front-end team of three</h3>
+          <p>Led three front-end specialists on complex hospitality e-commerce—code quality, mentorship, and delivery against shared REST APIs with designers and engineers.<span class="mark">Team of 3 · REST API integrations</span></p>
+        </li>
+        <li>
+          <span class="num">03</span>
+          <h3>ADA compliance &amp; lean payloads</h3>
+          <p>Drove ADA-compliant accessibility across purchase journeys, and refactored legacy scripts while shipping new features so asset payload stayed lean.<span class="mark">ADA · leaner assets</span></p>
+        </li>
+        <li>
+          <span class="num">04</span>
+          <h3>Systems behind the storefront</h3>
+          <p>Grew a shared component library plus Django admin surfaces and internal tools, so product and ops ship from the same patterns instead of one-off UI.<span class="mark">Component library · Django admin · internal tools</span></p>
+        </li>
+      </ol>
       <p class="earlier">
         <strong>Earlier:</strong> Senior UX Developer at LATICRETE (enterprise site overhaul, component library) and Prudential Financial (interactive tools, templated site builder, vendor &amp; a11y oversight)—seven Prudential Impact Awards.
       </p>
     </section>
 
     <section id="projects" class="wrap" aria-labelledby="projects-heading">
-      <p class="section-kicker">Personal experiments</p>
-      <h2 id="projects-heading">Rabbit genetics, for fun</h2>
-      <p class="prose">Exploratory builds reconnecting genomics curiosity with shipping small software. Not production products.</p>
-      <div class="grid">
-        <article class="card c4">
-          <span class="tag tag-orange">Live on this site</span>
+      <div class="section-head">
+        <p class="kicker">03 — Personal experiments</p>
+        <h2 id="projects-heading">Rabbit genetics, for fun</h2>
+      </div>
+      <p class="prose" style="margin-bottom:1.75rem;">Exploratory builds reconnecting genomics curiosity with shipping small software. Not production products.</p>
+      <div class="spread">
+        <article class="feature">
+          <p class="label">Live on this site</p>
           <h3>Rabbit genetics visualizer</h3>
           <p>Interactive companion for planning meat-rabbit crosses by coat and eye color—try the hosted build right here.</p>
-          <p style="margin-top:1.1rem;">
-            <a class="btn btn-lime" href="/rabbit/" style="padding:0.65rem 1.1rem;font-size:0.88rem;">Launch visualizer</a>
-          </p>
-          <p style="margin-top:0.85rem;font-size:0.85rem;">
-            <a class="link" href="https://github.com/frank-dixon/rabbit-genetics-visualizer" target="_blank" rel="noopener noreferrer">Source on GitHub</a>
-          </p>
+          <div class="cta-row">
+            <a class="btn btn-solid" href="/rabbit/">Open visualizer</a>
+            <a class="btn btn-ghost" href="https://github.com/frank-dixon/rabbit-genetics-visualizer" target="_blank" rel="noopener noreferrer">Source</a>
+          </div>
         </article>
-        <article class="card c5">
-          <span class="tag tag-violet">Companion repo</span>
+        <article class="side">
+          <p class="label">Companion repo</p>
           <h3>Rabbit genetics models</h3>
-          <p>Exploratory modeling of rabbit genetics—vibe-coded as a way to reconnect domain interest with shipping working software.</p>
-          <p style="margin-top:1.1rem;">
-            <a class="link" href="https://github.com/frank-dixon/rabbit-genetics" target="_blank" rel="noopener noreferrer">github.com/frank-dixon/rabbit-genetics</a>
+          <p>Exploratory modeling of rabbit genetics—a way to reconnect domain interest with shipping working software.</p>
+          <p class="tiny">
+            <a href="https://github.com/frank-dixon/rabbit-genetics" target="_blank" rel="noopener noreferrer">github.com/frank-dixon/rabbit-genetics</a>
           </p>
         </article>
       </div>
     </section>
 
     <section id="stack" class="wrap" aria-labelledby="stack-heading">
-      <p class="section-kicker">Stack</p>
-      <h2 id="stack-heading">Tools I actually reach for</h2>
+      <div class="section-head">
+        <p class="kicker">04 — Stack</p>
+        <h2 id="stack-heading">Tools I actually reach for</h2>
+      </div>
       <ul class="chips" aria-label="Technology stack">
-        <li class="chip">Django</li>
-        <li class="chip">Python</li>
-        <li class="chip">JavaScript</li>
-        <li class="chip">HTML / CSS</li>
-        <li class="chip">Tailwind</li>
-        <li class="chip">Git</li>
-        <li class="chip">Accessibility</li>
-        <li class="chip">Performance</li>
-        <li class="chip">Leadership</li>
+        <li>Django</li>
+        <li>Python</li>
+        <li>JavaScript</li>
+        <li>HTML / CSS</li>
+        <li>Tailwind</li>
+        <li>Git</li>
+        <li>Accessibility</li>
+        <li>Performance</li>
       </ul>
     </section>
 
     <section id="contact" class="wrap" aria-labelledby="contact-heading">
-      <div class="contact-panel">
-        <p class="section-kicker">Contact</p>
-        <h2 id="contact-heading">Say hello</h2>
-        <p class="prose" style="margin-bottom:1.5rem;">
-          Happy in my current role; open to thoughtful conversations. Email or LinkedIn is best.
-        </p>
-        <div class="cta-row">
-          <a class="btn btn-lime" href="mailto:fdixon7@gmail.com">fdixon7@gmail.com</a>
-          <a class="btn btn-ghost" href="https://www.linkedin.com/in/frank-dixon-senior-developer" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-          <a class="btn btn-ghost" href="resume.pdf">Resume PDF</a>
+      <div class="contact-grid">
+        <div>
+          <p class="kicker">05 — Contact</p>
+          <h2 id="contact-heading" style="margin:0.55rem 0 1rem;">Write when it matters</h2>
+          <p class="prose">Happy in my current role; open to thoughtful conversations. Email or LinkedIn is best.</p>
         </div>
-        <p style="margin-top:1.25rem;color:var(--muted);font-size:0.95rem;">
-          Also on <a class="link" href="https://github.com/frank-dixon" target="_blank" rel="noopener noreferrer">GitHub</a>
-        </p>
+        <div class="colophon-links">
+          <a href="mailto:fdixon7@gmail.com">fdixon7@gmail.com</a>
+          <a href="https://www.linkedin.com/in/frank-dixon-senior-developer" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href="https://github.com/frank-dixon" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a href="resume.pdf">Resume PDF</a>
+        </div>
       </div>
     </section>
   </main>
 
-  <footer class="wrap">
-    <p>© <span id="year"></span> Frank Dixon</p>
-    <p>Colorful on purpose. Hireable still.</p>
+  <footer>
+    <div class="wrap">
+      <p>© <span id="year"></span> <strong>Frank Dixon</strong></p>
+      <p>Editorial on purpose. Hireable still.</p>
+    </div>
   </footer>
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();

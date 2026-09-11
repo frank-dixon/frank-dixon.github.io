@@ -34,16 +34,17 @@ google-chrome --headless=new --disable-gpu --no-sandbox --disable-dev-shm-usage 
 
 ## What’s included
 
-- `index.html` — colorful personal site (hero, about, work, projects, stack, contact)
+- `index.html` — editorial personal site (hero, about, work, projects, stack, contact)
 - `rabbit/` — built Rabbit Genetics Visualizer (live demo)
 - `resume.html` / `resume.pdf` — printable resume
 - Phone is on the resume PDF only; public site uses email + LinkedIn
 
 ## Design notes
 
-- Bold, colorful, artsy aesthetic (Syne + Space Grotesk; lime / magenta / cyan accents)
+- Editorial / magazine: warm cream paper (`#F3EEE4`), ink type, raspberry/wine accent (`#9A3458`)
+- Type: Fraunces (display) + Source Sans 3 (body). Punch via hierarchy, pull quote, rules, and an asymmetric grid — no neon, marquees, or glow orbs
 - Professional work is outcome-framed; rabbit projects are personal experiments with a live `/rabbit/` demo
-- Featured stack: Django, Python, JavaScript, HTML/CSS, Tailwind, accessibility, performance, Git, leadership — no React or TypeScript advertising on the portfolio
+- Featured stack: Django, Python, JavaScript, HTML/CSS, Tailwind, accessibility, performance, Git — no React or TypeScript advertising on the portfolio
 
 ## License
 
