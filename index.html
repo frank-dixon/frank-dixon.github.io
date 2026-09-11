@@ -3,455 +3,467 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Frank Dixon — Senior Full-Stack Engineer with a front-end focus. Building calm, accessible, performant web experiences." />
+  <meta name="description" content="Frank Dixon — Senior Full-Stack Engineer (front-end focus). Django, JavaScript, Tailwind. Undercover Tourist." />
   <meta name="author" content="Frank Dixon" />
-  <meta name="theme-color" content="#0f1419" media="(prefers-color-scheme: dark)" />
-  <meta name="theme-color" content="#f7f5f2" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0b0f1a" />
   <title>Frank Dixon — Senior Full-Stack Engineer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      darkMode: 'media',
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['"DM Sans"', 'system-ui', 'sans-serif'],
-            serif: ['"Instrument Serif"', 'Georgia', 'serif'],
-          },
-          colors: {
-            ink: {
-              50: '#f7f5f2',
-              100: '#ebe7e0',
-              200: '#d4cdc2',
-              300: '#b5aa9a',
-              400: '#96897a',
-              500: '#7a6e61',
-              600: '#63584e',
-              700: '#504740',
-              800: '#433c37',
-              900: '#2a2623',
-              950: '#171513',
-            },
-            accent: {
-              DEFAULT: '#2d6a5a',
-              soft: '#3d8a74',
-              muted: '#1e4a3f',
-            },
-          },
-          maxWidth: {
-            prose: '42rem',
-            content: '68rem',
-          },
-        },
-      },
-    };
-  </script>
-  <style type="text/tailwindcss">
-    @layer base {
-      html {
-        scroll-behavior: smooth;
-      }
-      @media (prefers-reduced-motion: reduce) {
-        html {
-          scroll-behavior: auto;
-        }
-        *, *::before, *::after {
-          animation-duration: 0.01ms !important;
-          animation-iteration-count: 1 !important;
-          transition-duration: 0.01ms !important;
-        }
-      }
-    }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg: #f7f5f2;
-      --bg-elevated: #ffffff;
-      --fg: #2a2623;
-      --fg-muted: #63584e;
-      --border: #d4cdc2;
-      --accent: #2d6a5a;
-      --accent-hover: #1e4a3f;
-      --ring: #3d8a74;
-      --chip-bg: #ebe7e0;
-      --card-shadow: 0 1px 2px rgb(42 38 35 / 0.04), 0 4px 16px rgb(42 38 35 / 0.04);
+      --bg: #0b0f1a;
+      --bg-2: #12182a;
+      --fg: #f4f1ea;
+      --muted: #a8b0c4;
+      --lime: #c8f542;
+      --magenta: #ff4ecd;
+      --cyan: #3de7ff;
+      --orange: #ff8a3d;
+      --violet: #8b7cff;
+      --card: #161d32;
+      --border: rgba(255,255,255,0.1);
+      --glow: 0 0 40px rgba(200, 245, 66, 0.15);
     }
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --bg: #12100e;
-        --bg-elevated: #1c1917;
-        --fg: #ebe7e0;
-        --fg-muted: #b5aa9a;
-        --border: #3a342f;
-        --accent: #5cb89a;
-        --accent-hover: #7dceb4;
-        --ring: #5cb89a;
-        --chip-bg: #2a2623;
-        --card-shadow: 0 1px 2px rgb(0 0 0 / 0.2), 0 8px 24px rgb(0 0 0 / 0.25);
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
       }
     }
     body {
-      background-color: var(--bg);
+      font-family: "Space Grotesk", system-ui, sans-serif;
+      background: var(--bg);
       color: var(--fg);
-      font-family: "DM Sans", system-ui, sans-serif;
+      line-height: 1.55;
       -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
-    .font-display {
-      font-family: "Instrument Serif", Georgia, serif;
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -1;
+      background:
+        radial-gradient(ellipse 80% 50% at 10% -10%, rgba(255, 78, 205, 0.22), transparent 55%),
+        radial-gradient(ellipse 60% 40% at 90% 10%, rgba(61, 231, 255, 0.18), transparent 50%),
+        radial-gradient(ellipse 50% 40% at 70% 90%, rgba(200, 245, 66, 0.12), transparent 50%),
+        radial-gradient(ellipse 40% 30% at 0% 80%, rgba(139, 124, 255, 0.15), transparent 50%);
     }
-    a:focus-visible,
-    button:focus-visible {
-      outline: 2px solid var(--ring);
+    a { color: inherit; }
+    a:focus-visible, button:focus-visible {
+      outline: 2px solid var(--lime);
       outline-offset: 3px;
     }
-    .skip-link {
-      position: absolute;
-      left: 1rem;
-      top: -100%;
-      z-index: 100;
-      padding: 0.5rem 1rem;
-      background: var(--accent);
-      color: #fff;
-      border-radius: 0.375rem;
-      font-weight: 600;
+    .skip {
+      position: absolute; left: 1rem; top: -100%; z-index: 100;
+      background: var(--lime); color: #0b0f1a; padding: 0.5rem 1rem;
+      font-weight: 700; border-radius: 0.5rem;
     }
-    .skip-link:focus {
-      top: 1rem;
+    .skip:focus { top: 1rem; }
+    .wrap {
+      width: min(1120px, calc(100% - 2.5rem));
+      margin-inline: auto;
     }
-    .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.75rem 1.25rem;
-      background: var(--accent);
-      color: #fff;
-      font-weight: 600;
-      font-size: 0.9375rem;
-      border-radius: 0.5rem;
+    /* Nav */
+    header {
+      position: sticky; top: 0; z-index: 50;
+      backdrop-filter: blur(14px);
+      background: rgba(11, 15, 26, 0.75);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 0; gap: 1rem;
+    }
+    .logo {
+      font-family: Syne, sans-serif;
+      font-weight: 800;
+      font-size: 1.05rem;
+      letter-spacing: -0.02em;
       text-decoration: none;
-      transition: background-color 0.15s ease, transform 0.15s ease;
+      background: linear-gradient(120deg, var(--lime), var(--cyan));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
     }
-    .btn-primary:hover {
-      background: var(--accent-hover);
+    nav ul {
+      list-style: none; display: flex; gap: 1.25rem; flex-wrap: wrap;
     }
-    @media (prefers-color-scheme: dark) {
-      .btn-primary {
-        color: #12100e;
-      }
+    nav a {
+      text-decoration: none; color: var(--muted); font-size: 0.9rem; font-weight: 500;
     }
-    .btn-secondary {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.75rem 1.25rem;
-      background: transparent;
-      color: var(--fg);
-      font-weight: 600;
-      font-size: 0.9375rem;
-      border-radius: 0.5rem;
-      border: 1.5px solid var(--border);
+    nav a:hover { color: var(--fg); }
+    /* Hero */
+    .hero {
+      padding: 5.5rem 0 4.5rem;
+      position: relative;
+    }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.8rem; font-weight: 600; letter-spacing: 0.06em;
+      text-transform: uppercase; color: var(--lime);
+      margin-bottom: 1.25rem;
+    }
+    .eyebrow::before {
+      content: ""; width: 0.55rem; height: 0.55rem; border-radius: 50%;
+      background: var(--lime); box-shadow: 0 0 12px var(--lime);
+    }
+    h1 {
+      font-family: Syne, sans-serif;
+      font-weight: 800;
+      font-size: clamp(3rem, 9vw, 6.2rem);
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+      max-width: 12ch;
+      margin-bottom: 1.5rem;
+    }
+    h1 .accent {
+      background: linear-gradient(105deg, var(--magenta), var(--orange) 45%, var(--lime));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .lede {
+      font-size: clamp(1.1rem, 2.2vw, 1.35rem);
+      color: var(--muted);
+      max-width: 36rem;
+      margin-bottom: 2rem;
+    }
+    .cta-row { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.85rem 1.35rem;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.95rem;
       text-decoration: none;
-      transition: border-color 0.15s ease, background-color 0.15s ease;
+      border: 2px solid transparent;
+      transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
     }
-    .btn-secondary:hover {
-      border-color: var(--accent);
-      background: color-mix(in srgb, var(--accent) 8%, transparent);
+    .btn:hover { transform: translateY(-2px); }
+    .btn-lime {
+      background: var(--lime); color: #0b0f1a;
+      box-shadow: var(--glow);
+    }
+    .btn-ghost {
+      background: transparent; color: var(--fg);
+      border-color: var(--border);
+    }
+    .btn-ghost:hover { border-color: var(--cyan); }
+    .btn-mag {
+      background: linear-gradient(120deg, var(--magenta), var(--violet));
+      color: #fff;
+    }
+    /* Marquee strip */
+    .strip {
+      border-block: 1px solid var(--border);
+      background: rgba(22, 29, 50, 0.6);
+      overflow: hidden;
+      padding: 0.85rem 0;
+    }
+    .strip-track {
+      display: flex; gap: 2.5rem; white-space: nowrap;
+      animation: marquee 28s linear infinite;
+      width: max-content;
+      font-weight: 600; font-size: 0.9rem; color: var(--muted);
+    }
+    .strip-track span { display: inline-flex; align-items: center; gap: 0.6rem; }
+    .dot { color: var(--magenta); }
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .strip-track { animation: none; }
+    }
+    /* Sections */
+    section { padding: 5rem 0; }
+    .section-kicker {
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--cyan); margin-bottom: 0.75rem;
+    }
+    h2 {
+      font-family: Syne, sans-serif;
+      font-weight: 800;
+      font-size: clamp(2rem, 4.5vw, 3rem);
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      margin-bottom: 1.5rem;
+      max-width: 18ch;
+    }
+    .prose { color: var(--muted); max-width: 40rem; font-size: 1.05rem; }
+    .prose p + p { margin-top: 1rem; }
+    .prose strong { color: var(--fg); font-weight: 600; }
+    /* Cards */
+    .grid {
+      display: grid;
+      gap: 1.1rem;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      margin-top: 2rem;
     }
     .card {
-      background: var(--bg-elevated);
+      background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 1rem;
+      border-radius: 1.35rem;
       padding: 1.5rem;
-      box-shadow: var(--card-shadow);
-      height: 100%;
-      display: flex;
-      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+      min-height: 100%;
+      display: flex; flex-direction: column;
+      transition: border-color 0.15s ease, transform 0.15s ease;
     }
-    .chip {
-      display: inline-flex;
-      align-items: center;
-      padding: 0.375rem 0.75rem;
-      background: var(--chip-bg);
-      color: var(--fg);
-      font-size: 0.8125rem;
-      font-weight: 500;
-      border-radius: 9999px;
-      border: 1px solid var(--border);
+    .card:hover {
+      border-color: rgba(200, 245, 66, 0.35);
+      transform: translateY(-3px);
     }
-    .section-label {
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 0.75rem;
+    .card::after {
+      content: "";
+      position: absolute; inset: auto -20% -40% auto;
+      width: 140px; height: 140px; border-radius: 50%;
+      opacity: 0.35; filter: blur(30px); pointer-events: none;
     }
-    .muted {
-      color: var(--fg-muted);
-    }
-    .divider {
-      height: 1px;
-      background: var(--border);
-      border: none;
-    }
-    .nav-link {
-      color: var(--fg-muted);
-      text-decoration: none;
-      font-size: 0.875rem;
-      font-weight: 500;
-      transition: color 0.15s ease;
-    }
-    .nav-link:hover {
-      color: var(--fg);
-    }
-    .hero-rule {
-      width: 3rem;
-      height: 2px;
-      background: var(--accent);
-      border-radius: 1px;
-    }
-    .placeholder-note {
-      font-size: 0.75rem;
-      color: var(--fg-muted);
-      font-style: italic;
-    }
-    .link-accent {
-      color: var(--accent);
-      text-decoration: underline;
-      text-underline-offset: 3px;
-      text-decoration-thickness: 1px;
-    }
-    .link-accent:hover {
-      color: var(--accent-hover);
-    }
+    .card.c1::after { background: var(--lime); }
+    .card.c2::after { background: var(--magenta); }
+    .card.c3::after { background: var(--cyan); }
+    .card.c4::after { background: var(--orange); }
+    .card.c5::after { background: var(--violet); }
     .tag {
       display: inline-block;
-      font-size: 0.6875rem;
-      font-weight: 600;
-      letter-spacing: 0.04em;
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: var(--accent);
-      background: color-mix(in srgb, var(--accent) 12%, transparent);
-      padding: 0.25rem 0.5rem;
-      border-radius: 0.25rem;
-      margin-bottom: 0.75rem;
+      padding: 0.3rem 0.55rem; border-radius: 999px;
+      margin-bottom: 0.85rem; width: fit-content;
     }
+    .tag-lime { background: rgba(200,245,66,0.15); color: var(--lime); }
+    .tag-mag { background: rgba(255,78,205,0.15); color: var(--magenta); }
+    .tag-cyan { background: rgba(61,231,255,0.15); color: var(--cyan); }
+    .tag-orange { background: rgba(255,138,61,0.15); color: var(--orange); }
+    .tag-violet { background: rgba(139,124,255,0.15); color: var(--violet); }
+    .card h3 {
+      font-family: Syne, sans-serif;
+      font-size: 1.25rem; font-weight: 700;
+      letter-spacing: -0.02em; margin-bottom: 0.6rem;
+    }
+    .card p { color: var(--muted); font-size: 0.95rem; flex: 1; }
+    .metric {
+      margin-top: 1rem;
+      font-size: 0.85rem; font-weight: 700; color: var(--lime);
+    }
+    .earlier {
+      margin-top: 1.75rem;
+      padding: 1.1rem 1.25rem;
+      border-radius: 1rem;
+      border: 1px dashed rgba(255,255,255,0.18);
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+    .earlier strong { color: var(--fg); }
+    /* Stack chips */
+    .chips {
+      display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.5rem;
+      list-style: none;
+    }
+    .chip {
+      padding: 0.55rem 0.95rem;
+      border-radius: 999px;
+      font-weight: 600; font-size: 0.88rem;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+    }
+    .chip:nth-child(3n+1) { border-color: rgba(200,245,66,0.4); color: var(--lime); }
+    .chip:nth-child(3n+2) { border-color: rgba(61,231,255,0.4); color: var(--cyan); }
+    .chip:nth-child(3n) { border-color: rgba(255,78,205,0.4); color: var(--magenta); }
+    /* Contact */
+    .contact-panel {
+      background: linear-gradient(135deg, rgba(255,78,205,0.18), rgba(61,231,255,0.12) 50%, rgba(200,245,66,0.1));
+      border: 1px solid var(--border);
+      border-radius: 1.75rem;
+      padding: clamp(1.75rem, 4vw, 3rem);
+    }
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 1.75rem 0 2.5rem;
+      color: var(--muted); font-size: 0.9rem;
+      display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.75rem;
+    }
+    .link {
+      color: var(--cyan); font-weight: 600; text-underline-offset: 3px;
+    }
+    .link:hover { color: var(--lime); }
   </style>
 </head>
-<body class="min-h-screen antialiased">
-  <a class="skip-link" href="#main">Skip to content</a>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
 
-  <header class="border-b" style="border-color: var(--border); background: color-mix(in srgb, var(--bg) 92%, transparent); backdrop-filter: blur(8px); position: sticky; top: 0; z-index: 40;">
-    <div class="mx-auto flex max-w-content items-center justify-between px-5 py-4 sm:px-8">
-      <a href="#top" class="text-sm font-semibold tracking-tight" style="color: var(--fg); text-decoration: none;" aria-label="Frank Dixon — home">
-        Frank Dixon
-      </a>
+  <header>
+    <div class="wrap nav">
+      <a class="logo" href="#top">Frank Dixon</a>
       <nav aria-label="Primary">
-        <ul class="flex items-center gap-5 sm:gap-7 list-none m-0 p-0">
-          <li><a class="nav-link" href="#about">About</a></li>
-          <li><a class="nav-link" href="#work">Work</a></li>
-          <li><a class="nav-link" href="#stack">Stack</a></li>
-          <li><a class="nav-link" href="#contact">Contact</a></li>
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#work">Work</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#stack">Stack</a></li>
+          <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
   <main id="main">
-    <!-- Hero -->
-    <section id="top" class="mx-auto max-w-content px-5 sm:px-8 pt-16 sm:pt-24 pb-20 sm:pb-28" aria-labelledby="hero-heading">
-      <p class="section-label">Senior Full-Stack Engineer · Front-end focus</p>
-      <h1 id="hero-heading" class="font-display text-5xl sm:text-6xl md:text-7xl leading-[1.05] tracking-tight max-w-3xl" style="color: var(--fg);">
-        Frank Dixon
+    <section class="hero wrap" id="top" aria-labelledby="hero-heading">
+      <p class="eyebrow">Senior Full-Stack · Front-end focus</p>
+      <h1 id="hero-heading">
+        Build the UI.<br />
+        <span class="accent">Ship the stack.</span>
       </h1>
-      <div class="hero-rule mt-6 mb-6" aria-hidden="true"></div>
-      <p class="text-lg sm:text-xl leading-relaxed max-w-prose muted">
-        I build calm, accessible Django-backed front ends for complex product surfaces—pairing solid architecture with careful delivery at Undercover Tourist.
+      <p class="lede">
+        I’m Frank Dixon — a senior engineer who owns calm, accessible Django-backed front ends for messy real-world e-commerce. Currently at Undercover Tourist.
       </p>
-      <div class="mt-10 flex flex-wrap gap-3">
-        <a
-          class="btn-primary"
-          href="https://www.linkedin.com/in/frank-dixon-senior-developer"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          LinkedIn
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
-        </a>
-        <a class="btn-secondary" href="#contact">Contact</a>
+      <div class="cta-row">
+        <a class="btn btn-lime" href="mailto:fdixon7@gmail.com">fdixon7@gmail.com</a>
+        <a class="btn btn-ghost" href="https://www.linkedin.com/in/frank-dixon-senior-developer" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a class="btn btn-mag" href="/rabbit/">Open rabbit visualizer →</a>
       </div>
     </section>
 
-    <hr class="divider mx-auto max-w-content" />
+    <div class="strip" aria-hidden="true">
+      <div class="strip-track">
+        <span>Django</span><span class="dot">✦</span>
+        <span>Python</span><span class="dot">✦</span>
+        <span>JavaScript</span><span class="dot">✦</span>
+        <span>HTML / CSS</span><span class="dot">✦</span>
+        <span>Tailwind</span><span class="dot">✦</span>
+        <span>Accessibility</span><span class="dot">✦</span>
+        <span>Performance</span><span class="dot">✦</span>
+        <span>Leadership</span><span class="dot">✦</span>
+        <span>Django</span><span class="dot">✦</span>
+        <span>Python</span><span class="dot">✦</span>
+        <span>JavaScript</span><span class="dot">✦</span>
+        <span>HTML / CSS</span><span class="dot">✦</span>
+        <span>Tailwind</span><span class="dot">✦</span>
+        <span>Accessibility</span><span class="dot">✦</span>
+        <span>Performance</span><span class="dot">✦</span>
+        <span>Leadership</span><span class="dot">✦</span>
+      </div>
+    </div>
 
-    <!-- About -->
-    <section id="about" class="mx-auto max-w-content px-5 sm:px-8 py-20 sm:py-24" aria-labelledby="about-heading">
-      <p class="section-label">About</p>
-      <h2 id="about-heading" class="font-display text-3xl sm:text-4xl tracking-tight mb-8">
-        Front-end craft inside full-stack delivery
-      </h2>
-      <div class="max-w-prose space-y-5 text-base sm:text-[1.0625rem] leading-relaxed" style="color: var(--fg-muted);">
+    <section id="about" class="wrap" aria-labelledby="about-heading">
+      <p class="section-kicker">About</p>
+      <h2 id="about-heading">Front-end craft with full-stack teeth</h2>
+      <div class="prose">
         <p>
-          I’m a senior full-stack engineer with a front-end focus. Day to day that means owning the interfaces people actually use—clear component boundaries, thoughtful interaction design, and the quiet work of performance, accessibility, and usability that keeps a product feeling trustworthy.
+          Day to day I own the interfaces people actually use—clear boundaries, thoughtful interaction, and the quiet work of performance and accessibility that makes a product feel trustworthy under real traffic.
         </p>
         <p>
-          At <strong style="color: var(--fg); font-weight: 600;">Undercover Tourist</strong>, I work across the stack in a travel and entertainment e-commerce setting (Disney, Universal, and related ticketing experiences). I care about architecture that ships: migrations that land cleanly, shared UI systems that teams can reuse, and Django-backed surfaces that stay maintainable as the product grows.
+          At <strong>Undercover Tourist</strong> I work across travel and entertainment e-commerce (Disney, Universal, and related ticketing). I like architecture that ships: in-flight migrations, shared UI systems, and Django-backed surfaces that stay maintainable as the product grows.
         </p>
         <p>
-          Earlier academic work in genomics and data (UMass Amherst) still feeds a side curiosity. That’s what led to my personal rabbit genetics experiments—small, exploratory projects where I connect domain interest to shipping software, not production products.
+          Earlier genomics work at UMass Amherst still feeds a side curiosity—hence the rabbit genetics experiments below. Personal playgrounds, not production products.
         </p>
       </div>
     </section>
 
-    <hr class="divider mx-auto max-w-content" />
-
-    <!-- Selected work -->
-    <section id="work" class="mx-auto max-w-content px-5 sm:px-8 py-20 sm:py-24" aria-labelledby="work-heading">
-      <p class="section-label">Selected work</p>
-      <h2 id="work-heading" class="font-display text-3xl sm:text-4xl tracking-tight mb-3">
-        Outcomes over activity
-      </h2>
-      <p class="muted max-w-prose mb-12 text-base leading-relaxed">
-        Professional highlights are outcome-framed and non-confidential. Personal projects are exploratory experiments.
+    <section id="work" class="wrap" aria-labelledby="work-heading">
+      <p class="section-kicker">Selected work</p>
+      <h2 id="work-heading">Outcomes, not activity theater</h2>
+      <p class="prose">Undercover Tourist · Senior Full-Stack Engineer (Front-End Focus) · May 2021–Present</p>
+      <div class="grid">
+        <article class="card c1">
+          <span class="tag tag-lime">Migration</span>
+          <h3>In-flight framework replacement</h3>
+          <p>Replaced a legacy front-end framework while the product stayed live—shipping a bespoke UI layer that cut CSS bundle size by over 50%, raised product velocity, and eased conversion friction.</p>
+          <p class="metric">CSS bundle −50%+ · live cutover</p>
+        </article>
+        <article class="card c2">
+          <span class="tag tag-mag">Leadership</span>
+          <h3>Front-end team of three</h3>
+          <p>Led three front-end specialists on complex hospitality e-commerce—code quality, mentorship, and delivery against shared REST APIs with designers and engineers.</p>
+          <p class="metric">Team of 3 · REST API integrations</p>
+        </article>
+        <article class="card c3">
+          <span class="tag tag-cyan">Quality</span>
+          <h3>ADA compliance &amp; lean payloads</h3>
+          <p>Drove ADA-compliant accessibility across purchase journeys, and refactored legacy scripts while shipping new features so asset payload stayed lean.</p>
+          <p class="metric">ADA · leaner assets</p>
+        </article>
+      </div>
+      <p class="earlier">
+        <strong>Earlier:</strong> Senior UX Developer at LATICRETE (enterprise site overhaul, component library) and Prudential Financial (interactive tools, templated site builder, vendor &amp; a11y oversight)—seven Prudential Impact Awards.
       </p>
+    </section>
 
-      <h3 class="text-sm font-semibold tracking-wide uppercase mb-5 muted">Undercover Tourist</h3>
-      <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 mb-14">
-        <article class="card">
-          <span class="tag">Migration</span>
-          <h4 class="text-lg font-semibold mb-2" style="color: var(--fg);">Front-end framework migration</h4>
-          <p class="muted text-[0.9375rem] leading-relaxed flex-1">
-            Led front-end migration work to modernize the UI layer—improving consistency, developer experience, and long-term maintainability without disrupting live e-commerce flows.
+    <section id="projects" class="wrap" aria-labelledby="projects-heading">
+      <p class="section-kicker">Personal experiments</p>
+      <h2 id="projects-heading">Rabbit genetics, for fun</h2>
+      <p class="prose">Exploratory builds reconnecting genomics curiosity with shipping small software. Not production products.</p>
+      <div class="grid">
+        <article class="card c4">
+          <span class="tag tag-orange">Live on this site</span>
+          <h3>Rabbit genetics visualizer</h3>
+          <p>Interactive companion for planning meat-rabbit crosses by coat and eye color—try the hosted build right here.</p>
+          <p style="margin-top:1.1rem;">
+            <a class="btn btn-lime" href="/rabbit/" style="padding:0.65rem 1.1rem;font-size:0.88rem;">Launch visualizer</a>
+          </p>
+          <p style="margin-top:0.85rem;font-size:0.85rem;">
+            <a class="link" href="https://github.com/frank-dixon/rabbit-genetics-visualizer" target="_blank" rel="noopener noreferrer">Source on GitHub</a>
           </p>
         </article>
-        <article class="card">
-          <span class="tag">Systems</span>
-          <h4 class="text-lg font-semibold mb-2" style="color: var(--fg);">Component library &amp; internal tools</h4>
-          <p class="muted text-[0.9375rem] leading-relaxed flex-1">
-            Built and evolved shared component patterns, Django admin improvements, and internal marketing systems so product and marketing teams could move faster on a common foundation.
+        <article class="card c5">
+          <span class="tag tag-violet">Companion repo</span>
+          <h3>Rabbit genetics models</h3>
+          <p>Exploratory modeling of rabbit genetics—vibe-coded as a way to reconnect domain interest with shipping working software.</p>
+          <p style="margin-top:1.1rem;">
+            <a class="link" href="https://github.com/frank-dixon/rabbit-genetics" target="_blank" rel="noopener noreferrer">github.com/frank-dixon/rabbit-genetics</a>
           </p>
-        </article>
-        <article class="card sm:col-span-2 lg:col-span-1">
-          <span class="tag">Quality</span>
-          <h4 class="text-lg font-semibold mb-2" style="color: var(--fg);">E-commerce performance &amp; a11y</h4>
-          <p class="muted text-[0.9375rem] leading-relaxed flex-1">
-            Strengthened performance and accessibility across travel and entertainment purchase journeys—faster pages, clearer focus and semantics, and interfaces that hold up under real traffic.
-          </p>
-        </article>
-      </div>
-
-      <h3 class="text-sm font-semibold tracking-wide uppercase mb-5 muted">Personal experiments</h3>
-      <div class="grid gap-5 sm:grid-cols-2">
-        <article class="card">
-          <span class="tag">Genomics curiosity</span>
-          <h4 class="text-lg font-semibold mb-2" style="color: var(--fg);">Rabbit genetics</h4>
-          <p class="muted text-[0.9375rem] leading-relaxed mb-5 flex-1">
-            Exploratory personal project modeling rabbit genetics—vibe-coded with Cursor as a way to reconnect genomics interest with shipping small, working software. Not a production product.
-          </p>
-          <a
-            class="link-accent text-sm font-medium inline-flex items-center gap-1.5"
-            href="https://github.com/frank-dixon/rabbit-genetics"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            github.com/frank-dixon/rabbit-genetics
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
-          </a>
-        </article>
-        <article class="card">
-          <span class="tag">Companion</span>
-          <h4 class="text-lg font-semibold mb-2" style="color: var(--fg);">Rabbit genetics visualizer</h4>
-          <p class="muted text-[0.9375rem] leading-relaxed mb-5 flex-1">
-            Interactive companion for planning and visualizing meat-rabbit crosses by coat and eye color. Same honest framing: a personal learning build, not a shipped product.
-          </p>
-          <a
-            class="link-accent text-sm font-medium inline-flex items-center gap-1.5"
-            href="https://github.com/frank-dixon/rabbit-genetics-visualizer"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            github.com/frank-dixon/rabbit-genetics-visualizer
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
-          </a>
         </article>
       </div>
     </section>
 
-    <hr class="divider mx-auto max-w-content" />
-
-    <!-- Stack -->
-    <section id="stack" class="mx-auto max-w-content px-5 sm:px-8 py-20 sm:py-24" aria-labelledby="stack-heading">
-      <p class="section-label">Stack</p>
-      <h2 id="stack-heading" class="font-display text-3xl sm:text-4xl tracking-tight mb-8">
-        Tools I reach for
-      </h2>
-      <ul class="flex flex-wrap gap-2.5 list-none m-0 p-0" aria-label="Technology stack">
-        <li><span class="chip">Django</span></li>
-        <li><span class="chip">Python</span></li>
-        <li><span class="chip">JavaScript</span></li>
-        <li><span class="chip">HTML / CSS</span></li>
-        <li><span class="chip">Tailwind</span></li>
-        <li><span class="chip">Git</span></li>
-        <li><span class="chip">Accessibility</span></li>
-        <li><span class="chip">Performance</span></li>
+    <section id="stack" class="wrap" aria-labelledby="stack-heading">
+      <p class="section-kicker">Stack</p>
+      <h2 id="stack-heading">Tools I actually reach for</h2>
+      <ul class="chips" aria-label="Technology stack">
+        <li class="chip">Django</li>
+        <li class="chip">Python</li>
+        <li class="chip">JavaScript</li>
+        <li class="chip">HTML / CSS</li>
+        <li class="chip">Tailwind</li>
+        <li class="chip">Git</li>
+        <li class="chip">Accessibility</li>
+        <li class="chip">Performance</li>
+        <li class="chip">Leadership</li>
       </ul>
     </section>
 
-    <hr class="divider mx-auto max-w-content" />
-
-    <!-- Contact -->
-    <section id="contact" class="mx-auto max-w-content px-5 sm:px-8 py-20 sm:py-24" aria-labelledby="contact-heading">
-      <p class="section-label">Contact</p>
-      <h2 id="contact-heading" class="font-display text-3xl sm:text-4xl tracking-tight mb-4">
-        Say hello
-      </h2>
-      <p class="muted max-w-prose mb-10 text-base leading-relaxed">
-        Happy in my current role; open to thoughtful conversations. LinkedIn is the best place to start.
-      </p>
-      <div class="flex flex-col sm:flex-row sm:flex-wrap gap-4 sm:items-center">
-        <a
-          class="btn-primary"
-          href="https://www.linkedin.com/in/frank-dixon-senior-developer"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          LinkedIn
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
-        </a>
-        <a
-          class="btn-secondary"
-          href="mailto:YOUR_EMAIL_HERE@example.com"
-        >
-          Email
-        </a>
-        <a
-          class="btn-secondary"
-          href="resume.pdf"
-        >
-          Resume
-        </a>
+    <section id="contact" class="wrap" aria-labelledby="contact-heading">
+      <div class="contact-panel">
+        <p class="section-kicker">Contact</p>
+        <h2 id="contact-heading">Say hello</h2>
+        <p class="prose" style="margin-bottom:1.5rem;">
+          Happy in my current role; open to thoughtful conversations. Email or LinkedIn is best.
+        </p>
+        <div class="cta-row">
+          <a class="btn btn-lime" href="mailto:fdixon7@gmail.com">fdixon7@gmail.com</a>
+          <a class="btn btn-ghost" href="https://www.linkedin.com/in/frank-dixon-senior-developer" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a class="btn btn-ghost" href="resume.pdf">Resume PDF</a>
+        </div>
+        <p style="margin-top:1.25rem;color:var(--muted);font-size:0.95rem;">
+          Also on <a class="link" href="https://github.com/frank-dixon" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </p>
       </div>
-      <p class="mt-8 text-sm muted">
-        Also on
-        <a class="link-accent" href="https://github.com/frank-dixon" target="_blank" rel="noopener noreferrer">GitHub</a>
-      </p>
     </section>
   </main>
 
-  <footer class="border-t" style="border-color: var(--border);">
-    <div class="mx-auto max-w-content px-5 sm:px-8 py-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-      <p class="text-sm muted m-0">
-        © <span id="year"></span> Frank Dixon
-      </p>
-      <p class="text-sm muted m-0">
-        Built as a quiet, low-maintenance personal site.
-      </p>
-    </div>
+  <footer class="wrap">
+    <p>© <span id="year"></span> Frank Dixon</p>
+    <p>Colorful on purpose. Hireable still.</p>
   </footer>
-
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>

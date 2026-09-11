@@ -2,59 +2,48 @@
 
 Personal site for **Frank Dixon** — Senior Full-Stack Engineer (front-end focus).
 
-Static, single-page site ready for GitHub Pages. No build step.
+Static site for GitHub Pages. No build step for the main page.
 
 ## Preview locally
 
-From this directory:
-
 ```bash
-# Python
 python3 -m http.server 8000
-
-# or Node
-npx serve .
+# or: npx serve .
 ```
 
-Then open [http://localhost:8000](http://localhost:8000).
+Open [http://localhost:8000](http://localhost:8000).
 
-Or simply open `index.html` in a browser (Tailwind loads from CDN, so you need network access).
+## Deploy
 
-## Deploy to GitHub Pages
+Push to `https://github.com/frank-dixon/frank-dixon.github.io`, then **Settings → Pages** → deploy from `main` `/` (root). Site: **https://frank-dixon.github.io/**
 
-1. Push this repo to `https://github.com/frank-dixon/frank-dixon.github.io`
-2. In the repo: **Settings → Pages**
-3. Source: **Deploy from a branch**
-4. Branch: `main` (or `master`), folder: `/` (root)
-5. Save — the site will be at **https://frank-dixon.github.io/**
+## Contact & resume
 
-User/organization sites served from `username.github.io` use the root of this repo; no `docs/` folder or Actions workflow is required for a plain static site.
+| Item | Status |
+|------|--------|
+| **Email** | `fdixon7@gmail.com` (mailto on the site) |
+| **Resume** | `resume.pdf` (from `resume.html`) |
+| **Rabbit visualizer** | Hosted at `/rabbit/` → https://frank-dixon.github.io/rabbit/ |
 
-### Custom domain (optional)
+Regenerate the PDF after editing `resume.html`:
 
-If you later want a custom domain, add a `CNAME` file at the repo root containing only your domain (e.g. `frankdixon.dev`), then configure DNS with your registrar. Do not add a CNAME file until you are ready.
-
-## Placeholders to fill in
-
-| Item | Where | Notes |
-|------|--------|--------|
-| **Email** | `index.html` — search for `YOUR_EMAIL_HERE@example.com` | Replace both the `mailto:` href and any visible placeholder text |
-| **Resume** | Add `resume.pdf` in this folder | Contact section already links to `resume.pdf`; drop the file here when ready |
-
-Until those are filled, LinkedIn remains the primary contact CTA.
+```bash
+google-chrome --headless=new --disable-gpu --no-sandbox --disable-dev-shm-usage \
+  --no-pdf-header-footer --print-to-pdf=resume.pdf resume.html
+```
 
 ## What’s included
 
-- `index.html` — full page (hero, about, selected work, stack, contact)
-- Tailwind CSS via CDN + small custom CSS for theme tokens, focus states, and dark mode (`prefers-color-scheme`)
-- Minimal JS — copyright year only
+- `index.html` — colorful personal site (hero, about, work, projects, stack, contact)
+- `rabbit/` — built Rabbit Genetics Visualizer (live demo)
+- `resume.html` / `resume.pdf` — printable resume
+- Phone is on the resume PDF only; public site uses email + LinkedIn
 
 ## Design notes
 
-- Mobile-first, calm senior aesthetic (Instrument Serif + DM Sans)
-- Dark mode follows system preference
-- Semantic HTML, skip link, visible focus rings, `prefers-reduced-motion` respected
-- Professional work is outcome-framed and non-confidential; rabbit genetics projects are framed as personal experiments with live GitHub links
+- Bold, colorful, artsy aesthetic (Syne + Space Grotesk; lime / magenta / cyan accents)
+- Professional work is outcome-framed; rabbit projects are personal experiments with a live `/rabbit/` demo
+- Featured stack: Django, Python, JavaScript, HTML/CSS, Tailwind, accessibility, performance, Git, leadership — no React or TypeScript advertising on the portfolio
 
 ## License
 

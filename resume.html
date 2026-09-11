@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Resume — Frank N. Dixon, Senior Full-Stack Engineer (Front-End Focus)" />
+  <title>Frank N. Dixon — Resume</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --fg: #2a2623;
+      --muted: #63584e;
+      --accent: #2d6a5a;
+      --border: #d4cdc2;
+      --bg: #ffffff;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    @page {
+      size: letter;
+      margin: 0.45in 0.55in;
+    }
+    html, body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: "DM Sans", system-ui, sans-serif;
+      font-size: 10pt;
+      line-height: 1.35;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    body {
+      max-width: 8.5in;
+      margin: 0 auto;
+      padding: 0.45in 0.55in;
+    }
+    h1 {
+      font-family: "Instrument Serif", Georgia, serif;
+      font-size: 24pt;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      line-height: 1.1;
+      margin-bottom: 0.15rem;
+    }
+    .title {
+      font-size: 11pt;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 0.45rem;
+    }
+    .contact {
+      font-size: 9pt;
+      color: var(--muted);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.2rem 0.85rem;
+      margin-bottom: 0.55rem;
+    }
+    .contact a {
+      color: var(--muted);
+      text-decoration: none;
+    }
+    .rule {
+      height: 1.5px;
+      background: var(--accent);
+      border: none;
+      margin: 0 0 0.75rem;
+    }
+    h2 {
+      font-size: 9pt;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 0.55rem 0 0.3rem;
+      padding-bottom: 0.2rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .summary {
+      color: var(--muted);
+      font-size: 10pt;
+      line-height: 1.45;
+      margin-bottom: 0.15rem;
+    }
+    .job {
+      margin-bottom: 0.45rem;
+      break-inside: avoid;
+    }
+    .job-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 0.15rem 0.75rem;
+      margin-bottom: 0.1rem;
+    }
+    .job-role {
+      font-weight: 700;
+      font-size: 10.5pt;
+    }
+    .job-co {
+      font-weight: 600;
+      color: var(--fg);
+    }
+    .job-meta {
+      font-size: 9pt;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    .job-loc {
+      font-size: 9pt;
+      color: var(--muted);
+      margin-bottom: 0.2rem;
+    }
+    ul {
+      margin: 0.15rem 0 0 1.1rem;
+      padding: 0;
+    }
+    li {
+      margin-bottom: 0.12rem;
+      color: var(--fg);
+    }
+    li::marker {
+      color: var(--accent);
+    }
+    .condensed .job {
+      margin-bottom: 0.25rem;
+    }
+    .condensed p {
+      font-size: 9.5pt;
+      color: var(--muted);
+      margin-top: 0.1rem;
+    }
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem 1.25rem;
+    }
+    .edu-item, .award-item {
+      break-inside: avoid;
+      margin-bottom: 0.25rem;
+    }
+    .edu-item strong, .award-item strong {
+      font-weight: 600;
+      display: block;
+      font-size: 10pt;
+    }
+    .edu-item span, .award-item span {
+      font-size: 9pt;
+      color: var(--muted);
+    }
+    .skills {
+      font-size: 10pt;
+      color: var(--fg);
+      line-height: 1.5;
+    }
+    .skills strong {
+      color: var(--accent);
+      font-weight: 600;
+    }
+    .certs {
+      font-size: 9.5pt;
+      color: var(--muted);
+    }
+    @media screen {
+      body {
+        box-shadow: 0 0 0 1px var(--border);
+        margin: 1.5rem auto;
+        min-height: 11in;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Frank N. Dixon</h1>
+    <p class="title">Senior Full-Stack Engineer (Front-End Focus)</p>
+    <div class="contact">
+      <span>Boston, Massachusetts</span>
+      <a href="mailto:fdixon7@gmail.com">fdixon7@gmail.com</a>
+      <span>(413) 218-6421</span>
+      <a href="https://www.linkedin.com/in/frank-dixon-senior-developer">linkedin.com/in/frank-dixon-senior-developer</a>
+      <a href="https://github.com/frank-dixon">github.com/frank-dixon</a>
+    </div>
+  </header>
+  <hr class="rule" />
+
+  <h2>Summary</h2>
+  <p class="summary">
+    Senior full-stack engineer with a front-end focus and 15+ years shipping high-performance e-commerce and enterprise web products.
+    Strengths in Django/Python, JavaScript, HTML/CSS, Tailwind, accessibility, performance, and leading small front-end teams—architecture that ships cleanly under live traffic.
+  </p>
+
+  <h2>Experience</h2>
+
+  <article class="job">
+    <div class="job-header">
+      <div>
+        <span class="job-role">Senior Full-Stack Engineer (Front-End Focus)</span>
+        · <span class="job-co">Undercover Tourist</span>
+      </div>
+      <span class="job-meta">May 2021 – Present</span>
+    </div>
+    <p class="job-loc">Austin, TX (remote) · Travel &amp; entertainment e-commerce</p>
+    <ul>
+      <li>Led a team of 3 front-end specialists on complex hospitality e-commerce solutions</li>
+      <li>Replaced a legacy front-end framework in-flight with a bespoke UI layer—cut CSS bundle size by over 50%, increased product velocity, and reduced friction in conversion funnels</li>
+      <li>Shipped new site functionality while refactoring legacy scripts to reduce asset payload</li>
+      <li>Collaborated with designers and engineers to integrate RESTful APIs into new products</li>
+      <li>Drove website accessibility work to make the site ADA compliant</li>
+    </ul>
+  </article>
+
+  <article class="job">
+    <div class="job-header">
+      <div>
+        <span class="job-role">Senior User Experience Developer</span>
+        · <span class="job-co">LATICRETE International</span>
+      </div>
+      <span class="job-meta">Feb 2020 – Apr 2021</span>
+    </div>
+    <p class="job-loc">Bethany, CT</p>
+    <ul>
+      <li>Technical lead for corporate website overhaul—architected information architecture for an enterprise site</li>
+      <li>Built responsive web and mobile UIs focused on performance and scalability; developed a component library to standardize and accelerate feature delivery</li>
+    </ul>
+  </article>
+
+  <article class="job">
+    <div class="job-header">
+      <div>
+        <span class="job-role">Senior User Experience Developer</span>
+        · <span class="job-co">Prudential Financial</span>
+      </div>
+      <span class="job-meta">May 2017 – Feb 2020</span>
+    </div>
+    <p class="job-loc">Hartford, CT</p>
+    <ul>
+      <li>Technical lead for interactive tools and a templated website builder; managed development and testing of new digital products</li>
+      <li>Oversaw vendor relationships for web application development and accessibility compliance; led workshops on iterative design and development</li>
+      <li>Received seven Prudential Impact Awards for driving improved business outcomes</li>
+    </ul>
+  </article>
+
+  <div class="condensed">
+    <article class="job">
+      <div class="job-header">
+        <div>
+          <span class="job-role">User Experience Developer</span>
+          · <span class="job-co">The Walker Group</span>
+        </div>
+        <span class="job-meta">Sep 2014 – Jan 2017</span>
+      </div>
+      <p>E-commerce and migration work for SMB and national clients; one wholesaler site drove 100%+ increase in RFQ goal completion.</p>
+    </article>
+    <article class="job">
+      <div class="job-header">
+        <div>
+          <span class="job-role">Front End Developer</span>
+          · <span class="job-co">Idea Agency</span>
+        </div>
+        <span class="job-meta">Sep 2013 – Aug 2014</span>
+      </div>
+      <p>Agency sites, marketing emails, and landing pages for higher-ed, banks, and small businesses.</p>
+    </article>
+    <article class="job">
+      <div class="job-header">
+        <div>
+          <span class="job-role">Bioinformatics Engineer</span>
+          · <span class="job-co">University of Massachusetts Amherst</span>
+        </div>
+        <span class="job-meta">Nov 2008 – May 2011</span>
+      </div>
+      <p>High-throughput genomic analysis; open-source tools for genetic markers and mRNA tagging.</p>
+    </article>
+    <article class="job">
+      <div class="job-header">
+        <div>
+          <span class="job-role">Front End Developer</span>
+          · <span class="job-co">Windsor Marketing Group</span>
+        </div>
+        <span class="job-meta">Jan 2006 – Aug 2008</span>
+      </div>
+      <p>Client-side apps for high-throughput printing; Maverick Award (Employee of the Year, 2007).</p>
+    </article>
+    <article class="job">
+      <div class="job-header">
+        <div>
+          <span class="job-role">Web Designer / Developer</span>
+          · <span class="job-co">Impact Media Group</span>
+        </div>
+        <span class="job-meta">Mar 2004 – Jan 2006</span>
+      </div>
+      <p>Small-business websites, digital marketing, and sales-team technical consulting.</p>
+    </article>
+  </div>
+
+  <h2>Skills</h2>
+  <p class="skills">
+    <strong>Technical:</strong> Django, Python, JavaScript, HTML5, CSS3, Tailwind CSS, REST APIs, Git, accessibility (ADA), performance · jQuery (legacy familiarity)<br />
+    <strong>Leadership:</strong> Team leadership, mentoring developers, stakeholder communication, vendor management
+  </p>
+
+  <h2>Education</h2>
+  <div class="two-col">
+    <div class="edu-item">
+      <strong>BSc — Plant, Soil, and Insect Sciences</strong>
+      <span>University of Massachusetts Amherst · 2008 – 2011</span>
+    </div>
+    <div class="edu-item">
+      <strong>ASc — Computer Science</strong>
+      <span>Springfield Technical Community College · 2003 – 2006</span>
+    </div>
+  </div>
+
+  <h2>Awards &amp; Certifications</h2>
+  <div class="two-col">
+    <div class="award-item">
+      <strong>Seven Prudential Impact Awards</strong>
+      <span>Recognized for going above and beyond to improve business outcomes</span>
+    </div>
+    <div class="award-item">
+      <strong>Maverick Award</strong>
+      <span>Windsor Marketing Group Employee of the Year, 2007</span>
+    </div>
+  </div>
+  <p class="certs" style="margin-top: 0.4rem;">
+    ICAgile Team Facilitator · ICAgile Certified Professional · HubSpot Inbound Marketing · HubSpot Growth-Driven Design
+  </p>
+</body>
+</html>
