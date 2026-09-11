@@ -41,7 +41,7 @@ google-chrome --headless=new --disable-gpu --no-sandbox --disable-dev-shm-usage 
 
 ## Design notes
 
-- Editorial / magazine: warm cream paper (`#F3EEE4`), ink type, raspberry/wine accent (`#9A3458`)
+- Editorial / magazine: warm cream paper (`#F3EEE4`), ink type, raspdark turquoise/wine accent (`#9A3458`)
 - Type: Fraunces (display) + Source Sans 3 (body). Punch via hierarchy, pull quote, rules, and an asymmetric grid — no neon, marquees, or glow orbs
 - Professional work is outcome-framed; rabbit projects are personal experiments with a live `/rabbit/` demo
 - Featured stack: Django, Python, JavaScript, HTML/CSS, Tailwind, accessibility, performance, Git — no React or TypeScript advertising on the portfolio
