@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Frank Dixon — Senior Full-Stack Engineer with a front-end focus. Building calm, accessible, performant web experiences." />
+  <meta name="author" content="Frank Dixon" />
+  <meta name="theme-color" content="#0f1419" media="(prefers-color-scheme: dark)" />
+  <meta name="theme-color" content="#f7f5f2" media="(prefers-color-scheme: light)" />
+  <title>Frank Dixon — Senior Full-Stack Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'media',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"DM Sans"', 'system-ui', 'sans-serif'],
+            serif: ['"Instrument Serif"', 'Georgia', 'serif'],
+          },
+          colors: {
+            ink: {
+              50: '#f7f5f2',
+              100: '#ebe7e0',
+              200: '#d4cdc2',
+              300: '#b5aa9a',
+              400: '#96897a',
+              500: '#7a6e61',
+              600: '#63584e',
+              700: '#504740',
+              800: '#433c37',
+              900: '#2a2623',
+              950: '#171513',
+            },
+            accent: {
+              DEFAULT: '#2d6a5a',
+              soft: '#3d8a74',
+              muted: '#1e4a3f',
+            },
+          },
+          maxWidth: {
+            prose: '42rem',
+            content: '68rem',
+          },
+        },
+      },
+    };
+  </script>
+  <style type="text/tailwindcss">
+    @layer base {
+      html {
+        scroll-behavior: smooth;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+        *, *::before, *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+    }
+  </style>
+  <style>
+    :root {
+      --bg: #f7f5f2;
+      --bg-elevated: #ffffff;
+      --fg: #2a2623;
+      --fg-muted: #63584e;
+      --border: #d4cdc2;
+      --accent: #2d6a5a;
+      --accent-hover: #1e4a3f;
+      --ring: #3d8a74;
+      --chip-bg: #ebe7e0;
+      --card-shadow: 0 1px 2px rgb(42 38 35 / 0.04), 0 4px 16px rgb(42 38 35 / 0.04);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #12100e;
+        --bg-elevated: #1c1917;
+        --fg: #ebe7e0;
+        --fg-muted: #b5aa9a;
+        --border: #3a342f;
+        --accent: #5cb89a;
+        --accent-hover: #7dceb4;
+        --ring: #5cb89a;
+        --chip-bg: #2a2623;
+        --card-shadow: 0 1px 2px rgb(0 0 0 / 0.2), 0 8px 24px rgb(0 0 0 / 0.25);
+      }
+    }
+    body {
+      background-color: var(--bg);
+      color: var(--fg);
+      font-family: "DM Sans", system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    .font-display {
+      font-family: "Instrument Serif", Georgia, serif;
+    }
+    a:focus-visible,
+    button:focus-visible {
+      outline: 2px solid var(--ring);
+      outline-offset: 3px;
+    }
+    .skip-link {
+      position: absolute;
+      left: 1rem;
+      top: -100%;
+      z-index: 100;
+      padding: 0.5rem 1rem;
+      background: var(--accent);
+      color: #fff;
+      border-radius: 0.375rem;
+      font-weight: 600;
+    }
+    .skip-link:focus {
+      top: 1rem;
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.25rem;
+      background: var(--accent);
+      color: #fff;
+      font-weight: 600;
+      font-size: 0.9375rem;
+      border-radius: 0.5rem;
+      text-decoration: none;
+      transition: background-color 0.15s ease, transform 0.15s ease;
+    }
+    .btn-primary:hover {
+      background: var(--accent-hover);
+    }
+    @media (prefers-color-scheme: dark) {
+      .btn-primary {
+        color: #12100e;
+      }
+    }
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.25rem;
+      background: transparent;
+      color: var(--fg);
+      font-weight: 600;
+      font-size: 0.9375rem;
+      border-radius: 0.5rem;
+      border: 1.5px solid var(--border);
+      text-decoration: none;
+      transition: border-color 0.15s ease, background-color 0.15s ease;
+    }
+    .btn-secondary:hover {
+      border-color: var(--accent);
+      background: color-mix(in srgb, var(--accent) 8%, transparent);
+    }
+    .card {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      box-shadow: var(--card-shadow);
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.375rem 0.75rem;
+      background: var(--chip-bg);
+      color: var(--fg);
+      font-size: 0.8125rem;
+      font-weight: 500;
+      border-radius: 9999px;
+      border: 1px solid var(--border);
+    }
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+    .muted {
+      color: var(--fg-muted);
+    }
+    .divider {
+      height: 1px;
+      background: var(--border);
+      border: none;
+    }
+    .nav-link {
+      color: var(--fg-muted);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: color 0.15s ease;
+    }
+    .nav-link:hover {
+      color: var(--fg);
+    }
+    .hero-rule {
+      width: 3rem;
+      height: 2px;
+      background: var(--accent);
+      border-radius: 1px;
+    }
+    .placeholder-note {
+      font-size: 0.75rem;
+      color: var(--fg-muted);
+      font-style: italic;
+    }
+    .link-accent {
+      color: var(--accent);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1px;
+    }
+    .link-accent:hover {
+      color: var(--accent-hover);
+    }
+    .tag {
+      display: inline-block;
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: color-mix(in srgb, var(--accent) 12%, transparent);
+      padding: 0.25rem 0.5rem;
+      border-radius: 0.25rem;
+      margin-bottom: 0.75rem;
+    }
+  </style>
+</head>
+<body class="min-h-screen antialiased">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="border-b" style="border-color: var(--border); background: color-mix(in srgb, var(--bg) 92%, transparent); backdrop-filter: blur(8px); position: sticky; top: 0; z-index: 40;">
+    <div class="mx-auto flex max-w-content items-center justify-between px-5 py-4 sm:px-8">
+      <a href="#top" class="text-sm font-semibold tracking-tight" style="color: var(--fg); text-decoration: none;" aria-label="Frank Dixon — home">
+        Frank Dixon
+      </a>
+      <nav aria-label="Primary">
+        <ul class="flex items-center gap-5 sm:gap-7 list-none m-0 p-0">
+          <li><a class="nav-link" href="#about">About</a></li>
+          <li><a class="nav-link" href="#work">Work</a></li>
+          <li><a class="nav-link" href="#stack">Stack</a></li>
+          <li><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- Hero -->
+    <section id="top" class="mx-auto max-w-content px-5 sm:px-8 pt-16 sm:pt-24 pb-20 sm:pb-28" aria-labelledby="hero-heading">
+      <p class="section-label">Senior Full-Stack Engineer · Front-end focus</p>
+      <h1 id="hero-heading" class="font-display text-5xl sm:text-6xl md:text-7xl leading-[1.05] tracking-tight max-w-3xl" style="color: var(--fg);">
+        Frank Dixon
+      </h1>
+      <div class="hero-rule mt-6 mb-6" aria-hidden="true"></div>
+      <p class="text-lg sm:text-xl leading-relaxed max-w-prose muted">
+        I build calm, accessible Django-backed front ends for complex product surfaces—pairing solid architecture with careful delivery at Undercover Tourist.
+      </p>
+      <div class="mt-10 flex flex-wrap gap-3">
+        <a
+          class="btn-primary"
+          href="https://www.linkedin.com/in/frank-dixon-senior-developer"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          LinkedIn
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+        </a>
+        <a class="btn-secondary" href="#contact">Contact</a>
+      </div>
+    </section>
+
+    <hr class="divider mx-auto max-w-content" />
+
+    <!-- About -->
+    <section id="about" class="mx-auto max-w-content px-5 sm:px-8 py-20 sm:py-24" aria-labelledby="about-heading">
+      <p class="section-label">About</p>
+      <h2 id="about-heading" class="font-display text-3xl sm:text-4xl tracking-tight mb-8">
+        Front-end craft inside full-stack delivery
+      </h2>
+      <div class="max-w-prose space-y-5 text-base sm:text-[1.0625rem] leading-relaxed" style="color: var(--fg-muted);">
+        <p>
+          I’m a senior full-stack engineer with a front-end focus. Day to day that means owning the interfaces people actually use—clear component boundaries, thoughtful interaction design, and the quiet work of performance, accessibility, and usability that keeps a product feeling trustworthy.
+        </p>
+        <p>
+          At <strong style="color: var(--fg); font-weight: 600;">Undercover Tourist</strong>, I work across the stack in a travel and entertainment e-commerce setting (Disney, Universal, and related ticketing experiences). I care about architecture that ships: migrations that land cleanly, shared UI systems that teams can reuse, and Django-backed surfaces that stay maintainable as the product grows.
+        </p>
+        <p>
+          Earlier academic work in genomics and data (UMass Amherst) still feeds a side curiosity. That’s what led to my personal rabbit genetics experiments—small, exploratory projects where I connect domain interest to shipping software, not production products.
+        </p>
+      </div>
+    </section>
+
+    <hr class="divider mx-auto max-w-content" />
+
+    <!-- Selected work -->
+    <section id="work" class="mx-auto max-w-content px-5 sm:px-8 py-20 sm:py-24" aria-labelledby="work-heading">
+      <p class="section-label">Selected work</p>
+      <h2 id="work-heading" class="font-display text-3xl sm:text-4xl tracking-tight mb-3">
+        Outcomes over activity
+      </h2>
+      <p class="muted max-w-prose mb-12 text-base leading-relaxed">
+        Professional highlights are outcome-framed and non-confidential. Personal projects are exploratory experiments.
+      </p>
+
+      <h3 class="text-sm font-semibold tracking-wide uppercase mb-5 muted">Undercover Tourist</h3>
+      <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 mb-14">
+        <article class="card">
+          <span class="tag">Migration</span>
+          <h4 class="text-lg font-semibold mb-2" style="color: var(--fg);">Front-end framework migration</h4>
+          <p class="muted text-[0.9375rem] leading-relaxed flex-1">
+            Led front-end migration work to modernize the UI layer—improving consistency, developer experience, and long-term maintainability without disrupting live e-commerce flows.
+          </p>
+        </article>
+        <article class="card">
+          <span class="tag">Systems</span>
+          <h4 class="text-lg font-semibold mb-2" style="color: var(--fg);">Component library &amp; internal tools</h4>
+          <p class="muted text-[0.9375rem] leading-relaxed flex-1">
+            Built and evolved shared component patterns, Django admin improvements, and internal marketing systems so product and marketing teams could move faster on a common foundation.
+          </p>
+        </article>
+        <article class="card sm:col-span-2 lg:col-span-1">
+          <span class="tag">Quality</span>
+          <h4 class="text-lg font-semibold mb-2" style="color: var(--fg);">E-commerce performance &amp; a11y</h4>
+          <p class="muted text-[0.9375rem] leading-relaxed flex-1">
+            Strengthened performance and accessibility across travel and entertainment purchase journeys—faster pages, clearer focus and semantics, and interfaces that hold up under real traffic.
+          </p>
+        </article>
+      </div>
+
+      <h3 class="text-sm font-semibold tracking-wide uppercase mb-5 muted">Personal experiments</h3>
+      <div class="grid gap-5 sm:grid-cols-2">
+        <article class="card">
+          <span class="tag">Genomics curiosity</span>
+          <h4 class="text-lg font-semibold mb-2" style="color: var(--fg);">Rabbit genetics</h4>
+          <p class="muted text-[0.9375rem] leading-relaxed mb-5 flex-1">
+            Exploratory personal project modeling rabbit genetics—vibe-coded with Cursor as a way to reconnect genomics interest with shipping small, working software. Not a production product.
+          </p>
+          <a
+            class="link-accent text-sm font-medium inline-flex items-center gap-1.5"
+            href="https://github.com/frank-dixon/rabbit-genetics"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            github.com/frank-dixon/rabbit-genetics
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+          </a>
+        </article>
+        <article class="card">
+          <span class="tag">Companion</span>
+          <h4 class="text-lg font-semibold mb-2" style="color: var(--fg);">Rabbit genetics visualizer</h4>
+          <p class="muted text-[0.9375rem] leading-relaxed mb-5 flex-1">
+            Interactive companion for planning and visualizing meat-rabbit crosses by coat and eye color. Same honest framing: a personal learning build, not a shipped product.
+          </p>
+          <a
+            class="link-accent text-sm font-medium inline-flex items-center gap-1.5"
+            href="https://github.com/frank-dixon/rabbit-genetics-visualizer"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            github.com/frank-dixon/rabbit-genetics-visualizer
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+          </a>
+        </article>
+      </div>
+    </section>
+
+    <hr class="divider mx-auto max-w-content" />
+
+    <!-- Stack -->
+    <section id="stack" class="mx-auto max-w-content px-5 sm:px-8 py-20 sm:py-24" aria-labelledby="stack-heading">
+      <p class="section-label">Stack</p>
+      <h2 id="stack-heading" class="font-display text-3xl sm:text-4xl tracking-tight mb-8">
+        Tools I reach for
+      </h2>
+      <ul class="flex flex-wrap gap-2.5 list-none m-0 p-0" aria-label="Technology stack">
+        <li><span class="chip">Django</span></li>
+        <li><span class="chip">Python</span></li>
+        <li><span class="chip">JavaScript</span></li>
+        <li><span class="chip">HTML / CSS</span></li>
+        <li><span class="chip">Tailwind</span></li>
+        <li><span class="chip">Git</span></li>
+        <li><span class="chip">Accessibility</span></li>
+        <li><span class="chip">Performance</span></li>
+      </ul>
+    </section>
+
+    <hr class="divider mx-auto max-w-content" />
+
+    <!-- Contact -->
+    <section id="contact" class="mx-auto max-w-content px-5 sm:px-8 py-20 sm:py-24" aria-labelledby="contact-heading">
+      <p class="section-label">Contact</p>
+      <h2 id="contact-heading" class="font-display text-3xl sm:text-4xl tracking-tight mb-4">
+        Say hello
+      </h2>
+      <p class="muted max-w-prose mb-10 text-base leading-relaxed">
+        Happy in my current role; open to thoughtful conversations. LinkedIn is the best place to start.
+      </p>
+      <div class="flex flex-col sm:flex-row sm:flex-wrap gap-4 sm:items-center">
+        <a
+          class="btn-primary"
+          href="https://www.linkedin.com/in/frank-dixon-senior-developer"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          LinkedIn
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+        </a>
+        <a
+          class="btn-secondary"
+          href="mailto:YOUR_EMAIL_HERE@example.com"
+        >
+          Email
+        </a>
+        <a
+          class="btn-secondary"
+          href="resume.pdf"
+        >
+          Resume
+        </a>
+      </div>
+      <p class="mt-8 text-sm muted">
+        Also on
+        <a class="link-accent" href="https://github.com/frank-dixon" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </p>
+    </section>
+  </main>
+
+  <footer class="border-t" style="border-color: var(--border);">
+    <div class="mx-auto max-w-content px-5 sm:px-8 py-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+      <p class="text-sm muted m-0">
+        © <span id="year"></span> Frank Dixon
+      </p>
+      <p class="text-sm muted m-0">
+        Built as a quiet, low-maintenance personal site.
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
