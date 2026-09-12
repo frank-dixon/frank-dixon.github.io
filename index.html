@@ -1,28 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- deploy:2026-09-11-turquoise-resume -->
+  <!-- deploy:2026-09-12-cool-spectrum -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Frank Dixon — Senior engineer who owns the front end of Django products. Architecture, migration, checkout UX, performance &amp; a11y." />
   <meta name="author" content="Frank Dixon" />
-  <meta name="theme-color" content="#F3EEE4" />
+  <meta name="theme-color" content="#0A0C10" />
   <title>Frank Dixon — Senior Frontend · Django products</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --paper: #F3EEE4;
-      --paper-2: #E8E0D2;
-      --ink: #1C1916;
-      --ink-soft: #3F3A35;
-      --muted: #6A635B;
-      --rule: #D4CBBE;
-      --berry: #0B8A8F;
-      --berry-deep: #087075;
-      --on-berry: #F8F3EA;
-      --espresso: #241E1B;
+      --bg: #0A0C10;
+      --text: #E6EAF0;
+      --action: #6B7FD7;
+      --sea: #5FA8A0;
+      --raised: #141820;
+      --mute: #8B93A3;
+      --line: #243041;
+      --lede: #B7C0CE;
+      --soft: #A8B2C2;
+      --void: #050608;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
@@ -36,20 +36,20 @@
       }
     }
     body {
-      font-family: "Source Sans 3", system-ui, sans-serif;
-      background: var(--paper);
-      color: var(--ink);
+      font-family: Inter, system-ui, sans-serif;
+      background: var(--void);
+      color: var(--text);
       line-height: 1.55;
       -webkit-font-smoothing: antialiased;
     }
     a { color: inherit; }
     a:focus-visible, button:focus-visible {
-      outline: 2px solid var(--berry);
+      outline: 2px solid var(--action);
       outline-offset: 3px;
     }
     .skip {
       position: absolute; left: 1rem; top: -100%; z-index: 100;
-      background: var(--berry); color: var(--on-berry);
+      background: var(--action); color: var(--bg);
       padding: 0.5rem 1rem; font-weight: 700;
     }
     .skip:focus { top: 1rem; }
@@ -61,288 +61,318 @@
       .wrap { width: min(1120px, calc(100% - 3.5rem)); }
     }
 
-    /* Masthead */
     .masthead {
-      border-bottom: 1px solid var(--rule);
-      background: var(--paper);
+      border-bottom: 1px solid var(--line);
+      background: rgba(10, 12, 16, 0.92);
+      backdrop-filter: blur(10px);
       position: sticky; top: 0; z-index: 50;
     }
     .nav {
-      display: flex; align-items: baseline; justify-content: space-between;
-      gap: 1rem; padding: 0.95rem 0 0.9rem; flex-wrap: wrap;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 1rem; padding: 1.15rem 0; flex-wrap: wrap;
     }
     .wordmark {
-      font-family: Fraunces, Georgia, serif;
-      font-weight: 600; font-size: 1.15rem;
-      font-optical-sizing: auto;
-      letter-spacing: -0.02em;
+      font-family: "Space Grotesk", system-ui, sans-serif;
+      font-weight: 700; font-size: 0.95rem;
+      letter-spacing: -0.03em;
       text-decoration: none;
-      color: var(--ink);
+      color: var(--text);
     }
-    .wordmark span { color: var(--berry); }
+    .wordmark span { color: var(--action); }
     nav ul {
-      list-style: none; display: flex; gap: 0.35rem 1.15rem; flex-wrap: wrap;
+      list-style: none; display: flex; gap: 0.35rem 1.35rem; flex-wrap: wrap;
     }
     nav a {
       text-decoration: none;
-      color: var(--muted);
+      color: var(--mute);
       font-size: 0.82rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+      font-weight: 500;
     }
-    nav a:hover { color: var(--ink); }
+    nav a:hover, nav a[aria-current="page"] { color: var(--text); font-weight: 600; }
 
-    /* Hero */
     .hero {
-      padding: 2.75rem 0 3.25rem;
-      border-bottom: 3px solid var(--ink);
+      padding: 3rem 0 2.75rem;
+      border-bottom: 1px solid var(--line);
     }
     .issue {
-      display: flex; flex-wrap: wrap; justify-content: space-between;
-      gap: 0.4rem 1.5rem;
-      font-size: 0.75rem; font-weight: 700;
-      letter-spacing: 0.14em; text-transform: uppercase;
-      color: var(--berry);
+      font-family: "JetBrains Mono", ui-monospace, monospace;
+      font-size: 0.7rem; font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--sea);
+      margin-bottom: 1rem;
+    }
+    h1 {
+      font-family: "Space Grotesk", system-ui, sans-serif;
+      font-weight: 600;
+      font-size: clamp(2.6rem, 7vw, 4rem);
+      line-height: 0.95;
+      letter-spacing: -0.05em;
       margin-bottom: 1.35rem;
     }
-    .issue time, .issue span { color: var(--muted); letter-spacing: 0.1em; }
-    h1 {
-      font-family: Fraunces, Georgia, serif;
-      font-optical-sizing: auto;
-      font-weight: 600;
-      font-size: clamp(4.2rem, 16vw, 9.5rem);
-      line-height: 0.86;
-      letter-spacing: -0.045em;
-      margin-bottom: 1.75rem;
-    }
     h1 em {
-      font-style: italic;
-      font-weight: 500;
-      color: var(--berry);
+      font-style: normal;
+      color: var(--action);
     }
     .hero-grid {
       display: grid;
-      gap: 1.75rem 3rem;
-      align-items: start;
-      padding-top: 1.5rem;
-      border-top: 1px solid var(--rule);
+      gap: 1.75rem 2.5rem;
+      align-items: end;
     }
     @media (min-width: 800px) {
-      .hero-grid { grid-template-columns: 1.35fr 0.85fr; }
+      .hero-grid { grid-template-columns: 1.4fr 0.8fr; }
     }
     .lede {
-      font-size: clamp(1.15rem, 2.1vw, 1.4rem);
-      line-height: 1.45;
-      color: var(--ink-soft);
-      max-width: 36rem;
+      font-size: clamp(1.05rem, 2vw, 1.15rem);
+      line-height: 1.5;
+      color: var(--lede);
+      max-width: 38ch;
     }
-    .lede strong { color: var(--ink); font-weight: 600; }
+    .lede strong { color: var(--text); font-weight: 600; }
     .hero-aside {
-      display: flex; flex-direction: column; gap: 1.15rem;
+      background: var(--raised);
+      border: 1px solid var(--line);
+      padding: 1.15rem 1.15rem 1rem;
     }
-    .aside-meta {
-      font-size: 0.95rem; color: var(--muted);
-      padding-left: 1rem;
-      border-left: 3px solid var(--berry);
+    .aside-k {
+      font-family: "JetBrains Mono", ui-monospace, monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--mute);
+      margin-bottom: 0.45rem;
     }
-    .aside-meta strong { display: block; color: var(--ink); font-weight: 600; margin-bottom: 0.15rem; }
-    .cta-row { display: flex; flex-wrap: wrap; gap: 0.55rem; }
+    .aside-v {
+      font-family: "Space Grotesk", system-ui, sans-serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.85rem;
+    }
+    .aside-list {
+      list-style: none;
+      font-size: 0.85rem;
+      color: var(--lede);
+    }
+    .aside-list li {
+      padding: 0.5rem 0;
+      border-top: 1px solid var(--line);
+    }
+    .aside-list li:first-child { border-top: none; padding-top: 0; }
+    .cta-row { display: flex; flex-wrap: wrap; gap: 0.55rem; margin-top: 1.5rem; }
     .btn {
       display: inline-flex; align-items: center;
-      padding: 0.7rem 1.1rem;
-      font-weight: 600; font-size: 0.92rem;
+      font-family: "Space Grotesk", system-ui, sans-serif;
+      padding: 0.75rem 1rem;
+      font-weight: 600; font-size: 0.82rem;
+      letter-spacing: 0.02em;
       text-decoration: none;
-      border: 1.5px solid var(--ink);
       transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
     }
     .btn-solid {
-      background: var(--berry); color: var(--on-berry); border-color: var(--berry);
+      background: var(--action); color: var(--bg); border: 1px solid var(--action);
     }
-    .btn-solid:hover { background: var(--berry-deep); border-color: var(--berry-deep); }
-    .btn-ghost { background: transparent; color: var(--ink); }
-    .btn-ghost:hover { background: var(--ink); color: var(--paper); }
+    .btn-solid:hover { filter: brightness(1.08); }
+    .btn-ghost {
+      background: transparent; color: var(--text); border: 1px solid var(--line);
+    }
+    .btn-ghost:hover { background: var(--raised); }
+    .btn-sea {
+      background: transparent; color: var(--sea); border: 1px solid var(--sea);
+    }
+    .btn-sea:hover { background: rgba(95, 168, 160, 0.1); }
 
-    /* Pull quote */
-    .pull {
-      margin: 0;
-      padding: 2.75rem 0;
-      border-bottom: 1px solid var(--rule);
+    section { padding: 2.75rem 0; border-bottom: 1px solid var(--line); }
+    .section-h {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 1rem;
+      margin-bottom: 1.35rem;
+      flex-wrap: wrap;
     }
-    .pull blockquote {
-      font-family: Fraunces, Georgia, serif;
-      font-optical-sizing: auto;
-      font-style: italic;
-      font-weight: 500;
-      font-size: clamp(1.55rem, 3.4vw, 2.35rem);
-      line-height: 1.25;
-      letter-spacing: -0.02em;
-      max-width: 22ch;
-      color: var(--ink);
+    .section-h h2 {
+      font-family: "Space Grotesk", system-ui, sans-serif;
+      font-weight: 600;
+      font-size: clamp(1.65rem, 3.5vw, 1.85rem);
+      letter-spacing: -0.04em;
+      line-height: 1.1;
+      max-width: none;
     }
-    .pull cite {
-      display: block;
-      margin-top: 1rem;
-      font-style: normal;
-      font-size: 0.78rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--berry);
-    }
-
-    /* Sections */
-    section { padding: 4.25rem 0; border-bottom: 1px solid var(--rule); }
-    .section-head {
-      display: grid; gap: 0.75rem 2.5rem; margin-bottom: 2.25rem;
-    }
-    @media (min-width: 800px) {
-      .section-head { grid-template-columns: 10.5rem 1fr; align-items: baseline; }
+    .section-h .meta {
+      font-family: "JetBrains Mono", ui-monospace, monospace;
+      font-size: 0.7rem;
+      color: var(--mute);
     }
     .kicker {
-      font-size: 0.72rem; font-weight: 700;
-      letter-spacing: 0.16em; text-transform: uppercase;
-      color: var(--berry);
+      font-family: "JetBrains Mono", ui-monospace, monospace;
+      font-size: 0.7rem; font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--sea);
+      margin-bottom: 0.55rem;
     }
-    h2 {
-      font-family: Fraunces, Georgia, serif;
-      font-optical-sizing: auto;
-      font-weight: 600;
-      font-size: clamp(1.85rem, 4vw, 2.85rem);
-      letter-spacing: -0.03em;
-      line-height: 1.08;
-      max-width: 18ch;
-    }
-    .prose { color: var(--ink-soft); font-size: 1.05rem; max-width: 40rem; }
+    .prose { color: var(--lede); font-size: 1.02rem; max-width: 42rem; }
     .prose p + p { margin-top: 1rem; }
-    .prose strong { color: var(--ink); font-weight: 600; }
-    .drop::first-letter {
-      font-family: Fraunces, Georgia, serif;
-      font-weight: 600;
-      float: left;
-      font-size: 3.15rem;
-      line-height: 0.78;
-      padding: 0.12em 0.12em 0 0;
-      color: var(--berry);
-    }
+    .prose strong { color: var(--text); font-weight: 600; }
 
-    /* Work */
-    .work-intro {
-      display: grid; gap: 1.75rem 2.5rem; margin-bottom: 2.5rem;
+    .outcomes {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.75rem;
+      margin-top: 1.25rem;
     }
     @media (min-width: 800px) {
-      .work-intro { grid-template-columns: 1fr 1.15fr; align-items: end; }
+      .outcomes { grid-template-columns: repeat(3, 1fr); }
+    }
+    .card {
+      background: var(--raised);
+      border: 1px solid var(--line);
+      padding: 1rem;
+      min-height: 9rem;
+    }
+    .card .idx {
+      font-family: "JetBrains Mono", ui-monospace, monospace;
+      font-size: 0.7rem;
+      color: var(--action);
+      margin-bottom: 0.65rem;
+    }
+    .card h3 {
+      font-family: "Space Grotesk", system-ui, sans-serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.5rem;
+    }
+    .card p {
+      font-size: 0.85rem;
+      line-height: 1.45;
+      color: var(--soft);
+    }
+
+    .work-intro {
+      display: grid; gap: 1.5rem 2rem; margin-bottom: 1.75rem;
+    }
+    @media (min-width: 800px) {
+      .work-intro { grid-template-columns: 1fr auto; align-items: end; }
     }
     .metric {
-      border-top: 3px solid var(--berry);
-      padding-top: 1rem;
+      background: var(--raised);
+      border: 1px solid var(--line);
+      padding: 1rem 1.15rem;
+      min-width: 12rem;
     }
     .metric b {
       display: block;
-      font-family: Fraunces, Georgia, serif;
-      font-optical-sizing: auto;
+      font-family: "Space Grotesk", system-ui, sans-serif;
       font-weight: 600;
-      font-size: clamp(3.4rem, 8vw, 5.6rem);
-      line-height: 0.9;
+      font-size: clamp(2.4rem, 6vw, 3.2rem);
+      line-height: 0.95;
       letter-spacing: -0.04em;
-      color: var(--berry);
+      color: var(--action);
     }
     .metric span {
       display: block;
-      margin-top: 0.55rem;
-      font-size: 0.95rem;
-      color: var(--muted);
-      max-width: 28ch;
+      margin-top: 0.45rem;
+      font-size: 0.85rem;
+      color: var(--mute);
+      max-width: 22ch;
     }
     .role-line {
-      font-size: 0.95rem; color: var(--muted); margin-bottom: 0.35rem;
+      font-size: 0.9rem; color: var(--mute); margin-bottom: 0.85rem;
     }
-    .folio { list-style: none; border-top: 1px solid var(--ink); }
+    .folio { list-style: none; border-top: 1px solid var(--line); }
     .folio li {
-      display: grid; gap: 0.65rem 1.75rem;
-      padding: 1.35rem 0;
-      border-bottom: 1px solid var(--rule);
+      display: grid; gap: 0.45rem 1.25rem;
+      padding: 1.15rem 0;
+      border-bottom: 1px solid var(--line);
     }
     @media (min-width: 720px) {
-      .folio li { grid-template-columns: 4.5rem 11rem 1fr; align-items: baseline; }
+      .folio li { grid-template-columns: 3rem 12rem 1fr; align-items: baseline; }
     }
     .num {
-      font-family: Fraunces, Georgia, serif;
-      font-style: italic;
-      font-weight: 500;
-      color: var(--berry);
-      font-size: 1.15rem;
+      font-family: "JetBrains Mono", ui-monospace, monospace;
+      color: var(--action);
+      font-size: 0.8rem;
     }
     .folio h3 {
-      font-size: 1.05rem; font-weight: 700; letter-spacing: -0.01em;
+      font-family: "Space Grotesk", system-ui, sans-serif;
+      font-size: 1.02rem; font-weight: 600; letter-spacing: -0.02em;
     }
-    .folio p { color: var(--ink-soft); font-size: 0.98rem; }
+    .folio p { color: var(--lede); font-size: 0.95rem; }
     .folio .mark {
       display: block; margin-top: 0.4rem;
-      font-size: 0.78rem; font-weight: 700;
-      letter-spacing: 0.08em; text-transform: uppercase;
-      color: var(--berry);
+      font-family: "JetBrains Mono", ui-monospace, monospace;
+      font-size: 0.68rem; font-weight: 500;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      color: var(--sea);
     }
     .earlier {
-      margin-top: 2rem;
-      padding: 1.25rem 0 0;
-      border-top: 1px dashed var(--rule);
-      color: var(--muted);
-      font-size: 0.98rem;
+      margin-top: 1.5rem;
+      padding: 1.1rem 0 0;
+      border-top: 1px dashed var(--line);
+      color: var(--mute);
+      font-size: 0.95rem;
       max-width: 52rem;
     }
-    .earlier strong { color: var(--ink); }
+    .earlier strong { color: var(--text); }
 
-    /* Projects */
-    .spread {
-      display: grid; gap: 1.5rem;
+    .projects {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.75rem;
     }
     @media (min-width: 800px) {
-      .spread { grid-template-columns: 1.35fr 0.85fr; align-items: stretch; }
+      .projects { grid-template-columns: 1fr 1fr; }
     }
-    .feature, .side {
-      padding: 1.6rem 1.5rem 1.5rem;
-      border: 1px solid var(--rule);
+    .proj {
+      border: 1px solid var(--line);
+      background: var(--raised);
+      padding: 1.15rem;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 0.75rem;
+      align-items: start;
+      text-decoration: none;
+      color: inherit;
+      transition: border-color 0.15s ease;
     }
-    .feature {
-      background: var(--paper-2);
-      border-color: transparent;
+    .proj:hover { border-color: var(--action); }
+    .proj .tag {
+      font-family: "JetBrains Mono", ui-monospace, monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--sea);
+      margin-bottom: 0.5rem;
     }
-    .label {
-      font-size: 0.7rem; font-weight: 700;
-      letter-spacing: 0.14em; text-transform: uppercase;
-      color: var(--berry); margin-bottom: 0.7rem;
+    .proj h3 {
+      font-family: "Space Grotesk", system-ui, sans-serif;
+      font-size: 1.25rem;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.4rem;
     }
-    .feature h3, .side h3 {
-      font-family: Fraunces, Georgia, serif;
-      font-optical-sizing: auto;
+    .proj p { font-size: 0.85rem; color: var(--soft); line-height: 1.4; }
+    .proj .go {
+      font-family: "Space Grotesk", system-ui, sans-serif;
+      font-size: 0.75rem;
       font-weight: 600;
-      font-size: clamp(1.4rem, 2.4vw, 1.85rem);
-      letter-spacing: -0.02em;
-      margin-bottom: 0.65rem;
+      color: var(--action);
+      white-space: nowrap;
     }
-    .feature p, .side p { color: var(--ink-soft); margin-bottom: 1.15rem; }
-    .tiny { font-size: 0.9rem; }
-    .tiny a { color: var(--berry); font-weight: 600; text-underline-offset: 3px; }
-    .tiny a:hover { color: var(--berry-deep); }
 
-
-    /* GitHub cadence strip */
     .cadence {
-      margin-top: 1.75rem;
-      padding: 1.35rem 1.35rem 1.25rem;
-      border: 1px solid var(--rule);
-      background: var(--paper);
+      margin-top: 1.25rem;
+      padding: 1.15rem;
+      border: 1px solid var(--line);
+      background: var(--raised);
     }
     .cadence-head { margin-bottom: 0.85rem; }
     .cadence-head h3 {
-      font-family: Fraunces, Georgia, serif;
-      font-optical-sizing: auto;
+      font-family: "Space Grotesk", system-ui, sans-serif;
       font-weight: 600;
-      font-size: clamp(1.15rem, 2vw, 1.35rem);
-      letter-spacing: -0.02em;
-      color: var(--ink);
-      margin-top: 0.15rem;
+      font-size: 1.15rem;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      margin-top: 0.2rem;
     }
     .cadence-figure {
       margin: 0;
@@ -357,72 +387,64 @@
     }
     .cadence figcaption {
       margin-top: 0.75rem;
-      color: var(--muted);
-      font-size: 0.92rem;
+      color: var(--mute);
+      font-size: 0.88rem;
       max-width: 42rem;
     }
     .cadence figcaption a {
-      color: var(--berry);
+      color: var(--action);
       font-weight: 600;
-      text-underline-offset: 3px;
+      text-decoration: none;
     }
-    .cadence figcaption a:hover { color: var(--berry-deep); }
+    .cadence figcaption a:hover { text-decoration: underline; text-underline-offset: 3px; }
 
-    /* Stack */
-    .chips {
-      list-style: none;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      border-top: 1px solid var(--ink);
+    .tools {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
     }
-    @media (min-width: 700px) {
-      .chips { grid-template-columns: repeat(4, 1fr); }
-    }
-    .chips li {
-      padding: 1rem 0.85rem 1rem 0;
-      border-bottom: 1px solid var(--rule);
-      font-weight: 600;
-      font-size: 1.02rem;
-    }
-    .chips li::before {
-      content: "—";
-      color: var(--berry);
-      margin-right: 0.45rem;
+    .tools span {
+      font-size: 0.8rem;
       font-weight: 500;
+      padding: 0.55rem 0.7rem;
+      background: var(--raised);
+      border: 1px solid var(--line);
+      color: #C5CDD8;
     }
 
-    /* Contact */
-    #contact { border-bottom: none; padding-bottom: 3.5rem; }
+    #contact { border-bottom: none; padding-bottom: 2.5rem; }
     .contact-grid {
-      display: grid; gap: 1.75rem 3rem;
+      display: grid; gap: 1.5rem 2.5rem;
     }
     @media (min-width: 800px) {
       .contact-grid { grid-template-columns: 1.1fr 0.9fr; align-items: end; }
     }
     .colophon-links {
-      display: flex; flex-direction: column; gap: 0.35rem;
-      font-size: 1.05rem;
+      display: flex; flex-direction: column; gap: 0.2rem;
+      font-size: 1rem;
     }
     .colophon-links a {
-      color: var(--ink);
+      color: var(--text);
       font-weight: 600;
       text-decoration: none;
-      border-bottom: 1px solid var(--rule);
+      border-bottom: 1px solid var(--line);
       padding: 0.45rem 0;
       width: fit-content;
     }
-    .colophon-links a:hover { border-color: var(--berry); color: var(--berry); }
+    .colophon-links a:hover { border-color: var(--action); color: var(--action); }
 
     footer {
-      background: var(--espresso);
-      color: #C9C0B5;
-      padding: 1.5rem 0 1.85rem;
-      font-size: 0.88rem;
+      border-top: 1px solid var(--line);
+      background: var(--bg);
+      color: var(--mute);
+      padding: 1.35rem 0 1.75rem;
+      font-size: 0.85rem;
     }
     footer .wrap {
       display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.5rem 1.5rem;
     }
-    footer strong { color: var(--paper); font-weight: 600; }
+    footer strong { color: var(--text); font-weight: 600; }
+    footer a { color: var(--action); text-decoration: none; font-weight: 600; }
   </style>
 </head>
 <body>
@@ -436,7 +458,7 @@
           <li><a href="#about">About</a></li>
           <li><a href="#work">Work</a></li>
           <li><a href="#projects">Projects</a></li>
-          <li><a href="#stack">Stack</a></li>
+          <li><a href="#stack">Tools</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
@@ -445,36 +467,39 @@
 
   <main id="main">
     <section class="hero wrap" id="top" aria-labelledby="hero-heading">
-      <p class="issue">
-        <span>Senior Frontend · Django products</span>
-        <span>Springfield, MA · Remote</span>
-      </p>
-      <h1 id="hero-heading">Frank<br /><em>Dixon</em></h1>
+      <p class="issue">Senior Frontend · Django products · Remote</p>
+      <h1 id="hero-heading">Own the front end.<br /><em>Ship what lasts.</em></h1>
       <div class="hero-grid">
-        <p class="lede">
-          Senior engineer who owns the front end of <strong>Django products</strong> — from architecture and migration to the details that make checkout and content flows feel trustworthy. Currently at Undercover Tourist.
-        </p>
-        <div class="hero-aside">
-          <p class="aside-meta">
-            <strong>Currently at Undercover Tourist</strong>
-            Architecture that ships. Checkout that feels trustworthy. Outcomes first.
+        <div>
+          <p class="lede">
+            Senior engineer who owns the front end of <strong>Django products</strong> — architecture, migration, and the details that make checkout and content flows feel trustworthy. Currently at Undercover Tourist. Springfield, MA · Remote.
           </p>
           <div class="cta-row">
-            <a class="btn btn-solid" href="mailto:fdixon7@gmail.com">fdixon7@gmail.com</a>
-            <a class="btn btn-ghost" href="resume.pdf">Resume</a>
+            <a class="btn btn-solid" href="mailto:fdixon7@gmail.com">Email</a>
             <a class="btn btn-ghost" href="https://www.linkedin.com/in/frank-dixon-senior-developer" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a class="btn btn-sea" href="resume.pdf">Resume</a>
           </div>
         </div>
+        <aside class="hero-aside" aria-label="Current role">
+          <div class="aside-k">Now</div>
+          <div class="aside-v">Undercover Tourist</div>
+          <ul class="aside-list">
+            <li>Travel &amp; entertainment e-commerce</li>
+            <li>In-flight UI migrations</li>
+            <li>Shared systems · admin · internal tools</li>
+          </ul>
+        </aside>
       </div>
     </section>
 
     <section id="about" class="wrap" aria-labelledby="about-heading">
-      <div class="section-head">
-        <p class="kicker">01 — About</p>
+      <p class="kicker">01 — About</p>
+      <div class="section-h">
         <h2 id="about-heading">Own the front end of the product</h2>
+        <span class="meta">Story</span>
       </div>
       <div class="prose">
-        <p class="drop">
+        <p>
           Day to day I own the interfaces people actually use—clear boundaries, thoughtful interaction, and the quiet work of performance and accessibility that makes a product feel trustworthy under real traffic.
         </p>
         <p>
@@ -488,9 +513,12 @@
 
     <section id="work" class="wrap" aria-labelledby="work-heading">
       <div class="work-intro">
-        <div class="section-head" style="margin-bottom:0;">
+        <div>
           <p class="kicker">02 — Selected work</p>
-          <h2 id="work-heading">Outcomes, not activity theater</h2>
+          <div class="section-h" style="margin-bottom:0;">
+            <h2 id="work-heading">Outcomes, not activity theater</h2>
+            <span class="meta">01 — 04</span>
+          </div>
         </div>
         <p class="metric">
           <b>−50%+</b>
@@ -498,7 +526,24 @@
         </p>
       </div>
       <p class="role-line">Undercover Tourist · Senior Front End Engineer · May 2021–Present</p>
-      <ol class="folio">
+      <div class="outcomes" aria-hidden="true">
+        <article class="card">
+          <div class="idx">01</div>
+          <h3>Framework cutover</h3>
+          <p>Replaced a legacy front-end stack live — CSS bundle down 50%+, velocity up, less conversion friction.</p>
+        </article>
+        <article class="card">
+          <div class="idx">02</div>
+          <h3>FE ownership</h3>
+          <p>Led a team of three on complex hospitality e-commerce — quality, mentorship, delivery.</p>
+        </article>
+        <article class="card">
+          <div class="idx">03</div>
+          <h3>Trust under traffic</h3>
+          <p>ADA across purchase journeys, leaner payloads, shared components and Django admin patterns.</p>
+        </article>
+      </div>
+      <ol class="folio" style="margin-top:1.5rem;">
         <li>
           <span class="num">01</span>
           <h3>In-flight framework replacement</h3>
@@ -526,33 +571,34 @@
     </section>
 
     <section id="projects" class="wrap" aria-labelledby="projects-heading">
-      <div class="section-head">
-        <p class="kicker">03 — Personal experiments</p>
-        <h2 id="projects-heading">Small things I shipped</h2>
+      <p class="kicker">03 — Personal experiments</p>
+      <div class="section-h">
+        <h2 id="projects-heading">Small builds</h2>
+        <span class="meta">Playgrounds</span>
       </div>
-      <p class="prose" style="margin-bottom:1.75rem;">Lightweight personal builds. Useful enough to install or click through, not production products.</p>
-      <div class="spread">
-        <article class="feature">
-          <p class="label">Installable PWA</p>
-          <h3>Weather</h3>
-          <p>A simple cream-and-teal weather dashboard for Springfield, MA, powered by Open-Meteo. Built to live on a phone home screen.</p>
-          <div class="cta-row">
-            <a class="btn btn-solid" href="https://frank-dixon.github.io/weather-pwa/">Open weather app</a>
+      <p class="prose" style="margin-bottom:1.25rem;">Lightweight personal builds. Useful enough to install or click through, not production products.</p>
+      <div class="projects">
+        <a class="proj" href="/rabbit/">
+          <div>
+            <div class="tag">Visualizer</div>
+            <h3>Rabbit genetics</h3>
+            <p>Interactive tool for planning meat-rabbit crosses by coat and eye color — personal playground.</p>
           </div>
-        </article>
-        <article class="side">
-          <p class="label">Live on this site</p>
-          <h3>Rabbit genetics visualizer</h3>
-          <p>Interactive tool for planning meat-rabbit crosses by coat and eye color.</p>
-          <div class="cta-row">
-            <a class="btn btn-ghost" href="/rabbit/">Open visualizer</a>
+          <div class="go">Open →</div>
+        </a>
+        <a class="proj" href="https://frank-dixon.github.io/weather-pwa/">
+          <div>
+            <div class="tag">Installable PWA</div>
+            <h3>Weather</h3>
+            <p>Phone-home weather for Springfield, MA — Open-Meteo.</p>
           </div>
-        </article>
+          <div class="go">Open →</div>
+        </a>
       </div>
 
       <aside class="cadence" aria-labelledby="cadence-heading">
         <div class="cadence-head">
-          <p class="label">Public signal</p>
+          <div class="tag" style="font-family:'JetBrains Mono',monospace;font-size:0.65rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--sea);">Public signal</div>
           <h3 id="cadence-heading">GitHub cadence</h3>
         </div>
         <figure class="cadence-figure">
@@ -572,28 +618,23 @@
     </section>
 
     <section id="stack" class="wrap" aria-labelledby="stack-heading">
-      <div class="section-head">
-        <p class="kicker">04 — Stack</p>
-        <h2 id="stack-heading">Tools I actually reach for</h2>
+      <p class="kicker">04 — Stack</p>
+      <div class="section-h">
+        <h2 id="stack-heading">Reach for</h2>
+        <span class="meta">Stack</span>
       </div>
-      <ul class="chips" aria-label="Technology stack">
-        <li>Django</li>
-        <li>Python</li>
-        <li>JavaScript</li>
-        <li>HTML / CSS</li>
-        <li>Tailwind</li>
-        <li>Git</li>
-        <li>Accessibility</li>
-        <li>Performance</li>
-      </ul>
+      <div class="tools" aria-label="Technology stack">
+        <span>Django</span><span>Python</span><span>JavaScript</span><span>HTML / CSS</span>
+        <span>Tailwind</span><span>Git</span><span>Accessibility</span><span>Performance</span>
+      </div>
     </section>
 
     <section id="contact" class="wrap" aria-labelledby="contact-heading">
       <div class="contact-grid">
         <div>
           <p class="kicker">05 — Contact</p>
-          <h2 id="contact-heading" style="margin:0.55rem 0 1rem;">Write when it matters</h2>
-          <p class="prose">Happy in my current role. Email or LinkedIn is best if you need to reach me.</p>
+          <h2 id="contact-heading" style="font-family:'Space Grotesk',system-ui,sans-serif;font-weight:600;font-size:clamp(1.65rem,3.5vw,1.85rem);letter-spacing:-0.04em;margin:0.35rem 0 0.85rem;">Write when it matters</h2>
+          <p class="prose">Happy in my current role. Reach out when it matters. Email or LinkedIn is best.</p>
         </div>
         <div class="colophon-links">
           <a href="mailto:fdixon7@gmail.com">fdixon7@gmail.com</a>
@@ -608,7 +649,7 @@
   <footer>
     <div class="wrap">
       <p>© <span id="year"></span> <strong>Frank Dixon</strong></p>
-      <p>Editorial on purpose.</p>
+      <p><a href="mailto:fdixon7@gmail.com">fdixon7@gmail.com</a> · LinkedIn · GitHub</p>
     </div>
   </footer>
   <script>

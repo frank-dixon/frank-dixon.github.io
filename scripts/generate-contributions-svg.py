@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Fetch frank-dixon contribution calendar and write a teal cream heatmap SVG."""
+"""Fetch frank-dixon contribution calendar and write a Cool Spectrum dark heatmap SVG."""
 
 from __future__ import annotations
 
@@ -14,13 +14,13 @@ from pathlib import Path
 LOGIN = "frank-dixon"
 OUT = Path(__file__).resolve().parents[1] / "assets" / "github-contributions.svg"
 
-# Site palette: cream → teal greens
+# Cool Spectrum dark: raised → action blues / sea
 LEVEL_COLORS = {
-    "NONE": "#E8E0D2",
-    "FIRST_QUARTILE": "#A8D4D6",
-    "SECOND_QUARTILE": "#4FAEB3",
-    "THIRD_QUARTILE": "#0B8A8F",
-    "FOURTH_QUARTILE": "#087075",
+    "NONE": "#141820",
+    "FIRST_QUARTILE": "#243041",
+    "SECOND_QUARTILE": "#3D4F7A",
+    "THIRD_QUARTILE": "#6B7FD7",
+    "FOURTH_QUARTILE": "#5FA8A0",
 }
 
 QUERY = """
@@ -166,13 +166,13 @@ def render_svg(calendar: dict) -> str:
   <title>GitHub contribution activity for {LOGIN}</title>
   <desc>{total:,} contributions in the last year</desc>
   <style>
-    text {{ font-family: "Source Sans 3", system-ui, sans-serif; fill: #6A635B; }}
+    text {{ font-family: Inter, system-ui, sans-serif; fill: #8B93A3; }}
     .month {{ font-size: 11px; font-weight: 600; }}
     .dow {{ font-size: 10px; font-weight: 600; }}
     .legend, .total {{ font-size: 11px; }}
-    .total {{ fill: #3F3A35; font-weight: 600; }}
+    .total {{ fill: #E6EAF0; font-weight: 600; }}
   </style>
-  <rect width="100%" height="100%" fill="#F3EEE4"/>
+  <rect width="100%" height="100%" fill="#0A0C10"/>
   {''.join(month_labels(weeks, cell, gap, left))}
   {''.join(dow_labels)}
   {''.join(rects)}
