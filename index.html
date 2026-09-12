@@ -326,6 +326,48 @@
     .tiny a { color: var(--berry); font-weight: 600; text-underline-offset: 3px; }
     .tiny a:hover { color: var(--berry-deep); }
 
+
+    /* GitHub cadence strip */
+    .cadence {
+      margin-top: 1.75rem;
+      padding: 1.35rem 1.35rem 1.25rem;
+      border: 1px solid var(--rule);
+      background: var(--paper);
+    }
+    .cadence-head { margin-bottom: 0.85rem; }
+    .cadence-head h3 {
+      font-family: Fraunces, Georgia, serif;
+      font-optical-sizing: auto;
+      font-weight: 600;
+      font-size: clamp(1.15rem, 2vw, 1.35rem);
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin-top: 0.15rem;
+    }
+    .cadence-figure {
+      margin: 0;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .cadence-figure img {
+      display: block;
+      width: min(100%, 775px);
+      height: auto;
+      border-radius: 2px;
+    }
+    .cadence figcaption {
+      margin-top: 0.75rem;
+      color: var(--muted);
+      font-size: 0.92rem;
+      max-width: 42rem;
+    }
+    .cadence figcaption a {
+      color: var(--berry);
+      font-weight: 600;
+      text-underline-offset: 3px;
+    }
+    .cadence figcaption a:hover { color: var(--berry-deep); }
+
     /* Stack */
     .chips {
       list-style: none;
@@ -507,6 +549,26 @@
           </div>
         </article>
       </div>
+
+      <aside class="cadence" aria-labelledby="cadence-heading">
+        <div class="cadence-head">
+          <p class="label">Public signal</p>
+          <h3 id="cadence-heading">GitHub cadence</h3>
+        </div>
+        <figure class="cadence-figure">
+          <img
+            src="./assets/github-contributions.svg"
+            alt="GitHub contribution activity for frank-dixon"
+            width="775"
+            height="153"
+            loading="lazy"
+          />
+          <figcaption>
+            A year of commits and pull requests, refreshed weekly from GitHub.
+            <a href="https://github.com/frank-dixon" target="_blank" rel="noopener noreferrer">github.com/frank-dixon</a>
+          </figcaption>
+        </figure>
+      </aside>
     </section>
 
     <section id="stack" class="wrap" aria-labelledby="stack-heading">
