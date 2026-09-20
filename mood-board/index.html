@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="Mood board for Frank Dixon hub redesign — one direction, not five options." />
+<meta name="theme-color" content="#F4EFE6" />
+<title>Hub mood board · Frank Dixon</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --paper: #F4EFE6;
+    --paper-2: #EBE4D8;
+    --ink: #1C1916;
+    --ink-soft: #4A453F;
+    --mute: #7A736A;
+    --line: #D9D0C4;
+    --accent: #0B8A8F;
+    --accent-deep: #087075;
+    --accent-soft: #D5EBEB;
+    --warm: #C45C26;
+    --max: 1080px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: "Source Sans 3", system-ui, sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+  .topbar {
+    position: sticky; top: 0; z-index: 20;
+    background: color-mix(in srgb, var(--paper) 92%, transparent);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .topbar-inner {
+    width: min(var(--max), calc(100% - 2rem));
+    margin-inline: auto;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 1rem; padding: 0.9rem 0; flex-wrap: wrap;
+  }
+  .mark {
+    font-family: Fraunces, Georgia, serif;
+    font-weight: 600; font-size: 1rem;
+    text-decoration: none; letter-spacing: -0.02em;
+  }
+  .mark em { font-style: normal; color: var(--accent); }
+  .topbar nav { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .topbar nav a {
+    font-size: 0.8rem; font-weight: 600; color: var(--mute); text-decoration: none;
+  }
+  .topbar nav a:hover { color: var(--ink); }
+
+  .wrap { width: min(var(--max), calc(100% - 2rem)); margin-inline: auto; }
+
+  .hero {
+    padding: 3.5rem 0 2.5rem;
+    border-bottom: 1px solid var(--line);
+    display: grid;
+    gap: 1.5rem;
+  }
+  @media (min-width: 820px) {
+    .hero { grid-template-columns: 1.4fr 1fr; align-items: end; }
+  }
+  .eyebrow {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--accent-deep); font-weight: 500; margin-bottom: 0.75rem;
+  }
+  h1 {
+    font-family: Fraunces, Georgia, serif;
+    font-weight: 600;
+    font-size: clamp(2.4rem, 6vw, 3.6rem);
+    line-height: 1.02; letter-spacing: -0.035em;
+    margin-bottom: 1rem;
+  }
+  .lede { font-size: 1.08rem; color: var(--ink-soft); max-width: 36rem; }
+  .meta {
+    font-size: 0.9rem; color: var(--mute);
+    border-left: 3px solid var(--accent);
+    padding-left: 1rem;
+  }
+  .meta strong { color: var(--ink); font-weight: 600; display: block; margin-bottom: 0.35rem; }
+
+  section.block { padding: 2.75rem 0; border-bottom: 1px solid var(--line); }
+  h2 {
+    font-family: Fraunces, Georgia, serif;
+    font-size: 1.55rem; letter-spacing: -0.02em; margin-bottom: 0.4rem;
+  }
+  .section-note { color: var(--mute); font-size: 0.95rem; margin-bottom: 1.5rem; max-width: 40rem; }
+
+  /* References */
+  .refs {
+    display: grid; gap: 0.75rem;
+  }
+  @media (min-width: 720px) { .refs { grid-template-columns: 1fr 1fr; } }
+  .ref {
+    border: 1px solid var(--line);
+    background: #fffdf8;
+    padding: 1rem 1.1rem;
+  }
+  .ref h3 { font-size: 0.95rem; margin-bottom: 0.25rem; }
+  .ref p { font-size: 0.88rem; color: var(--ink-soft); }
+  .ref .take {
+    margin-top: 0.55rem;
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 0.72rem; color: var(--accent-deep);
+  }
+
+  /* Type */
+  .type-grid {
+    display: grid; gap: 1.25rem;
+  }
+  @media (min-width: 800px) { .type-grid { grid-template-columns: 1.3fr 1fr; } }
+  .specimen {
+    background: #fffdf8;
+    border: 1px solid var(--line);
+    padding: 1.4rem 1.5rem 1.6rem;
+  }
+  .specimen .label {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 0.68rem; letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--mute); margin-bottom: 0.85rem;
+  }
+  .specimen .display {
+    font-family: Fraunces, Georgia, serif;
+    font-size: clamp(2.2rem, 5vw, 3.2rem);
+    line-height: 1.05; letter-spacing: -0.03em; margin-bottom: 0.75rem;
+  }
+  .specimen .body {
+    font-size: 1.02rem; color: var(--ink-soft); max-width: 28rem;
+  }
+  .specimen .mono {
+    margin-top: 1rem;
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 0.78rem; color: var(--accent-deep);
+  }
+  .type-scale {
+    border: 1px solid var(--line); background: var(--paper-2); padding: 1.1rem 1.2rem;
+  }
+  .type-scale div {
+    display: flex; justify-content: space-between; gap: 1rem;
+    padding: 0.55rem 0; border-bottom: 1px solid var(--line);
+    font-size: 0.9rem;
+  }
+  .type-scale div:last-child { border-bottom: 0; }
+  .type-scale span { color: var(--mute); font-family: "IBM Plex Mono", monospace; font-size: 0.72rem; }
+
+  /* Color */
+  .swatches {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.75rem;
+  }
+  @media (min-width: 700px) { .swatches { grid-template-columns: repeat(5, 1fr); } }
+  .swatch {
+    border: 1px solid var(--line); overflow: hidden; background: #fffdf8;
+  }
+  .swatch .chip { height: 72px; }
+  .swatch .info { padding: 0.65rem 0.7rem; }
+  .swatch .info strong { display: block; font-size: 0.82rem; }
+  .swatch .info code {
+    font-family: "IBM Plex Mono", monospace; font-size: 0.7rem; color: var(--mute);
+  }
+
+  /* Layout sketches */
+  .sketches {
+    display: grid; gap: 1rem;
+  }
+  @media (min-width: 860px) { .sketches { grid-template-columns: 1fr 1fr; } }
+  .sketch {
+    border: 1px solid var(--line); background: #fffdf8; padding: 1rem;
+  }
+  .sketch h3 {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--mute); font-weight: 500; margin-bottom: 0.85rem;
+  }
+  .frame {
+    border: 1px dashed var(--line);
+    background: var(--paper);
+    padding: 0.85rem;
+    min-height: 220px;
+  }
+
+  /* Mini hero mock */
+  .mock-hero .mh-nav {
+    display: flex; justify-content: space-between; gap: 0.5rem;
+    font-size: 0.65rem; color: var(--mute); margin-bottom: 1.4rem;
+  }
+  .mock-hero .mh-kicker {
+    font-family: "IBM Plex Mono", monospace; font-size: 0.6rem;
+    letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent-deep);
+    margin-bottom: 0.45rem;
+  }
+  .mock-hero .mh-title {
+    font-family: Fraunces, Georgia, serif;
+    font-size: 1.55rem; line-height: 1.05; letter-spacing: -0.03em;
+    margin-bottom: 0.55rem;
+  }
+  .mock-hero .mh-title em { font-style: normal; color: var(--accent); }
+  .mock-hero .mh-lede { font-size: 0.78rem; color: var(--ink-soft); max-width: 18rem; margin-bottom: 0.9rem; }
+  .mock-hero .mh-cta {
+    display: inline-block; font-size: 0.7rem; font-weight: 700;
+    background: var(--accent); color: #fff; padding: 0.4rem 0.7rem; text-decoration: none;
+  }
+
+  /* Mini project grid mock */
+  .mock-grid .mg-head {
+    font-family: Fraunces, Georgia, serif; font-size: 1rem; margin-bottom: 0.75rem;
+  }
+  .mock-grid .mg-row {
+    display: grid; gap: 0.5rem;
+  }
+  .mock-grid .mg-card {
+    border-top: 1px solid var(--ink);
+    padding: 0.55rem 0 0.65rem;
+    display: grid; grid-template-columns: 1fr auto; gap: 0.5rem; align-items: start;
+  }
+  .mock-grid .mg-card strong { display: block; font-size: 0.8rem; }
+  .mock-grid .mg-card span { font-size: 0.68rem; color: var(--mute); }
+  .mock-grid .mg-card em {
+    font-style: normal; font-size: 0.65rem; color: var(--accent-deep);
+    font-family: "IBM Plex Mono", monospace;
+  }
+
+  /* Do / Don't */
+  .rules {
+    display: grid; gap: 0.75rem;
+  }
+  @media (min-width: 720px) { .rules { grid-template-columns: 1fr 1fr; } }
+  .rule {
+    padding: 1.1rem 1.15rem; border: 1px solid var(--line);
+  }
+  .rule.do { background: var(--accent-soft); border-color: color-mix(in srgb, var(--accent) 35%, var(--line)); }
+  .rule.dont { background: #f7ebe4; border-color: #e2c4b4; }
+  .rule h3 { font-size: 0.95rem; margin-bottom: 0.45rem; }
+  .rule ul { margin-left: 1.1rem; color: var(--ink-soft); font-size: 0.9rem; }
+  .rule li { margin: 0.25rem 0; }
+
+  .footer {
+    padding: 2rem 0 3rem; color: var(--mute); font-size: 0.88rem;
+  }
+  .footer a { color: var(--accent-deep); }
+</style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="mark" href="https://frank-dixon.github.io/">Frank Dixon<em>.</em></a>
+      <nav aria-label="On this page">
+        <a href="#refs">References</a>
+        <a href="#type">Type</a>
+        <a href="#color">Color</a>
+        <a href="#sketches">Sketches</a>
+        <a href="#rules">Rules</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap hero">
+      <div>
+        <p class="eyebrow">Mood board · one direction</p>
+        <h1>Quiet editorial. Grown, not beige.</h1>
+        <p class="lede">
+          A single visual north star for the hub redesign: paper and ink, one turquoise accent,
+          type doing the hierarchy work, whitespace instead of cards and chrome.
+          Modern portfolio craft — not late-2000s template, not techno-futurist glow.
+        </p>
+      </div>
+      <aside class="meta">
+        <strong>Constraint → evolution</strong>
+        Keep cream / ink / turquoise. Drop the dark “cool spectrum” chrome and AI-default gradients.
+        Borrow editorial rhythm from type-first portfolios; ignore floating glass and hero theater.
+      </aside>
+    </div>
+
+    <section class="block wrap" id="refs">
+      <h2>What I pulled from</h2>
+      <p class="section-note">Not clones — craft notes. These sites earn trust with restraint.</p>
+      <div class="refs">
+        <article class="ref">
+          <h3>Christopher Igweze</h3>
+          <p>Type-first, five tokens, two fonts, no cards/shadows. Left-weighted column; empty right side is intentional.</p>
+          <p class="take">Take: enforce a tiny system hard.</p>
+        </article>
+        <article class="ref">
+          <h3>Tea Teearu</h3>
+          <p>Portfolio as editorial chapters — project “cards” read like spreads, motion serves pacing.</p>
+          <p class="take">Take: rhythm over thumbnail grids.</p>
+        </article>
+        <article class="ref">
+          <h3>Swiss / monograph portfolios</h3>
+          <p>Strict grid, big type, minimal chrome. Magazine presence without gimmicks.</p>
+          <p class="take">Take: hierarchy + margins = identity.</p>
+        </article>
+        <article class="ref">
+          <h3>Presence-led ’26 portfolios</h3>
+          <p>First screen sets standard immediately; homepage stays authored, not a component zoo.</p>
+          <p class="take">Take: hero clarity before effect count.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="block wrap" id="type">
+      <h2>Type direction</h2>
+      <p class="section-note">Fraunces for display (editorial warmth). Source Sans 3 for UI/body. IBM Plex Mono for labels — craft signal, not decoration.</p>
+      <div class="type-grid">
+        <div class="specimen">
+          <p class="label">Display · Fraunces 600</p>
+          <p class="display">Build the interface people actually use.</p>
+          <p class="body">Senior front-end engineer owning Django product UI — migration, systems, checkout clarity, performance, and accessibility.</p>
+          <p class="mono">label / mono · IBM Plex Mono 500 · TRACKING 0.08em</p>
+        </div>
+        <div class="type-scale">
+          <div><b>Display</b><span>clamp 2.4–3.6rem</span></div>
+          <div><b>Section</b><span>1.5–1.7rem</span></div>
+          <div><b>Body</b><span>1.05rem / 1.55</span></div>
+          <div><b>UI / nav</b><span>0.8–0.9rem</span></div>
+          <div><b>Mono label</b><span>0.7rem uppercase</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="block wrap" id="color">
+      <h2>Color world</h2>
+      <p class="section-note">Paper field, ink type, one turquoise accent. Optional warm rust only for rare emphasis — never neon, never dark-mode default.</p>
+      <div class="swatches">
+        <div class="swatch"><div class="chip" style="background:#F4EFE6"></div><div class="info"><strong>Paper</strong><code>#F4EFE6</code></div></div>
+        <div class="swatch"><div class="chip" style="background:#1C1916"></div><div class="info"><strong>Ink</strong><code>#1C1916</code></div></div>
+        <div class="swatch"><div class="chip" style="background:#0B8A8F"></div><div class="info"><strong>Turquoise</strong><code>#0B8A8F</code></div></div>
+        <div class="swatch"><div class="chip" style="background:#D5EBEB"></div><div class="info"><strong>Accent soft</strong><code>#D5EBEB</code></div></div>
+        <div class="swatch"><div class="chip" style="background:#C45C26"></div><div class="info"><strong>Warm (rare)</strong><code>#C45C26</code></div></div>
+      </div>
+    </section>
+
+    <section class="block wrap" id="sketches">
+      <h2>Layout sketches</h2>
+      <p class="section-note">Two treatments only — hero presence and a project list that feels editorial, not a Bootstrap card deck.</p>
+      <div class="sketches">
+        <div class="sketch">
+          <h3>Hero treatment</h3>
+          <div class="frame mock-hero">
+            <div class="mh-nav"><span>Frank Dixon.</span><span>About · Work · Projects · Contact</span></div>
+            <p class="mh-kicker">Senior front end · Django products</p>
+            <p class="mh-title">Own the UI.<br /><em>Leave it quieter.</em></p>
+            <p class="mh-lede">Happy in the current role. Low-maintenance hub for optionality — craft over case-study theater.</p>
+            <span class="mh-cta">Email</span>
+          </div>
+        </div>
+        <div class="sketch">
+          <h3>Project grid treatment</h3>
+          <div class="frame mock-grid">
+            <p class="mg-head">Small builds</p>
+            <div class="mg-row">
+              <div class="mg-card"><div><strong>Scroll progress</strong><span>CSS scroll timelines, no observers</span></div><em>Open</em></div>
+              <div class="mg-card"><div><strong>Weather</strong><span>Installable Open-Meteo PWA</span></div><em>Open</em></div>
+              <div class="mg-card"><div><strong>Rabbit genetics</strong><span>Coat + eye planning tool</span></div><em>Open</em></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="block wrap" id="rules">
+      <h2>Do / don’t for the rebuild</h2>
+      <p class="section-note">One stab at direction. If this feels right, the landing redesign follows this board — not a second mood pass.</p>
+      <div class="rules">
+        <div class="rule do">
+          <h3>Do</h3>
+          <ul>
+            <li>Paper background full-bleed; ink text; turquoise for links/CTAs only</li>
+            <li>Big Fraunces headlines, generous margins, left-weighted copy</li>
+            <li>Projects as typographic rows / chapters</li>
+            <li>Shared quiet header across hub + demos</li>
+            <li>Motion only where it clarifies (optional, reduced-motion safe)</li>
+          </ul>
+        </div>
+        <div class="rule dont">
+          <h3>Don’t</h3>
+          <ul>
+            <li>Dark “AI SaaS” gradients, glassmorphism, neon glow</li>
+            <li>Card grids with drop shadows and rounded chrome</li>
+            <li>Hero Lottie / 3D / particle wallpaper</li>
+            <li>Too many fonts or accent colors</li>
+            <li>Case-study filler he won’t maintain</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <div class="wrap footer">
+      <p>Mood board only — landing page not rebuilt yet. React here, then we implement.</p>
+      <p><a href="https://frank-dixon.github.io/">← Back to hub</a></p>
+    </div>
+  </main>
+</body>
+</html>
