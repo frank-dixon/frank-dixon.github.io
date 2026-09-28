@@ -247,6 +247,39 @@
     }
     footer strong { color: var(--text); font-weight: 600; }
     footer a { color: var(--action); text-decoration: none; font-weight: 600; }
+
+    .shot-ph {
+      aspect-ratio: 16 / 10;
+      display: grid;
+      place-content: center;
+      gap: 0.45rem;
+      padding: 1.5rem;
+      text-align: center;
+      background:
+        radial-gradient(ellipse at 30% 20%, rgba(95, 168, 160, 0.14), transparent 55%),
+        radial-gradient(ellipse at 80% 70%, rgba(107, 127, 215, 0.12), transparent 50%),
+        var(--raised);
+    }
+    .shot-ph .ph-kicker {
+      font-family: "JetBrains Mono", ui-monospace, monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--sea);
+    }
+    .shot-ph .ph-title {
+      font-family: "Space Grotesk", system-ui, sans-serif;
+      font-weight: 600;
+      font-size: clamp(1.35rem, 3vw, 1.75rem);
+      letter-spacing: -0.04em;
+      color: var(--text);
+    }
+    .shot-ph .ph-note {
+      font-size: 0.82rem;
+      color: var(--mute);
+      max-width: 36ch;
+      margin-inline: auto;
+    }
   </style>
 </head>
 <body>
@@ -270,24 +303,37 @@
     <header class="hero wrap">
       <p class="issue">Personal experiments · screenshots + notes</p>
       <h1>Gallery</h1>
-      <p class="lede">
-        Side stuff I actually shipped to Pages. Not a product pitch — just what each thing is, why I built it, and how to poke at it. Six live demos.
+            <p class="lede">
+        Side stuff I actually shipped to Pages. Not a product pitch — just what each thing is, why I built it, and how to poke at it. Eighteen live demos.
       </p>
       <nav class="toc" aria-label="Projects on this page">
         <a href="#rabbit">Rabbit genetics</a>
+        <a href="#litter-planner">Litter Planner</a>
         <a href="#weather-pwa">Weather PWA</a>
         <a href="#hanalei-window">Hanalei Window</a>
         <a href="#hyphaneural">Hyphaneural</a>
         <a href="#css-density-demo">CSS density</a>
         <a href="#scroll-progress">Scroll progress</a>
+        <a href="#groundwork">Groundwork</a>
+        <a href="#crownwork">Crownwork</a>
+        <a href="#shellwork">Shellwork</a>
+        <a href="#pasture-plate">Pasture Plate</a>
+        <a href="#cambium">Cambium</a>
+        <a href="#rhizosphere">Rhizosphere</a>
+        <a href="#ferment-desk">Ferment Desk</a>
+        <a href="#mycorrhizal-mesh">Mycorrhizal Mesh</a>
+        <a href="#photosystem">Photosystem</a>
+        <a href="#stomata-hour">Stomata Hour</a>
+        <a href="#pollination-desk">Pollination Desk</a>
       </nav>
     </header>
 
     <div class="gallery wrap">
 
+      
       <article class="piece" id="rabbit">
         <div class="piece-meta">
-          <span class="piece-num">01 / 06</span>
+          <span class="piece-num">01 / 18</span>
           <span class="piece-tag">Visualizer · Vite · PWA</span>
         </div>
         <h2>Rabbit genetics</h2>
@@ -314,13 +360,42 @@
         </div>
         <div class="links">
           <a class="btn btn-solid" href="/rabbit/" target="_blank" rel="noopener noreferrer">Live demo</a>
-          <a class="btn btn-ghost" href="https://github.com/frank-dixon/rabbit-genetics-visualizer" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
+      </article>
+
+      <article class="piece" id="litter-planner">
+        <div class="piece-meta">
+          <span class="piece-num">02 / 18</span>
+          <span class="piece-tag">Herd desk · nest / wean dates</span>
+        </div>
+        <h2>Litter Planner</h2>
+        <figure class="shot">
+          <div class="shot-ph" role="img" aria-label="Litter Planner">
+            <div class="ph-kicker">Meat-rabbit schedule</div>
+            <div class="ph-title">Litter Planner</div>
+            <p class="ph-note">Nest-box, kindle, wean, and process dates from one mating.</p>
+          </div>
+          <figcaption>Placeholder card — open the live desk for the full herd schedule UI.</figcaption>
+        </figure>
+        <div class="writeup">
+          <p>
+            Litter Planner turns one mating date into the nest-box, kindling, wean, and process chores for a backyard meat herd. It sits beside the progeny colors tool: genetics answers what the kits look like; this desk answers when the barn work actually happens.
+          </p>
+          <p>
+            You can build a herd as a guest, then create a free local account so the schedule stays on the device. There is also a read-only sample barn if you just want to poke at the flow without inventing animals. The copy stays practical — dates and chores, not a productivity sermon.
+          </p>
+          <p>
+            Open the live desk, try the sample account or start a guest herd, and walk a litter from mating through process. It is meant for people who already keep rabbits, not a pitch deck.
+          </p>
+        </div>
+        <div class="links">
+          <a class="btn btn-solid" href="/litter-planner/" target="_blank" rel="noopener noreferrer">Live demo</a>
         </div>
       </article>
 
       <article class="piece" id="weather-pwa">
         <div class="piece-meta">
-          <span class="piece-num">02 / 06</span>
+          <span class="piece-num">03 / 18</span>
           <span class="piece-tag">Installable PWA · Open-Meteo</span>
         </div>
         <h2>Weather PWA</h2>
@@ -346,14 +421,13 @@
           </p>
         </div>
         <div class="links">
-          <a class="btn btn-solid" href="https://frank-dixon.github.io/weather-pwa/" target="_blank" rel="noopener noreferrer">Live demo</a>
-          <a class="btn btn-ghost" href="https://github.com/frank-dixon/weather-pwa" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a class="btn btn-solid" href="/weather-pwa/" target="_blank" rel="noopener noreferrer">Live demo</a>
         </div>
       </article>
 
       <article class="piece" id="hanalei-window">
         <div class="piece-meta">
-          <span class="piece-num">03 / 06</span>
+          <span class="piece-num">04 / 18</span>
           <span class="piece-tag">Live cams · cream / teal</span>
         </div>
         <h2>Hanalei Window</h2>
@@ -379,14 +453,13 @@
           </p>
         </div>
         <div class="links">
-          <a class="btn btn-solid" href="https://frank-dixon.github.io/hanalei-window/" target="_blank" rel="noopener noreferrer">Live demo</a>
-          <a class="btn btn-ghost" href="https://github.com/frank-dixon/hanalei-window" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a class="btn btn-solid" href="/hanalei-window/" target="_blank" rel="noopener noreferrer">Live demo</a>
         </div>
       </article>
 
       <article class="piece" id="hyphaneural">
         <div class="piece-meta">
-          <span class="piece-num">04 / 06</span>
+          <span class="piece-num">05 / 18</span>
           <span class="piece-tag">Fungal genetics · canvas spaces</span>
         </div>
         <h2>Hyphaneural</h2>
@@ -412,14 +485,13 @@
           </p>
         </div>
         <div class="links">
-          <a class="btn btn-solid" href="https://frank-dixon.github.io/hyphaneural/" target="_blank" rel="noopener noreferrer">Live demo</a>
-          <a class="btn btn-ghost" href="https://github.com/frank-dixon/hyphaneural" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a class="btn btn-solid" href="/hyphaneural/" target="_blank" rel="noopener noreferrer">Live demo</a>
         </div>
       </article>
 
       <article class="piece" id="css-density-demo">
         <div class="piece-meta">
-          <span class="piece-num">05 / 06</span>
+          <span class="piece-num">06 / 18</span>
           <span class="piece-tag">Theme tokens · custom properties</span>
         </div>
         <h2>CSS density demo</h2>
@@ -445,14 +517,13 @@
           </p>
         </div>
         <div class="links">
-          <a class="btn btn-solid" href="https://frank-dixon.github.io/css-density-demo/" target="_blank" rel="noopener noreferrer">Live demo</a>
-          <a class="btn btn-ghost" href="https://github.com/frank-dixon/css-density-demo" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a class="btn btn-solid" href="/css-density-demo/" target="_blank" rel="noopener noreferrer">Live demo</a>
         </div>
       </article>
 
       <article class="piece" id="scroll-progress">
         <div class="piece-meta">
-          <span class="piece-num">06 / 06</span>
+          <span class="piece-num">07 / 18</span>
           <span class="piece-tag">CSS craft · animation-timeline</span>
         </div>
         <h2>Scroll progress</h2>
@@ -479,13 +550,340 @@
         </div>
         <div class="links">
           <a class="btn btn-solid" href="/scroll-progress/" target="_blank" rel="noopener noreferrer">Live demo</a>
-          <a class="btn btn-ghost" href="https://github.com/frank-dixon/frank-dixon.github.io/tree/main/scroll-progress" target="_blank" rel="noopener noreferrer">GitHub</a>
         </div>
       </article>
 
-    </div>
+      <article class="piece" id="groundwork">
+        <div class="piece-meta">
+          <span class="piece-num">08 / 18</span>
+          <span class="piece-tag">Garden planner · plant bible</span>
+        </div>
+        <h2>Groundwork</h2>
+        <figure class="shot">
+          <div class="shot-ph" role="img" aria-label="Groundwork">
+            <div class="ph-kicker">Garden planner</div>
+            <div class="ph-title">Groundwork</div>
+            <p class="ph-note">Beds, plant bible, and companion-aware layout suggest.</p>
+          </div>
+          <figcaption>Placeholder card — plant bible and suggest work on the static Pages demo.</figcaption>
+        </figure>
+        <div class="writeup">
+          <p>
+            Groundwork is a lean garden planner: name a plot, sketch beds, browse a plant bible with real spacing, and one-tap suggest a companion-aware layout. The Pages build is a static demo — plant browse and suggest work offline; full plot onboarding, saved layouts, and auth belong to the local Django app when you run it yourself.
+          </p>
+          <p>
+            I wanted something closer to a field notebook than a CAD suite. Spacing and companions are the useful bits; the chrome stays out of the way. Turquoise accents sit on a quiet paper-dark shell so the plant names stay readable.
+          </p>
+          <p>
+            Open the live demo, browse the plant bible, and try Suggest. Use it as a planning sketch, not a yield promise.
+          </p>
+        </div>
+        <div class="links">
+          <a class="btn btn-solid" href="/groundwork/" target="_blank" rel="noopener noreferrer">Live demo</a>
+        </div>
+      </article>
 
-    <div class="back wrap">
+      <article class="piece" id="crownwork">
+        <div class="piece-meta">
+          <span class="piece-num">09 / 18</span>
+          <span class="piece-tag">Fruit-tree pruning desk</span>
+        </div>
+        <h2>Crownwork</h2>
+        <figure class="shot">
+          <div class="shot-ph" role="img" aria-label="Crownwork">
+            <div class="ph-kicker">Pruning desk</div>
+            <div class="ph-title">Crownwork</div>
+            <p class="ph-note">Apple, peach, and pear cuts with Extension-style guidance.</p>
+          </div>
+          <figcaption>Placeholder card — anatomy, cut types, and Advanced physiology live on the desk.</figcaption>
+        </figure>
+        <div class="writeup">
+          <p>
+            Crownwork is a field-guide desk for pruning fruit trees. It teaches where to cut on apple, peach, and pear — labeled anatomy, thinning vs heading, renewal, suckers, deadwood, narrow crotches, crossing wood — plus season timing and what good vs bad cuts look like.
+          </p>
+          <p>
+            Toggle Advanced for auxin, apical dominance, carbohydrate allocation, and CODIT wound response with Extension citations. Berries, vines, and other woody crops stay out of scope so the desk stays sharp. Teal paper chrome; calm, not cute.
+          </p>
+          <p>
+            Open the desk, pick a tree, and walk the cut types. Use Simple when you want the field guide; switch Advanced when you want the physiology underneath.
+          </p>
+        </div>
+        <div class="links">
+          <a class="btn btn-solid" href="/crownwork/" target="_blank" rel="noopener noreferrer">Live demo</a>
+        </div>
+      </article>
+
+      <article class="piece" id="shellwork">
+        <div class="piece-meta">
+          <span class="piece-num">10 / 18</span>
+          <span class="piece-tag">Laying-hen egg flip-zine</span>
+        </div>
+        <h2>Shellwork</h2>
+        <figure class="shot">
+          <div class="shot-ph" role="img" aria-label="Shellwork">
+            <div class="ph-kicker">Egg flip-zine</div>
+            <div class="ph-title">Shellwork</div>
+            <p class="ph-note">Color, shape, and size — cited poultry science in sentences.</p>
+          </div>
+          <figcaption>Placeholder card — drag the page edge or use arrows on the live zine.</figcaption>
+        </figure>
+        <div class="writeup">
+          <p>
+            Shellwork is an interactive flip-zine about laying-hen egg color, shape, and size. Drag the page edge, use the arrows, or press the arrow keys. Issue 01 keeps the breeding calculator parked and sticks to shell traits with cited poultry science written in full sentences.
+          </p>
+          <p>
+            Cream-and-teal paper vibes match the rest of the farm bench. Simple vs Advanced changes how dense the physiology gets without turning the zine into a spreadsheet. Sources sit up front so claims are not floating.
+          </p>
+          <p>
+            Open the zine and flip through Color, Shape, and Size. Read the Sources spread when you want the papers behind the claims.
+          </p>
+        </div>
+        <div class="links">
+          <a class="btn btn-solid" href="/shellwork/" target="_blank" rel="noopener noreferrer">Live demo</a>
+        </div>
+      </article>
+
+      <article class="piece" id="pasture-plate">
+        <div class="piece-meta">
+          <span class="piece-num">11 / 18</span>
+          <span class="piece-tag">Forage catalog · filter / sort</span>
+        </div>
+        <h2>Pasture Plate</h2>
+        <figure class="shot">
+          <div class="shot-ph" role="img" aria-label="Pasture Plate">
+            <div class="ph-kicker">Forage quick-check</div>
+            <div class="ph-title">Pasture Plate</div>
+            <p class="ph-note">Fifty plants with filters, sort, and careful claims.</p>
+          </div>
+          <figcaption>Placeholder card — search and filter the live forage catalog.</figcaption>
+        </figure>
+        <div class="writeup">
+          <p>
+            Pasture Plate is a calm, cited quick-check for plants around rabbits and hens. Search a weed, garden green, or pasture plant before it becomes a snack. About fifty entries with filter and sort, plus sources — not a diagnosis or a feeding prescription.
+          </p>
+          <p>
+            The tone stays careful on purpose. When something might be toxic, the copy tells you to call a vet or poison control instead of improvising. Cream paper surfaces keep the catalog readable on a phone in the yard.
+          </p>
+          <p>
+            Open the guide, search a plant, and use the filters. Treat it as a pocket field check, then verify anything serious with a professional.
+          </p>
+        </div>
+        <div class="links">
+          <a class="btn btn-solid" href="/pasture-plate/" target="_blank" rel="noopener noreferrer">Live demo</a>
+        </div>
+      </article>
+
+      <article class="piece" id="cambium">
+        <div class="piece-meta">
+          <span class="piece-num">12 / 18</span>
+          <span class="piece-tag">Maple sap · tree physiology</span>
+        </div>
+        <h2>Cambium</h2>
+        <figure class="shot">
+          <div class="shot-ph" role="img" aria-label="Cambium">
+            <div class="ph-kicker">Tree physiology</div>
+            <div class="ph-title">Cambium</div>
+            <p class="ph-note">Sugar maple sap run plus how common fruit trees make fruit.</p>
+          </div>
+          <figcaption>Placeholder card — Simple and Advanced modes on the live PWA.</figcaption>
+        </figure>
+        <div class="writeup">
+          <p>
+            Cambium is a tree physiology PWA: how sugar maple moves sap through the run, tap, and leaf-out story, plus how apple, peach, orange, and grape actually make fruit. It is not a pruning guide — that is Crownwork’s job.
+          </p>
+          <p>
+            Simple mode keeps the narrative lean; Advanced densifies the physiology. Mechanisms are simplified for teaching, with sources pointed out so you can chase primary literature and Extension guides before field decisions.
+          </p>
+          <p>
+            Open the app, walk the maple modes, then switch into a fruit-tree path. Use it as a teaching desk, not a tapping calendar for your own trees.
+          </p>
+        </div>
+        <div class="links">
+          <a class="btn btn-solid" href="/cambium/" target="_blank" rel="noopener noreferrer">Live demo</a>
+        </div>
+      </article>
+
+      <article class="piece" id="rhizosphere">
+        <div class="piece-meta">
+          <span class="piece-num">13 / 18</span>
+          <span class="piece-tag">Root–microbe soil ecology</span>
+        </div>
+        <h2>Rhizosphere</h2>
+        <figure class="shot">
+          <div class="shot-ph" role="img" aria-label="Rhizosphere">
+            <div class="ph-kicker">Soil cross-section</div>
+            <div class="ph-title">Rhizosphere</div>
+            <p class="ph-note">Pan, dig, and inspect the root–microbe continuum.</p>
+          </div>
+          <figcaption>Placeholder card — drag-pan and scroll-dig on the live scene.</figcaption>
+        </figure>
+        <div class="writeup">
+          <p>
+            Rhizosphere is an editorial soil cross-section of the root–microbe interface. Pan the scene, scroll to dig through horizon depth, and select organisms along the continuum from rhizoplane to bulk soil — exudates, nitrogen fixation, mycorrhizal exchange, saprotrophs, pathogen pressure, biofilms.
+          </p>
+          <p>
+            Simple vs Advanced shifts how much physiology you get in the inspector. The craft is the scene itself: a teaching cross-section you can brush through instead of a stacked FAQ. Teal markers on a dark soil void.
+          </p>
+          <p>
+            Open the scene, drag to pan, scroll to dig, and tap a compartment. Read the inspector, then keep moving through the continuum.
+          </p>
+        </div>
+        <div class="links">
+          <a class="btn btn-solid" href="/rhizosphere/" target="_blank" rel="noopener noreferrer">Live demo</a>
+        </div>
+      </article>
+
+      <article class="piece" id="ferment-desk">
+        <div class="piece-meta">
+          <span class="piece-num">14 / 18</span>
+          <span class="piece-tag">Yeast &amp; lacto pathways</span>
+        </div>
+        <h2>Ferment Desk</h2>
+        <figure class="shot">
+          <div class="shot-ph" role="img" aria-label="Ferment Desk">
+            <div class="ph-kicker">Microbial pathways</div>
+            <div class="ph-title">Ferment Desk</div>
+            <p class="ph-note">Bread, kraut, yogurt, and coffee — stages and organisms.</p>
+          </div>
+          <figcaption>Placeholder card — Simple and Advanced pathways on the live desk.</figcaption>
+        </figure>
+        <div class="writeup">
+          <p>
+            Ferment Desk is a compact field guide to yeast and lactic acid bacteria across bread, kraut, yogurt, and coffee. Stages, organisms, and takeaways sit on one desk, with optional citations when you flip into Advanced.
+          </p>
+          <p>
+            I wanted the shared microbial story without four separate blog posts. The UI stays small so the pathways are the point. Science summaries in Advanced mode point at published work instead of vibes.
+          </p>
+          <p>
+            Open the desk, pick a ferment, and walk the stages. Switch Advanced when you want denser physiology and citations.
+          </p>
+        </div>
+        <div class="links">
+          <a class="btn btn-solid" href="/ferment-desk/" target="_blank" rel="noopener noreferrer">Live demo</a>
+        </div>
+      </article>
+
+      <article class="piece" id="mycorrhizal-mesh">
+        <div class="piece-meta">
+          <span class="piece-num">15 / 18</span>
+          <span class="piece-tag">Tree–fungus nutrient trade</span>
+        </div>
+        <h2>Mycorrhizal Mesh</h2>
+        <figure class="shot">
+          <div class="shot-ph" role="img" aria-label="Mycorrhizal Mesh">
+            <div class="ph-kicker">Nutrient trade desk</div>
+            <div class="ph-title">Mycorrhizal Mesh</div>
+            <p class="ph-note">Ecto vs arbuscular partners on a diggable mesh.</p>
+          </div>
+          <figcaption>Placeholder card — tap nodes and follow carbon, phosphorus, or nitrogen paths.</figcaption>
+        </figure>
+        <div class="writeup">
+          <p>
+            Mycorrhizal Mesh is a teaching desk for tree–fungus nutrient trade. Compare arbuscular (endo) and ectomycorrhizal architectures, dig the mesh, and follow paths for carbon, phosphorus, or nitrogen. Plants pay carbon; partners forage nutrients beyond the root tip.
+          </p>
+          <p>
+            Simple vs Advanced and Growing vs Dormant season knobs keep the story adjustable. Field notes and cited science sit beside the mesh so the diagram is not floating art. It pairs naturally with Rhizosphere without duplicating the soil cross-section.
+          </p>
+          <p>
+            Open the desk, tap a node, and follow a path. Toggle architecture and season when you want a different cut of the same trade.
+          </p>
+        </div>
+        <div class="links">
+          <a class="btn btn-solid" href="/mycorrhizal-mesh/" target="_blank" rel="noopener noreferrer">Live demo</a>
+        </div>
+      </article>
+
+      <article class="piece" id="photosystem">
+        <div class="piece-meta">
+          <span class="piece-num">16 / 18</span>
+          <span class="piece-tag">Photosynthesis walk-through</span>
+        </div>
+        <h2>Photosystem</h2>
+        <figure class="shot">
+          <div class="shot-ph" role="img" aria-label="Photosystem">
+            <div class="ph-kicker">Chloroplast walk-through</div>
+            <div class="ph-title">Photosystem</div>
+            <p class="ph-note">Photon → PSII → transport → PSI → Calvin → sugar export.</p>
+          </div>
+          <figcaption>Placeholder card — step with buttons or arrow keys on the live diagram.</figcaption>
+        </figure>
+        <div class="writeup">
+          <p>
+            Photosystem walks a photon from antenna pigments to sugar leaving the chloroplast. You step through PSII, electron transport, PSI, the Calvin cycle, and export while the diagram zooms with you. Simple keeps the story lean; Advanced densifies the physiology.
+          </p>
+          <p>
+            Cream paper chrome, slate diagram, keyboard ← → support. It is a teaching walk-through, not a lab simulator — the point is the path, not a research-grade flux model. References sit at the end when you want the papers.
+          </p>
+          <p>
+            Open the page and step through the chloroplast. Use Simple first, then Advanced if you want more of the machinery named.
+          </p>
+        </div>
+        <div class="links">
+          <a class="btn btn-solid" href="/photosystem/" target="_blank" rel="noopener noreferrer">Live demo</a>
+        </div>
+      </article>
+
+      <article class="piece" id="stomata-hour">
+        <div class="piece-meta">
+          <span class="piece-num">17 / 18</span>
+          <span class="piece-tag">Guard-cell aperture simulator</span>
+        </div>
+        <h2>Stomata Hour</h2>
+        <figure class="shot">
+          <div class="shot-ph" role="img" aria-label="Stomata Hour">
+            <div class="ph-kicker">Stomatal simulator</div>
+            <div class="ph-title">Stomata Hour</div>
+            <p class="ph-note">Drag light, CO₂, and drought; watch the pore answer.</p>
+          </div>
+          <figcaption>Placeholder card — cue sliders drive aperture on the live model.</figcaption>
+        </figure>
+        <div class="writeup">
+          <p>
+            Stomata Hour is a teaching simulator of stomatal aperture. Guard cells meter the leaf’s pores; you drag light, carbon dioxide, and drought cues and watch the aperture answer in real time. It is a didactic model of opening and closure, not a research-grade biophysics engine.
+          </p>
+          <p>
+            Simple mode keeps the readouts friendly; Advanced exposes denser physiology. The copy explains why the pore matters for water and carbon without drowning you in equations. Paper-dark teaching chrome.
+          </p>
+          <p>
+            Open the simulator, move the cue sliders, and watch the pore. Read the “what the leaf is doing” panel when you want the story behind the motion.
+          </p>
+        </div>
+        <div class="links">
+          <a class="btn btn-solid" href="/stomata-hour/" target="_blank" rel="noopener noreferrer">Live demo</a>
+        </div>
+      </article>
+
+      <article class="piece" id="pollination-desk">
+        <div class="piece-meta">
+          <span class="piece-num">18 / 18</span>
+          <span class="piece-tag">Flower shape · pollinator guilds</span>
+        </div>
+        <h2>Pollination Desk</h2>
+        <figure class="shot">
+          <div class="shot-ph" role="img" aria-label="Pollination Desk">
+            <div class="ph-kicker">Field desk</div>
+            <div class="ph-title">Pollination Desk</div>
+            <p class="ph-note">Match flower shapes to pollinator guilds and fruit set.</p>
+          </div>
+          <figcaption>Placeholder card — pick a flower shape on the live desk.</figcaption>
+        </figure>
+        <div class="writeup">
+          <p>
+            Pollination Desk matches flower shape to pollinator guild, then follows the line to fruit set. Morphological filters against guild traits are educational heuristics, not field census data. Cream-and-teal desk chrome; calm compare mode.
+          </p>
+          <p>
+            It bridges toward Cambium’s fruit-tree modes without rebuilding tree physiology here. Simple vs Advanced changes how much cited science you get under each shape. The point is the fit between flower and visitor, then what that means for fruit.
+          </p>
+          <p>
+            Open the desk, pick a flower shape, and read the guild partners. Compare shapes when you want the morphological filter story side by side.
+          </p>
+        </div>
+        <div class="links">
+          <a class="btn btn-solid" href="/pollination-desk/" target="_blank" rel="noopener noreferrer">Live demo</a>
+        </div>
+      </article>
+
+    
       <p><a href="/#projects">← Back to hub projects</a></p>
     </div>
   </main>
