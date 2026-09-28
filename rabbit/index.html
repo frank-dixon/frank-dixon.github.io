@@ -5,11 +5,11 @@
     <link rel="icon" type="image/svg+xml" href="/rabbit/favicon.svg" />
     <link rel="apple-touch-icon" href="/rabbit/apple-touch-icon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#0A0C10" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#0A0C10" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#F5F0E8" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#241E1B" media="(prefers-color-scheme: dark)" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
     <meta
       name="description"
       content="Predict meat rabbit progeny coat and eye colors from parent crosses."
@@ -18,8 +18,7 @@
     <script>
       (function () {
         var stored = localStorage.getItem('theme');
-        var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        var theme = stored === 'light' || stored === 'dark' ? stored : 'dark';
+        var theme = stored === 'light' || stored === 'dark' ? stored : 'light';
         var root = document.documentElement;
 
         root.classList.remove('light', 'dark');
@@ -28,8 +27,8 @@
         root.style.colorScheme = theme;
       })();
     </script>
-    <script type="module" crossorigin src="/rabbit/assets/index-D59uehjQ.js"></script>
-    <link rel="stylesheet" crossorigin href="/rabbit/assets/index-_ssfkAXf.css">
+    <script type="module" crossorigin src="/rabbit/assets/index-BH0ebxdy.js"></script>
+    <link rel="stylesheet" crossorigin href="/rabbit/assets/index-DReb4L3d.css">
   <link rel="manifest" href="/rabbit/manifest.webmanifest"></head>
   <body>
     <div id="root"></div>
