@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Portfolio gallery — side projects by Frank Dixon with screenshots and write-ups." />
+  <meta name="author" content="Frank Dixon" />
+  <meta name="theme-color" content="#0A0C10" />
+  <title>Gallery — Frank Dixon</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0A0C10;
+      --text: #E6EAF0;
+      --action: #6B7FD7;
+      --sea: #5FA8A0;
+      --raised: #141820;
+      --mute: #8B93A3;
+      --line: #243041;
+      --lede: #B7C0CE;
+      --soft: #A8B2C2;
+      --void: #050608;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+    body {
+      font-family: Inter, system-ui, sans-serif;
+      background: var(--void);
+      color: var(--text);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; }
+    a:focus-visible, button:focus-visible {
+      outline: 2px solid var(--action);
+      outline-offset: 3px;
+    }
+    .skip {
+      position: absolute; left: 1rem; top: -100%; z-index: 100;
+      background: var(--action); color: var(--bg);
+      padding: 0.5rem 1rem; font-weight: 700;
+    }
+    .skip:focus { top: 1rem; }
+    .wrap {
+      width: min(1120px, calc(100% - 2rem));
+      margin-inline: auto;
+    }
+    @media (min-width: 720px) {
+      .wrap { width: min(1120px, calc(100% - 3.5rem)); }
+    }
+
+    .masthead {
+      border-bottom: 1px solid var(--line);
+      background: rgba(10, 12, 16, 0.92);
+      backdrop-filter: blur(10px);
+      position: sticky; top: 0; z-index: 50;
+    }
+    .nav {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 1rem; padding: 1.15rem 0; flex-wrap: wrap;
+    }
+    .wordmark {
+      font-family: "Space Grotesk", system-ui, sans-serif;
+      font-weight: 700; font-size: 0.95rem;
+      letter-spacing: -0.03em;
+      text-decoration: none;
+      color: var(--text);
+    }
+    .wordmark span { color: var(--action); }
+    nav ul {
+      list-style: none; display: flex; gap: 0.35rem 1.35rem; flex-wrap: wrap;
+    }
+    nav a {
+      text-decoration: none;
+      color: var(--mute);
+      font-size: 0.82rem;
+      font-weight: 500;
+    }
+    nav a:hover, nav a[aria-current="page"] { color: var(--text); font-weight: 600; }
+
+    .hero {
+      padding: 2.75rem 0 2.25rem;
+      border-bottom: 1px solid var(--line);
+    }
+    .issue {
+      font-family: "JetBrains Mono", ui-monospace, monospace;
+      font-size: 0.7rem; font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--sea);
+      margin-bottom: 1rem;
+    }
+    h1 {
+      font-family: "Space Grotesk", system-ui, sans-serif;
+      font-weight: 600;
+      font-size: clamp(2.2rem, 6vw, 3.4rem);
+      line-height: 0.98;
+      letter-spacing: -0.05em;
+      margin-bottom: 1rem;
+    }
+    .lede {
+      font-size: clamp(1.02rem, 2vw, 1.12rem);
+      line-height: 1.5;
+      color: var(--lede);
+      max-width: 48ch;
+    }
+    .toc {
+      margin-top: 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+    }
+    .toc a {
+      font-family: "JetBrains Mono", ui-monospace, monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.04em;
+      text-decoration: none;
+      color: var(--mute);
+      border: 1px solid var(--line);
+      background: var(--raised);
+      padding: 0.45rem 0.65rem;
+    }
+    .toc a:hover { color: var(--text); border-color: var(--action); }
+
+    .gallery { padding: 0 0 2.5rem; }
+    .piece {
+      padding: 2.5rem 0;
+      border-bottom: 1px solid var(--line);
+      scroll-margin-top: 5rem;
+    }
+    .piece:last-child { border-bottom: none; }
+    .piece-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 0.5rem 1.25rem;
+      margin-bottom: 0.85rem;
+    }
+    .piece-num {
+      font-family: "JetBrains Mono", ui-monospace, monospace;
+      font-size: 0.7rem;
+      color: var(--action);
+      letter-spacing: 0.06em;
+    }
+    .piece-tag {
+      font-family: "JetBrains Mono", ui-monospace, monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--sea);
+    }
+    .piece h2 {
+      font-family: "Space Grotesk", system-ui, sans-serif;
+      font-weight: 600;
+      font-size: clamp(1.55rem, 3.5vw, 1.95rem);
+      letter-spacing: -0.04em;
+      line-height: 1.1;
+      margin-bottom: 1.15rem;
+    }
+    .shot {
+      margin: 0 0 1.35rem;
+      border: 1px solid var(--line);
+      background: var(--raised);
+      overflow: hidden;
+    }
+    .shot img {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+      object-position: top center;
+    }
+    .shot figcaption {
+      padding: 0.65rem 0.9rem;
+      font-size: 0.78rem;
+      color: var(--mute);
+      border-top: 1px solid var(--line);
+    }
+    .writeup {
+      color: var(--lede);
+      font-size: 1.02rem;
+      max-width: 46rem;
+    }
+    .writeup p + p { margin-top: 0.95rem; }
+    .writeup strong { color: var(--text); font-weight: 600; }
+    .writeup code {
+      font-family: "JetBrains Mono", ui-monospace, monospace;
+      font-size: 0.86em;
+      color: var(--sea);
+    }
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+      margin-top: 1.25rem;
+    }
+    .btn {
+      display: inline-flex; align-items: center;
+      font-family: "Space Grotesk", system-ui, sans-serif;
+      padding: 0.7rem 0.95rem;
+      font-weight: 600; font-size: 0.82rem;
+      letter-spacing: 0.02em;
+      text-decoration: none;
+      transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+    }
+    .btn-solid {
+      background: var(--action); color: var(--bg); border: 1px solid var(--action);
+    }
+    .btn-solid:hover { filter: brightness(1.08); }
+    .btn-ghost {
+      background: transparent; color: var(--text); border: 1px solid var(--line);
+    }
+    .btn-ghost:hover { background: var(--raised); }
+
+    .back {
+      padding: 1.75rem 0 2.5rem;
+      border-top: 1px solid var(--line);
+    }
+    .back a {
+      color: var(--action);
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .back a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+    footer {
+      border-top: 1px solid var(--line);
+      background: var(--bg);
+      color: var(--mute);
+      padding: 1.35rem 0 1.75rem;
+      font-size: 0.85rem;
+    }
+    footer .wrap {
+      display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.5rem 1.5rem;
+    }
+    footer strong { color: var(--text); font-weight: 600; }
+    footer a { color: var(--action); text-decoration: none; font-weight: 600; }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="masthead">
+    <div class="wrap nav">
+      <a class="wordmark" href="/">Frank Dixon<span>.</span></a>
+      <nav aria-label="Primary">
+        <ul>
+          <li><a href="/#about">About</a></li>
+          <li><a href="/#work">Work</a></li>
+          <li><a href="/gallery/" aria-current="page">Projects</a></li>
+          <li><a href="/#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <header class="hero wrap">
+      <p class="issue">Personal experiments · screenshots + notes</p>
+      <h1>Gallery</h1>
+      <p class="lede">
+        Side stuff I actually shipped to Pages. Not a product pitch — just what each thing is, why I built it, and how to poke at it. Seven live demos.
+      </p>
+      <nav class="toc" aria-label="Projects on this page">
+        <a href="#rabbit">Rabbit genetics</a>
+        <a href="#weather-pwa">Weather PWA</a>
+        <a href="#hanalei-window">Hanalei Window</a>
+        <a href="#hyphaneural">Hyphaneural</a>
+        <a href="#css-density-demo">CSS density</a>
+        <a href="#mood-board">Mood board</a>
+        <a href="#scroll-progress">Scroll progress</a>
+      </nav>
+    </header>
+
+    <div class="gallery wrap">
+
+      <article class="piece" id="rabbit">
+        <div class="piece-meta">
+          <span class="piece-num">01 / 07</span>
+          <span class="piece-tag">Visualizer · Vite · PWA</span>
+        </div>
+        <h2>Rabbit genetics</h2>
+        <figure class="shot">
+          <img
+            src="/assets/gallery/rabbit.webp"
+            alt="Rabbit Progeny Predictor showing Parent A and Parent B cards with phenotype odds"
+            width="1280"
+            height="800"
+            loading="eager"
+          />
+          <figcaption>Live capture of the predictor with a Chestnut × Self black cross.</figcaption>
+        </figure>
+        <div class="writeup">
+          <p>
+            This is a coat and eye color calculator for meat-rabbit crosses. You pick two parents — breed presets or a custom genotype — and it lists the progeny phenotypes with percentages, genotype variants, and filters so you can hide the noise under five percent. I built it because I wanted it. Before Undercover Tourist I did genomics work at UMass Amherst, and I still raise rabbits; staring at a Punnett square on paper got old fast.
+          </p>
+          <p>
+            Under the hood it models the usual coat loci (A, B, C, D, E, plus En, V, Si) and rolls up outcomes so you see “Chestnut / agouti — 37.5%” instead of a wall of alleles. Each parent card has a Genetics &amp; editing path when a preset is not enough. Saved crosses stick around for pairings you repeat. There is a How It Works / Learn Genetics / Citations strip if you want the biology instead of the clicky bit.
+          </p>
+          <p>
+            Use it by opening the live app, choosing an example cross or setting Dam and Sire, then reading the outcomes list. The hub ships a Vite production build under <code>/rabbit/</code> with a service worker so the shell installs like a small PWA. Dark and light themes both work; I leave it dark most of the time.
+          </p>
+        </div>
+        <div class="links">
+          <a class="btn btn-solid" href="/rabbit/" target="_blank" rel="noopener noreferrer">Live demo</a>
+          <a class="btn btn-ghost" href="https://github.com/frank-dixon/rabbit-genetics-visualizer" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
+      </article>
+
+      <article class="piece" id="weather-pwa">
+        <div class="piece-meta">
+          <span class="piece-num">02 / 07</span>
+          <span class="piece-tag">Installable PWA · Open-Meteo</span>
+        </div>
+        <h2>Weather PWA</h2>
+        <figure class="shot">
+          <img
+            src="/assets/gallery/weather-pwa.webp"
+            alt="Weather PWA showing Springfield MA current conditions, hourly strip, and 7-day outlook"
+            width="1280"
+            height="800"
+            loading="lazy"
+          />
+          <figcaption>Springfield, MA forecast shell with hourly strip and seven-day outlook.</figcaption>
+        </figure>
+        <div class="writeup">
+          <p>
+            A small installable weather app for me first, Springfield MA by default. It pulls Open-Meteo — no API key — and shows current conditions, feels-like, high/low, humidity, wind, the next hours, and a seven-day outlook. Temperatures stay in °F because that is how I actually read weather.
+          </p>
+          <p>
+            On a cold start it asks the browser for geolocation (“Near me”). If that is denied or times out it falls back to the last saved place, then Springfield. Favorites live in <code>localStorage</code>; star a city and the chips come back next visit. The interesting front-end bit is the offline path: the service worker caches the app shell, and the last forecast sticks around in Cache API plus local storage so a quiet moment on the phone still shows something useful.
+          </p>
+          <p>
+            Open the Pages URL, search a city or hit Near me, then use Install / Add to Home Screen when the browser offers it. On iOS Safari the in-app hint walks through Share → Add to Home Screen. After install it opens standalone. Plain HTML, CSS, and JS — no build step to fight.
+          </p>
+        </div>
+        <div class="links">
+          <a class="btn btn-solid" href="https://frank-dixon.github.io/weather-pwa/" target="_blank" rel="noopener noreferrer">Live demo</a>
+          <a class="btn btn-ghost" href="https://github.com/frank-dixon/weather-pwa" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
+      </article>
+
+      <article class="piece" id="hanalei-window">
+        <div class="piece-meta">
+          <span class="piece-num">03 / 07</span>
+          <span class="piece-tag">Live cams · cream / teal</span>
+        </div>
+        <h2>Hanalei Window</h2>
+        <figure class="shot">
+          <img
+            src="/assets/gallery/hanalei-window.webp"
+            alt="Hanalei Window cream UI with Colony cam selected and Open live cam button"
+            width="1280"
+            height="800"
+            loading="lazy"
+          />
+          <figcaption>Cream-and-teal cam desk with Colony selected; live feed opens on the operator’s page.</figcaption>
+        </figure>
+        <div class="writeup">
+          <p>
+            Kauai webcams on a quiet cream desk. Hanalei Bay up front, then Colony, Nourish, Lawai, Kalapaki. I built it for when I miss the north shore — favorite place besides home in Southwick, MA. It is not trying to be a travel product. It is a window I can leave open.
+          </p>
+          <p>
+            Technically it is intentionally boring in a good way: plain HTML/CSS/JS, no build, mobile-first. Feeds only embed when the resort or operator gives an embeddable page. Otherwise you get a full-bleed poster and an Open live cam link in a new tab, always credited. I do not scrape or rehost streams. When a feed is down, the offline poster stays honest instead of spinning forever.
+          </p>
+          <p>
+            Tap a chip to switch cams. If the embed is available it plays in place; if not, use the button and watch on the operator’s site. That constraint keeps the page light and keeps me out of ToS trouble.
+          </p>
+        </div>
+        <div class="links">
+          <a class="btn btn-solid" href="https://frank-dixon.github.io/hanalei-window/" target="_blank" rel="noopener noreferrer">Live demo</a>
+          <a class="btn btn-ghost" href="https://github.com/frank-dixon/hanalei-window" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
+      </article>
+
+      <article class="piece" id="hyphaneural">
+        <div class="piece-meta">
+          <span class="piece-num">04 / 07</span>
+          <span class="piece-tag">Fungal genetics · canvas spaces</span>
+        </div>
+        <h2>Hyphaneural</h2>
+        <figure class="shot">
+          <img
+            src="/assets/gallery/hyphaneural.webp"
+            alt="Hyphaneural Strand Zoom space with Slow Ombre shell and gene nodes"
+            width="1280"
+            height="800"
+            loading="lazy"
+          />
+          <figcaption>Strand Zoom on baker’s yeast — field → lattice → strand teaching path.</figcaption>
+        </figure>
+        <div class="writeup">
+          <p>
+            Hyphaneural is a fungal genetics demo dressed as four immersive spaces that share one pulsed purple–blue–green shell: Hex Reach, Strand Zoom, Fungal Atlas, and Void Breath. The pitch I care about is “see the strand, not the spreadsheet.” You land in baker’s yeast, follow a gene DNA → mRNA → protein, compare conserved families, and open a Genome panel for multi-organism tracks. No login on the Pages demo.
+          </p>
+          <p>
+            The interesting craft is the shell. Slow Ombre pulses underneath while you pan; HTML chrome is Tailwind utilities; the canvas stays vanilla JS. Seed data is static JSON, so the GitHub Pages build does not need Django even though the fuller local app can sit behind a thin JSON API. Start here opens Strand Zoom on SUC2 (invertase). Swipe sideways like a dial — or use the HEX / STRAND / ATLAS / VOID rail — to change spaces.
+          </p>
+          <p>
+            Open the live chamber, skip or walk the short intro, then zoom the rail from field to lattice to strand. Bands and Genome are there when you want comparison instead of atmosphere. It is a teaching toy with taste, not a lab LIMS.
+          </p>
+        </div>
+        <div class="links">
+          <a class="btn btn-solid" href="https://frank-dixon.github.io/hyphaneural/" target="_blank" rel="noopener noreferrer">Live demo</a>
+          <a class="btn btn-ghost" href="https://github.com/frank-dixon/hyphaneural" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
+      </article>
+
+      <article class="piece" id="css-density-demo">
+        <div class="piece-meta">
+          <span class="piece-num">05 / 07</span>
+          <span class="piece-tag">Theme tokens · custom properties</span>
+        </div>
+        <h2>CSS density demo</h2>
+        <figure class="shot">
+          <img
+            src="/assets/gallery/css-density-demo.webp"
+            alt="CSS Density Demo in Quiet / Cream mode with token peek panel"
+            width="1280"
+            height="800"
+            loading="lazy"
+          />
+          <figcaption>Quiet density on the Cream surface — same story, token-driven spacing and type.</figcaption>
+        </figure>
+        <div class="writeup">
+          <p>
+            A static demo of CSS custom properties driving density and surface. Quiet vs Punchy changes spacing, type scale, radii, control heights, and shadow weight via <code>data-density</code> on <code>&lt;html&gt;</code>. Cream vs Alternate shifts the paper/ink grounds through <code>data-surface</code> while keeping the same turquoise accent. Same headline, cards, buttons, and form controls — they just breathe differently.
+          </p>
+          <p>
+            I built it to prove a point I keep making at work: theme kits should be tokens, not a second stylesheet you rewrite by hand. JavaScript only flips attributes and remembers the choice in <code>localStorage</code>. The Token peek panel shows live values like <code>--space-md</code> and <code>--font-size-h1</code> so you can see the knobs move. Fraunces for display, Source Sans 3 for body — editorial on purpose.
+          </p>
+          <p>
+            Toggle Density and Surface at the top and watch the layout reflow without a route change. Read the essay and Browse notes are sample CTAs sitting on the same token stack. If you are auditing a design system, this is the smallest useful exhibit.
+          </p>
+        </div>
+        <div class="links">
+          <a class="btn btn-solid" href="https://frank-dixon.github.io/css-density-demo/" target="_blank" rel="noopener noreferrer">Live demo</a>
+          <a class="btn btn-ghost" href="https://github.com/frank-dixon/css-density-demo" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
+      </article>
+
+      <article class="piece" id="mood-board">
+        <div class="piece-meta">
+          <span class="piece-num">06 / 07</span>
+          <span class="piece-tag">Design direction · one north star</span>
+        </div>
+        <h2>Mood board</h2>
+        <figure class="shot">
+          <img
+            src="/assets/gallery/mood-board.webp"
+            alt="Hub mood board page with Quiet editorial direction and reference grid"
+            width="1280"
+            height="800"
+            loading="lazy"
+          />
+          <figcaption>One direction for a hub redesign — paper, ink, turquoise, type doing the hierarchy.</figcaption>
+        </figure>
+        <div class="writeup">
+          <p>
+            A mood board for a hub redesign I was arguing with myself about. One direction, not five options. Quiet editorial. Grown, not beige. Paper and ink, one turquoise accent, type doing the hierarchy work, whitespace instead of cards and chrome. Modern portfolio craft — not a late-2000s template and not techno-futurist glow.
+          </p>
+          <p>
+            The page itself is the artifact: references, type, color, sketches, rules. There is a Constraint → evolution callout that says keep cream / ink / turquoise, drop the dark cool-spectrum chrome when that direction wins, and ignore hero theater. The “What I pulled from” grid names sources and leaves a monospace Take under each so the notes stay concrete.
+          </p>
+          <p>
+            Read it top to bottom like a short brief. Jump the top nav to References, Type, Color, Sketches, or Rules. It lives on this hub under <code>/mood-board/</code> because that is where the redesign conversation was happening. The live hub you are on now is still Cool Spectrum dark; this board is the alternate north star I wrote down so I would not forget it.
+          </p>
+        </div>
+        <div class="links">
+          <a class="btn btn-solid" href="/mood-board/" target="_blank" rel="noopener noreferrer">Live demo</a>
+          <a class="btn btn-ghost" href="https://github.com/frank-dixon/frank-dixon.github.io/tree/main/mood-board" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
+      </article>
+
+      <article class="piece" id="scroll-progress">
+        <div class="piece-meta">
+          <span class="piece-num">07 / 07</span>
+          <span class="piece-tag">CSS craft · animation-timeline</span>
+        </div>
+        <h2>Scroll progress</h2>
+        <figure class="shot">
+          <img
+            src="/assets/gallery/scroll-progress.webp"
+            alt="Scroll progress essay page with chapter dots and CSS animation-timeline explanation"
+            width="1280"
+            height="800"
+            loading="lazy"
+          />
+          <figcaption>Editorial essay with a scrubbed top bar and chapter dots driven by CSS scroll timelines.</figcaption>
+        </figure>
+        <div class="writeup">
+          <p>
+            A quiet editorial demo where the top bar and chapter dots track how far you have read using <code>animation-timeline: scroll()</code> and named view timelines — not <code>IntersectionObserver</code>, not a scroll handler writing widths every frame. Most reading-progress widgets couple layout to JavaScript for something the browser can express declaratively now. I wanted a small FE taste piece that replaces that habit without punishing older browsers.
+          </p>
+          <p>
+            The bar uses <code>animation-timeline: scroll(root)</code> with a <code>scaleX</code> keyframe from 0 to 1. Chapter dots bind to named <code>view-timeline</code>s on each section so as a chapter enters and settles, the matching dot lights. Everything sits behind <code>@supports (animation-timeline: scroll())</code>. Outside that fence the essay still reads fine; the scrubbing is progressive enhancement, not a dependency.
+          </p>
+          <p>
+            Open the page and scroll. Watch the bar and the Intent / Engine / Fallback / Taste dots. If your browser does not animate on scroll timelines yet, you will see a calm note and the same writing. That is the point.
+          </p>
+        </div>
+        <div class="links">
+          <a class="btn btn-solid" href="/scroll-progress/" target="_blank" rel="noopener noreferrer">Live demo</a>
+          <a class="btn btn-ghost" href="https://github.com/frank-dixon/frank-dixon.github.io/tree/main/scroll-progress" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
+      </article>
+
+    </div>
+
+    <div class="back wrap">
+      <p><a href="/#projects">← Back to hub projects</a></p>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <p>© <span id="year"></span> <strong>Frank Dixon</strong></p>
+      <p><a href="mailto:fdixon7@gmail.com">fdixon7@gmail.com</a> · LinkedIn · GitHub</p>
+    </div>
+  </footer>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
