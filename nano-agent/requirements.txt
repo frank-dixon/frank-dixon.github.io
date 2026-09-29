@@ -1,0 +1,9 @@
+# Core: talk to a local Ollama server over HTTP (stdlib urllib works too;
+# httpx is nicer for teaching and has cleaner errors).
+httpx>=0.27.0
+
+# Web search with NO API key. Package name is `ddgs` (successor to duckduckgo-search).
+ddgs>=9.0.0
+
+# Dev / lesson runner niceties
+rich>=13.7.0

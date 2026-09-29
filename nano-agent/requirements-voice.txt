@@ -1,0 +1,2 @@
+# Optional voice extras (studio TTS). Core agent does not need these.
+elevenlabs>=1.50.0

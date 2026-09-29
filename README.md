@@ -36,6 +36,7 @@ google-chrome --headless=new --disable-gpu --no-sandbox --disable-dev-shm-usage 
 
 - `index.html` — editorial personal site (hero, about, work, projects, stack, contact)
 - `rabbit/` — built Rabbit Genetics Visualizer (live demo)
+- `nano-agent/` — CLI learning project: local micro LLM + optional web search (+ later voice TTS)
 - `resume.html` / `resume.pdf` — printable resume
 - Phone is on the resume PDF only; public site uses email + LinkedIn
 
