@@ -1,786 +1,1806 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- deploy:2026-09-12-cool-spectrum -->
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Frank Dixon — senior front-end engineer at Undercover Tourist. Django, JavaScript, CSS. Springfield, MA. Remote." />
-  <meta name="author" content="Frank Dixon" />
-  <meta name="theme-color" content="#0A0C10" />
-  <title>Frank Dixon — Senior Front-End Engineer</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --bg: #0A0C10;
-      --text: #E6EAF0;
-      --action: #6B7FD7;
-      --sea: #5FA8A0;
-      --raised: #141820;
-      --mute: #8B93A3;
-      --line: #243041;
-      --lede: #B7C0CE;
-      --soft: #A8B2C2;
-      --void: #050608;
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
-      }
-    }
-    body {
-      font-family: Inter, system-ui, sans-serif;
-      background: var(--void);
-      color: var(--text);
-      line-height: 1.55;
-      -webkit-font-smoothing: antialiased;
-    }
-    a { color: inherit; }
-    a:focus-visible, button:focus-visible {
-      outline: 2px solid var(--action);
-      outline-offset: 3px;
-    }
-    .skip {
-      position: absolute; left: 1rem; top: -100%; z-index: 100;
-      background: var(--action); color: var(--bg);
-      padding: 0.5rem 1rem; font-weight: 700;
-    }
-    .skip:focus { top: 1rem; }
-    .wrap {
-      width: min(1120px, calc(100% - 2rem));
-      margin-inline: auto;
-    }
-    @media (min-width: 720px) {
-      .wrap { width: min(1120px, calc(100% - 3.5rem)); }
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#07080A" />
+<title>Frank Dixon · Senior front-end engineer</title>
+<meta name="description" content="Frank Dixon, senior front-end engineer at Undercover Tourist. Front end first, Python on the side, biology in the background. Shipping for the web since 2004." />
+<meta name="author" content="Frank Dixon" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://frank-dixon.github.io/" />
+<meta property="og:title" content="Frank Dixon · Senior front-end engineer" />
+<meta property="og:description" content="Front end first. Python on the side. Biology in the background. Interfaces that make sense of it all." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Michroma&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<script>document.documentElement.classList.add('js');</script>
+<style>
+  /* Wetware lattice: graphite and etched silicon, lit by whichever two-stop palette is tuned in */
+  :root {
+    /* Font slots stay swappable; the body face is a placeholder until the mood board settles it */
+    --font-display: "Michroma", "Eurostile", system-ui, sans-serif;
+    --font-body: "IBM Plex Sans", system-ui, sans-serif;
+    --font-mono: "IBM Plex Mono", ui-monospace, monospace;
 
-    .masthead {
-      border-bottom: 1px solid var(--line);
-      background: rgba(10, 12, 16, 0.92);
-      backdrop-filter: blur(10px);
-      position: sticky; top: 0; z-index: 50;
-    }
-    .nav {
-      display: flex; align-items: center; justify-content: space-between;
-      gap: 1rem; padding: 1.15rem 0; flex-wrap: wrap;
-    }
-    .wordmark {
-      font-family: "Space Grotesk", system-ui, sans-serif;
-      font-weight: 700; font-size: 0.95rem;
-      letter-spacing: -0.03em;
-      text-decoration: none;
-      color: var(--text);
-    }
-    .wordmark span { color: var(--action); }
-    nav ul {
-      list-style: none; display: flex; gap: 0.35rem 1.35rem; flex-wrap: wrap;
-    }
-    nav a {
-      text-decoration: none;
-      color: var(--mute);
-      font-size: 0.82rem;
-      font-weight: 500;
-    }
-    nav a:hover, nav a[aria-current="page"] { color: var(--text); font-weight: 600; }
+    /* Palette slots, rewritten live by the tuner; these defaults are Iridescent thin-film */
+    --a: rgb(47 224 184);
+    --b: rgb(192 76 255);
+    --ha: rgb(124 243 214);
+    --hb: rgb(218 155 255);
+    --a-rgb: 47 224 184;
+    --b-rgb: 192 76 255;
 
-    .hero {
-      padding: 3rem 0 2.75rem;
-      border-bottom: 1px solid var(--line);
-    }
-    .issue {
-      font-family: "JetBrains Mono", ui-monospace, monospace;
-      font-size: 0.7rem; font-weight: 500;
-      letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--sea);
-      margin-bottom: 1rem;
-    }
-    h1 {
-      font-family: "Space Grotesk", system-ui, sans-serif;
-      font-weight: 600;
-      font-size: clamp(2.6rem, 7vw, 4rem);
-      line-height: 0.95;
-      letter-spacing: -0.05em;
-      margin-bottom: 1.35rem;
-    }
-    h1 em {
-      font-style: normal;
-      color: var(--action);
-    }
-    .hero-grid {
-      display: grid;
-      gap: 1.75rem 2.5rem;
-      align-items: end;
-    }
-    @media (min-width: 800px) {
-      .hero-grid { grid-template-columns: 1.4fr 0.8fr; }
-    }
-    .lede {
-      font-size: clamp(1.05rem, 2vw, 1.15rem);
-      line-height: 1.5;
-      color: var(--lede);
-      max-width: 38ch;
-    }
-    .lede strong { color: var(--text); font-weight: 600; }
-    .hero-aside {
-      background: var(--raised);
-      border: 1px solid var(--line);
-      padding: 1.15rem 1.15rem 1rem;
-    }
-    .aside-k {
-      font-family: "JetBrains Mono", ui-monospace, monospace;
-      font-size: 0.65rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--mute);
-      margin-bottom: 0.45rem;
-    }
-    .aside-v {
-      font-family: "Space Grotesk", system-ui, sans-serif;
-      font-size: 1.15rem;
-      font-weight: 600;
-      letter-spacing: -0.03em;
-      margin-bottom: 0.85rem;
-    }
-    .aside-list {
-      list-style: none;
-      font-size: 0.85rem;
-      color: var(--lede);
-    }
-    .aside-list li {
-      padding: 0.5rem 0;
-      border-top: 1px solid var(--line);
-    }
-    .aside-list li:first-child { border-top: none; padding-top: 0; }
-    .cta-row { display: flex; flex-wrap: wrap; gap: 0.55rem; margin-top: 1.5rem; }
-    .btn {
-      display: inline-flex; align-items: center;
-      font-family: "Space Grotesk", system-ui, sans-serif;
-      padding: 0.75rem 1rem;
-      font-weight: 600; font-size: 0.82rem;
-      letter-spacing: 0.02em;
-      text-decoration: none;
-      transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
-    }
-    .btn-solid {
-      background: var(--action); color: var(--bg); border: 1px solid var(--action);
-    }
-    .btn-solid:hover { filter: brightness(1.08); }
-    .btn-ghost {
-      background: transparent; color: var(--text); border: 1px solid var(--line);
-    }
-    .btn-ghost:hover { background: var(--raised); }
-    .btn-sea {
-      background: transparent; color: var(--sea); border: 1px solid var(--sea);
-    }
-    .btn-sea:hover { background: rgba(95, 168, 160, 0.1); }
+    --base: #07080A;
+    --graphite: #0D0F12;
+    --text: #D6DBE2;
+    --text-2: #B3BAC4;
+    --muted: #98A1AD;
+    --line: rgba(214, 222, 232, 0.11);
+    --line-2: rgba(214, 222, 232, 0.22);
+    --line-rgb: 214 222 232;
+    --glass: rgba(9, 11, 14, 0.64);
+    --panel-max-h: 70vh;
+    --gshift: 0;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body {
+    background:
+      radial-gradient(ellipse 80% 60% at 30% -10%, rgba(255, 255, 255, 0.035), transparent 60%),
+      linear-gradient(180deg, var(--graphite), var(--base) 70%);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .js body { overflow: hidden; overscroll-behavior: none; }
+  a { color: inherit; }
+  button { font: inherit; color: inherit; }
+  :focus-visible { outline: 1px solid var(--ha); outline-offset: 3px; }
+  .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .mono { font-family: var(--font-mono); font-size: 10.5px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; }
 
-    section { padding: 2.75rem 0; border-bottom: 1px solid var(--line); }
-    .section-h {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      gap: 1rem;
-      margin-bottom: 1.35rem;
-      flex-wrap: wrap;
-    }
-    .section-h h2 {
-      font-family: "Space Grotesk", system-ui, sans-serif;
-      font-weight: 600;
-      font-size: clamp(1.65rem, 3.5vw, 1.85rem);
-      letter-spacing: -0.04em;
-      line-height: 1.1;
-      max-width: none;
-    }
-    .section-h .meta {
-      font-family: "JetBrains Mono", ui-monospace, monospace;
-      font-size: 0.7rem;
-      color: var(--mute);
-    }
-    .kicker {
-      font-family: "JetBrains Mono", ui-monospace, monospace;
-      font-size: 0.7rem; font-weight: 500;
-      letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--sea);
-      margin-bottom: 0.55rem;
-    }
-    .prose { color: var(--lede); font-size: 1.02rem; max-width: 42rem; }
-    .prose p + p { margin-top: 1rem; }
-    .prose strong { color: var(--text); font-weight: 600; }
+  /* Two-stop ombre text; --gshift walks it as the dial turns, drifts and leans toward the pointer */
+  .grad {
+    background-image: linear-gradient(100deg, var(--ha), var(--hb) 50%, var(--ha));
+    background-size: 200% 100%;
+    background-repeat: repeat-x;
+    background-position: calc(var(--gshift) * 1%) 0;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
 
-    .outcomes {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 0.75rem;
-      margin-top: 1.25rem;
-    }
-    @media (min-width: 800px) {
-      .outcomes { grid-template-columns: repeat(3, 1fr); }
-    }
-    .card {
-      background: var(--raised);
-      border: 1px solid var(--line);
-      padding: 1rem;
-      min-height: 9rem;
-    }
-    .card .idx {
-      font-family: "JetBrains Mono", ui-monospace, monospace;
-      font-size: 0.7rem;
-      color: var(--action);
-      margin-bottom: 0.65rem;
-    }
-    .card h3 {
-      font-family: "Space Grotesk", system-ui, sans-serif;
-      font-size: 1.1rem;
-      font-weight: 600;
-      letter-spacing: -0.03em;
-      margin-bottom: 0.5rem;
-    }
-    .card p {
-      font-size: 0.85rem;
-      line-height: 1.45;
-      color: var(--soft);
-    }
+  /* Stage: canvas field, brushed grain, the wafer etch, then the dial and chrome */
+  .js .stage { position: fixed; inset: 0; overflow: hidden; overflow: clip; touch-action: pan-y; }
+  .js .stage.dragging { cursor: grabbing; }
+  .js .stage.dragging * { user-select: none; }
+  #field { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; display: none; }
+  .js #field { display: block; }
+  .grain {
+    position: fixed; inset: 0; pointer-events: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='480' height='480'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.004 0.85' numOctaves='2' seed='7'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1.1 -0.2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    opacity: 0.045;
+    mix-blend-mode: overlay;
+  }
+  .wafer {
+    position: fixed; pointer-events: none;
+    width: min(125vh, 1200px); height: min(125vh, 1200px);
+    right: calc(min(125vh, 1200px) * -0.42); bottom: calc(min(125vh, 1200px) * -0.5);
+    color: rgb(var(--line-rgb));
+    opacity: 0.1;
+    will-change: transform;
+  }
+  .wafer text { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.2em; fill: currentColor; }
+  .etch { position: fixed; z-index: 1; left: clamp(16px, 3.4vw, 44px); top: 70px; color: var(--muted); opacity: 0.6; font-size: 9px; pointer-events: none; }
 
-    .work-intro {
-      display: grid; gap: 1.5rem 2rem; margin-bottom: 1.75rem;
-    }
-    @media (min-width: 800px) {
-      .work-intro { grid-template-columns: 1fr auto; align-items: end; }
-    }
-    .metric {
-      background: var(--raised);
-      border: 1px solid var(--line);
-      padding: 1rem 1.15rem;
-      min-width: 12rem;
-    }
-    .metric b {
-      display: block;
-      font-family: "Space Grotesk", system-ui, sans-serif;
-      font-weight: 600;
-      font-size: clamp(2.4rem, 6vw, 3.2rem);
-      line-height: 0.95;
-      letter-spacing: -0.04em;
-      color: var(--action);
-    }
-    .metric span {
-      display: block;
-      margin-top: 0.45rem;
-      font-size: 0.85rem;
-      color: var(--mute);
-      max-width: 22ch;
-    }
-    .role-line {
-      font-size: 0.9rem; color: var(--mute); margin-bottom: 0.85rem;
-    }
-    .folio { list-style: none; border-top: 1px solid var(--line); }
-    .folio li {
-      display: grid; gap: 0.45rem 1.25rem;
-      padding: 1.15rem 0;
-      border-bottom: 1px solid var(--line);
-    }
-    @media (min-width: 720px) {
-      .folio li { grid-template-columns: 3rem 12rem 1fr; align-items: baseline; }
-    }
-    .num {
-      font-family: "JetBrains Mono", ui-monospace, monospace;
-      color: var(--action);
-      font-size: 0.8rem;
-    }
-    .folio h3 {
-      font-family: "Space Grotesk", system-ui, sans-serif;
-      font-size: 1.02rem; font-weight: 600; letter-spacing: -0.02em;
-    }
-    .folio p { color: var(--lede); font-size: 0.95rem; }
-    .folio .mark {
-      display: block; margin-top: 0.4rem;
-      font-family: "JetBrains Mono", ui-monospace, monospace;
-      font-size: 0.68rem; font-weight: 500;
-      letter-spacing: 0.06em; text-transform: uppercase;
-      color: var(--sea);
-    }
-    .earlier {
-      margin-top: 1.5rem;
-      padding: 1.1rem 0 0;
-      border-top: 1px dashed var(--line);
-      color: var(--mute);
-      font-size: 0.95rem;
-      max-width: 52rem;
-    }
-    .earlier strong { color: var(--text); }
+  header.top {
+    position: relative; z-index: 5;
+    display: flex; justify-content: space-between; align-items: center; gap: 16px;
+    padding: 20px clamp(16px, 3.4vw, 44px);
+  }
+  .js header.top { position: fixed; top: 0; left: 0; right: 0; }
+  .mark { display: flex; align-items: baseline; gap: 12px; text-decoration: none; font-family: var(--font-display); font-size: 12.5px; letter-spacing: 0.08em; text-transform: uppercase; }
+  .mark span { font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.16em; color: var(--muted); }
+  nav ol { list-style: none; display: flex; gap: 4px; }
+  nav button {
+    display: flex; align-items: baseline; gap: 7px;
+    background: none; border: 1px solid transparent; border-radius: 2px;
+    padding: 7px 11px; cursor: pointer;
+    font-family: var(--font-mono); font-size: 10px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted);
+    transition: color 0.3s, border-color 0.3s, box-shadow 0.3s;
+  }
+  nav button .n { color: var(--line-2); transition: color 0.3s; }
+  nav button:hover { color: var(--text); }
+  nav button[aria-current="true"] { color: var(--text); border-color: var(--line-2); box-shadow: inset 0 -1px 0 rgb(var(--a-rgb) / 0.7); }
+  nav button[aria-current="true"] .n { color: var(--ha); }
 
-    .projects {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 0.75rem;
-    }
-    @media (min-width: 800px) {
-      .projects { grid-template-columns: 1fr 1fr; }
-    }
-    .proj {
-      border: 1px solid var(--line);
-      background: var(--raised);
-      padding: 1.15rem;
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 0.75rem;
-      align-items: start;
-      text-decoration: none;
-      color: inherit;
-      transition: border-color 0.15s ease;
-    }
-    .proj:hover { border-color: var(--action); }
-    .proj .tag {
-      font-family: "JetBrains Mono", ui-monospace, monospace;
-      font-size: 0.65rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--sea);
-      margin-bottom: 0.5rem;
-    }
-    .proj h3 {
-      font-family: "Space Grotesk", system-ui, sans-serif;
-      font-size: 1.25rem;
-      letter-spacing: -0.03em;
-      margin-bottom: 0.4rem;
-    }
-    .proj p { font-size: 0.85rem; color: var(--soft); line-height: 1.4; }
-    .proj .go {
-      font-family: "Space Grotesk", system-ui, sans-serif;
-      font-size: 0.75rem;
-      font-weight: 600;
-      color: var(--action);
-      white-space: nowrap;
-    }
+  /* The dial: a zero-size anchor at the circle's center, far below the fold; panels hang off its rim */
+  .js .dial { position: absolute; left: 0; top: 0; width: 0; height: 0; }
+  .js .panel {
+    position: absolute; left: 0; top: 0;
+    width: min(800px, calc(100vw - 28px));
+    transform-origin: 0 0;
+    will-change: transform;
+    visibility: hidden;
+  }
 
-    .cadence {
-      margin-top: 1.25rem;
-      padding: 1.15rem;
-      border: 1px solid var(--line);
-      background: var(--raised);
-    }
-    .cadence-head { margin-bottom: 0.85rem; }
-    .cadence-head h3 {
-      font-family: "Space Grotesk", system-ui, sans-serif;
-      font-weight: 600;
-      font-size: 1.15rem;
-      letter-spacing: -0.03em;
-      color: var(--text);
-      margin-top: 0.2rem;
-    }
-    .cadence-figure {
-      margin: 0;
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-    }
-    .cadence-figure img {
-      display: block;
-      width: min(100%, 775px);
-      height: auto;
-      border-radius: 2px;
-    }
-    .cadence figcaption {
-      margin-top: 0.75rem;
-      color: var(--mute);
-      font-size: 0.88rem;
-      max-width: 42rem;
-    }
-    .cadence figcaption a {
-      color: var(--action);
-      font-weight: 600;
-      text-decoration: none;
-    }
-    .cadence figcaption a:hover { text-decoration: underline; text-underline-offset: 3px; }
+  /* Frosted etched glass: a blurred pane, a bevel of light along the top, a thin ombre edge */
+  .card {
+    position: relative;
+    border-radius: 5px;
+    background:
+      linear-gradient(165deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.012) 34%, rgba(255, 255, 255, 0.028)),
+      var(--glass);
+    -webkit-backdrop-filter: blur(16px) saturate(1.3);
+    backdrop-filter: blur(16px) saturate(1.3);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.16),
+      inset 1px 0 0 rgba(255, 255, 255, 0.05),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.55),
+      0 0 0 1px rgba(255, 255, 255, 0.05),
+      0 40px 90px -30px rgba(0, 0, 0, 0.85);
+    will-change: transform;
+  }
+  .card::before {
+    content: ""; position: absolute; inset: 0; border-radius: inherit; padding: 1px; pointer-events: none;
+    background: linear-gradient(125deg, rgb(var(--a-rgb) / 0.6), rgb(var(--a-rgb) / 0) 26%, rgb(var(--b-rgb) / 0) 70%, rgb(var(--b-rgb) / 0.6));
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  }
+  /* Etched registration marks in the four corners */
+  .card::after {
+    content: ""; position: absolute; inset: 9px; pointer-events: none; opacity: 0.55;
+    background:
+      linear-gradient(var(--line-2), var(--line-2)) left top / 12px 1px no-repeat,
+      linear-gradient(var(--line-2), var(--line-2)) left top / 1px 12px no-repeat,
+      linear-gradient(var(--line-2), var(--line-2)) right top / 12px 1px no-repeat,
+      linear-gradient(var(--line-2), var(--line-2)) right top / 1px 12px no-repeat,
+      linear-gradient(var(--line-2), var(--line-2)) left bottom / 12px 1px no-repeat,
+      linear-gradient(var(--line-2), var(--line-2)) left bottom / 1px 12px no-repeat,
+      linear-gradient(var(--line-2), var(--line-2)) right bottom / 12px 1px no-repeat,
+      linear-gradient(var(--line-2), var(--line-2)) right bottom / 1px 12px no-repeat;
+  }
+  .card-in { position: relative; border-radius: inherit; overflow: hidden; }
+  .card-in::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 56px; pointer-events: none;
+    background: linear-gradient(to bottom, transparent, rgba(8, 9, 12, 0.9));
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .card-in.more::after { opacity: 1; }
+  .panel-body { position: relative; padding: clamp(22px, 4vw, 42px); touch-action: pan-y; }
+  .js .panel-body {
+    max-height: calc(var(--panel-max-h) - 2px);
+    overflow: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+    scrollbar-color: var(--line-2) transparent;
+  }
+  .panel-num {
+    position: absolute; right: clamp(18px, 3vw, 36px); top: clamp(14px, 2vw, 24px);
+    font-family: var(--font-display); font-size: clamp(44px, 8vw, 88px); line-height: 1; letter-spacing: -0.02em;
+    color: transparent; -webkit-text-stroke: 1px rgb(var(--b-rgb) / 0.28);
+    pointer-events: none; user-select: none;
+  }
+  .rim-label {
+    position: absolute; left: 0; top: 0; transform-origin: 0 0;
+    white-space: nowrap; background: none; border: 0; cursor: pointer;
+    padding: 8px 10px;
+    font-family: var(--font-mono); font-size: 10px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--muted); visibility: hidden;
+    transition: color 0.3s;
+  }
+  .rim-label:hover { color: var(--text); }
+  .rim-label.on { color: var(--ha); }
 
-    .tools {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
-    .tools span {
-      font-size: 0.8rem;
-      font-weight: 500;
-      padding: 0.55rem 0.7rem;
-      background: var(--raised);
-      border: 1px solid var(--line);
-      color: #C5CDD8;
-    }
+  /* Panel type: Michroma is very wide, so sizes stay modest and tracking stays near zero */
+  .kicker { display: flex; align-items: center; gap: 10px; color: var(--ha); margin-bottom: 18px; }
+  .kicker::before { content: ""; width: 18px; height: 1px; background: linear-gradient(90deg, var(--a), var(--b)); box-shadow: 0 0 8px rgb(var(--a-rgb) / 0.8); flex: none; }
+  h1, h2, h3 { font-family: var(--font-display); font-weight: 400; }
+  h1 { font-size: clamp(1.5rem, 5.1vw, 3.35rem); line-height: 1.12; letter-spacing: -0.015em; margin-bottom: 18px; padding-bottom: 0.06em; }
+  h2 { font-size: clamp(1.15rem, 3.2vw, 2.05rem); line-height: 1.25; letter-spacing: -0.01em; margin-bottom: 20px; max-width: 24ch; padding-bottom: 0.06em; }
+  .panel-body > h1, .panel-body > h2 { padding-right: min(20%, 160px); max-width: none; }
+  h1:focus, h2:focus { outline: none; }
+  h1:focus-visible, h2:focus-visible { outline: 1px dashed rgb(var(--a-rgb) / 0.6); outline-offset: 6px; }
+  .role { font-size: clamp(1.05rem, 2.2vw, 1.3rem); line-height: 1.45; color: var(--text); margin-bottom: 16px; max-width: 46ch; }
+  .lede, .prose p { color: var(--text-2); max-width: 60ch; }
+  .lede strong, .prose strong { color: var(--text); font-weight: 600; }
+  .prose p + p { margin-top: 12px; }
 
-    #contact { border-bottom: none; padding-bottom: 2.5rem; }
-    .contact-grid {
-      display: grid; gap: 1.5rem 2.5rem;
-    }
-    @media (min-width: 800px) {
-      .contact-grid { grid-template-columns: 1.1fr 0.9fr; align-items: end; }
-    }
-    .colophon-links {
-      display: flex; flex-direction: column; gap: 0.2rem;
-      font-size: 1rem;
-    }
-    .colophon-links a {
-      color: var(--text);
-      font-weight: 600;
-      text-decoration: none;
-      border-bottom: 1px solid var(--line);
-      padding: 0.45rem 0;
-      width: fit-content;
-    }
-    .colophon-links a:hover { border-color: var(--action); color: var(--action); }
+  .stats { list-style: none; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); margin: 26px 0 24px; border-radius: 3px; overflow: hidden; }
+  .stats li { background: rgba(6, 7, 9, 0.6); padding: 14px 16px 12px; }
+  .stats b { display: block; font-family: var(--font-display); font-weight: 400; font-size: clamp(1.25rem, 3vw, 1.75rem); line-height: 1.15; }
+  .stats span { display: block; margin-top: 6px; font-size: 13px; color: var(--muted); line-height: 1.4; }
 
-    footer {
-      border-top: 1px solid var(--line);
-      background: var(--bg);
-      color: var(--mute);
-      padding: 1.35rem 0 1.75rem;
-      font-size: 0.85rem;
-    }
-    footer .wrap {
-      display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.5rem 1.5rem;
-    }
-    footer strong { color: var(--text); font-weight: 600; }
-    footer a { color: var(--action); text-decoration: none; font-weight: 600; }
-  </style>
+  .cta { display: flex; flex-wrap: wrap; gap: 8px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 11px 16px; text-decoration: none; border-radius: 2px;
+    font-family: var(--font-mono); font-size: 10.5px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase;
+    border: 1px solid var(--line-2); background: rgba(255, 255, 255, 0.02);
+    transition: border-color 0.3s, color 0.3s, box-shadow 0.3s;
+  }
+  .btn:hover { border-color: rgb(var(--a-rgb) / 0.8); color: var(--ha); box-shadow: 0 0 18px -6px rgb(var(--a-rgb) / 0.9); }
+  .btn.solid { background: linear-gradient(95deg, var(--ha), var(--hb)); border-color: transparent; color: #06070A; }
+  .btn.solid:hover { color: #06070A; box-shadow: 0 0 22px -4px rgb(var(--b-rgb) / 0.9); }
+
+  /* About: the stack read like a genotype, one locus per row */
+  .genotype { margin-top: 26px; border-top: 1px solid var(--line); }
+  .genotype div { display: grid; grid-template-columns: 5.5rem 1fr; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--line); align-items: baseline; }
+  .genotype dt { color: var(--ha); }
+  .genotype dd { display: flex; flex-wrap: wrap; gap: 6px 14px; color: var(--text); font-size: 15px; }
+  .genotype dd span + span::before { content: "/"; color: var(--line-2); margin-right: 14px; }
+
+  /* Work: generations of roles, newest first, the current one expanded */
+  .current { border: 1px solid var(--line); border-radius: 3px; padding: 18px 20px; margin-bottom: 16px; position: relative; background: rgba(255, 255, 255, 0.02); }
+  .current::before { content: ""; position: absolute; left: -1px; top: 14px; bottom: 14px; width: 2px; background: linear-gradient(var(--a), var(--b)); box-shadow: 0 0 10px rgb(var(--a-rgb) / 0.7); }
+  .job-h { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 16px; align-items: baseline; margin-bottom: 10px; }
+  .job-h h3 { font-size: 1rem; letter-spacing: 0.02em; }
+  .job-h .mono { color: var(--muted); }
+  .current ul { list-style: none; display: grid; gap: 6px; color: var(--text-2); font-size: 15px; }
+  .current li { padding-left: 18px; position: relative; }
+  .current li::before { content: ""; position: absolute; left: 0; top: 0.72em; width: 8px; height: 1px; background: var(--ha); }
+  .gens { list-style: none; display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 3px; overflow: hidden; }
+  .gens li { background: rgba(6, 7, 9, 0.6); padding: 13px 15px; }
+  .gens .gen { font-size: 10px; color: var(--muted); display: flex; justify-content: space-between; gap: 8px; }
+  .gens .gen b { font-weight: 500; color: var(--ha); }
+  .gens h3 { font-family: var(--font-body); font-weight: 600; font-size: 15px; margin: 6px 0 2px; }
+  .gens .desc { font-size: 13.5px; color: var(--muted); line-height: 1.45; }
+
+  /* Projects: the rabbit visualizer gets the big pane; its loci sit like bond pads on a die */
+  .feature {
+    display: grid; grid-template-columns: 1fr auto; gap: 18px; align-items: end;
+    padding: 20px 22px; margin-bottom: 14px; text-decoration: none; border-radius: 3px;
+    border: 1px solid rgb(var(--a-rgb) / 0.35);
+    background: linear-gradient(120deg, rgb(var(--a-rgb) / 0.08), transparent 45%, rgb(var(--b-rgb) / 0.07));
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  .feature:hover { border-color: rgb(var(--a-rgb) / 0.75); box-shadow: 0 0 30px -12px rgb(var(--a-rgb) / 0.9); }
+  .feature .tag { color: var(--ha); }
+  .feature h3 { font-size: clamp(1rem, 2.4vw, 1.35rem); letter-spacing: 0; line-height: 1.3; margin: 10px 0 8px; }
+  .feature .desc { color: var(--text-2); font-size: 15px; max-width: 54ch; }
+  .loci { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; list-style: none; }
+  .loci li {
+    position: relative; display: grid; place-items: center; min-width: 38px; height: 30px; padding: 0 6px;
+    font-family: var(--font-mono); font-size: 11.5px; font-weight: 500; color: var(--ha);
+    border: 1px solid rgb(var(--a-rgb) / 0.45); border-radius: 2px;
+    background: rgb(var(--a-rgb) / 0.06);
+  }
+  .loci li:nth-child(even) { color: var(--hb); border-color: rgb(var(--b-rgb) / 0.45); background: rgb(var(--b-rgb) / 0.06); }
+  .loci li::after { content: ""; position: absolute; right: 3px; top: 3px; width: 3px; height: 3px; border-radius: 50%; background: currentColor; opacity: 0.7; }
+  .go { font-family: var(--font-mono); font-size: 10.5px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ha); white-space: nowrap; }
+  .grid { list-style: none; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 3px; overflow: hidden; }
+  .grid a { display: block; height: 100%; background: rgba(6, 7, 9, 0.6); padding: 13px 15px; text-decoration: none; transition: background 0.3s; }
+  .grid a:hover { background: rgba(255, 255, 255, 0.04); }
+  .grid .tag { color: var(--ha); font-size: 9.5px; }
+  .grid h3 { font-family: var(--font-body); font-weight: 600; font-size: 15px; margin: 6px 0 2px; }
+  .grid .desc { font-size: 13px; color: var(--muted); line-height: 1.45; }
+  .more-link { display: inline-block; margin-top: 14px; }
+
+  /* Connect: big links, nothing else competing */
+  .links { list-style: none; margin-top: 22px; border-top: 1px solid var(--line); }
+  .links a {
+    display: flex; justify-content: space-between; align-items: baseline; gap: 16px;
+    padding: 15px 2px; border-bottom: 1px solid var(--line); text-decoration: none;
+    font-family: var(--font-display); font-size: clamp(0.85rem, 2.2vw, 1.2rem); letter-spacing: 0.01em;
+    transition: color 0.3s, padding 0.35s;
+  }
+  .links a .mono { color: var(--muted); font-size: 9.5px; }
+  .links a:hover { color: var(--ha); padding-left: 10px; }
+  .colophon { margin-top: 22px; color: var(--muted); font-size: 13px; max-width: 62ch; }
+
+  /* Controls: prev / next either side of the readout and the palette tuner */
+  .controls {
+    position: fixed; z-index: 5; left: 50%; bottom: max(14px, env(safe-area-inset-bottom));
+    transform: translateX(-50%);
+    display: flex; align-items: center; gap: 16px;
+  }
+  .step {
+    width: 46px; height: 52px; display: grid; place-items: center;
+    background: none; border: 0; cursor: pointer; position: relative; isolation: isolate;
+    clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+  }
+  .step::before { content: ""; position: absolute; inset: 0; background: var(--line-2); clip-path: inherit; z-index: -1; transition: background 0.3s; }
+  .step::after { content: ""; position: absolute; inset: 1px; background: rgba(8, 9, 12, 0.92); clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%); z-index: -1; }
+  .step svg { width: 14px; height: 14px; stroke: var(--text); fill: none; stroke-width: 1.4; transition: stroke 0.3s; }
+  .step:hover svg { stroke: var(--ha); }
+  .step:hover::before { background: linear-gradient(var(--a), var(--b)); }
+  .step:focus-visible { outline: none; }
+  .step:focus-visible::before { background: linear-gradient(var(--ha), var(--hb)); }
+  .center { display: flex; flex-direction: column; align-items: center; gap: 7px; }
+  .readout { min-width: 180px; text-align: center; font-family: var(--font-mono); line-height: 1.2; }
+  .readout .deg { font-size: 22px; font-weight: 500; letter-spacing: 0.04em; color: var(--text); font-variant-numeric: tabular-nums; }
+  .readout .deg em { font-style: normal; }
+  .readout .of { font-size: 11px; color: var(--muted); margin-left: 4px; }
+  .readout .name { display: block; margin-top: 4px; font-size: 9.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); min-height: 1.2em; transition: color 0.3s; }
+  .tuner-caption {
+    height: 1.3em; margin: -2px 0 -3px; white-space: nowrap;
+    font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.08em; color: var(--ha);
+    opacity: 0; transform: translateY(3px); transition: opacity 0.4s, transform 0.4s;
+  }
+  .tuner-caption.on { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .tuner-caption { transition: none; transform: none; } }
+
+  /* Tuner: six palettes as tiny two-stop wafers on a rail */
+  .tuner { display: flex; align-items: center; gap: 2px; padding: 3px 6px; border: 1px solid var(--line); border-radius: 999px; background: rgba(8, 9, 12, 0.7); }
+  .tuner button {
+    position: relative; width: 22px; height: 18px; display: grid; place-items: center;
+    background: none; border: 0; border-radius: 999px; cursor: pointer;
+  }
+  .tuner .sw {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--s1), var(--s2));
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.18);
+    opacity: 0.55; transform: scale(0.85);
+    transition: opacity 0.3s, transform 0.3s, box-shadow 0.3s;
+  }
+  .tuner button:hover .sw { opacity: 0.9; }
+  .tuner button[aria-checked="true"] .sw { opacity: 1; transform: scale(1.1); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.3), 0 0 10px var(--s1); }
+  .tuner button[aria-checked="true"]::after { content: ""; position: absolute; left: 7px; right: 7px; bottom: -3px; height: 1px; background: linear-gradient(90deg, var(--s1), var(--s2)); }
+  .tuner button:focus-visible { outline: 1px solid var(--ha); outline-offset: 0; }
+
+  .hint { position: fixed; z-index: 5; left: clamp(16px, 3.4vw, 44px); bottom: 26px; color: var(--muted); font-size: 9.5px; }
+  .hint kbd { font-family: inherit; border: 1px solid var(--line-2); border-radius: 2px; padding: 2px 5px; margin: 0 2px; }
+  .tilt {
+    position: fixed; z-index: 5; right: clamp(16px, 3.4vw, 44px); bottom: 26px;
+    background: none; border: 1px solid var(--line-2); border-radius: 999px; padding: 7px 12px; cursor: pointer;
+    color: var(--muted);
+  }
+  .tilt:hover { color: var(--ha); border-color: var(--ha); }
+
+  @media (max-width: 1100px) { .etch { display: none; } }
+  @media (max-width: 860px) {
+    nav button .t { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+    nav button { padding: 7px 9px; }
+    .hint { display: none; }
+  }
+  @media (max-width: 560px) {
+    .mark span { display: none; }
+    .mark { font-size: 11px; letter-spacing: 0.05em; }
+    header.top { padding: 14px 12px; }
+    nav ol { gap: 0; }
+    nav button { padding: 7px 6px; }
+    .card { -webkit-backdrop-filter: blur(10px) saturate(1.2); backdrop-filter: blur(10px) saturate(1.2); }
+    .stats { grid-template-columns: 1fr; }
+    .stats li { display: flex; align-items: baseline; gap: 12px; padding: 10px 14px; }
+    .stats span { margin: 0; }
+    .gens, .grid { grid-template-columns: 1fr; }
+    .feature { grid-template-columns: 1fr; }
+    .genotype div { grid-template-columns: 1fr; gap: 4px; }
+    .readout { min-width: 150px; }
+    .readout .deg { font-size: 19px; }
+    .controls { gap: 10px; }
+    .tilt { bottom: auto; top: 58px; right: 12px; }
+  }
+
+  /* No script: panels fall back to a plain scrolling page */
+  html:not(.js) .panel { max-width: 820px; margin: 0 auto 24px; padding: 0 14px; }
+  html:not(.js) .controls, html:not(.js) .hint, html:not(.js) .rim, html:not(.js) .wafer { display: none; }
+</style>
 </head>
 <body>
-  <a class="skip" href="#main">Skip to content</a>
+<div class="stage" id="stage">
+  <canvas id="field" aria-hidden="true"></canvas>
+  <div class="grain" aria-hidden="true"></div>
 
-  <header class="masthead">
-    <div class="wrap nav">
-      <a class="wordmark" href="#top">Frank Dixon<span>.</span></a>
-      <nav aria-label="Primary">
-        <ul>
-          <li><a href="#about">About</a></li>
-          <li><a href="#work">Work</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#stack">Tools</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </nav>
-    </div>
+  <!-- Wafer etch: a 300 mm wafer edge with its notch, die grid and scribe marks -->
+  <svg class="wafer" id="wafer" viewBox="0 0 1000 1000" aria-hidden="true">
+    <defs>
+      <pattern id="die" width="54" height="40" patternUnits="userSpaceOnUse" x="-6" y="-8">
+        <rect x="1.5" y="1.5" width="51" height="37" fill="none" stroke="currentColor" stroke-width="0.7" />
+        <rect x="6" y="6" width="16" height="10" fill="none" stroke="currentColor" stroke-width="0.4" />
+        <rect x="26" y="6" width="22" height="4" fill="none" stroke="currentColor" stroke-width="0.4" />
+        <path d="M6 22h42M6 26h30M6 30h36" stroke="currentColor" stroke-width="0.3" />
+      </pattern>
+      <clipPath id="wafer-clip"><circle cx="500" cy="500" r="470" /></clipPath>
+    </defs>
+    <circle cx="500" cy="500" r="486" fill="none" stroke="currentColor" stroke-width="1" />
+    <circle cx="500" cy="500" r="470" fill="none" stroke="currentColor" stroke-width="0.5" stroke-dasharray="2 6" />
+    <path d="M492 986 L500 972 L508 986" fill="none" stroke="currentColor" stroke-width="1" />
+    <rect width="1000" height="1000" fill="url(#die)" clip-path="url(#wafer-clip)" opacity="0.8" />
+    <g stroke="currentColor" stroke-width="0.8" fill="none">
+      <circle cx="160" cy="500" r="10" /><path d="M140 500h40M160 480v40" />
+      <circle cx="840" cy="500" r="10" /><path d="M820 500h40M840 480v40" />
+    </g>
+    <text x="500" y="60" text-anchor="middle">FND-2609 · LOT 0928 · Si ⟨100⟩ · 300 MM</text>
+  </svg>
+  <p class="etch mono" aria-hidden="true">Si ⟨100⟩ · lattice 5.431 Å</p>
+
+  <header class="top">
+    <a class="mark" href="#origin" data-go="0">Frank N. Dixon <span>Senior front-end engineer</span></a>
+    <nav aria-label="Sections">
+      <ol>
+        <li><button type="button" data-go="0" aria-current="true"><span class="n">00</span><span class="t">Origin</span></button></li>
+        <li><button type="button" data-go="1"><span class="n">01</span><span class="t">About</span></button></li>
+        <li><button type="button" data-go="2"><span class="n">02</span><span class="t">Work</span></button></li>
+        <li><button type="button" data-go="3"><span class="n">03</span><span class="t">Projects</span></button></li>
+        <li><button type="button" data-go="4"><span class="n">04</span><span class="t">Connect</span></button></li>
+      </ol>
+    </nav>
   </header>
 
-  <main id="main">
-    <section class="hero wrap" id="top" aria-labelledby="hero-heading">
-      <p class="issue">Senior front-end · Undercover Tourist · Remote</p>
-      <h1 id="hero-heading">I build the front end<br /><em>on Django products.</em></h1>
-      <div class="hero-grid">
-        <div>
-          <p class="lede">
-            Senior front-end engineer at <strong>Undercover Tourist</strong>. I work on the pages and flows people actually click through on a travel site — Django templates, JavaScript, CSS. Springfield, MA. Fully remote.
-          </p>
-          <div class="cta-row">
-            <a class="btn btn-solid" href="mailto:fdixon7@gmail.com">Email</a>
-            <a class="btn btn-ghost" href="https://www.linkedin.com/in/frank-dixon-senior-developer" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-            <a class="btn btn-sea" href="resume.pdf">Resume</a>
-          </div>
+  <main class="dial" id="dial">
+    <section class="panel" id="origin" data-name="Origin" aria-labelledby="h-origin">
+      <div class="card"><div class="card-in"><div class="panel-body">
+        <span class="panel-num" aria-hidden="true">00</span>
+        <p class="kicker mono">Node 00 · Origin</p>
+        <h1 id="h-origin" class="grad" tabindex="-1">Frank N. Dixon</h1>
+        <p class="role">Front end first. Python on the side. Biology in the background. Interfaces that make sense of it all.</p>
+        <p class="lede">
+          Since 2004 I’ve shipped the pages people click, buy, and come back to. Today that’s <strong>Undercover Tourist</strong>, where I led the front end through a live framework replacement on a store selling Disney and Universal tickets. Before that: Prudential, where I won seven Impact Awards, and earlier a detour through UMass Amherst into plant science and genomics.
+        </p>
+        <ul class="stats">
+          <li><b class="grad">2004</b><span>shipping for the web since</span></li>
+          <li><b class="grad">−50%</b><span>CSS after a live framework swap</span></li>
+          <li><b class="grad">7×</b><span>Prudential Impact Awards</span></li>
+        </ul>
+        <div class="cta">
+          <a class="btn solid" href="mailto:fdixon7@gmail.com">Email me</a>
+          <a class="btn" href="https://frank-dixon.github.io/resume.pdf">Résumé</a>
+          <a class="btn" href="https://github.com/frank-dixon" target="_blank" rel="noopener noreferrer">GitHub</a>
         </div>
-        <aside class="hero-aside" aria-label="Current role">
-          <div class="aside-k">Now</div>
-          <div class="aside-v">Undercover Tourist</div>
-          <ul class="aside-list">
-            <li>Disney / Universal ticket + hotel packages</li>
-            <li>Big CSS/JS migrations without taking the site down</li>
-            <li>Shared UI bits, Django admin, internal tools</li>
+      </div></div></div>
+    </section>
+
+    <section class="panel" id="about" data-name="About" aria-labelledby="h-about">
+      <div class="card"><div class="card-in"><div class="panel-body">
+        <span class="panel-num" aria-hidden="true">01</span>
+        <p class="kicker mono">Node 01 · About</p>
+        <h2 id="h-about" class="grad" tabindex="-1">The web, a detour through the genome, then the web for good.</h2>
+        <div class="prose">
+          <p>I started building for the web in 2004: small-business sites, then client-side apps for high-throughput print. Then I went back to school at UMass Amherst for a BSc in Plant, Soil &amp; Insect Sciences and stayed on as a <strong>bioinformatics engineer</strong> (2008–2011), doing high-throughput genomic analysis and open-source tools for genetic markers.</p>
+          <p>In 2013 I came back to the web and stayed: Idea Agency, The Walker Group, Prudential, LATICRETE, and since 2021 Undercover Tourist. Most days I’m in the front end of a busy e-commerce site: Disney and Universal tickets, hotels, packages. Making sure checkout and content pages hold up when real people show up with real money. I’ve spent years moving us off an old front-end stack while the store stayed open.</p>
+          <p>The biology still leaks out, mostly as side projects about rabbits, hens and the plants around them.</p>
+        </div>
+        <dl class="genotype">
+          <div><dt class="mono">Stack</dt><dd><span>JavaScript</span><span>Django templates</span><span>Python tooling</span></dd></div>
+          <div><dt class="mono">Craft</dt><dd><span>HTML</span><span>CSS</span><span>Tailwind</span></dd></div>
+          <div><dt class="mono">Care</dt><dd><span>Accessibility (ADA)</span><span>Performance</span></dd></div>
+          <div><dt class="mono">Crew</dt><dd><span>Leading small FE teams</span><span>Mentoring</span><span>Vendors</span></dd></div>
+          <div><dt class="mono">Roots</dt><dd><span>BSc Plant, Soil &amp; Insect Sciences, UMass</span><span>ASc Computer Science, STCC</span></dd></div>
+        </dl>
+      </div></div></div>
+    </section>
+
+    <section class="panel" id="work" data-name="Work" aria-labelledby="h-work">
+      <div class="card"><div class="card-in"><div class="panel-body">
+        <span class="panel-num" aria-hidden="true">02</span>
+        <p class="kicker mono">Node 02 · Work</p>
+        <h2 id="h-work" class="grad" tabindex="-1">Rebuilt it while it was still selling.</h2>
+        <article class="current">
+          <div class="job-h">
+            <h3>Undercover Tourist</h3>
+            <span class="mono">F8 · May 2021 – now</span>
+          </div>
+          <ul>
+            <li>Replaced a legacy front-end framework in flight with a bespoke UI layer. CSS bundle cut by more than half.</li>
+            <li>Led a team of three front-end specialists on hospitality e-commerce.</li>
+            <li>Drove the accessibility work that made the buy path ADA compliant.</li>
+            <li>Shared components, Django admin screens and internal tools, so nobody invents a new UI every sprint.</li>
           </ul>
-        </aside>
-      </div>
-    </section>
-
-    <section id="about" class="wrap" aria-labelledby="about-heading">
-      <p class="kicker">01 — About</p>
-      <div class="section-h">
-        <h2 id="about-heading">What I actually do</h2>
-        <span class="meta">Story</span>
-      </div>
-      <div class="prose">
-        <p>
-          Most days I am in the front end of a busy e-commerce site. Templates, JavaScript, CSS. Making sure checkout and content pages hold up when real people show up with real money.
-        </p>
-        <p>
-          At <strong>Undercover Tourist</strong> that means Disney and Universal packages, tickets, hotels. I have spent years moving us off an old front-end stack while the store stayed open. I also keep the shared UI pieces and Django admin tools from turning into a junk drawer.
-        </p>
-        <p>
-          Before this I did some genomics work at UMass Amherst. That still shows up as a rabbit genetics toy I built for myself. It is not a product. It is just something I wanted to click through.
-        </p>
-      </div>
-    </section>
-
-    <section id="work" class="wrap" aria-labelledby="work-heading">
-      <div class="work-intro">
-        <div>
-          <p class="kicker">02 — Selected work</p>
-          <div class="section-h" style="margin-bottom:0;">
-            <h2 id="work-heading">Stuff that mattered at work</h2>
-            <span class="meta">01 — 04</span>
-          </div>
-        </div>
-        <p class="metric">
-          <b>−50%+</b>
-          <span>CSS bundle after we ripped out the old front-end framework without a big-bang rewrite.</span>
-        </p>
-      </div>
-      <p class="role-line">Undercover Tourist · Senior Front End Engineer · May 2021–Present</p>
-      <div class="outcomes" aria-hidden="true">
-        <article class="card">
-          <div class="idx">01</div>
-          <h3>Framework cutover</h3>
-          <p>Tore out the old front-end stack while the site stayed live. CSS bundle dropped more than half.</p>
         </article>
-        <article class="card">
-          <div class="idx">02</div>
-          <h3>FE ownership</h3>
-          <p>Ran a three-person front-end crew on a messy travel e-commerce product.</p>
-        </article>
-        <article class="card">
-          <div class="idx">03</div>
-          <h3>Trust under traffic</h3>
-          <p>Accessibility on purchase flows, smaller page weight, shared components and admin tools.</p>
-        </article>
-      </div>
-      <ol class="folio" style="margin-top:1.5rem;">
-        <li>
-          <span class="num">01</span>
-          <h3>In-flight framework replacement</h3>
-          <p>We were stuck on an old front-end framework. I led the move off it while the store kept selling tickets. Custom UI layer, CSS bundle cut by more than half, team moved faster afterward.<span class="mark">CSS bundle −50%+ · live cutover</span></p>
-        </li>
-        <li>
-          <span class="num">02</span>
-          <h3>Front-end team of three</h3>
-          <p>I owned front-end delivery with two other FE specialists. Reviews, standards, shipping with design and the rest of eng on a hospitality e-commerce stack.<span class="mark">Team of 3 · FE ownership</span></p>
-        </li>
-        <li>
-          <span class="num">03</span>
-          <h3>ADA compliance &amp; lean payloads</h3>
-          <p>Made the buy path meet accessibility expectations and cleaned up old scripts as we shipped new work so pages did not keep getting heavier.<span class="mark">ADA · leaner assets</span></p>
-        </li>
-        <li>
-          <span class="num">04</span>
-          <h3>Systems behind the storefront</h3>
-          <p>Built out shared components, Django admin screens, and internal tools so we were not inventing a new UI every time product or ops needed something.<span class="mark">Component library · Django admin · internal tools</span></p>
-        </li>
-      </ol>
-      <p class="earlier">
-        <strong>Earlier:</strong> Senior UX Developer at LATICRETE (enterprise site rebuild, component library) and Prudential Financial (interactive tools, templated site builder, vendors, accessibility). Multiple Prudential Impact Awards.
-      </p>
+        <ol class="gens" aria-label="Earlier roles">
+          <li><p class="gen mono"><b>F7</b><span>2020 – 21</span></p><h3>LATICRETE International</h3><p class="desc">Senior UX developer. Enterprise site rebuild, IA, component library.</p></li>
+          <li><p class="gen mono"><b>F6</b><span>2017 – 20</span></p><h3>Prudential Financial</h3><p class="desc">Interactive tools, a templated site builder, vendors and accessibility. Seven Impact Awards.</p></li>
+          <li><p class="gen mono"><b>F5</b><span>2014 – 17</span></p><h3>The Walker Group</h3><p class="desc">E-commerce and migrations; one wholesaler site doubled RFQ completions.</p></li>
+          <li><p class="gen mono"><b>F4</b><span>2013 – 14</span></p><h3>Idea Agency</h3><p class="desc">Sites, emails and landing pages for higher-ed, banks and small business.</p></li>
+          <li><p class="gen mono"><b>F3</b><span>2008 – 11</span></p><h3>UMass Amherst</h3><p class="desc">Bioinformatics engineer. High-throughput genomics, genetic-marker tooling.</p></li>
+          <li><p class="gen mono"><b>F2</b><span>2006 – 08</span></p><h3>Windsor Marketing Group</h3><p class="desc">Client-side apps for high-throughput print. Employee of the Year, 2007.</p></li>
+          <li><p class="gen mono"><b>F1</b><span>2004 – 06</span></p><h3>Impact Media Group</h3><p class="desc">Small-business sites, digital marketing, sales-team consulting.</p></li>
+        </ol>
+      </div></div></div>
     </section>
 
-    <section id="projects" class="wrap" aria-labelledby="projects-heading">
-      <p class="kicker">03 — Personal experiments</p>
-      <div class="section-h">
-        <h2 id="projects-heading">Side stuff</h2>
-        <span class="meta">Playgrounds</span>
-      </div>
-      <p class="prose" style="margin-bottom:1.25rem;">Things I built for myself. Fine to click. Not pretending they are products. <a href="/gallery/" style="color:var(--action);font-weight:600;text-decoration:none;">Full gallery →</a></p>
-            <div class="projects">
-        <a class="proj" href="/rabbit/">
+    <section class="panel" id="projects" data-name="Projects" aria-labelledby="h-projects">
+      <div class="card"><div class="card-in"><div class="panel-body">
+        <span class="panel-num" aria-hidden="true">03</span>
+        <p class="kicker mono">Node 03 · Projects</p>
+        <h2 id="h-projects" class="grad" tabindex="-1">Four tools for how living things work.</h2>
+        <a class="feature" href="https://frank-dixon.github.io/rabbit/">
           <div>
-            <div class="tag">Visualizer</div>
-            <h3>Rabbit genetics</h3>
-            <p>Pick coat and eye colors for meat-rabbit crosses. I built it because I wanted it.</p>
+            <p class="tag mono">Featured · Rabbit genetics visualizer</p>
+            <h3>Rabbit Progeny Predictor</h3>
+            <p class="desc">Pick two meat-rabbit parents and see coat and eye color odds for the whole litter: Punnett math across every locus, plain-English phenotypes, a glossary and cited sources. React, TypeScript, installable.</p>
+            <ul class="loci" aria-label="Loci modeled">
+              <li>A</li><li>B</li><li>C</li><li>D</li><li>E</li><li>En</li><li>V</li><li>Si</li>
+            </ul>
           </div>
-          <div class="go">Open →</div>
+          <span class="go">Open →</span>
         </a>
-        <a class="proj" href="/litter-planner/">
-          <div>
-            <div class="tag">Herd desk</div>
-            <h3>Litter Planner</h3>
-            <p>Nest-box, kindle, wean, and process dates from one mating.</p>
-          </div>
-          <div class="go">Open →</div>
-        </a>
-        <a class="proj" href="/weather-pwa/">
-          <div>
-            <div class="tag">Installable PWA</div>
-            <h3>Weather</h3>
-            <p>Simple weather for Springfield, MA. Pulls Open-Meteo. Lives on my phone.</p>
-          </div>
-          <div class="go">Open →</div>
-        </a>
-        <a class="proj" href="/hyphaneural/">
-          <div>
-            <div class="tag">Fungal genetics</div>
-            <h3>Hyphaneural</h3>
-            <p>Four spaces, one shell. See the strand, not the spreadsheet.</p>
-          </div>
-          <div class="go">Open →</div>
-        </a>
-        <a class="proj" href="/css-density-demo/">
-          <div>
-            <div class="tag">Theme tokens</div>
-            <h3>CSS density demo</h3>
-            <p>Quiet vs Punchy, Cream vs Alternate — same story, CSS variables.</p>
-          </div>
-          <div class="go">Open →</div>
-        </a>
-        <a class="proj" href="/scroll-progress/">
-          <div>
-            <div class="tag">CSS craft</div>
-            <h3>Scroll progress</h3>
-            <p>Reading progress with CSS scroll timelines — no scroll handler.</p>
-          </div>
-          <div class="go">Open →</div>
-        </a>
-        <a class="proj" href="/groundwork/">
-          <div>
-            <div class="tag">Garden planner</div>
-            <h3>Groundwork</h3>
-            <p>Beds, plant bible, and companion-aware layout suggest.</p>
-          </div>
-          <div class="go">Open →</div>
-        </a>
-        <a class="proj" href="/crownwork/">
-          <div>
-            <div class="tag">Pruning desk</div>
-            <h3>Crownwork</h3>
-            <p>Apple, peach, and pear cuts with Extension-style guidance.</p>
-          </div>
-          <div class="go">Open →</div>
-        </a>
-        <a class="proj" href="/shellwork/">
-          <div>
-            <div class="tag">Egg flip-zine</div>
-            <h3>Shellwork</h3>
-            <p>Laying-hen egg color, shape, and size — cited poultry science.</p>
-          </div>
-          <div class="go">Open →</div>
-        </a>
-        <a class="proj" href="/pasture-plate/">
-          <div>
-            <div class="tag">Forage catalog</div>
-            <h3>Pasture Plate</h3>
-            <p>Quick-check plants around rabbits and hens, with filters and sources.</p>
-          </div>
-          <div class="go">Open →</div>
-        </a>
-        <a class="proj" href="/cambium/">
-          <div>
-            <div class="tag">Tree physiology</div>
-            <h3>Cambium</h3>
-            <p>Sugar maple sap run, plus how common fruit trees make fruit.</p>
-          </div>
-          <div class="go">Open →</div>
-        </a>
-        <a class="proj" href="/rhizosphere/">
-          <div>
-            <div class="tag">Soil ecology</div>
-            <h3>Rhizosphere</h3>
-            <p>Interactive soil cross-section of the root–microbe interface.</p>
-          </div>
-          <div class="go">Open →</div>
-        </a>
-        <a class="proj" href="/ferment-desk/">
-          <div>
-            <div class="tag">Microbial pathways</div>
-            <h3>Ferment Desk</h3>
-            <p>Yeast and lacto across bread, kraut, yogurt, and coffee.</p>
-          </div>
-          <div class="go">Open →</div>
-        </a>
-        <a class="proj" href="/mycorrhizal-mesh/">
-          <div>
-            <div class="tag">Nutrient trade</div>
-            <h3>Mycorrhizal Mesh</h3>
-            <p>Tree–fungus partners on a diggable teaching mesh.</p>
-          </div>
-          <div class="go">Open →</div>
-        </a>
-        <a class="proj" href="/photosystem/">
-          <div>
-            <div class="tag">Photosynthesis</div>
-            <h3>Photosystem</h3>
-            <p>Follow a photon through the chloroplast to sugar export.</p>
-          </div>
-          <div class="go">Open →</div>
-        </a>
-        <a class="proj" href="/stomata-hour/">
-          <div>
-            <div class="tag">Guard cells</div>
-            <h3>Stomata Hour</h3>
-            <p>Drag light, CO₂, and drought; watch stomatal aperture answer.</p>
-          </div>
-          <div class="go">Open →</div>
-        </a>
-        <a class="proj" href="/pollination-desk/">
-          <div>
-            <div class="tag">Pollinator guilds</div>
-            <h3>Pollination Desk</h3>
-            <p>Match flower shapes to pollinators and see the fruit-set line.</p>
-          </div>
-          <div class="go">Open →</div>
-        </a>
-        <a class="proj" href="/gallery/">
-          <div>
-            <div class="tag">Screenshots + notes</div>
-            <h3>Full gallery</h3>
-            <p>Eighteen live projects with write-ups and live demos.</p>
-          </div>
-          <div class="go">Open →</div>
-        </a>
-      </div>
-
-      <aside class="cadence" aria-labelledby="cadence-heading">
-        <div class="cadence-head">
-          <div class="tag" style="font-family:'JetBrains Mono',monospace;font-size:0.65rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--sea);">Public signal</div>
-          <h3 id="cadence-heading">GitHub activity</h3>
-        </div>
-        <figure class="cadence-figure">
-          <img
-            src="./assets/github-contributions.svg"
-            alt="GitHub contribution activity for frank-dixon"
-            width="775"
-            height="153"
-            loading="lazy"
-          />
-          <figcaption>
-            A year of commits and PRs. Updates weekly from GitHub. <a href="https://github.com/frank-dixon" target="_blank" rel="noopener noreferrer">github.com/frank-dixon</a>
-          </figcaption>
-        </figure>
-      </aside>
+        <ul class="grid">
+          <li><a href="https://frank-dixon.github.io/shellwork/"><p class="tag mono">Egg flip-zine</p><h3>Shellwork</h3><p class="desc">Laying-hen egg color, shape and size, with cited poultry science.</p></a></li>
+          <li><a href="https://frank-dixon.github.io/litter-planner/"><p class="tag mono">Herd desk</p><h3>Litter Planner</h3><p class="desc">Nest-box, kindle, wean and process dates from one mating.</p></a></li>
+          <li><a href="https://frank-dixon.github.io/pasture-plate/"><p class="tag mono">Forage catalog</p><h3>Pasture Plate</h3><p class="desc">Quick-check plants around rabbits and hens, with filters and sources.</p></a></li>
+        </ul>
+      </div></div></div>
     </section>
 
-    <section id="stack" class="wrap" aria-labelledby="stack-heading">
-      <p class="kicker">04 — Stack</p>
-      <div class="section-h">
-        <h2 id="stack-heading">What I use</h2>
-        <span class="meta">Stack</span>
-      </div>
-      <div class="tools" aria-label="Technology stack">
-        <span>Django</span><span>Python</span><span>JavaScript</span><span>HTML / CSS</span>
-        <span>Tailwind</span><span>Git</span><span>Accessibility</span><span>Performance</span>
-      </div>
+    <section class="panel" id="connect" data-name="Connect" aria-labelledby="h-connect">
+      <div class="card"><div class="card-in"><div class="panel-body">
+        <span class="panel-num" aria-hidden="true">04</span>
+        <p class="kicker mono">Node 04 · Connect</p>
+        <h2 id="h-connect" class="grad" tabindex="-1">Not hiring myself out. Still happy to talk.</h2>
+        <p class="lede">I’m happy where I am. But if you want to swap notes on front ends, accessibility, Python tooling, or rabbit genetics, my inbox is open.</p>
+        <ul class="links">
+          <li><a href="mailto:fdixon7@gmail.com">fdixon7@gmail.com <span class="mono">Email</span></a></li>
+          <li><a href="https://www.linkedin.com/in/frank-dixon-senior-developer" target="_blank" rel="noopener noreferrer">LinkedIn <span class="mono">frank-dixon-senior-developer</span></a></li>
+          <li><a href="https://github.com/frank-dixon" target="_blank" rel="noopener noreferrer">GitHub <span class="mono">frank-dixon</span></a></li>
+          <li><a href="https://frank-dixon.github.io/resume.pdf">Résumé <span class="mono">PDF</span></a></li>
+        </ul>
+        <p class="colophon">Hand-built. No framework, no build step.</p>
+      </div></div></div>
     </section>
 
-    <section id="contact" class="wrap" aria-labelledby="contact-heading">
-      <div class="contact-grid">
-        <div>
-          <p class="kicker">05 — Contact</p>
-          <h2 id="contact-heading" style="font-family:'Space Grotesk',system-ui,sans-serif;font-weight:600;font-size:clamp(1.65rem,3.5vw,1.85rem);letter-spacing:-0.04em;margin:0.35rem 0 0.85rem;">Say hello</h2>
-          <p class="prose">I like my job. If you still want to talk, email or LinkedIn works.</p>
-        </div>
-        <div class="colophon-links">
-          <a href="mailto:fdixon7@gmail.com">fdixon7@gmail.com</a>
-          <a href="https://www.linkedin.com/in/frank-dixon-senior-developer" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-          <a href="https://github.com/frank-dixon" target="_blank" rel="noopener noreferrer">GitHub</a>
-          <a href="resume.pdf">Resume PDF</a>
-        </div>
-      </div>
-    </section>
+    <div class="rim" aria-hidden="true">
+      <button type="button" class="rim-label" tabindex="-1" data-go="0">00 · Origin</button>
+      <button type="button" class="rim-label" tabindex="-1" data-go="1">01 · About</button>
+      <button type="button" class="rim-label" tabindex="-1" data-go="2">02 · Work</button>
+      <button type="button" class="rim-label" tabindex="-1" data-go="3">03 · Projects</button>
+      <button type="button" class="rim-label" tabindex="-1" data-go="4">04 · Connect</button>
+    </div>
   </main>
 
-  <footer>
-    <div class="wrap">
-      <p>© <span id="year"></span> <strong>Frank Dixon</strong></p>
-      <p><a href="mailto:fdixon7@gmail.com">fdixon7@gmail.com</a> · LinkedIn · GitHub</p>
+  <div class="controls">
+    <button type="button" class="step" id="prev" aria-label="Previous section">
+      <svg viewBox="0 0 14 14" aria-hidden="true"><path d="M9 2 4 7l5 5" /></svg>
+    </button>
+    <div class="center">
+      <p class="readout" aria-hidden="true">
+        <span class="deg"><em id="deg" class="grad">000</em>°</span><span class="of">/ 360°</span>
+        <span class="name" id="readout-name">00 · Origin</span>
+      </p>
+      <p class="tuner-caption" id="tuner-caption" aria-live="polite" aria-atomic="true"></p>
+      <div class="tuner" id="tuner" role="radiogroup" aria-label="Color palette"></div>
     </div>
-  </footer>
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
+    <button type="button" class="step" id="next" aria-label="Next section">
+      <svg viewBox="0 0 14 14" aria-hidden="true"><path d="m5 2 5 5-5 5" /></svg>
+    </button>
+  </div>
+  <p class="hint mono" aria-hidden="true">Scroll, swipe or <kbd>←</kbd><kbd>→</kbd> to turn the dial</p>
+  <button type="button" class="tilt mono" id="tilt" hidden>Enable tilt</button>
+  <p class="sr-only" id="live" aria-live="polite" aria-atomic="true"></p>
+</div>
+
+<script>
+(() => {
+  'use strict';
+
+  // Five sections on the rim, 72° apart, so the readout lands on round numbers
+  const STEP = 72;
+  const DEG = 180 / Math.PI;
+  const RAD = Math.PI / 180;
+  const SQRT3 = Math.sqrt(3);
+  const root = document.documentElement;
+  const stage = document.getElementById('stage');
+  const dialEl = document.getElementById('dial');
+  const waferEl = document.getElementById('wafer');
+  const canvas = document.getElementById('field');
+  const ctx = canvas.getContext('2d');
+  const panels = [...document.querySelectorAll('.panel')];
+  const cards = panels.map((p) => p.querySelector('.card'));
+  const rimLabels = [...document.querySelectorAll('.rim-label')];
+  const navButtons = [...document.querySelectorAll('nav button[data-go]')];
+  const degEl = document.getElementById('deg');
+  const nameEl = document.getElementById('readout-name');
+  const liveEl = document.getElementById('live');
+  const prevBtn = document.getElementById('prev');
+  const nextBtn = document.getElementById('next');
+  const tiltBtn = document.getElementById('tilt');
+  const tunerEl = document.getElementById('tuner');
+  const captionEl = document.getElementById('tuner-caption');
+  const COUNT = panels.length;
+  const FONT_MONO = getComputedStyle(root).getPropertyValue('--font-mono').trim() || 'monospace';
+
+  const clamp = (v, lo, hi) => Math.min(hi, Math.max(lo, v));
+  const mod = (v, m) => ((v % m) + m) % m;
+  const wrap180 = (a) => mod(a + 180, 360) - 180;
+  const pad = (n, w) => String(n).padStart(w, '0');
+  const smoothstep = (t) => { t = clamp(t, 0, 1); return t * t * (3 - 2 * t); };
+  // Frame-rate independent lerp factor for a given rate per second
+  const ease = (rate, dt) => 1 - Math.exp(-rate * dt);
+
+  // Integer hash so a cell keeps its identity as the lattice drifts under it
+  function hash(a, b, c) {
+    let h = (Math.imul(a, 374761393) + Math.imul(b, 668265263) + Math.imul(c, 1442695041)) | 0;
+    h = Math.imul(h ^ (h >>> 13), 1274126177);
+    h ^= h >>> 16;
+    return (h >>> 0) / 4294967296;
+  }
+
+  // Reduced motion: no parallax, pulses, drift, growth or blur; the dial and palettes snap
+  const motionQuery = matchMedia('(prefers-reduced-motion: reduce)');
+  let reduced = motionQuery.matches;
+  motionQuery.addEventListener?.('change', (e) => {
+    reduced = e.matches;
+    dial.pos = dial.target; dial.vel = 0;
+    if (reduced) { pal.t = 1; nudge.x = nudge.y = nudge.vx = nudge.vy = 0; filaments.forEach(ripen); }
+    dirty = true;
+  });
+
+  /* ---------------------------------------------------------------------------
+     Palettes
+     Each is a two-stop ombre (a → b) plus lighter heading stops (ha → hb) that
+     hold ≥ 4.5:1 on the glass. Canvas colors lerp in JS; CSS slots are written
+     from the same values, throttled.
+  --------------------------------------------------------------------------- */
+
+  const PALETTES = [
+    { id: 'iridescent', label: 'Thin film', note: 'Thin film · Twenty-plus years of layers, since 2004.', a: '#2FE0B8', b: '#C04CFF', ha: '#7CF3D6', hb: '#DA9BFF', shimmer: 18 },
+    { id: 'fiber', label: 'Fiber', note: 'Fiber · −50% CSS. Signal travels faster through less.', a: '#22D3F5', b: '#8B5CF6', ha: '#86EBFB', hb: '#BFA8FF', shimmer: 0 },
+    { id: 'synapse', label: 'Synapse', note: 'Synapse · Led a three-person front-end crew.', a: '#F0339A', b: '#3D6BFF', ha: '#FF86C6', hb: '#97AEFF', shimmer: 0 },
+    { id: 'blacklight', label: 'Petri dish', note: 'Petri dish · Side projects, cultured at home.', a: '#7B2FF7', b: '#FF4FD8', ha: '#BE98FF', hb: '#FF9BEA', shimmer: 0 },
+    { id: 'mycelium', label: 'Mycelium', note: 'Mycelium · Rooted in plant, soil & insect science. UMass.', a: '#0FB5A6', b: '#7CFF6B', ha: '#62E3D6', hb: '#BAFFA8', shimmer: 0 },
+    { id: 'chrome', label: 'Chrome', note: 'Chrome · ADA-compliant checkout, under real traffic.', a: '#E6F0FA', b: '#5E86B5', ha: '#F2F7FC', hb: '#A3BEDD', shimmer: 0 },
+  ];
+  const STORE_KEY = 'hexdial-palette';
+  const hexRgb = (h) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16));
+  const lerp3 = (p, q, t) => [p[0] + (q[0] - p[0]) * t, p[1] + (q[1] - p[1]) * t, p[2] + (q[2] - p[2]) * t];
+  const toRgb = (c) => `${Math.round(c[0])}, ${Math.round(c[1])}, ${Math.round(c[2])}`;
+  const WHITE = [255, 255, 255];
+  const NEUTRAL = [214, 222, 232];
+  PALETTES.forEach((p) => { p.rgb = { a: hexRgb(p.a), b: hexRgb(p.b), ha: hexRgb(p.ha), hb: hexRgb(p.hb) }; });
+
+  // Thin-film shimmer: a small hue rotation (same matrix as CSS hue-rotate)
+  function hueRotate(c, deg) {
+    const t = deg * RAD, cs = Math.cos(t), sn = Math.sin(t);
+    const [r, g, b] = c;
+    return [
+      clamp(r * (0.213 + cs * 0.787 - sn * 0.213) + g * (0.715 - cs * 0.715 - sn * 0.715) + b * (0.072 - cs * 0.072 + sn * 0.928), 0, 255),
+      clamp(r * (0.213 - cs * 0.213 + sn * 0.143) + g * (0.715 + cs * 0.285 + sn * 0.14) + b * (0.072 - cs * 0.072 - sn * 0.283), 0, 255),
+      clamp(r * (0.213 - cs * 0.213 - sn * 0.787) + g * (0.715 - cs * 0.715 + sn * 0.715) + b * (0.072 + cs * 0.928 + sn * 0.072), 0, 255),
+    ];
+  }
+
+  const KEYS = ['a', 'b', 'ha', 'hb'];
+  const pal = { index: 0, t: 1, from: null, base: null, shimmerFrom: 0, shimmer: 0, live: {}, lastCss: 0, cssCache: {} };
+  function startPalette(index) {
+    pal.index = index;
+    const p = PALETTES[index];
+    pal.base = {};
+    KEYS.forEach((k) => { pal.base[k] = p.rgb[k].slice(); });
+    pal.from = null;
+    pal.shimmer = p.shimmer;
+    pal.t = 1;
+    tickPalette(0);
+  }
+
+  function tickPalette(dt) {
+    const to = PALETTES[pal.index];
+    let e = 1;
+    if (pal.t < 1) {
+      pal.t = Math.min(1, pal.t + dt / 1.1);
+      e = pal.t < 0.5 ? 2 * pal.t * pal.t : 1 - Math.pow(-2 * pal.t + 2, 2) / 2;
+    }
+    const cur = {};
+    KEYS.forEach((k) => { cur[k] = pal.from && pal.t < 1 ? lerp3(pal.from[k], to.rgb[k], e) : to.rgb[k]; });
+    const shimmer = pal.t < 1 ? pal.shimmerFrom + (to.shimmer - pal.shimmerFrom) * e : to.shimmer;
+    pal.base = cur;
+    pal.shimmer = shimmer;
+    const hue = reduced || !shimmer ? 0 : shimmer * Math.sin(clock * 0.021) + shimmer * 0.35 * Math.sin(clock * 0.0071 + 1.3) + dial.pos * 0.04 * (shimmer / 18);
+    KEYS.forEach((k) => { pal.live[k] = hue ? hueRotate(cur[k], hue) : cur[k]; });
+    pal.a = toRgb(pal.live.a);
+    pal.b = toRgb(pal.live.b);
+    pal.aCore = toRgb(lerp3(pal.live.a, WHITE, 0.45));
+    pal.bCore = toRgb(lerp3(pal.live.b, WHITE, 0.45));
+  }
+
+  // CSS slots: only written when the rounded value changes, and at most ~7 times a second at rest
+  function writeCss(now, force) {
+    if (!force && pal.t >= 1 && now - pal.lastCss < 140) return;
+    pal.lastCss = now;
+    const set = (name, value) => { if (pal.cssCache[name] !== value) { pal.cssCache[name] = value; root.style.setProperty(name, value); } };
+    const sp = (c) => `${Math.round(c[0])} ${Math.round(c[1])} ${Math.round(c[2])}`;
+    set('--a', `rgb(${sp(pal.live.a)})`);
+    set('--b', `rgb(${sp(pal.live.b)})`);
+    set('--ha', `rgb(${sp(pal.live.ha)})`);
+    set('--hb', `rgb(${sp(pal.live.hb)})`);
+    set('--a-rgb', sp(pal.live.a));
+    set('--b-rgb', sp(pal.live.b));
+  }
+
+  // The tuner: a radio group with roving focus, built from PALETTES so hex values live in one place
+  const tunerButtons = PALETTES.map((p, i) => {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.setAttribute('role', 'radio');
+    b.setAttribute('aria-label', `${p.label} theme`);
+    b.title = `${p.label} theme`;
+    b.dataset.palette = p.id;
+    b.innerHTML = `<span class="sw" style="--s1:${p.a};--s2:${p.b}"></span>`;
+    b.addEventListener('click', () => setPalette(i, true));
+    tunerEl.appendChild(b);
+    return b;
+  });
+  tunerEl.addEventListener('keydown', (e) => {
+    const dir = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 }[e.key];
+    if (!dir && e.key !== 'Home' && e.key !== 'End') return;
+    e.preventDefault();
+    e.stopPropagation();
+    const next = e.key === 'Home' ? 0 : e.key === 'End' ? PALETTES.length - 1 : mod(pal.index + dir, PALETTES.length);
+    setPalette(next, true);
+    tunerButtons[next].focus();
+  });
+  function syncTuner() {
+    tunerButtons.forEach((b, i) => {
+      b.setAttribute('aria-checked', i === pal.index ? 'true' : 'false');
+      b.tabIndex = i === pal.index ? 0 : -1;
+    });
+  }
+
+  let tuneTimer = 0;
+  function setPalette(index, user) {
+    if (index === pal.index && pal.t >= 1) return;
+    pal.from = {};
+    KEYS.forEach((k) => { pal.from[k] = pal.base[k].slice(); });
+    pal.shimmerFrom = pal.shimmer;
+    pal.index = index;
+    pal.t = reduced ? 1 : 0;
+    syncTuner();
+    try { localStorage.setItem(STORE_KEY, PALETTES[index].id); } catch (_) {}
+    if (!user) return;
+
+    // Re-tuning: the field, filaments and cards get a small shove and settle on springs
+    if (!reduced) {
+      const sx = Math.random() > 0.5 ? 1 : -1;
+      nudge.vx += sx * 70;
+      nudge.vy += 42;
+      charge = Math.max(charge, 0.7);
+      fireRandom(4);
+    }
+    // The caption carries the palette note; the readout above it keeps showing the section
+    captionEl.textContent = PALETTES[index].note;
+    captionEl.classList.add('on');
+    clearTimeout(tuneTimer);
+    tuneTimer = setTimeout(() => captionEl.classList.remove('on'), 2200);
+    dirty = true;
+  }
+
+  // Viewport geometry, read only on resize so the frame loop never touches layout
+  const view = { w: 0, h: 0, dpr: 1, R: 0, rimY: 0, cx: 0, cy: 0, Rc: 0, span: 30, cover: 0, small: false };
+  function layout() {
+    view.w = innerWidth;
+    view.h = innerHeight;
+    view.dpr = Math.min(window.devicePixelRatio || 1, 1.75);
+    const small = view.small = view.w < 720;
+    view.rimY = Math.round(clamp(view.h * 0.17, small ? 104 : 118, 168));
+    view.R = Math.round(Math.max(view.w * 1.1, view.h * 0.95, 640));
+    view.cx = view.w / 2;
+    view.cy = view.rimY + view.R;
+    const top = view.rimY + (small ? 44 : 52);
+    const bottom = view.h - (small ? 118 : 124);
+    const panelH = Math.max(bottom - top, 240);
+    view.Rc = view.cy - (top + panelH / 2);
+    view.span = Math.asin(Math.min(1, (view.w / 2 + 80) / view.R)) * DEG + 3;
+    view.cover = Math.hypot(view.w, view.h) / 2 + PARALLAX_PX + 140;
+    root.style.setProperty('--panel-max-h', panelH + 'px');
+    dialEl.style.transform = `translate3d(${view.cx}px, ${view.cy}px, 0)`;
+    canvas.width = Math.round(view.w * view.dpr);
+    canvas.height = Math.round(view.h * view.dpr);
+    LAYERS.forEach(buildTile);
+    buildVignette();
+    domCache.clear();
+    dirty = true;
+  }
+
+  /* ---------------------------------------------------------------------------
+     Silicon lattice
+     Three hex layers at different depths. Base lines are a repeating white
+     pattern tile per layer, masked by a vignette and then tinted with the
+     ombre in one source-atop fill, so only lit cells are drawn by hand.
+  --------------------------------------------------------------------------- */
+
+  const PARALLAX_PX = 12;
+  const GLOW_R = 170;
+  const PULSE_BAND = 90;
+  // Locus symbols from the rabbit visualizer, etched faintly into a few near-layer cells
+  const GLYPHS = ['A', 'aᵗ', 'a', 'B', 'b', 'C', 'cʰ', 'D', 'd', 'E', 'Eˢ', 'En', 'V', 'Si'];
+
+  // Far is small, dense and slowest; near is big, sparse and moves the most. Drift is in px per second.
+  const LAYERS = [
+    { r: 22, depth: 0.25, rot: 0.018, shift: 0.13, drift: [0.32, -0.16], lw: 1, lineA: 0.07, glow: 0, fillA: 0.1, allele: 0.012, alleleA: 0.2 },
+    { r: 36, depth: 0.55, rot: 0.033, shift: 0.31, drift: [-0.45, 0.24], lw: 1, lineA: 0.1, glow: 0.5, fillA: 0.12, allele: 0.018, alleleA: 0.18 },
+    { r: 66, depth: 1, rot: 0.055, shift: 0.53, drift: [0.6, 0.34], lw: 1.1, lineA: 0.075, glow: 0.35, fillA: 0.09, allele: 0.035, alleleA: 0.2, glyphs: true },
+  ];
+  const MID = LAYERS[1];
+  LAYERS.forEach((L) => { L.w = SQRT3 * L.r; L.buf = new Float32Array(6 * 1600); L.count = 0; });
+
+  // Pointy-top hex vertex offsets
+  const HEX_X = [], HEX_Y = [];
+  for (let k = 0; k < 6; k++) { HEX_X.push(Math.cos((60 * k - 30) * RAD)); HEX_Y.push(Math.sin((60 * k - 30) * RAD)); }
+  function hexPath(c, x, y, s) {
+    c.moveTo(x + HEX_X[0] * s, y + HEX_Y[0] * s);
+    for (let k = 1; k < 6; k++) c.lineTo(x + HEX_X[k] * s, y + HEX_Y[k] * s);
+    c.closePath();
+  }
+
+  // One lattice period (two rows) drawn with its neighbors so the tile wraps without seams
+  function buildTile(L) {
+    const per = 3 * L.r;
+    const W = Math.max(2, Math.round(L.w * view.dpr));
+    const H = Math.max(2, Math.round(per * view.dpr));
+    const tile = document.createElement('canvas');
+    tile.width = W;
+    tile.height = H;
+    const t = tile.getContext('2d');
+    t.scale(W / L.w, H / per);
+    t.strokeStyle = `rgba(255, 255, 255, ${L.lineA})`;
+    t.lineWidth = L.lw;
+    t.beginPath();
+    for (let row = -1; row <= 2; row++) {
+      const y = row * 1.5 * L.r;
+      const off = (row & 1) ? L.w / 2 : 0;
+      for (let col = -1; col <= 1; col++) hexPath(t, col * L.w + off, y, L.r * 0.9);
+    }
+    t.stroke();
+    L.pattern = ctx.createPattern(tile, 'repeat');
+    L.tileScale = [L.w / W, per / H];
+  }
+
+  // Lines fade toward the corners so the field reads as depth, not wallpaper
+  let vignette = null;
+  function buildVignette() {
+    const g = ctx.createRadialGradient(view.w / 2, view.h * 0.42, 0, view.w / 2, view.h * 0.42, Math.hypot(view.w, view.h) * 0.6);
+    g.addColorStop(0, 'rgba(0,0,0,1)');
+    g.addColorStop(0.55, 'rgba(0,0,0,0.7)');
+    g.addColorStop(1, 'rgba(0,0,0,0.15)');
+    vignette = g;
+  }
+
+  // Rings: rare, slow swells across the lattice; one rolls out from the needle on each section change
+  const pulses = [];
+  let nextPulseAt = 20;
+  function spawnPulse(x, y, amp, speed) {
+    if (reduced) return;
+    pulses.push({ x, y, t0: clock, speed, max: Math.hypot(view.w, view.h) * 0.85, amp, r: 0, a: amp });
+    if (pulses.length > 3) pulses.shift();
+  }
+
+  // Walk every cell in the covering circle; keep only the ones something is lighting up
+  function scanLayer(L, li, f) {
+    const { ox, oy, rot, dx, dy } = f;
+    const r = L.r, w = L.w, rowH = 1.5 * r, per = 3 * r;
+    const fx = mod(dx, w), fy = mod(dy, per);
+    const bi = Math.floor(dx / w), bj = Math.floor(dy / per) * 2;
+    const cover2 = view.cover * view.cover;
+    const cols = Math.ceil(view.cover / w) + 1;
+    const rows = Math.ceil(view.cover / rowH) + 1;
+    const c = Math.cos(-rot), s = Math.sin(-rot);
+    const toLocal = (x, y) => { const X = x - ox, Y = y - oy; return [X * c - Y * s, X * s + Y * c]; };
+
+    let gx = 0, gy = 0, ga = 0;
+    if (L.glow && glow.presence > 0.01 && !reduced) {
+      [gx, gy] = toLocal(glow.x, glow.y);
+      ga = glow.presence * L.glow;
+    }
+    const pl = [];
+    for (const p of pulses) { const [x, y] = toLocal(p.x, p.y); pl.push(x, y, p.r, p.a); }
+    const glowR2 = GLOW_R * GLOW_R;
+    const buf = L.buf, cap = buf.length;
+    let n = 0;
+
+    for (let j = -rows; j <= rows; j++) {
+      const y = j * rowH + fy;
+      const off = (j & 1) ? w / 2 : 0;
+      for (let i = -cols; i <= cols; i++) {
+        const x = i * w + off + fx;
+        if (x * x + y * y > cover2) continue;
+        let g = 0, tone = 0, allele = 0;
+        if (ga) {
+          const ex = x - gx, ey = y - gy, d2 = ex * ex + ey * ey;
+          if (d2 < glowR2) { const k = 1 - Math.sqrt(d2) / GLOW_R; g += k * k * ga; }
+        }
+        for (let q = 0; q < pl.length; q += 4) {
+          const ex = x - pl[q], ey = y - pl[q + 1];
+          const k = 1 - Math.abs(Math.sqrt(ex * ex + ey * ey) - pl[q + 2]) / PULSE_BAND;
+          if (k > 0) { g += k * k * pl[q + 3]; tone = 1; }
+        }
+        const h = hash(i - bi, j - bj, li);
+        if (h < L.allele) {
+          g += L.alleleA * (reduced ? 0.7 : 0.6 + 0.4 * Math.sin(clock * 0.09 + h * 6283));
+          tone = 2;
+          allele = 1;
+        }
+        if (g > 0.02 && n + 6 <= cap) {
+          buf[n++] = x; buf[n++] = y; buf[n++] = g; buf[n++] = tone; buf[n++] = allele; buf[n++] = h;
+        }
+      }
+    }
+    L.count = n;
+  }
+
+  function drawLit(L, f) {
+    const dpr = view.dpr, c = Math.cos(f.rot), s = Math.sin(f.rot);
+    ctx.setTransform(dpr * c, dpr * s, -dpr * s, dpr * c, dpr * f.ox, dpr * f.oy);
+    const buf = L.buf;
+    for (let k = 0; k < L.count; k += 6) {
+      const x = buf[k], g = Math.min(buf[k + 2], 1), tone = buf[k + 3];
+      const lift = reduced ? 0 : g * 2;
+      const y = buf[k + 1] - lift;
+      const rgb = tone === 1 ? pal.b : tone === 2 ? toRgb(NEUTRAL) : pal.a;
+      ctx.beginPath();
+      hexPath(ctx, x, y, L.r * (0.84 + g * 0.05));
+      ctx.globalAlpha = g * L.fillA;
+      ctx.fillStyle = `rgb(${rgb})`;
+      ctx.fill();
+      if (g > 0.2) {
+        ctx.globalAlpha = (g - 0.2) * 0.5;
+        ctx.strokeStyle = `rgb(${rgb})`;
+        ctx.lineWidth = 0.8;
+        ctx.stroke();
+      }
+      if (L.glyphs && buf[k + 4]) {
+        ctx.globalAlpha = 0.1 + g * 0.18;
+        ctx.fillStyle = `rgb(${toRgb(NEUTRAL)})`;
+        ctx.fillText(GLYPHS[Math.floor(buf[k + 5] * 1e6) % GLYPHS.length], x, y);
+      }
+    }
+    ctx.globalAlpha = 1;
+  }
+
+  // Each layer's frame: screen center, pushed by parallax and the re-tune nudge, turned and slid by the dial
+  function layerFrame(L) {
+    const px = reduced ? 0 : par.x * L.depth * PARALLAX_PX + nudge.x * (0.35 + L.depth * 0.7);
+    const py = reduced ? 0 : par.y * L.depth * PARALLAX_PX + nudge.y * (0.35 + L.depth * 0.7);
+    const t = reduced ? 0 : clock;
+    return {
+      ox: view.w / 2 + px,
+      oy: view.h / 2 + py,
+      rot: -dial.pos * L.rot * RAD,
+      dx: t * L.drift[0] - dial.pos * L.shift,
+      dy: t * L.drift[1],
+    };
+  }
+
+  /* ---------------------------------------------------------------------------
+     Wetware
+     Filaments grow along the mid layer's true hex edges (the channels between
+     etched cells), branch, mature and fade. Synapse nodes sit on some
+     vertices; when one fires, pulses run down its filament like light in fiber.
+     Everything is stored in mid-lattice space, so it rides the layer's drift,
+     parallax and rotation.
+  --------------------------------------------------------------------------- */
+
+  const FIL_R = MID.r;
+  // Hex lattice vertices alternate between two edge sets: tops open 30/150/270, bottoms 90/210/330
+  const DIRS = [[30, 150, 270], [90, 210, 330]];
+  const filaments = [];
+  const signals = [];
+  let charge = 0;
+  let nextRootAt = 0;
+  const limits = () => (view.small ? { roots: 6, max: 22 } : { roots: 9, max: 38 });
+
+  function makeFilament(x, y, type, lastDir, forced, parent) {
+    const f = {
+      pts: [x, y], type, lastDir, forced, parent,
+      target: 10 + Math.floor(Math.random() * 22),
+      grow: 0, speed: 1.6 + Math.random() * 1.8,
+      heading: Math.random() * 360,
+      tone: Math.random(),
+      nodes: [], mature: false, dieAt: Infinity, fade: 0,
+    };
+    filaments.push(f);
+    return f;
+  }
+
+  function addVertex(f) {
+    const n = f.pts.length;
+    const x = f.pts[n - 2], y = f.pts[n - 1];
+    let dir;
+    if (f.forced != null) { dir = f.forced; f.forced = null; }
+    else {
+      const back = mod(f.lastDir + 180, 360);
+      const opts = DIRS[f.type].filter((d) => d !== back);
+      const diff = (d) => Math.abs(wrap180(d - f.heading));
+      opts.sort((p, q) => diff(p) - diff(q));
+      dir = Math.random() < 0.7 ? opts[0] : opts[1];
+      const other = opts[0] === dir ? opts[1] : opts[0];
+      if (Math.random() < 0.11 && filaments.length < limits().max && f.pts.length > 4) {
+        const child = makeFilament(x, y, f.type, f.lastDir, other, f);
+        child.target = 4 + Math.floor(Math.random() * 10);
+        child.tone = clamp(f.tone + (Math.random() - 0.5) * 0.3, 0, 1);
+        child.heading = f.heading + (Math.random() > 0.5 ? 60 : -60);
+        f.nodes.push({ i: n / 2 - 1, fireT: -99 });
+      }
+    }
+    f.pts.push(x + Math.cos(dir * RAD) * FIL_R, y + Math.sin(dir * RAD) * FIL_R);
+    f.type ^= 1;
+    f.lastDir = dir;
+    if (Math.random() < 0.08) f.nodes.push({ i: f.pts.length / 2 - 1, fireT: -99 });
+  }
+
+  const edgesOf = (f) => f.pts.length / 2 - 1;
+  function ripen(f) {
+    while (edgesOf(f) < f.target) addVertex(f);
+    f.grow = f.target;
+    f.mature = true;
+    f.fade = 1;
+  }
+
+  // New roots start on a real lattice vertex somewhere inside the viewport
+  function spawnRoot(pregrow) {
+    const fr = layerFrame(MID);
+    const sx = view.w * (0.08 + Math.random() * 0.84), sy = view.h * (0.1 + Math.random() * 0.8);
+    const c = Math.cos(-fr.rot), s = Math.sin(-fr.rot);
+    const X = sx - fr.ox, Y = sy - fr.oy;
+    const lx = X * c - Y * s - fr.dx, ly = X * s + Y * c - fr.dy;
+    const j = Math.round(ly / (1.5 * FIL_R));
+    const off = (j & 1) ? MID.w / 2 : 0;
+    const i = Math.round((lx - off) / MID.w);
+    const f = makeFilament(i * MID.w + off, j * 1.5 * FIL_R - FIL_R, 0, 90, null, null);
+    f.nodes.push({ i: 0, fireT: -99 });
+    if (pregrow) {
+      const edges = Math.max(2, Math.floor(f.target * (0.3 + Math.random() * 0.7)));
+      while (edgesOf(f) < edges) addVertex(f);
+      f.grow = edges;
+      f.fade = 1;
+      if (reduced) ripen(f);
+    }
+  }
+
+  function tickFilaments(dt) {
+    const { roots } = limits();
+    let rootCount = 0;
+    for (let k = filaments.length - 1; k >= 0; k--) {
+      const f = filaments[k];
+      if (!f.parent) rootCount++;
+      if (!f.mature) {
+        f.grow += (f.speed * dt) / FIL_R;
+        while (f.grow > edgesOf(f) && edgesOf(f) < f.target) addVertex(f);
+        if (f.grow >= f.target) { f.grow = f.target; f.mature = true; f.dieAt = clock + 50 + Math.random() * 70; }
+      }
+      if (clock > f.dieAt) f.fade -= dt / 18;
+      else f.fade = Math.min(1, f.fade + dt / 5);
+      if (f.fade <= 0 && clock > f.dieAt) filaments.splice(k, 1);
+    }
+    if (rootCount < roots && clock > nextRootAt) { spawnRoot(false); nextRootAt = clock + 4 + Math.random() * 6; }
+
+    for (let k = signals.length - 1; k >= 0; k--) {
+      const p = signals[k];
+      p.s += p.dir * p.speed * dt;
+      p.life += p.speed * dt;
+      const len = p.f.grow * FIL_R;
+      if (p.s < 0 || p.s > len || p.life > 900 || !filaments.includes(p.f)) signals.splice(k, 1);
+    }
+    charge *= Math.exp(-dt / 1.6);
+  }
+
+  function fire(f, node) {
+    node.fireT = clock;
+    if (reduced || signals.length > 36 || f.grow < 1) return;
+    const s = node.i * FIL_R;
+    signals.push({ f, s, dir: 1, speed: 70 + Math.random() * 30, amp: 0.9, life: 0 });
+    if (node.i > 0) signals.push({ f, s, dir: -1, speed: 70 + Math.random() * 30, amp: 0.9, life: 0 });
+  }
+  function fireRandom(n) {
+    const pool = [];
+    filaments.forEach((f) => f.nodes.forEach((nd) => { if (nd.i <= f.grow) pool.push([f, nd]); }));
+    for (let k = 0; k < n && pool.length; k++) {
+      const [f, nd] = pool.splice(Math.floor(Math.random() * pool.length), 1)[0];
+      fire(f, nd);
+    }
+  }
+
+  function pointAt(f, s) {
+    const i = clamp(Math.floor(s / FIL_R), 0, edgesOf(f) - 1);
+    const t = clamp(s / FIL_R - i, 0, 1);
+    const p = f.pts;
+    return [p[i * 2] + (p[i * 2 + 2] - p[i * 2]) * t, p[i * 2 + 1] + (p[i * 2 + 3] - p[i * 2 + 1]) * t];
+  }
+  function traceSub(f, s0, s1) {
+    const len = f.grow * FIL_R;
+    if (s0 > s1) [s0, s1] = [s1, s0];
+    s0 = clamp(s0, 0, len); s1 = clamp(s1, 0, len);
+    if (s1 - s0 < 0.5) return false;
+    const [x0, y0] = pointAt(f, s0);
+    ctx.moveTo(x0, y0);
+    for (let v = Math.ceil(s0 / FIL_R); v * FIL_R < s1; v++) ctx.lineTo(f.pts[v * 2], f.pts[v * 2 + 1]);
+    const [x1, y1] = pointAt(f, s1);
+    ctx.lineTo(x1, y1);
+    return true;
+  }
+
+  function drawWetware(fr, dt) {
+    const dpr = view.dpr, c = Math.cos(fr.rot), s = Math.sin(fr.rot);
+    ctx.setTransform(dpr * c, dpr * s, -dpr * s, dpr * c, dpr * fr.ox, dpr * fr.oy);
+    ctx.translate(fr.dx, fr.dy);
+    ctx.globalCompositeOperation = 'lighter';
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+
+    // Pointer as a stimulus, expressed in the same lattice space as the filaments
+    const ci = Math.cos(-fr.rot), si = Math.sin(-fr.rot);
+    const GX = glow.x - fr.ox, GY = glow.y - fr.oy;
+    const gx = GX * ci - GY * si - fr.dx, gy = GX * si + GY * ci - fr.dy;
+    const stim = reduced ? 0 : glow.presence;
+    const EXC = 150, EXC2 = EXC * EXC;
+    const boost = 1 + charge * 1.3;
+
+    for (const f of filaments) {
+      const A = clamp(f.fade, 0, 1) * boost;
+      if (A <= 0.01) continue;
+      const edges = Math.min(f.grow, edgesOf(f));
+      const full = Math.floor(edges);
+      const p = f.pts;
+      const col = toRgb(lerp3(pal.live.a, pal.live.b, f.tone));
+      const core = toRgb(lerp3(lerp3(pal.live.a, pal.live.b, f.tone), WHITE, 0.4));
+
+      ctx.beginPath();
+      ctx.moveTo(p[0], p[1]);
+      for (let v = 1; v <= full; v++) ctx.lineTo(p[v * 2], p[v * 2 + 1]);
+      let hx = p[full * 2], hy = p[full * 2 + 1];
+      if (edges > full && full < edgesOf(f)) {
+        const t = edges - full;
+        hx = p[full * 2] + (p[full * 2 + 2] - p[full * 2]) * t;
+        hy = p[full * 2 + 1] + (p[full * 2 + 3] - p[full * 2 + 1]) * t;
+        ctx.lineTo(hx, hy);
+      }
+      ctx.strokeStyle = `rgba(${col}, ${0.06 * A})`;
+      ctx.lineWidth = 3.4;
+      ctx.stroke();
+      ctx.strokeStyle = `rgba(${core}, ${0.3 * A})`;
+      ctx.lineWidth = 0.9;
+      ctx.stroke();
+
+      // Hyphal tip, still reaching
+      if (!f.mature) {
+        ctx.beginPath();
+        ctx.arc(hx, hy, 1.6, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${core}, ${0.7 * A})`;
+        ctx.fill();
+      }
+
+      // Segments near the pointer get excited
+      if (stim > 0.02) {
+        for (let v = 0; v < full; v++) {
+          const mx = (p[v * 2] + p[v * 2 + 2]) / 2 - gx, my = (p[v * 2 + 1] + p[v * 2 + 3]) / 2 - gy;
+          const d2 = mx * mx + my * my;
+          if (d2 > EXC2) continue;
+          const k = Math.pow(1 - Math.sqrt(d2) / EXC, 2) * stim * A;
+          ctx.beginPath();
+          ctx.moveTo(p[v * 2], p[v * 2 + 1]);
+          ctx.lineTo(p[v * 2 + 2], p[v * 2 + 3]);
+          ctx.strokeStyle = `rgba(${col}, ${0.16 * k})`;
+          ctx.lineWidth = 6;
+          ctx.stroke();
+          ctx.strokeStyle = `rgba(${core}, ${0.5 * k})`;
+          ctx.lineWidth = 1.2;
+          ctx.stroke();
+        }
+      }
+
+      // Synapses: a dim bead at rest, a flash and a widening ring when they fire
+      for (const nd of f.nodes) {
+        if (nd.i > edges) continue;
+        const x = p[nd.i * 2], y = p[nd.i * 2 + 1];
+        if (!reduced && dt > 0) {
+          const ex = x - gx, ey = y - gy;
+          const near = stim > 0.02 && ex * ex + ey * ey < EXC2 ? stim * 4 : 0;
+          if (Math.random() < (dt / 24) * (1 + near) * f.fade) fire(f, nd);
+        }
+        const age = clock - nd.fireT;
+        const e = age >= 0 && age < 1.8 ? 1 - age / 1.8 : 0;
+        ctx.beginPath();
+        ctx.arc(x, y, 1.7 + e * 1.4, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${core}, ${(0.45 + e * 0.55) * A})`;
+        ctx.fill();
+        if (e > 0) {
+          ctx.beginPath();
+          ctx.arc(x, y, 3 + (1 - e) * 16, 0, Math.PI * 2);
+          ctx.strokeStyle = `rgba(${col}, ${0.55 * e * e * A})`;
+          ctx.lineWidth = 1;
+          ctx.stroke();
+          ctx.beginPath();
+          ctx.arc(x, y, 7, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(${col}, ${0.14 * e * A})`;
+          ctx.fill();
+        }
+      }
+    }
+
+    // Signals: a bright head with a fading tail, like light running down fiber
+    for (const sg of signals) {
+      const f = sg.f;
+      const a = sg.amp * (1 - sg.life / 900) * clamp(f.fade, 0, 1) * boost;
+      const col = toRgb(lerp3(pal.live.a, pal.live.b, f.tone));
+      const pieces = [[0, 10, 0.9], [10, 22, 0.45], [22, 38, 0.18]];
+      for (const [t0, t1, k] of pieces) {
+        ctx.beginPath();
+        if (!traceSub(f, sg.s - sg.dir * t0, sg.s - sg.dir * t1)) continue;
+        ctx.strokeStyle = `rgba(${col}, ${0.22 * k * a})`;
+        ctx.lineWidth = 5;
+        ctx.stroke();
+        ctx.strokeStyle = `rgba(255, 255, 255, ${0.75 * k * a})`;
+        ctx.lineWidth = 1.1;
+        ctx.stroke();
+      }
+    }
+    ctx.globalCompositeOperation = 'source-over';
+  }
+
+  /* ---------------------------------------------------------------------------
+     Field composite
+     lattice (white) → vignette mask → ombre tint → lit cells + wetware →
+     ombre atmosphere slid in underneath → ruler on top
+  --------------------------------------------------------------------------- */
+
+  function drawField(dt) {
+    const dpr = view.dpr, W = view.w, H = view.h;
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    const frames = LAYERS.map(layerFrame);
+
+    LAYERS.forEach((L, i) => {
+      const f = frames[i];
+      const m = new DOMMatrix()
+        .scaleSelf(dpr, dpr)
+        .translateSelf(f.ox, f.oy)
+        .rotateSelf(f.rot * DEG)
+        .translateSelf(f.dx, f.dy)
+        .scaleSelf(L.tileScale[0], L.tileScale[1]);
+      L.pattern.setTransform(m);
+      ctx.fillStyle = L.pattern;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+    });
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.globalCompositeOperation = 'destination-in';
+    ctx.fillStyle = vignette;
+    ctx.fillRect(0, 0, W, H);
+
+    // Ombre angle: section position on the dial, a very slow ambient turn, and a lean toward the pointer
+    const lean = reduced ? 0 : par.x * 0.22;
+    const theta = dial.pos * 1.1 * RAD + (reduced ? 0 : clock * 0.006) + lean;
+    const ux = Math.cos(theta), uy = Math.sin(theta);
+    const reach = Math.hypot(W, H) * 0.55;
+    const tint = ctx.createLinearGradient(W / 2 - ux * reach, H / 2 - uy * reach, W / 2 + ux * reach, H / 2 + uy * reach);
+    tint.addColorStop(0, `rgb(${toRgb(lerp3(NEUTRAL, pal.live.a, 0.5))})`);
+    tint.addColorStop(1, `rgb(${toRgb(lerp3(NEUTRAL, pal.live.b, 0.5))})`);
+    ctx.globalCompositeOperation = 'source-atop';
+    ctx.fillStyle = tint;
+    ctx.fillRect(0, 0, W, H);
+    ctx.globalCompositeOperation = 'source-over';
+
+    ctx.font = `500 10px ${FONT_MONO}`;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    LAYERS.forEach((L, i) => {
+      scanLayer(L, i, frames[i]);
+      drawLit(L, frames[i]);
+    });
+    drawWetware(frames[1], dt);
+
+    // Atmosphere: two big soft fields, one per stop, slid under everything already drawn
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.globalCompositeOperation = 'destination-over';
+    const px = reduced ? 0 : par.x * 50, py = reduced ? 0 : par.y * 36;
+    const big = Math.max(W, H) * 0.85;
+    const fields = [
+      [W / 2 - ux * W * 0.32 + px, H * 0.45 - uy * H * 0.34 + py, pal.a, 0.2],
+      [W / 2 + ux * W * 0.32 + px, H * 0.45 + uy * H * 0.34 + py, pal.b, 0.17],
+    ];
+    for (const [x, y, rgb, a] of fields) {
+      const g = ctx.createRadialGradient(x, y, 0, x, y, big);
+      g.addColorStop(0, `rgba(${rgb}, ${a})`);
+      g.addColorStop(0.45, `rgba(${rgb}, ${a * 0.35})`);
+      g.addColorStop(1, `rgba(${rgb}, 0)`);
+      ctx.fillStyle = g;
+      ctx.fillRect(0, 0, W, H);
+    }
+    ctx.globalCompositeOperation = 'source-over';
+
+    drawRuler();
+  }
+
+  /* ---------------------------------------------------------------------------
+     Ruler
+     The rim itself: a tick every 2°, a number every 10°, lit ticks where the
+     sections sit. Only the visible arc is drawn.
+  --------------------------------------------------------------------------- */
+
+  function drawRuler() {
+    const { cx, cy, R, span, dpr } = view;
+    const N = toRgb(NEUTRAL);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    const arcGrad = ctx.createLinearGradient(cx - view.w / 2, 0, cx + view.w / 2, 0);
+    arcGrad.addColorStop(0, `rgba(${pal.a}, 0.05)`);
+    arcGrad.addColorStop(0.5, `rgba(${N}, 0.34)`);
+    arcGrad.addColorStop(1, `rgba(${pal.b}, 0.05)`);
+    ctx.beginPath();
+    ctx.arc(cx, cy, R, (-90 - span) * RAD, (-90 + span) * RAD);
+    ctx.strokeStyle = arcGrad;
+    ctx.lineWidth = 1;
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.arc(cx, cy, R - 30, (-90 - span) * RAD, (-90 + span) * RAD);
+    ctx.strokeStyle = `rgba(${N}, 0.06)`;
+    ctx.stroke();
+
+    const start = Math.ceil(dial.pos - span), end = Math.floor(dial.pos + span);
+    const minor = new Path2D(), major = new Path2D(), section = new Path2D();
+    const labels = [];
+    for (let k = start; k <= end; k++) {
+      const isSection = mod(k, STEP) === 0;
+      const isMajor = mod(k, 10) === 0;
+      if (!isSection && !isMajor && mod(k, 2) !== 0) continue;
+      const a = (k - dial.pos - 90) * RAD;
+      const ca = Math.cos(a), sa = Math.sin(a);
+      const r0 = isSection ? R - 10 : R;
+      const r1 = R + (isSection ? 20 : isMajor ? 11 : 5);
+      const p = isSection ? section : isMajor ? major : minor;
+      p.moveTo(cx + ca * r0, cy + sa * r0);
+      p.lineTo(cx + ca * r1, cy + sa * r1);
+      if (isMajor && !isSection) labels.push(k);
+    }
+    ctx.lineWidth = 1;
+    ctx.strokeStyle = `rgba(${N}, 0.2)`; ctx.stroke(minor);
+    ctx.strokeStyle = `rgba(${N}, 0.42)`; ctx.stroke(major);
+    ctx.globalCompositeOperation = 'lighter';
+    ctx.lineWidth = 4;
+    ctx.strokeStyle = `rgba(${pal.a}, 0.18)`; ctx.stroke(section);
+    ctx.lineWidth = 1.4;
+    ctx.strokeStyle = `rgb(${pal.aCore})`; ctx.stroke(section);
+    ctx.globalCompositeOperation = 'source-over';
+
+    ctx.font = `400 8.5px ${FONT_MONO}`;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    for (const k of labels) {
+      const deg = k - dial.pos;
+      const a = (deg - 90) * RAD;
+      ctx.save();
+      ctx.translate(cx + Math.cos(a) * (R - 15), cy + Math.sin(a) * (R - 15));
+      ctx.rotate(deg * RAD);
+      ctx.globalAlpha = 0.5 * (1 - smoothstep(Math.abs(deg) / span));
+      ctx.fillStyle = `rgb(${N})`;
+      ctx.fillText(pad(mod(k, 360), 3), 0, 0);
+      ctx.restore();
+    }
+    ctx.globalAlpha = 1;
+
+    // Fixed needle at twelve o'clock: a laser line from stop a to stop b, pointing up from inside
+    const ny = view.rimY;
+    const ng = ctx.createLinearGradient(0, ny - 12, 0, ny + 34);
+    ng.addColorStop(0, `rgb(${pal.aCore})`);
+    ng.addColorStop(1, `rgb(${pal.bCore})`);
+    ctx.globalCompositeOperation = 'lighter';
+    ctx.beginPath();
+    ctx.moveTo(cx, ny - 12);
+    ctx.lineTo(cx, ny + 22);
+    ctx.strokeStyle = `rgba(${pal.a}, 0.25)`;
+    ctx.lineWidth = 4;
+    ctx.stroke();
+    ctx.strokeStyle = ng;
+    ctx.lineWidth = 1;
+    ctx.stroke();
+    ctx.globalCompositeOperation = 'source-over';
+    ctx.beginPath();
+    ctx.moveTo(cx - 6, ny + 34);
+    ctx.lineTo(cx + 6, ny + 34);
+    ctx.lineTo(cx, ny + 24);
+    ctx.closePath();
+    ctx.fillStyle = ng;
+    ctx.fill();
+  }
+
+  /* ---------------------------------------------------------------------------
+     Dial state
+     `slot` is an unbounded integer so wrapping 04 → 00 keeps turning the same
+     way; `pos` is the live angle in degrees, sprung toward `target`.
+  --------------------------------------------------------------------------- */
+
+  const dial = { slot: 0, index: 0, pos: 0, vel: 0, target: 0, dragging: false };
+  const SPRING_K = 61;
+  const SPRING_C = 2 * Math.sqrt(SPRING_K) * 0.8;
+
+  function go(slot, source) {
+    dial.slot = slot;
+    dial.target = slot * STEP;
+    if (reduced) { dial.pos = dial.target; dial.vel = 0; }
+    dirty = true;
+    commit(mod(slot, COUNT), source);
+  }
+  const stepBy = (n, source) => go(dial.slot + n, source);
+  function goToIndex(i, source) {
+    let delta = mod(i - dial.index, COUNT);
+    if (delta > COUNT / 2) delta -= COUNT;
+    go(dial.slot + delta, source);
+  }
+
+  // Everything that should only happen once per section change, not per frame
+  let liveTimer = 0;
+  function commit(index, source) {
+    const changed = index !== dial.index;
+    const stranded = panels.some((p, i) => i !== index && p.contains(document.activeElement));
+    dial.index = index;
+    panels.forEach((p, i) => {
+      const on = i === index;
+      p.inert = !on;
+      if (on) p.removeAttribute('aria-hidden'); else p.setAttribute('aria-hidden', 'true');
+    });
+    navButtons.forEach((b, i) => { if (i === index) b.setAttribute('aria-current', 'true'); else b.removeAttribute('aria-current'); });
+    rimLabels.forEach((b, i) => b.classList.toggle('on', i === index));
+    const name = panels[index].dataset.name;
+    nameEl.textContent = `${pad(index, 2)} · ${name}`;
+    const prevName = panels[mod(index - 1, COUNT)].dataset.name;
+    const nextName = panels[mod(index + 1, COUNT)].dataset.name;
+    prevBtn.setAttribute('aria-label', `Previous section: ${prevName}`);
+    nextBtn.setAttribute('aria-label', `Next section: ${nextName}`);
+    if (!changed) return;
+    if (source === 'init') return;
+
+    // Turning the dial charges the network for a moment
+    spawnPulse(view.cx, view.rimY, 0.28, 55);
+    if (!reduced) { charge = 1; fireRandom(5); }
+
+    history.replaceState(null, '', '#' + panels[index].id);
+    clearTimeout(liveTimer);
+    liveTimer = setTimeout(() => { liveEl.textContent = `Section ${pad(index, 2)} of 04: ${name}`; }, 220);
+
+    // Focus follows explicit jumps; for gestures, only rescue focus stranded in a now-inert panel
+    const heading = panels[index].querySelector('h1, h2');
+    setStyle(panels[index], 'visibility', 'visible');
+    if (source === 'nav' || source === 'rim' || source === 'key' || stranded) heading.focus({ preventScroll: true });
+  }
+
+  function stepDial(dt) {
+    if (dial.dragging) return;
+    if (reduced) { dial.pos = dial.target; dial.vel = 0; return; }
+    const f = SPRING_K * (dial.target - dial.pos) - SPRING_C * dial.vel;
+    dial.vel += f * dt;
+    dial.pos += dial.vel * dt;
+    if (Math.abs(dial.target - dial.pos) < 0.001 && Math.abs(dial.vel) < 0.01) { dial.pos = dial.target; dial.vel = 0; }
+  }
+
+  // Re-tune nudge: an underdamped spring, so things overshoot a hair and settle
+  const nudge = { x: 0, y: 0, vx: 0, vy: 0 };
+  const NUDGE_K = 70, NUDGE_C = 2 * Math.sqrt(NUDGE_K) * 0.3;
+  function stepNudge(dt) {
+    if (reduced) return;
+    nudge.vx += (-NUDGE_K * nudge.x - NUDGE_C * nudge.vx) * dt;
+    nudge.vy += (-NUDGE_K * nudge.y - NUDGE_C * nudge.vy) * dt;
+    nudge.x += nudge.vx * dt;
+    nudge.y += nudge.vy * dt;
+    if (Math.abs(nudge.x) + Math.abs(nudge.y) + Math.abs(nudge.vx) + Math.abs(nudge.vy) < 0.01) nudge.x = nudge.y = nudge.vx = nudge.vy = 0;
+  }
+
+  /* ---------------------------------------------------------------------------
+     Panels on the rim
+     rotate → push out to the panel radius → scale → center on the anchor.
+     Styles are cached so a settled dial writes nothing.
+  --------------------------------------------------------------------------- */
+
+  const domCache = new Map();
+  function setStyle(el, prop, value) {
+    let styles = domCache.get(el);
+    if (!styles) { styles = {}; domCache.set(el, styles); }
+    if (styles[prop] === value) return;
+    styles[prop] = value;
+    if (prop.startsWith('--')) el.style.setProperty(prop, value);
+    else el.style[prop] = value;
+  }
+
+  let lastDeg = -1;
+  function renderDom() {
+    // Heading ombre position: dial first, then a slow ambient drift and a lean toward the pointer
+    const gshift = mod(dial.pos * 1.21 + (reduced ? 0 : clock * 0.35 + par.x * 8), 200).toFixed(1);
+
+    panels.forEach((p, i) => {
+      const a = wrap180(i * STEP - dial.pos);
+      const d = Math.abs(a) / STEP;
+      if (d >= 0.98 && i !== dial.index) { setStyle(p, 'visibility', 'hidden'); return; }
+      const e = smoothstep(d / 0.9);
+      const scale = reduced ? 1 : 1 - e * 0.08;
+      const blur = reduced ? 0 : Math.round(e * 70) / 10;
+      setStyle(p, 'visibility', 'visible');
+      setStyle(p, 'opacity', (1 - e).toFixed(3));
+      setStyle(p, 'filter', blur > 0.1 ? `blur(${blur}px)` : 'none');
+      setStyle(p, 'transform', `rotate(${a.toFixed(3)}deg) translate3d(0, ${-view.Rc}px, 0) scale(${scale.toFixed(4)}) translate(-50%, -50%)`);
+      setStyle(p, '--gshift', gshift);
+
+      // Cards sit at a shallower depth than the field, so they lean the opposite way
+      const lean = reduced ? 0 : 1 - e;
+      const tx = (-cardPar.x * 4 * lean - nudge.x * 0.3).toFixed(2), ty = (-cardPar.y * 3.5 * lean - nudge.y * 0.3).toFixed(2);
+      const rx = (-cardPar.y * 1.4 * lean).toFixed(2), ry = (cardPar.x * 1.8 * lean).toFixed(2);
+      const rz = (nudge.x * 0.012).toFixed(3);
+      setStyle(cards[i], 'transform', `perspective(1400px) translate3d(${tx}px, ${ty}px, 0) rotateX(${rx}deg) rotateY(${ry}deg) rotateZ(${rz}deg)`);
+    });
+
+    rimLabels.forEach((b, i) => {
+      const a = wrap180(i * STEP - dial.pos);
+      if (Math.abs(a) > view.span) { setStyle(b, 'visibility', 'hidden'); return; }
+      setStyle(b, 'visibility', 'visible');
+      setStyle(b, 'transform', `rotate(${a.toFixed(3)}deg) translate3d(0, ${-(view.R + 36)}px, 0) translate(-50%, -50%)`);
+    });
+
+    // The wafer sits between the lattice and the cards in depth
+    const wx = reduced ? 0 : par.x * 7 + nudge.x * 0.5, wy = reduced ? 0 : par.y * 5 + nudge.y * 0.5;
+    setStyle(waferEl, 'transform', `translate3d(${wx.toFixed(2)}px, ${wy.toFixed(2)}px, 0) rotate(${(dial.pos * 0.044).toFixed(3)}deg)`);
+    setStyle(degEl, '--gshift', gshift);
+
+    const deg = Math.round(mod(dial.pos, 360)) % 360;
+    if (deg !== lastDeg) { lastDeg = deg; degEl.textContent = pad(deg, 3); }
+  }
+
+  /* ---------------------------------------------------------------------------
+     Input: pointer + tilt for parallax, wheel / drag / keys / buttons for the dial
+  --------------------------------------------------------------------------- */
+
+  const pointer = { x: 0, y: 0, nx: 0, ny: 0 };
+  const glow = { x: -9999, y: -9999, presence: 0, want: 0, touchUntil: 0 };
+  const tilt = { x: 0, y: 0, beta0: null, on: false };
+  const par = { x: 0, y: 0 };
+  const cardPar = { x: 0, y: 0 };
+
+  function trackPointer(e) {
+    pointer.x = e.clientX;
+    pointer.y = e.clientY;
+    if (e.pointerType === 'mouse' || e.pointerType === 'pen') {
+      pointer.nx = clamp(e.clientX / view.w * 2 - 1, -1, 1);
+      pointer.ny = clamp(e.clientY / view.h * 2 - 1, -1, 1);
+      glow.want = 1;
+    }
+  }
+  window.addEventListener('pointermove', trackPointer, { passive: true });
+  document.addEventListener('mouseout', (e) => { if (!e.relatedTarget) glow.want = 0; });
+  window.addEventListener('blur', () => { glow.want = 0; });
+
+  function onOrient(e) {
+    if (e.beta == null || e.gamma == null) return;
+    const angle = (screen.orientation && screen.orientation.angle) || window.orientation || 0;
+    let x = e.gamma, y = e.beta;
+    if (angle === 90) { x = e.beta; y = -e.gamma; }
+    else if (angle === -90 || angle === 270) { x = -e.beta; y = e.gamma; }
+    if (tilt.beta0 == null) tilt.beta0 = y;
+    tilt.x = clamp(x / 30, -1, 1);
+    tilt.y = clamp((y - tilt.beta0) / 30, -1, 1);
+    tilt.on = true;
+  }
+
+  // iOS wants a user gesture before it hands over orientation; ask on the first tap, or via the chip
+  const needsPermission = typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function';
+  function requestTilt() {
+    DeviceOrientationEvent.requestPermission()
+      .then((state) => {
+        if (state === 'granted') window.addEventListener('deviceorientation', onOrient);
+        tiltBtn.hidden = true;
+      })
+      .catch(() => { tiltBtn.hidden = true; });
+  }
+  if (needsPermission) {
+    tiltBtn.hidden = false;
+    tiltBtn.addEventListener('click', requestTilt);
+    window.addEventListener('touchend', function first() {
+      window.removeEventListener('touchend', first);
+      requestTilt();
+    }, { passive: true });
+  } else if ('DeviceOrientationEvent' in window) {
+    window.addEventListener('deviceorientation', onOrient);
+  }
+
+  function stepInputs(dt) {
+    const tx = clamp(pointer.nx + (tilt.on ? tilt.x : 0), -1, 1);
+    const ty = clamp(pointer.ny + (tilt.on ? tilt.y : 0), -1, 1);
+    const k = ease(1.6, dt);
+    par.x += (tx - par.x) * k;
+    par.y += (ty - par.y) * k;
+    const kc = ease(3, dt);
+    cardPar.x += (tx - cardPar.x) * kc;
+    cardPar.y += (ty - cardPar.y) * kc;
+
+    const kg = ease(5, dt);
+    glow.x += (pointer.x - glow.x) * kg;
+    glow.y += (pointer.y - glow.y) * kg;
+    const want = glow.want || performance.now() < glow.touchUntil ? 1 : 0;
+    glow.presence += (want - glow.presence) * ease(want ? 3 : 1.2, dt);
+    if (glow.presence < 0.005) { glow.x = pointer.x; glow.y = pointer.y; }
+  }
+
+  // Wheel: one step per gesture (trackpad momentum included), with a small rubber-band pull first
+  const wheel = { acc: 0, lastT: 0, lastAbs: 0, locked: false, stepT: 0, timer: 0 };
+  function canScroll(el, dy) {
+    return dy > 0 ? el.scrollTop + el.clientHeight < el.scrollHeight - 1 : el.scrollTop > 0;
+  }
+  function onWheel(e) {
+    if (e.ctrlKey) return;
+    const unit = e.deltaMode === 1 ? 16 : e.deltaMode === 2 ? view.h : 1;
+    const dx = e.deltaX * unit, dy = e.deltaY * unit;
+    const body = e.target.closest && e.target.closest('.panel-body');
+    if (body && Math.abs(dy) >= Math.abs(dx) && canScroll(body, dy)) return;
+    e.preventDefault();
+
+    const d = Math.abs(dx) > Math.abs(dy) ? dx : dy;
+    const abs = Math.abs(d);
+    const now = performance.now();
+    const gap = now - wheel.lastT;
+    const freshSwipe = wheel.locked && now - wheel.stepT > 260 && abs > wheel.lastAbs * 1.8 && abs > 12;
+    if (gap > 170 || freshSwipe) { wheel.locked = false; wheel.acc = 0; }
+    wheel.lastT = now;
+    wheel.lastAbs = abs;
+    if (wheel.locked) return;
+
+    wheel.acc += d;
+    clearTimeout(wheel.timer);
+    if (Math.abs(wheel.acc) >= 42) {
+      wheel.locked = true;
+      wheel.stepT = now;
+      stepBy(Math.sign(wheel.acc), 'wheel');
+      wheel.acc = 0;
+      return;
+    }
+    if (!reduced) {
+      dial.target = dial.slot * STEP + clamp(wheel.acc * 0.22, -9, 9);
+      wheel.timer = setTimeout(() => { if (!wheel.locked) { dial.target = dial.slot * STEP; wheel.acc = 0; } }, 200);
+    }
+  }
+  window.addEventListener('wheel', onWheel, { passive: false });
+
+  // Drag / swipe: the rim follows the finger 1:1 at the panel radius, then flicks to a section
+  const drag = { id: null, x0: 0, y0: 0, pos0: 0, last: 0, slot0: 0, active: false, samples: [] };
+  stage.addEventListener('pointerdown', (e) => {
+    if (e.button !== 0) return;
+    if (e.pointerType === 'touch') { glow.touchUntil = performance.now() + 1e9; pointer.x = e.clientX; pointer.y = e.clientY; glow.x = e.clientX; glow.y = e.clientY; }
+    if (e.pointerType === 'mouse' && e.target.closest('.panel, button, a, .controls')) return;
+    if (e.target.closest('.tuner')) return;
+    drag.id = e.pointerId;
+    drag.x0 = e.clientX;
+    drag.y0 = e.clientY;
+    drag.active = false;
+  });
+  window.addEventListener('pointermove', (e) => {
+    if (e.pointerId !== drag.id) return;
+    const dx = e.clientX - drag.x0, dy = e.clientY - drag.y0;
+    if (!drag.active) {
+      if (Math.abs(dx) > 10 && Math.abs(dx) > Math.abs(dy) * 1.2) {
+        drag.active = true;
+        drag.x0 = e.clientX;
+        drag.pos0 = dial.pos;
+        drag.slot0 = Math.round(dial.target / STEP);
+        drag.samples = [];
+        dial.dragging = true;
+        stage.classList.add('dragging');
+        try { stage.setPointerCapture(e.pointerId); } catch (_) {}
+      } else if (Math.abs(dy) > 12) {
+        drag.id = null;
+      }
+      return;
+    }
+    const pos = drag.pos0 - (e.clientX - drag.x0) / view.Rc * DEG;
+    const now = performance.now();
+    drag.samples.push([now, pos]);
+    while (drag.samples.length > 2 && now - drag.samples[0][0] > 90) drag.samples.shift();
+    drag.last = pos;
+    dial.pos = dial.target = reduced ? drag.pos0 : pos;
+    dial.vel = 0;
+    dirty = true;
+  });
+  function endDrag(e) {
+    if (e.pointerType === 'touch') glow.touchUntil = performance.now() + 600;
+    if (e.pointerId !== drag.id) return;
+    drag.id = null;
+    if (!drag.active) return;
+    drag.active = false;
+    dial.dragging = false;
+    stage.classList.remove('dragging');
+
+    const s = drag.samples;
+    const pos = s.length ? drag.last : drag.pos0;
+    let vel = 0;
+    if (s.length > 1) { const [t0, p0] = s[0], [t1, p1] = s[s.length - 1]; vel = t1 > t0 ? (p1 - p0) / ((t1 - t0) / 1000) : 0; }
+    let slot = Math.round((pos + vel * 0.22) / STEP);
+    if (slot === drag.slot0 && Math.abs(pos - drag.pos0) > 8) slot = drag.slot0 + Math.sign(pos - drag.pos0);
+    slot = clamp(slot, drag.slot0 - 2, drag.slot0 + 2);
+    if (!reduced) { dial.pos = pos; dial.vel = clamp(vel, -600, 600); }
+    go(slot, 'drag');
+
+    // Swallow the click that trails a real drag so links under the finger don't fire
+    const swallow = (ev) => { ev.preventDefault(); ev.stopPropagation(); };
+    window.addEventListener('click', swallow, { capture: true, once: true });
+    setTimeout(() => window.removeEventListener('click', swallow, { capture: true }), 0);
+  }
+  window.addEventListener('pointerup', endDrag);
+  window.addEventListener('pointercancel', (e) => {
+    if (e.pointerType === 'touch') glow.touchUntil = performance.now() + 600;
+    if (e.pointerId === drag.id && drag.active) { endDrag(e); } else if (e.pointerId === drag.id) { drag.id = null; }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.altKey || e.ctrlKey || e.metaKey) return;
+    if (e.target.closest && e.target.closest('input, textarea, select, [contenteditable="true"], [role="radiogroup"]')) return;
+    let handled = true;
+    if (e.key === 'ArrowRight') stepBy(1, 'key');
+    else if (e.key === 'ArrowLeft') stepBy(-1, 'key');
+    else if (e.key === 'Home') goToIndex(0, 'key');
+    else if (e.key === 'End') goToIndex(COUNT - 1, 'key');
+    else if (/^[0-4]$/.test(e.key)) goToIndex(Number(e.key), 'key');
+    else handled = false;
+    if (handled) e.preventDefault();
+  });
+
+  prevBtn.addEventListener('click', () => stepBy(-1, 'button'));
+  nextBtn.addEventListener('click', () => stepBy(1, 'button'));
+  document.querySelectorAll('[data-go]').forEach((el) => {
+    el.addEventListener('click', (e) => {
+      e.preventDefault();
+      goToIndex(Number(el.dataset.go), el.classList.contains('rim-label') ? 'rim' : 'nav');
+    });
+  });
+  // Bottom fade only while a panel still has content below the fold
+  const bodies = panels.map((p) => p.querySelector('.panel-body'));
+  function markOverflow(body) {
+    body.parentElement.classList.toggle('more', body.scrollTop + body.clientHeight < body.scrollHeight - 4);
+  }
+  bodies.forEach((b) => b.addEventListener('scroll', () => markOverflow(b), { passive: true }));
+  const markAll = () => bodies.forEach(markOverflow);
+
+  window.addEventListener('hashchange', () => {
+    const i = panels.findIndex((p) => '#' + p.id === location.hash);
+    if (i >= 0 && i !== dial.index) goToIndex(i, 'nav');
+  });
+
+  /* ---------------------------------------------------------------------------
+     Frame loop
+  --------------------------------------------------------------------------- */
+
+  let clock = 0;
+  let dirty = true;
+  let last = performance.now();
+  function frame(now) {
+    const dt = Math.min((now - last) / 1000, 1 / 30);
+    last = now;
+    const animating = !reduced || pal.t < 1;
+    if (!reduced) {
+      clock += dt;
+      if (clock > nextPulseAt) {
+        nextPulseAt = clock + 30 + Math.random() * 25;
+        spawnPulse(Math.random() * view.w, Math.random() * view.h, 0.2, 32);
+      }
+      for (let i = pulses.length - 1; i >= 0; i--) {
+        const p = pulses[i];
+        p.r = (clock - p.t0) * p.speed;
+        p.a = p.amp * (1 - p.r / p.max);
+        if (p.r > p.max) pulses.splice(i, 1);
+      }
+      tickFilaments(dt);
+    } else {
+      pulses.length = 0;
+      signals.length = 0;
+    }
+    stepInputs(dt);
+    stepDial(dt);
+    stepNudge(dt);
+    if (animating || dirty) {
+      tickPalette(dt);
+      writeCss(now, dirty);
+      renderDom();
+      drawField(reduced ? 0 : dt);
+      dirty = false;
+    }
+    requestAnimationFrame(frame);
+  }
+
+  // Deep links pick the starting section; with motion on, the dial swings in from a little short of it
+  let resizeRaf = 0;
+  window.addEventListener('resize', () => { cancelAnimationFrame(resizeRaf); resizeRaf = requestAnimationFrame(() => { layout(); markAll(); }); });
+  let stored = null;
+  try { stored = localStorage.getItem(STORE_KEY); } catch (_) {}
+  startPalette(Math.max(0, PALETTES.findIndex((p) => p.id === stored)));
+  syncTuner();
+  writeCss(performance.now(), true);
+  layout();
+  markAll();
+  for (let k = 0; k < limits().roots; k++) spawnRoot(true);
+  const startIndex = Math.max(0, panels.findIndex((p) => '#' + p.id === location.hash));
+  dial.index = -1;
+  dial.slot = startIndex;
+  dial.target = startIndex * STEP;
+  dial.pos = reduced ? dial.target : dial.target - 34;
+  commit(startIndex, 'init');
+  if (document.fonts) document.fonts.ready.then(() => { dirty = true; markAll(); });
+  requestAnimationFrame(frame);
+})();
+</script>
 </body>
 </html>
