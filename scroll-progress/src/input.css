@@ -1,0 +1,386 @@
+/* Source stylesheet. Edit here; `npm run watch` compiles + minifies to ../styles.css.
+   Preflight is off so the hand-written base below stays authoritative. */
+@tailwind base;
+
+:root {
+  --bg: #F7F3EA;
+  --text: #243836;
+  --action: #0B8A8F;
+  --sea: #2F5D8A;
+  --raised: #FFFDF7;
+  --mute: #5F6A65;
+  --line: #D8D0C4;
+  --lede: #3D4A47;
+  --void: #F7F3EA;
+  --paper: #F3EEE4;
+  --ink: #1A1C1F;
+  --ink-soft: #4A4F57;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+body {
+  font-family: "IBM Plex Sans", system-ui, sans-serif;
+  background: var(--void);
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; }
+a:focus-visible, button:focus-visible {
+  outline: 2px solid var(--action);
+  outline-offset: 3px;
+}
+.skip {
+  position: absolute; left: 1rem; top: -100%; z-index: 100;
+  background: var(--action); color: var(--bg);
+  padding: 0.5rem 1rem; font-weight: 700;
+}
+.skip:focus { top: 1rem; }
+
+/* Shared hub masthead */
+.hub-masthead {
+  border-bottom: 1px solid var(--line);
+  background: rgba(255, 253, 247, 0.92);
+  backdrop-filter: blur(10px);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+.hub-nav {
+  width: min(720px, calc(100% - 2rem));
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 0;
+  flex-wrap: wrap;
+}
+.hub-wordmark {
+  font-family: Michroma, "IBM Plex Sans", system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: -0.03em;
+  text-decoration: none;
+  color: var(--text);
+}
+.hub-wordmark span { color: var(--action); }
+.hub-masthead nav ul {
+  list-style: none;
+  display: flex;
+  gap: 0.35rem 1.25rem;
+  flex-wrap: wrap;
+}
+.hub-masthead nav a {
+  text-decoration: none;
+  color: var(--mute);
+  font-size: 0.82rem;
+  font-weight: 500;
+}
+.hub-masthead nav a:hover { color: var(--text); font-weight: 600; }
+
+/* Reading chrome sits under hub header */
+.reading-chrome {
+  position: sticky;
+  top: 3.35rem;
+  z-index: 40;
+  background: rgba(255, 253, 247, 0.94);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line);
+}
+.progress-track {
+  height: 3px;
+  background: var(--line);
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  width: 100%;
+  transform-origin: left center;
+  transform: scaleX(0);
+  background: linear-gradient(90deg, var(--hs-a), var(--hs-b));
+}
+
+.chapter-dots {
+  width: min(720px, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: 0.65rem 0 0.75rem;
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  list-style: none;
+}
+.chapter-dots a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  text-decoration: none;
+  color: var(--mute);
+  font-size: 0.72rem;
+  font-weight: 500;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.35rem;
+  border-radius: 999px;
+}
+.chapter-dots a:hover { color: var(--text); }
+.dot {
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 50%;
+  border: 1.5px solid var(--mute);
+  background: transparent;
+  flex-shrink: 0;
+}
+
+/* Scroll-driven progress — article is the scroll container subject via root */
+@supports (animation-timeline: scroll()) {
+  .progress-fill {
+    animation: grow-progress linear;
+    animation-timeline: scroll(root);
+    animation-range: 0% 100%;
+  }
+  @keyframes grow-progress {
+    from { transform: scaleX(0); }
+    to { transform: scaleX(1); }
+  }
+
+  /* Chapter dots fill as each section enters the view timeline */
+  #ch-intent:target ~ .reading-chrome .dot-intent,
+  .chapter-dots a[href="#ch-intent"] .dot { }
+}
+
+@supports (animation-timeline: view()) {
+  .chapter-dots a[href="#ch-intent"] .dot {
+    animation: fill-dot linear both;
+    animation-timeline: view();
+    animation-range: entry 0% cover 40%;
+  }
+  /* Per-chapter: tie each dot to its section via sibling structure won't work across DOM.
+     Use view() on markers inside each section instead — see .section-marker */
+}
+
+/* In-section markers drive the matching dot via scroll-driven state on the marker,
+   mirrored visually by painting dots from section progress using anchor-free approach:
+   each section has a tiny sticky spy that scales its paired dot via animation on the section itself. */
+.section-spy {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+/* Visual fill for dots: driven by whether section is in view using scroll-driven animation
+   on a pseudo approach — decorate each chapter link's .dot with a named timeline from the section */
+#ch-intent, #ch-engine, #ch-fallback, #ch-taste {
+  position: relative;
+}
+
+@supports (animation-timeline: view()) {
+  #ch-intent { view-timeline-name: --ch-intent; view-timeline-axis: block; }
+  #ch-engine { view-timeline-name: --ch-engine; view-timeline-axis: block; }
+  #ch-fallback { view-timeline-name: --ch-fallback; view-timeline-axis: block; }
+  #ch-taste { view-timeline-name: --ch-taste; view-timeline-axis: block; }
+
+  .chapter-dots a[href="#ch-intent"] .dot {
+    animation: fill-dot linear both;
+    animation-timeline: --ch-intent;
+    animation-range: entry 10% contain 50%;
+  }
+  .chapter-dots a[href="#ch-engine"] .dot {
+    animation: fill-dot linear both;
+    animation-timeline: --ch-engine;
+    animation-range: entry 10% contain 50%;
+  }
+  .chapter-dots a[href="#ch-fallback"] .dot {
+    animation: fill-dot linear both;
+    animation-timeline: --ch-fallback;
+    animation-range: entry 10% contain 50%;
+  }
+  .chapter-dots a[href="#ch-taste"] .dot {
+    animation: fill-dot linear both;
+    animation-timeline: --ch-taste;
+    animation-range: entry 10% contain 50%;
+  }
+  .chapter-dots a[href="#ch-intent"],
+  .chapter-dots a[href="#ch-engine"],
+  .chapter-dots a[href="#ch-fallback"],
+  .chapter-dots a[href="#ch-taste"] {
+    animation: brighten-label linear both;
+  }
+  .chapter-dots a[href="#ch-intent"] {
+    animation-timeline: --ch-intent;
+    animation-range: entry 10% contain 50%;
+  }
+  .chapter-dots a[href="#ch-engine"] {
+    animation-timeline: --ch-engine;
+    animation-range: entry 10% contain 50%;
+  }
+  .chapter-dots a[href="#ch-fallback"] {
+    animation-timeline: --ch-fallback;
+    animation-range: entry 10% contain 50%;
+  }
+  .chapter-dots a[href="#ch-taste"] {
+    animation-timeline: --ch-taste;
+    animation-range: entry 10% contain 50%;
+  }
+
+  @keyframes fill-dot {
+    from {
+      background: transparent;
+      border-color: var(--mute);
+      box-shadow: none;
+    }
+    to {
+      background: var(--sea);
+      border-color: var(--sea);
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--sea) 28%, transparent);
+    }
+  }
+  @keyframes brighten-label {
+    from { color: var(--mute); }
+    to { color: var(--text); }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .progress-fill,
+  .chapter-dots a,
+  .chapter-dots a .dot {
+    animation: none !important;
+  }
+  .progress-fill {
+    transform: none;
+    width: 100%;
+    opacity: 0.35;
+  }
+}
+
+/* Fallback when scroll timelines unsupported: static partial chrome, still readable */
+@supports not (animation-timeline: scroll()) {
+  .progress-fill {
+    transform: scaleX(0.08);
+    opacity: 0.5;
+  }
+  .no-scroll-timeline-note {
+    display: block;
+  }
+}
+.no-scroll-timeline-note {
+  display: none;
+  width: min(720px, calc(100% - 2rem));
+  margin: 0.75rem auto 0;
+  font-size: 0.8rem;
+  color: var(--mute);
+}
+
+main {
+  width: min(720px, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: 2.5rem 0 5rem;
+}
+.kicker {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--sea);
+  margin-bottom: 0.85rem;
+}
+h1 {
+  font-family: Michroma, "IBM Plex Sans", system-ui, sans-serif;
+  font-weight: 600;
+  font-size: clamp(2rem, 6vw, 2.85rem);
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  margin-bottom: 1rem;
+}
+.lede {
+  font-size: 1.1rem;
+  color: var(--lede);
+  margin-bottom: 2.25rem;
+  max-width: 38rem;
+}
+article section {
+  padding: 2.25rem 0 1rem;
+  border-top: 1px solid var(--line);
+}
+article section h2 {
+  font-family: Michroma, "IBM Plex Sans", system-ui, sans-serif;
+  font-size: 1.35rem;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.85rem;
+  color: var(--text);
+}
+article p {
+  color: var(--lede);
+  margin-bottom: 1rem;
+  max-width: 38rem;
+}
+article p code {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.86em;
+  color: var(--sea);
+  background: var(--raised);
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+}
+.callout {
+  margin: 1.25rem 0 1.5rem;
+  padding: 1rem 1.1rem;
+  background: var(--raised);
+  border-left: 3px solid var(--action);
+  border-radius: 0 8px 8px 0;
+  color: var(--soft, var(--lede));
+  font-size: 0.95rem;
+}
+footer.page-foot {
+  width: min(720px, calc(100% - 2rem));
+  margin: 0 auto 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--line);
+  color: var(--mute);
+  font-size: 0.85rem;
+}
+footer.page-foot a { color: var(--action); text-decoration: none; }
+footer.page-foot a:hover { text-decoration: underline; }
+
+/* 9/28 house style: Michroma display at 400 (wide, never bold), deeper teal for
+   small mono labels (WCAG AA), cream masthead with hex lattice + gradient rule. */
+h1 { font-weight: 400; font-size: clamp(1.6rem, 4.6vw, 2.3rem); line-height: 1.2; letter-spacing: 0.01em; }
+article section h2 { font-weight: 400; font-size: 1.1rem; letter-spacing: 0.01em; line-height: 1.35; }
+.kicker { color: #087075; font-size: 0.68rem; letter-spacing: 0.12em; font-weight: 500; }
+article p code { color: #087075; }
+.chapter-dots a { letter-spacing: 0.12em; font-size: 0.68rem; }
+.hub-masthead { border-bottom: 0; }
+.hub-masthead nav a:hover { font-weight: 500; }
+footer.page-foot a { color: #087075; }
+
+
+/* 9/28 portfolio house style (hex-dial system, daylight take): Michroma display +
+   IBM Plex Sans/Mono, thin linework, one calm two-stop accent, faint hex lattice in the header */
+@layer base {
+  :root {
+    --hs-a: #0B8A8F;
+    --hs-b: #2F5D8A;
+  }
+  .font-display { font-weight: 400; letter-spacing: 0.02em; }
+  :focus-visible { outline: 2px solid var(--hs-a); outline-offset: 2px; }
+  input:focus-visible, select:focus-visible, textarea:focus-visible { outline-offset: 0; border-color: var(--hs-a); }
+}
+
+@layer components {
+  .hs-rule { height: 1px; background: linear-gradient(90deg, var(--hs-a), var(--hs-b)); }
+  .hs-lattice { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='48.5' viewBox='0 0 28 48.5'%3E%3Cpath d='M14 0v8.1M14 48.5v-8.1M0 16.2l14-8.1 14 8.1v16.1l-14 8.1-14-8.1z' fill='none' stroke='%230b8a8f' stroke-opacity='.06' stroke-width='1'/%3E%3C/svg%3E"); }
+  .hs-backlink { @apply font-mono text-[0.72rem] font-medium uppercase tracking-[0.14em] no-underline transition-colors; }
+  .hs-cta { background-image: linear-gradient(90deg, var(--hs-a), var(--hs-b)); }
+  .hs-cta:hover { filter: brightness(1.08); }
+}
+
+@tailwind components;
+@tailwind utilities;

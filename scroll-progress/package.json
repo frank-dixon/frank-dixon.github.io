@@ -1,0 +1,14 @@
+{
+  "name": "scroll-progress",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Pure-CSS scroll-timeline demo. No JavaScript, so the pipeline is Tailwind only.",
+  "scripts": {
+    "build": "tailwindcss -i ./src/input.css -o ./styles.css --minify",
+    "watch": "tailwindcss -i ./src/input.css -o ./styles.css --watch --minify",
+    "start": "npm run watch"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.17"
+  }
+}
