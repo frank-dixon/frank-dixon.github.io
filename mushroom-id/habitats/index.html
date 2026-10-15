@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en" data-base="/mushroom-id/" data-account-theme="system" data-plant-view="grid">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0e0e0d">
+  <script>
+    (function () {
+      var key = "pf-theme";
+      var root = document.documentElement;
+      var account = root.getAttribute("data-account-theme") || "";
+      var stored = "";
+      try { stored = localStorage.getItem(key) || ""; } catch (err) { stored = ""; }
+      var theme = stored === "light" || stored === "dark" || stored === "system" ? stored : (account === "light" || account === "dark" || account === "system" ? account : "system");
+      if (stored !== theme) {
+        try { localStorage.setItem(key, theme); } catch (err) {}
+      }
+      // Noir is always dark. The stored light/dark choice is kept but not applied.
+      var dark = true;
+      root.classList.toggle("dark", dark);
+      root.style.colorScheme = dark ? "dark" : "light";
+      root.setAttribute("data-theme", theme);
+      var meta = document.querySelector('meta[name="theme-color"]');
+      if (meta) meta.setAttribute("content", dark ? "#0e0e0d" : "#0e0e0d");
+      // Grid or List: a ?view= link wins, then this device, then the account.
+      var view = root.getAttribute("data-plant-view") === "list" ? "list" : "grid";
+      var saved = "";
+      try { saved = localStorage.getItem("pf-plant-view") || ""; } catch (err) { saved = ""; }
+      if (root.hasAttribute("data-plant-view-asked")) {
+        try { localStorage.setItem("pf-plant-view", view); } catch (err) {}
+      } else if (saved === "grid" || saved === "list") {
+        view = saved;
+      }
+      root.setAttribute("data-plant-view", view);
+    })();
+  </script>
+  <title>Where to look · Fungi guide</title>
+  
+  <meta name="csrf-token" content="cIEQPQPnacSklQjIqFFouh0uV0oJhWSslFNy6XdH3XmGkLRsGI9SU2rZ0XlRzEB9">
+  
+  <link rel="preload" href="/mushroom-id/static/fonts/instrument-sans-latin-var.fa41c43a3d8e.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/mushroom-id/static/css/app.e5cfbfddd25e.css">
+  <link rel="manifest" href="/mushroom-id/manifest.webmanifest">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Fungi">
+  <meta name="description" content="A learning guide to wild fungi in North America, with what is in season near you first.">
+  <link rel="apple-touch-icon" href="/mushroom-id/static/icons/apple-touch-icon.a3e603007d23.png">
+  <link rel="icon" type="image/svg+xml" href="/mushroom-id/static/icons/icon.db18c71fc7d7.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/mushroom-id/static/icons/favicon-32.5b2959049578.png">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait) and (prefers-color-scheme: light)" href="/mushroom-id/static/icons/splash-750x1334-light.6949d8938942.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait) and (prefers-color-scheme: dark)" href="/mushroom-id/static/icons/splash-750x1334-dark.1e7c4920ed6f.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait) and (prefers-color-scheme: light)" href="/mushroom-id/static/icons/splash-828x1792-light.f374aba74e72.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait) and (prefers-color-scheme: dark)" href="/mushroom-id/static/icons/splash-828x1792-dark.44422fd6774d.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="/mushroom-id/static/icons/splash-1125x2436-light.5fc904b419bb.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="/mushroom-id/static/icons/splash-1125x2436-dark.28052548596d.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="/mushroom-id/static/icons/splash-1170x2532-light.51c2fbdbc130.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="/mushroom-id/static/icons/splash-1170x2532-dark.81572ef3cbb0.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 393px) and (device-height: 852px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="/mushroom-id/static/icons/splash-1179x2556-light.f10e4a30248d.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 393px) and (device-height: 852px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="/mushroom-id/static/icons/splash-1179x2556-dark.f38cd94eed3d.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="/mushroom-id/static/icons/splash-1284x2778-light.15288d79ca4d.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="/mushroom-id/static/icons/splash-1284x2778-dark.54390ab4fa21.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="/mushroom-id/static/icons/splash-1290x2796-light.5663596341c6.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="/mushroom-id/static/icons/splash-1290x2796-dark.7075e1d50e93.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait) and (prefers-color-scheme: light)" href="/mushroom-id/static/icons/splash-2048x2732-light.bc1fbe30da80.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait) and (prefers-color-scheme: dark)" href="/mushroom-id/static/icons/splash-2048x2732-dark.8e130850d590.png">
+
+</head>
+<body class="min-h-dvh bg-canvas text-ink antialiased dark:bg-canvas dark:text-ink">
+  <a class="skip" href="#content">Skip to content</a>
+  <header class="topbar" data-print-hide>
+    <button type="button" class="menu-btn" aria-controls="side-nav" aria-expanded="false" data-nav-open>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      <span class="sr-only">Menu</span>
+    </button>
+    <a class="brand" href="/mushroom-id/"><span class="brand-mark" aria-hidden="true"></span>Fungi guide</a>
+    
+    <div class="topbar-tools"><span class="nx-k" style="letter-spacing:.1em">Notes stay on this device</span></div>
+    
+    </div>
+  </header>
+  
+  <div class="nav-backdrop" data-nav-backdrop hidden></div>
+  <nav class="side-nav" id="side-nav" aria-label="Main" data-print-hide data-side-nav>
+    <div class="side-head">
+      <span class="brand"><span class="brand-mark" aria-hidden="true"></span>Fungi guide</span>
+      <button type="button" class="menu-btn" data-nav-close>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+        <span class="sr-only">Close menu</span>
+      </button>
+    </div>
+    <ul>
+      
+        <li>
+          <a class="side-link" href="/mushroom-id/">
+            <svg class="h-[1.15rem] w-[1.15rem] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 12a8 6 0 0 1 16 0zM10 12v7h4v-7"/></svg>
+
+            <span>Fungi</span>
+          </a>
+        </li>
+      
+        <li>
+          <a class="side-link is-active" href="/mushroom-id/explore/" aria-current="page">
+            <svg class="h-[1.15rem] w-[1.15rem] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 5h7v14H4zM13 5h7v14h-7z"/></svg>
+
+            <span>Explore</span>
+          </a>
+        </li>
+      
+        <li>
+          <a class="side-link" href="/mushroom-id/saved/">
+            <svg class="h-[1.15rem] w-[1.15rem] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 21s-7-4.4-7-10a4 4 0 0 1 7-2 4 4 0 0 1 7 2c0 5.6-7 10-7 10z"/></svg>
+
+            <span>Saved</span>
+          </a>
+        </li>
+      
+        <li>
+          <a class="side-link" href="/mushroom-id/settings/">
+            <svg class="h-[1.15rem] w-[1.15rem] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 7h10M18 7h2M4 17h4M12 17h8M16 5v4M10 15v4"/></svg>
+
+            <span>Settings</span>
+          </a>
+        </li>
+      
+    </ul>
+  </nav>
+  <main id="content" data-page class="page-col">
+    
+  <p class="net-banner" role="status" data-connection-status hidden></p>
+  
+
+  
+  <script id="pf-snapshot" type="application/json">""</script>
+  
+  <header class="nx-top nx-pad"><p class="nx-k">Chapter 5</p><h1>Where to look</h1><p class="nx-lede">The same species turn up in the same kinds of places. Start with the ground under your feet.</p></header>
+  <div class="nx-pad" style="margin-top:4rem">
+    
+      <section class="nx-habitat">
+        <div class="nx-habitat-head"><h2 class="nx-habitat-t"><span class="nx-k" style="vertical-align:top;margin-right:1rem">Part 1</span>Lawns and fields</h2><span class="nx-k">8 species</span></div>
+        <div class="nx-habitat-grid">
+          <a href="/mushroom-id/species/giant-puffball/"><span class="nx-fig-ph"><img src="/mushroom-id/static/fungi/giant-puffball.65841f4eec09.webp" width="1100" height="733" alt="" loading="lazy" decoding="async">
+</span><span style="font-weight:700;letter-spacing:-.02em">Giant puffball</span></a><a href="/mushroom-id/species/green-spored-parasol/"><span class="nx-fig-ph"><img src="/mushroom-id/static/fungi/green-spored-parasol.135bc7ebff82.webp" width="1100" height="752" alt="" loading="lazy" decoding="async">
+</span><span style="font-weight:700;letter-spacing:-.02em">Green-spored parasol</span><span class="nx-k nx-danger">Poisonous</span></a><a href="/mushroom-id/species/shaggy-mane/"><span class="nx-fig-ph"><img src="/mushroom-id/static/fungi/shaggy-mane.b164ec69e0b5.webp" width="1100" height="1097" alt="" loading="lazy" decoding="async">
+</span><span style="font-weight:700;letter-spacing:-.02em">Shaggy mane</span></a><a href="/mushroom-id/species/common-ink-cap/"><span class="nx-fig-ph"><img src="/mushroom-id/static/fungi/common-ink-cap.4c8bee83e191.webp" width="640" height="426" alt="" loading="lazy" decoding="async">
+</span><span style="font-weight:700;letter-spacing:-.02em">Common ink cap</span><span class="nx-k nx-danger">Poisonous</span></a><a href="/mushroom-id/species/destroying-angel/"><span class="nx-fig-ph"><img src="/mushroom-id/static/fungi/destroying-angel.2bfa37ac84b3.webp" width="825" height="1100" alt="" loading="lazy" decoding="async">
+</span><span style="font-weight:700;letter-spacing:-.02em">Destroying angel</span><span class="nx-k nx-danger">Deadly</span></a><a href="/mushroom-id/species/fairy-ring-mushroom/"><span class="nx-fig-ph"><img src="/mushroom-id/static/fungi/fairy-ring-mushroom.d5dd835b9469.webp" width="1100" height="733" alt="" loading="lazy" decoding="async">
+</span><span style="font-weight:700;letter-spacing:-.02em">Fairy ring mushroom</span></a><a href="/mushroom-id/species/gem-studded-puffball/"><span class="nx-fig-ph"><img src="/mushroom-id/static/fungi/gem-studded-puffball.766233ac4003.webp" width="848" height="1100" alt="" loading="lazy" decoding="async">
+</span><span style="font-weight:700;letter-spacing:-.02em">Gem-studded puffball</span></a><a href="/mushroom-id/species/meadow-mushroom/"><span class="nx-fig-ph"><img src="/mushroom-id/static/fungi/meadow-mushroom.5275ae326f72.webp" width="1100" height="825" alt="" loading="lazy" decoding="async">
+</span><span style="font-weight:700;letter-spacing:-.02em">Meadow mushroom</span></a>
+        </div>
+      </section>
+    
+      <section class="nx-habitat">
+        <div class="nx-habitat-head"><h2 class="nx-habitat-t"><span class="nx-k" style="vertical-align:top;margin-right:1rem">Part 2</span>On wood</h2><span class="nx-k">19 species</span></div>
+        <div class="nx-habitat-grid">
+          <a href="/mushroom-id/species/artists-conk/"><span class="nx-fig-ph"><img src="/mushroom-id/static/fungi/artists-conk.2bc0c4566e9f.webp" width="1100" height="825" alt="" loading="lazy" decoding="async">
+</span><span style="font-weight:700;letter-spacing:-.02em">Artist&#x27;s conk</span></a><a href="/mushroom-id/species/birch-polypore/"><span class="nx-fig-ph"><img src="/mushroom-id/static/fungi/birch-polypore.da5adff7cfe4.webp" width="1100" height="733" alt="" loading="lazy" decoding="async">
+</span><span style="font-weight:700;letter-spacing:-.02em">Birch polypore</span></a><a href="/mushroom-id/species/chicken-of-the-woods/"><span class="nx-fig-ph"><img src="/mushroom-id/static/fungi/chicken-of-the-woods.eed87dd8cfb7.webp" width="734" height="1100" alt="" loading="lazy" decoding="async">
+</span><span style="font-weight:700;letter-spacing:-.02em">Chicken of the woods</span></a><a href="/mushroom-id/species/dryads-saddle/"><span class="nx-fig-ph"><img src="/mushroom-id/static/fungi/dryads-saddle.28be835c60ef.webp" width="1100" height="825" alt="" loading="lazy" decoding="async">
+</span><span style="font-weight:700;letter-spacing:-.02em">Dryad&#x27;s saddle (pheasant back)</span></a><a href="/mushroom-id/species/hemlock-varnish-shelf/"><span class="nx-fig-ph"><img src="/mushroom-id/static/fungi/hemlock-varnish-shelf.49d776293459.webp" width="1100" height="825" alt="" loading="lazy" decoding="async">
+</span><span style="font-weight:700;letter-spacing:-.02em">Hemlock varnish shelf</span></a><a href="/mushroom-id/species/hen-of-the-woods/"><span class="nx-fig-ph"><img src="/mushroom-id/static/fungi/hen-of-the-woods.b873119c8d3c.webp" width="1100" height="782" alt="" loading="lazy" decoding="async">
+</span><span style="font-weight:700;letter-spacing:-.02em">Hen of the woods (maitake)</span></a><a href="/mushroom-id/species/honey-mushroom/"><span class="nx-fig-ph"><img src="/mushroom-id/static/fungi/honey-mushroom.9baf03b43d21.webp" width="1100" height="733" alt="" loading="lazy" decoding="async">
+</span><span style="font-weight:700;letter-spacing:-.02em">Honey mushroom</span></a><a href="/mushroom-id/species/jack-o-lantern/"><span class="nx-fig-ph"><img src="/mushroom-id/static/fungi/jack-o-lantern.f7dbb7b9f0fd.webp" width="1100" height="1100" alt="" loading="lazy" decoding="async">
+</span><span style="font-weight:700;letter-spacing:-.02em">Jack-o&#x27;-lantern</span><span class="nx-k nx-danger">Poisonous</span></a><a href="/mushroom-id/species/lions-mane/"><span class="nx-fig-ph"><img src="/mushroom-id/static/fungi/lions-mane.773a33709fea.webp" width="825" height="1100" alt="" loading="lazy" decoding="async">
+</span><span style="font-weight:700;letter-spacing:-.02em">Lion&#x27;s mane</span></a><a href="/mushroom-id/species/oyster-mushroom/"><span class="nx-fig-ph"><img src="/mushroom-id/static/fungi/oyster-mushroom.31a97adfe9f3.webp" width="1100" height="825" alt="" loading="lazy" decoding="async">
+</span><span style="font-weight:700;letter-spacing:-.02em">Oyster mushroom</span></a><a href="/mushroom-id/species/sulfur-tuft/"><span class="nx-fig-ph"><img src="/mushroom-id/static/fungi/sulfur-tuft.d6ea6573b1fc.webp" width="1100" height="825" alt="" loading="lazy" decoding="async">
+</span><span style="font-weight:700;letter-spacing:-.02em">Sulfur tuft</span><span class="nx-k nx-danger">Poisonous</span></a><a href="/mushroom-id/species/turkey-tail/"><span class="nx-fig-ph"><img src="/mushroom-id/static/fungi/turkey-tail.a163c00ac695.webp" width="1100" height="825" alt="" loading="lazy" decoding="async">
+</span><span style="font-weight:700;letter-spacing:-.02em">Turkey tail</span></a><a href="/mushroom-id/species/bitter-bolete/"><span class="nx-fig-ph"><img src="/mushroom-id/static/fungi/bitter-bolete.1a88161795ce.webp" width="1000" height="770" alt="" loading="lazy" decoding="async">
+</span><span style="font-weight:700;letter-spacing:-.02em">Bitter bolete</span></a><a href="/mushroom-id/species/chaga/"><span class="nx-fig-ph"><img src="/mushroom-id/static/fungi/chaga.9674d24a17d1.webp" width="800" height="600" alt="" loading="lazy" decoding="async">
+</span><span style="font-weight:700;letter-spacing:-.02em">Chaga</span></a><a href="/mushroom-id/species/common-ink-cap/"><span class="nx-fig-ph"><img src="/mushroom-id/static/fungi/common-ink-cap.4c8bee83e191.webp" width="640" height="426" alt="" loading="lazy" decoding="async">
+</span><span style="font-weight:700;letter-spacing:-.02em">Common ink cap</span><span class="nx-k nx-danger">Poisonous</span></a><a href="/mushroom-id/species/velvet-foot/"><span class="nx-fig-ph"><img src="/mushroom-id/static/fungi/velvet-foot.0d0001ed00a4.webp" width="600" height="460" alt="" loading="lazy" decoding="async">
+</span><span style="font-weight:700;letter-spacing:-.02em">Velvet foot</span></a><a href="/mushroom-id/species/witchs-butter/"><span class="nx-fig-ph"><img src="/mushroom-id/static/fungi/witchs-butter.48d6f6117e53.webp" width="1100" height="781" alt="" loading="lazy" decoding="async">
+</span><span style="font-weight:700;letter-spacing:-.02em">Witch&#x27;s butter</span></a><a href="/mushroom-id/species/wood-ear/"><span class="nx-fig-ph"><img src="/mushroom-id/static/fungi/wood-ear.7850d2dc65dd.webp" width="1100" height="825" alt="" loading="lazy" decoding="async">
+</span><span style="font-weight:700;letter-spacing:-.02em">Wood ear</span></a><a href="/mushroom-id/species/deadly-galerina/"><span class="nx-fig-ph"><img src="/mushroom-id/static/fungi/deadly-galerina.24f1bfb2c6d6.webp" width="1100" height="950" alt="" loading="lazy" decoding="async">
+</span><span style="font-weight:700;letter-spacing:-.02em">Deadly galerina</span><span class="nx-k nx-danger">Deadly</span></a>
+        </div>
+      </section>
+    
+      <section class="nx-habitat">
+        <div class="nx-habitat-head"><h2 class="nx-habitat-t"><span class="nx-k" style="vertical-align:top;margin-right:1rem">Part 3</span>On soil under trees</h2><span class="nx-k">17 species</span></div>
+        <div class="nx-habitat-grid">
+          <a href="/mushroom-id/species/fly-agaric/"><span class="nx-fig-ph"><img src="/mushroom-id/static/fungi/fly-agaric.48dc4742e2fd.webp" width="1100" height="825" alt="" loading="lazy" decoding="async">
+</span><span style="font-weight:700;letter-spacing:-.02em">Fly agaric</span><span class="nx-k nx-danger">Poisonous</span></a><a href="/mushroom-id/species/hen-of-the-woods/"><span class="nx-fig-ph"><img src="/mushroom-id/static/fungi/hen-of-the-woods.b873119c8d3c.webp" width="1100" height="782" alt="" loading="lazy" decoding="async">
+</span><span style="font-weight:700;letter-spacing:-.02em">Hen of the woods (maitake)</span></a><a href="/mushroom-id/species/honey-mushroom/"><span class="nx-fig-ph"><img src="/mushroom-id/static/fungi/honey-mushroom.9baf03b43d21.webp" width="1100" height="733" alt="" loading="lazy" decoding="async">
+</span><span style="font-weight:700;letter-spacing:-.02em">Honey mushroom</span></a><a href="/mushroom-id/species/jack-o-lantern/"><span class="nx-fig-ph"><img src="/mushroom-id/static/fungi/jack-o-lantern.f7dbb7b9f0fd.webp" width="1100" height="1100" alt="" loading="lazy" decoding="async">
+</span><span style="font-weight:700;letter-spacing:-.02em">Jack-o&#x27;-lantern</span><span class="nx-k nx-danger">Poisonous</span></a><a href="/mushroom-id/species/lobster-mushroom/"><span class="nx-fig-ph"><img src="/mushroom-id/static/fungi/lobster-mushroom.2cdbec7c9ff5.webp" width="1100" height="731" alt="" loading="lazy" decoding="async">
+</span><span style="font-weight:700;letter-spacing:-.02em">Lobster mushroom</span></a><a href="/mushroom-id/species/bitter-bolete/"><span class="nx-fig-ph"><img src="/mushroom-id/static/fungi/bitter-bolete.1a88161795ce.webp" width="1000" height="770" alt="" loading="lazy" decoding="async">
+</span><span style="font-weight:700;letter-spacing:-.02em">Bitter bolete</span></a><a href="/mushroom-id/species/bleeding-tooth/"><span class="nx-fig-ph"><img src="/mushroom-id/static/fungi/bleeding-tooth.18d6bd2ebade.webp" width="1100" height="825" alt="" loading="lazy" decoding="async">
+</span><span style="font-weight:700;letter-spacing:-.02em">Bleeding tooth</span></a><a href="/mushroom-id/species/chanterelle/"><span class="nx-fig-ph"><img src="/mushroom-id/static/fungi/chanterelle.7fc5fcd8ac1a.webp" width="1100" height="825" alt="" loading="lazy" decoding="async">
+</span><span style="font-weight:700;letter-spacing:-.02em">Chanterelle</span></a><a href="/mushroom-id/species/death-cap/"><span class="nx-fig-ph"><img src="/mushroom-id/static/fungi/death-cap.d33d4df2512a.webp" width="825" height="1100" alt="" loading="lazy" decoding="async">
+</span><span style="font-weight:700;letter-spacing:-.02em">Death cap</span><span class="nx-k nx-danger">Deadly</span></a><a href="/mushroom-id/species/destroying-angel/"><span class="nx-fig-ph"><img src="/mushroom-id/static/fungi/destroying-angel.2bfa37ac84b3.webp" width="825" height="1100" alt="" loading="lazy" decoding="async">
+</span><span style="font-weight:700;letter-spacing:-.02em">Destroying angel</span><span class="nx-k nx-danger">Deadly</span></a><a href="/mushroom-id/species/false-morel/"><span class="nx-fig-ph"><img src="/mushroom-id/static/fungi/false-morel.3e2fa226aa67.webp" width="823" height="1100" alt="" loading="lazy" decoding="async">
+</span><span style="font-weight:700;letter-spacing:-.02em">False morel</span><span class="nx-k nx-danger">Poisonous</span></a><a href="/mushroom-id/species/gem-studded-puffball/"><span class="nx-fig-ph"><img src="/mushroom-id/static/fungi/gem-studded-puffball.766233ac4003.webp" width="848" height="1100" alt="" loading="lazy" decoding="async">
+</span><span style="font-weight:700;letter-spacing:-.02em">Gem-studded puffball</span></a><a href="/mushroom-id/species/king-bolete/"><span class="nx-fig-ph"><img src="/mushroom-id/static/fungi/king-bolete.220d31e6917e.webp" width="825" height="1100" alt="" loading="lazy" decoding="async">
+</span><span style="font-weight:700;letter-spacing:-.02em">King bolete</span></a><a href="/mushroom-id/species/old-man-of-the-woods/"><span class="nx-fig-ph"><img src="/mushroom-id/static/fungi/old-man-of-the-woods.e279687a1d87.webp" width="921" height="1100" alt="" loading="lazy" decoding="async">
+</span><span style="font-weight:700;letter-spacing:-.02em">Old man of the woods</span></a><a href="/mushroom-id/species/pigskin-poison-puffball/"><span class="nx-fig-ph"><img src="/mushroom-id/static/fungi/pigskin-poison-puffball.66283362fa71.webp" width="800" height="600" alt="" loading="lazy" decoding="async">
+</span><span style="font-weight:700;letter-spacing:-.02em">Pigskin poison puffball (earthball)</span><span class="nx-k nx-danger">Poisonous</span></a><a href="/mushroom-id/species/black-trumpet/"><span class="nx-fig-ph"><img src="/mushroom-id/static/fungi/black-trumpet.b53d04e55c68.webp" width="1100" height="825" alt="" loading="lazy" decoding="async">
+</span><span style="font-weight:700;letter-spacing:-.02em">Black trumpet</span></a><a href="/mushroom-id/species/morel/"><span class="nx-fig-ph"><img src="/mushroom-id/static/fungi/morel.7d6f9d76a728.webp" width="823" height="1100" alt="" loading="lazy" decoding="async">
+</span><span style="font-weight:700;letter-spacing:-.02em">Morel</span></a>
+        </div>
+      </section>
+    
+      <section class="nx-habitat">
+        <div class="nx-habitat-head"><h2 class="nx-habitat-t"><span class="nx-k" style="vertical-align:top;margin-right:1rem">Part 4</span>Wood chips and mulch</h2><span class="nx-k">2 species</span></div>
+        <div class="nx-habitat-grid">
+          <a href="/mushroom-id/species/dog-stinkhorn/"><span class="nx-fig-ph"><img src="/mushroom-id/static/fungi/dog-stinkhorn.dcce589cd25d.webp" width="960" height="720" alt="" loading="lazy" decoding="async">
+</span><span style="font-weight:700;letter-spacing:-.02em">Stinkhorns</span></a><a href="/mushroom-id/species/wine-cap/"><span class="nx-fig-ph"><img src="/mushroom-id/static/fungi/wine-cap.4216757d0b13.webp" width="1100" height="733" alt="" loading="lazy" decoding="async">
+</span><span style="font-weight:700;letter-spacing:-.02em">Wine cap</span></a>
+        </div>
+      </section>
+    
+  </div>
+  <aside class="nx-safe" role="note">For learning, not for eating. Never eat a wild mushroom based on this guide, a photo, or an app. Some deadly species look like common edible ones. Have a local expert check the actual mushroom in person first.<small>If someone may have eaten a wild mushroom, call Poison Control right away: 1-800-222-1222 in the US.</small></aside>
+
+
+
+  </main>
+  
+  <dialog class="lightbox" aria-label="Photo viewer" data-lightbox>
+    <div class="lightbox-frame">
+      <div class="lightbox-bar">
+        <p class="lightbox-count num" data-lightbox-count aria-live="polite"></p>
+        <button type="button" class="lightbox-btn" data-lightbox-close aria-label="Close photo viewer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+      </div>
+      <div class="lightbox-stage" data-lightbox-stage>
+        <img alt="" data-lightbox-img>
+        <button type="button" class="lightbox-btn lightbox-prev" data-lightbox-prev aria-label="Previous photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+        <button type="button" class="lightbox-btn lightbox-next" data-lightbox-next aria-label="Next photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+      </div>
+      <p class="lightbox-caption photo-credit" data-lightbox-caption></p>
+    </div>
+  </dialog>
+
+  <footer class="site-footer" data-print-hide>
+    <div class="page-col-inner">
+      <button type="button" class="footer-link" data-download-copy>Download a copy</button>
+      <span class="text-muted">Stars and notes are saved on this device. Accounts to sync them come later.</span>
+    </div>
+  </footer>
+  
+  <script src="/mushroom-id/static/js/app.5fb1647e93ca.js"></script>
+
+</body>
+</html>

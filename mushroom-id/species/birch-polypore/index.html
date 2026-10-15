@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en" data-base="/mushroom-id/" data-account-theme="system" data-plant-view="grid">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0e0e0d">
+  <script>
+    (function () {
+      var key = "pf-theme";
+      var root = document.documentElement;
+      var account = root.getAttribute("data-account-theme") || "";
+      var stored = "";
+      try { stored = localStorage.getItem(key) || ""; } catch (err) { stored = ""; }
+      var theme = stored === "light" || stored === "dark" || stored === "system" ? stored : (account === "light" || account === "dark" || account === "system" ? account : "system");
+      if (stored !== theme) {
+        try { localStorage.setItem(key, theme); } catch (err) {}
+      }
+      // Noir is always dark. The stored light/dark choice is kept but not applied.
+      var dark = true;
+      root.classList.toggle("dark", dark);
+      root.style.colorScheme = dark ? "dark" : "light";
+      root.setAttribute("data-theme", theme);
+      var meta = document.querySelector('meta[name="theme-color"]');
+      if (meta) meta.setAttribute("content", dark ? "#0e0e0d" : "#0e0e0d");
+      // Grid or List: a ?view= link wins, then this device, then the account.
+      var view = root.getAttribute("data-plant-view") === "list" ? "list" : "grid";
+      var saved = "";
+      try { saved = localStorage.getItem("pf-plant-view") || ""; } catch (err) { saved = ""; }
+      if (root.hasAttribute("data-plant-view-asked")) {
+        try { localStorage.setItem("pf-plant-view", view); } catch (err) {}
+      } else if (saved === "grid" || saved === "list") {
+        view = saved;
+      }
+      root.setAttribute("data-plant-view", view);
+    })();
+  </script>
+  <title>Birch polypore · Fungi guide</title>
+  
+  <meta name="csrf-token" content="kMv6mTkfOnIeeLWAXGEbSsB7yikvja5ktJEOD0IzH8cAdGukdJ8Fid2CDfhDBSO1">
+  
+  <link rel="preload" href="/mushroom-id/static/fonts/instrument-sans-latin-var.fa41c43a3d8e.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/mushroom-id/static/css/app.e5cfbfddd25e.css">
+  <link rel="manifest" href="/mushroom-id/manifest.webmanifest">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Fungi">
+  <meta name="description" content="A learning guide to wild fungi in North America, with what is in season near you first.">
+  <link rel="apple-touch-icon" href="/mushroom-id/static/icons/apple-touch-icon.a3e603007d23.png">
+  <link rel="icon" type="image/svg+xml" href="/mushroom-id/static/icons/icon.db18c71fc7d7.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/mushroom-id/static/icons/favicon-32.5b2959049578.png">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait) and (prefers-color-scheme: light)" href="/mushroom-id/static/icons/splash-750x1334-light.6949d8938942.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait) and (prefers-color-scheme: dark)" href="/mushroom-id/static/icons/splash-750x1334-dark.1e7c4920ed6f.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait) and (prefers-color-scheme: light)" href="/mushroom-id/static/icons/splash-828x1792-light.f374aba74e72.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait) and (prefers-color-scheme: dark)" href="/mushroom-id/static/icons/splash-828x1792-dark.44422fd6774d.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="/mushroom-id/static/icons/splash-1125x2436-light.5fc904b419bb.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="/mushroom-id/static/icons/splash-1125x2436-dark.28052548596d.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="/mushroom-id/static/icons/splash-1170x2532-light.51c2fbdbc130.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="/mushroom-id/static/icons/splash-1170x2532-dark.81572ef3cbb0.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 393px) and (device-height: 852px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="/mushroom-id/static/icons/splash-1179x2556-light.f10e4a30248d.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 393px) and (device-height: 852px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="/mushroom-id/static/icons/splash-1179x2556-dark.f38cd94eed3d.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="/mushroom-id/static/icons/splash-1284x2778-light.15288d79ca4d.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="/mushroom-id/static/icons/splash-1284x2778-dark.54390ab4fa21.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="/mushroom-id/static/icons/splash-1290x2796-light.5663596341c6.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="/mushroom-id/static/icons/splash-1290x2796-dark.7075e1d50e93.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait) and (prefers-color-scheme: light)" href="/mushroom-id/static/icons/splash-2048x2732-light.bc1fbe30da80.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait) and (prefers-color-scheme: dark)" href="/mushroom-id/static/icons/splash-2048x2732-dark.8e130850d590.png">
+
+</head>
+<body class="min-h-dvh bg-canvas text-ink antialiased dark:bg-canvas dark:text-ink">
+  <a class="skip" href="#content">Skip to content</a>
+  <header class="topbar" data-print-hide>
+    <button type="button" class="menu-btn" aria-controls="side-nav" aria-expanded="false" data-nav-open>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      <span class="sr-only">Menu</span>
+    </button>
+    <a class="brand" href="/mushroom-id/"><span class="brand-mark" aria-hidden="true"></span>Fungi guide</a>
+    
+    <div class="topbar-tools"><span class="nx-k" style="letter-spacing:.1em">Notes stay on this device</span></div>
+    
+    </div>
+  </header>
+  
+  <div class="nav-backdrop" data-nav-backdrop hidden></div>
+  <nav class="side-nav" id="side-nav" aria-label="Main" data-print-hide data-side-nav>
+    <div class="side-head">
+      <span class="brand"><span class="brand-mark" aria-hidden="true"></span>Fungi guide</span>
+      <button type="button" class="menu-btn" data-nav-close>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+        <span class="sr-only">Close menu</span>
+      </button>
+    </div>
+    <ul>
+      
+        <li>
+          <a class="side-link is-active" href="/mushroom-id/" aria-current="page">
+            <svg class="h-[1.15rem] w-[1.15rem] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 12a8 6 0 0 1 16 0zM10 12v7h4v-7"/></svg>
+
+            <span>Fungi</span>
+          </a>
+        </li>
+      
+        <li>
+          <a class="side-link" href="/mushroom-id/explore/">
+            <svg class="h-[1.15rem] w-[1.15rem] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 5h7v14H4zM13 5h7v14h-7z"/></svg>
+
+            <span>Explore</span>
+          </a>
+        </li>
+      
+        <li>
+          <a class="side-link" href="/mushroom-id/saved/">
+            <svg class="h-[1.15rem] w-[1.15rem] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 21s-7-4.4-7-10a4 4 0 0 1 7-2 4 4 0 0 1 7 2c0 5.6-7 10-7 10z"/></svg>
+
+            <span>Saved</span>
+          </a>
+        </li>
+      
+        <li>
+          <a class="side-link" href="/mushroom-id/settings/">
+            <svg class="h-[1.15rem] w-[1.15rem] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 7h10M18 7h2M4 17h4M12 17h8M16 5v4M10 15v4"/></svg>
+
+            <span>Settings</span>
+          </a>
+        </li>
+      
+    </ul>
+  </nav>
+  <main id="content" data-page class="page-col">
+    
+  <p class="net-banner" role="status" data-connection-status hidden></p>
+  
+
+  
+  <script id="pf-snapshot" type="application/json">""</script>
+  
+  <section class="nx-hero">
+    <div class="nx-hero-ph"><img src="/mushroom-id/static/fungi/birch-polypore.da5adff7cfe4.webp" width="1100" height="733" alt="Birch polypore" decoding="async">
+</div>
+    <p class="nx-credit">Photo: Captainpixel, <a href="https://commons.wikimedia.org/wiki/File:Piptoporus_betulinus_55.jpg" rel="noopener">Wikimedia Commons</a>, Public domain
+</p>
+    <div class="nx-hero-tx">
+      <p class="nx-k"><a href="/mushroom-id/">All fungi</a> · Shelf or polypore</p>
+      <h1>Birch polypore</h1>
+      <p class="nx-sci">Fomitopsis betulina</p>
+      <div class="plant-actions mt-5"><button type="button" class="star-btn star-btn-lg" data-star="birch-polypore" data-star-body="" data-client-id="" aria-pressed="false" aria-label="Star Birch polypore" title="Star">
+  <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></svg>
+  <span class="star-text" data-star-text>Star</span>
+</button>
+</div>
+    </div>
+  </section>
+
+  <div class="nx-pad">
+    
+    <div class="nx-body">
+      <section class="nx-sec"><h2>Where it grows</h2><p>Only on dead or dying birch.</p></section>
+      <section class="nx-sec"><h2>Season</h2><p>All year</p><p>{&#x27;favorite&#x27;: False, &#x27;body&#x27;: &#x27;&#x27;, &#x27;client_id&#x27;: &#x27;&#x27;}</p><p class="nx-k" style="text-transform:none;letter-spacing:0">Usual window. Local timing shifts with latitude, elevation, and rain.</p></section>
+      <section class="nx-sec"><h2>Common in</h2><p>Northeast, Midwest and Great Lakes, Rocky Mountains and interior West, Pacific Northwest</p></section>
+      <section class="nx-sec nx-wide"><h2>How to know it</h2><ul><li>Smooth, rounded, pale tan to white bracket with a rolled edge</li><li>White pores underneath</li><li>Soft, corky flesh</li></ul></section>
+      <section class="nx-sec nx-wide nx-alarm"><h2>Dangerous look-alikes</h2><p>Few look-alikes on birch. Tinder polypore (Fomes) on birch is hoof-shaped and hard.</p></section>
+      <section class="nx-sec nx-wide"><h2>Sources</h2><ul><li><a href="https://en.wikipedia.org/wiki/Fomitopsis_betulina" rel="noopener">Wikipedia: Fomitopsis betulina</a> (CC BY-SA 4.0)</li></ul></section>
+    </div>
+
+    <section class="nx-sec nx-note">
+      <h2>Your note</h2>
+      <form class="mt-3 grid gap-3" method="post" action="/mushroom-id/notes/" data-note-form data-offline-queue="Note">
+        <input type="hidden" name="csrfmiddlewaretoken" value="kMv6mTkfOnIeeLWAXGEbSsB7yikvja5ktJEOD0IzH8cAdGukdJ8Fid2CDfhDBSO1">
+        <input type="hidden" name="plant" value="birch-polypore">
+        <input type="hidden" name="client_id" value="">
+        <input type="hidden" name="op_id" value="">
+        <label class="flex items-center gap-2 text-sm font-medium"><input type="checkbox" name="favorite"  data-star-check> Starred</label>
+        <label class="grid gap-1 text-sm font-medium">Where you saw it, and when
+          <textarea class="field" name="body" rows="3" maxlength="4000"></textarea>
+        </label>
+        <div>
+  <button type="submit" class="btn ">Save note</button>
+
+</div>
+        <p class="text-sm text-muted" data-note-status></p>
+      </form>
+    </section>
+  </div>
+  <aside class="nx-safe" role="note">For learning, not for eating. Never eat a wild mushroom based on this guide, a photo, or an app. Some deadly species look like common edible ones. Have a local expert check the actual mushroom in person first.<small>If someone may have eaten a wild mushroom, call Poison Control right away: 1-800-222-1222 in the US.</small></aside>
+
+
+
+  </main>
+  
+  <dialog class="lightbox" aria-label="Photo viewer" data-lightbox>
+    <div class="lightbox-frame">
+      <div class="lightbox-bar">
+        <p class="lightbox-count num" data-lightbox-count aria-live="polite"></p>
+        <button type="button" class="lightbox-btn" data-lightbox-close aria-label="Close photo viewer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+      </div>
+      <div class="lightbox-stage" data-lightbox-stage>
+        <img alt="" data-lightbox-img>
+        <button type="button" class="lightbox-btn lightbox-prev" data-lightbox-prev aria-label="Previous photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+        <button type="button" class="lightbox-btn lightbox-next" data-lightbox-next aria-label="Next photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+      </div>
+      <p class="lightbox-caption photo-credit" data-lightbox-caption></p>
+    </div>
+  </dialog>
+
+  <footer class="site-footer" data-print-hide>
+    <div class="page-col-inner">
+      <button type="button" class="footer-link" data-download-copy>Download a copy</button>
+      <span class="text-muted">Stars and notes are saved on this device. Accounts to sync them come later.</span>
+    </div>
+  </footer>
+  
+  <script src="/mushroom-id/static/js/app.5fb1647e93ca.js"></script>
+
+</body>
+</html>

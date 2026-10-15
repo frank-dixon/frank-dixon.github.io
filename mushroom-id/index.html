@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="en" data-base="/mushroom-id/" data-account-theme="system" data-plant-view="grid">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0e0e0d">
+  <script>
+    (function () {
+      var key = "pf-theme";
+      var root = document.documentElement;
+      var account = root.getAttribute("data-account-theme") || "";
+      var stored = "";
+      try { stored = localStorage.getItem(key) || ""; } catch (err) { stored = ""; }
+      var theme = stored === "light" || stored === "dark" || stored === "system" ? stored : (account === "light" || account === "dark" || account === "system" ? account : "system");
+      if (stored !== theme) {
+        try { localStorage.setItem(key, theme); } catch (err) {}
+      }
+      // Noir is always dark. The stored light/dark choice is kept but not applied.
+      var dark = true;
+      root.classList.toggle("dark", dark);
+      root.style.colorScheme = dark ? "dark" : "light";
+      root.setAttribute("data-theme", theme);
+      var meta = document.querySelector('meta[name="theme-color"]');
+      if (meta) meta.setAttribute("content", dark ? "#0e0e0d" : "#0e0e0d");
+      // Grid or List: a ?view= link wins, then this device, then the account.
+      var view = root.getAttribute("data-plant-view") === "list" ? "list" : "grid";
+      var saved = "";
+      try { saved = localStorage.getItem("pf-plant-view") || ""; } catch (err) { saved = ""; }
+      if (root.hasAttribute("data-plant-view-asked")) {
+        try { localStorage.setItem("pf-plant-view", view); } catch (err) {}
+      } else if (saved === "grid" || saved === "list") {
+        view = saved;
+      }
+      root.setAttribute("data-plant-view", view);
+    })();
+  </script>
+  <title>Fungi · Fungi guide</title>
+  
+  <meta name="csrf-token" content="PwZx71nNaMhYmyaxCynEp0XUdCvag7FzYt8fo8L73xLkltIhSBR8PLopizsiyPog">
+  
+  <link rel="preload" href="/mushroom-id/static/fonts/instrument-sans-latin-var.fa41c43a3d8e.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/mushroom-id/static/css/app.e5cfbfddd25e.css">
+  <link rel="manifest" href="/mushroom-id/manifest.webmanifest">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Fungi">
+  <meta name="description" content="A learning guide to wild fungi in North America, with what is in season near you first.">
+  <link rel="apple-touch-icon" href="/mushroom-id/static/icons/apple-touch-icon.a3e603007d23.png">
+  <link rel="icon" type="image/svg+xml" href="/mushroom-id/static/icons/icon.db18c71fc7d7.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/mushroom-id/static/icons/favicon-32.5b2959049578.png">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait) and (prefers-color-scheme: light)" href="/mushroom-id/static/icons/splash-750x1334-light.6949d8938942.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait) and (prefers-color-scheme: dark)" href="/mushroom-id/static/icons/splash-750x1334-dark.1e7c4920ed6f.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait) and (prefers-color-scheme: light)" href="/mushroom-id/static/icons/splash-828x1792-light.f374aba74e72.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait) and (prefers-color-scheme: dark)" href="/mushroom-id/static/icons/splash-828x1792-dark.44422fd6774d.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="/mushroom-id/static/icons/splash-1125x2436-light.5fc904b419bb.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="/mushroom-id/static/icons/splash-1125x2436-dark.28052548596d.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="/mushroom-id/static/icons/splash-1170x2532-light.51c2fbdbc130.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="/mushroom-id/static/icons/splash-1170x2532-dark.81572ef3cbb0.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 393px) and (device-height: 852px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="/mushroom-id/static/icons/splash-1179x2556-light.f10e4a30248d.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 393px) and (device-height: 852px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="/mushroom-id/static/icons/splash-1179x2556-dark.f38cd94eed3d.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="/mushroom-id/static/icons/splash-1284x2778-light.15288d79ca4d.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="/mushroom-id/static/icons/splash-1284x2778-dark.54390ab4fa21.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="/mushroom-id/static/icons/splash-1290x2796-light.5663596341c6.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="/mushroom-id/static/icons/splash-1290x2796-dark.7075e1d50e93.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait) and (prefers-color-scheme: light)" href="/mushroom-id/static/icons/splash-2048x2732-light.bc1fbe30da80.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait) and (prefers-color-scheme: dark)" href="/mushroom-id/static/icons/splash-2048x2732-dark.8e130850d590.png">
+
+</head>
+<body class="min-h-dvh bg-canvas text-ink antialiased dark:bg-canvas dark:text-ink">
+  <a class="skip" href="#content">Skip to content</a>
+  <header class="topbar" data-print-hide>
+    <button type="button" class="menu-btn" aria-controls="side-nav" aria-expanded="false" data-nav-open>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      <span class="sr-only">Menu</span>
+    </button>
+    <a class="brand" href="/mushroom-id/"><span class="brand-mark" aria-hidden="true"></span>Fungi guide</a>
+    
+    <div class="topbar-tools"><span class="nx-k" style="letter-spacing:.1em">Notes stay on this device</span></div>
+    
+    </div>
+  </header>
+  
+  <div class="nav-backdrop" data-nav-backdrop hidden></div>
+  <nav class="side-nav" id="side-nav" aria-label="Main" data-print-hide data-side-nav>
+    <div class="side-head">
+      <span class="brand"><span class="brand-mark" aria-hidden="true"></span>Fungi guide</span>
+      <button type="button" class="menu-btn" data-nav-close>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+        <span class="sr-only">Close menu</span>
+      </button>
+    </div>
+    <ul>
+      
+        <li>
+          <a class="side-link is-active" href="/mushroom-id/" aria-current="page">
+            <svg class="h-[1.15rem] w-[1.15rem] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 12a8 6 0 0 1 16 0zM10 12v7h4v-7"/></svg>
+
+            <span>Fungi</span>
+          </a>
+        </li>
+      
+        <li>
+          <a class="side-link" href="/mushroom-id/explore/">
+            <svg class="h-[1.15rem] w-[1.15rem] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 5h7v14H4zM13 5h7v14h-7z"/></svg>
+
+            <span>Explore</span>
+          </a>
+        </li>
+      
+        <li>
+          <a class="side-link" href="/mushroom-id/saved/">
+            <svg class="h-[1.15rem] w-[1.15rem] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 21s-7-4.4-7-10a4 4 0 0 1 7-2 4 4 0 0 1 7 2c0 5.6-7 10-7 10z"/></svg>
+
+            <span>Saved</span>
+          </a>
+        </li>
+      
+        <li>
+          <a class="side-link" href="/mushroom-id/settings/">
+            <svg class="h-[1.15rem] w-[1.15rem] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 7h10M18 7h2M4 17h4M12 17h8M16 5v4M10 15v4"/></svg>
+
+            <span>Settings</span>
+          </a>
+        </li>
+      
+    </ul>
+  </nav>
+  <main id="content" data-page class="page-col">
+    
+  <p class="net-banner" role="status" data-connection-status hidden></p>
+  
+
+  
+  <script id="pf-snapshot" type="application/json">""</script>
+  
+  <section class="nx-hero">
+    <div class="nx-hero-ph"><img src="/mushroom-id/static/fungi/fly-agaric.48dc4742e2fd.webp" width="1100" height="825" alt="" decoding="async">
+</div><p class="nx-credit">Fly agaric. Photo: Kieran Roy Powell, <a href="https://commons.wikimedia.org/wiki/File:Amanita_muscaria_Aberystwyth_2023.jpg" rel="noopener">Wikimedia Commons</a>, <a href="https://creativecommons.org/licenses/by/4.0" rel="noopener license">CC BY 4.0</a>
+</p>
+    <div class="nx-hero-tx" data-locate aria-live="polite">
+      <p class="nx-k">Wild fungi of North America</p>
+      <h1>What's fruiting now</h1>
+      <div class="nx-locate">
+        <p class="nx-locate-status" data-locate-status>Location is off. The list is ranked by this month only.</p>
+        <button type="button" class="nx-ghost" data-locate-button>Use my location</button>
+        <label class="grid gap-1 text-sm font-medium">Or pick your region
+          <select class="field" data-region-select>
+            <option value="">No region (season only)</option>
+            <option value="northeast">Northeast</option><option value="southeast">Southeast</option><option value="midwest">Midwest and Great Lakes</option><option value="south-central">South Central</option><option value="rockies">Rocky Mountains and interior West</option><option value="pacific-northwest">Pacific Northwest</option><option value="california">California and the Southwest coast</option>
+          </select>
+        </label>
+      </div>
+      <p class="nx-k" style="margin-top:1rem;letter-spacing:.08em;text-transform:none">Your location is turned into a broad region on this device. It is never sent to the server.</p>
+    </div>
+  </section>
+
+  <form class="nx-tools nx-pad" data-fungi-filters onsubmit="return false">
+    <label class="grid gap-1 text-sm font-medium">Search
+      <input class="field" type="search" name="q" data-fungi-search placeholder="Puffball, Amanita, oak" autocomplete="off" spellcheck="false">
+    </label>
+    <label class="grid gap-1 text-sm font-medium">Where it grows
+      <select class="field" data-fungi-habitat><option value="">Anywhere</option><option value="lawn">Lawns and fields</option><option value="wood">On wood</option><option value="trees">On soil under trees</option><option value="mulch">Wood chips and mulch</option></select>
+    </label>
+    <label class="grid gap-1 text-sm font-medium">Type
+      <select class="field" data-fungi-group><option value="">Any type</option><option value="gilled">Gilled mushroom</option><option value="bolete">Bolete (sponge underneath)</option><option value="polypore">Shelf or polypore</option><option value="puffball">Puffball</option><option value="jelly">Jelly fungus</option><option value="morel">Morel or cup</option><option value="tooth">Teeth or spines</option><option value="other">Other</option></select>
+    </label>
+    <label class="grid gap-1 text-sm font-medium">Show
+      <select class="field" data-fungi-scope>
+        <option value="">Everything, in season first</option>
+        <option value="now">In season now only</option>
+        <option value="danger">Poisonous and deadly only</option>
+      </select>
+    </label>
+  </form>
+  <div class="nx-pad nx-count flex items-center justify-between gap-3">
+    <p class="nx-k" data-fungi-count aria-live="polite">39 species</p>
+    
+<div class="view-toggle" data-view-toggle>
+  
+<div class="seg relative inline-grid shrink-0 auto-cols-fr grid-flow-col rounded-md border border-line bg-canvas p-0.5" role="group" aria-label="Layout" data-segmented>
+  <span class="seg-thumb shadow-sm" aria-hidden="true" data-seg-thumb></span>
+  
+    
+      <a href="?view=grid" class="inline-flex min-h-10 min-w-10 md:min-h-[34px] md:min-w-0 items-center justify-center gap-1.5 rounded-[5px] px-3 text-sm font-medium whitespace-nowrap focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-1" aria-current="true" data-selected data-seg-option title="Grid">
+        <svg class="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z"/></svg>
+        <span class="sr-only lg:not-sr-only">Grid</span>
+      </a>
+    
+  
+    
+      <a href="?view=list" class="inline-flex min-h-10 min-w-10 md:min-h-[34px] md:min-w-0 items-center justify-center gap-1.5 rounded-[5px] px-3 text-sm font-medium whitespace-nowrap focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-1" data-seg-option title="List">
+        <svg class="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        <span class="sr-only lg:not-sr-only">List</span>
+      </a>
+    
+  
+</div>
+
+</div>
+
+  </div>
+  <ul class="nx-index nx-pad" data-fungi-list>
+    <li class="nx-row" data-plant="artists-conk" data-months="1 2 3 4 5 6 7 8 9 10 11 12" data-regions="northeast southeast midwest south-central rockies pacific-northwest california" data-habitat="wood" data-group="polypore" data-danger="" data-notice="3" data-text="artist&#x27;s conk ganoderma applanatum hard, flat shelves on dead and dying hardwoods; lasts for years." data-name="Artist&#x27;s conk">
+  <a href="/mushroom-id/species/artists-conk/">
+    <span>
+      <span class="nx-row-name">Artist&#x27;s conk</span>
+      <span class="nx-sci" style="display:block;margin-top:.3rem">Ganoderma applanatum</span>
+      <span class="nx-row-meta"><span class="verdict" data-season-badge hidden></span></span>
+    </span>
+    <span class="nx-row-th"><img src="/mushroom-id/static/fungi/artists-conk.2bc0c4566e9f.webp" width="1100" height="825" alt="" loading="lazy" decoding="async">
+</span>
+    <span class="nx-row-where">Hard, flat shelves on dead and dying hardwoods; lasts for years.</span>
+  </a>
+  <button type="button" class="star-btn" data-star="artists-conk" data-star-body="" data-client-id="" aria-pressed="false" aria-label="Star Artist&#x27;s conk" title="Star">
+  <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></svg>
+  
+</button>
+
+</li>
+<li class="nx-row" data-plant="birch-polypore" data-months="1 2 3 4 5 6 7 8 9 10 11 12" data-regions="northeast midwest rockies pacific-northwest" data-habitat="wood" data-group="polypore" data-danger="" data-notice="3" data-text="birch polypore fomitopsis betulina only on dead or dying birch." data-name="Birch polypore">
+  <a href="/mushroom-id/species/birch-polypore/">
+    <span>
+      <span class="nx-row-name">Birch polypore</span>
+      <span class="nx-sci" style="display:block;margin-top:.3rem">Fomitopsis betulina</span>
+      <span class="nx-row-meta"><span class="verdict" data-season-badge hidden></span></span>
+    </span>
+    <span class="nx-row-th"><img src="/mushroom-id/static/fungi/birch-polypore.da5adff7cfe4.webp" width="1100" height="733" alt="" loading="lazy" decoding="async">
+</span>
+    <span class="nx-row-where">Only on dead or dying birch.</span>
+  </a>
+  <button type="button" class="star-btn" data-star="birch-polypore" data-star-body="" data-client-id="" aria-pressed="false" aria-label="Star Birch polypore" title="Star">
+  <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></svg>
+  
+</button>
+
+</li>
+<li class="nx-row" data-plant="bitter-bolete" data-months="7 8 9 10" data-regions="northeast southeast midwest" data-habitat="trees wood" data-group="bolete" data-danger="" data-notice="2" data-text="bitter bolete tylopilus felleus on soil or well-rotted wood under hemlock and hardwoods." data-name="Bitter bolete">
+  <a href="/mushroom-id/species/bitter-bolete/">
+    <span>
+      <span class="nx-row-name">Bitter bolete</span>
+      <span class="nx-sci" style="display:block;margin-top:.3rem">Tylopilus felleus</span>
+      <span class="nx-row-meta"><span class="verdict" data-season-badge hidden></span></span>
+    </span>
+    <span class="nx-row-th"><img src="/mushroom-id/static/fungi/bitter-bolete.1a88161795ce.webp" width="1000" height="770" alt="" loading="lazy" decoding="async">
+</span>
+    <span class="nx-row-where">On soil or well-rotted wood under hemlock and hardwoods.</span>
+  </a>
+  <button type="button" class="star-btn" data-star="bitter-bolete" data-star-body="" data-client-id="" aria-pressed="false" aria-label="Star Bitter bolete" title="Star">
+  <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></svg>
+  
+</button>
+
+</li>
+<li class="nx-row" data-plant="black-trumpet" data-months="7 8 9" data-regions="northeast southeast midwest" data-habitat="trees" data-group="other" data-danger="" data-notice="1" data-text="black trumpet craterellus fallax in moss and leaf litter under oak and beech, often on slopes." data-name="Black trumpet">
+  <a href="/mushroom-id/species/black-trumpet/">
+    <span>
+      <span class="nx-row-name">Black trumpet</span>
+      <span class="nx-sci" style="display:block;margin-top:.3rem">Craterellus fallax</span>
+      <span class="nx-row-meta"><span class="verdict" data-season-badge hidden></span></span>
+    </span>
+    <span class="nx-row-th"><img src="/mushroom-id/static/fungi/black-trumpet.b53d04e55c68.webp" width="1100" height="825" alt="" loading="lazy" decoding="async">
+</span>
+    <span class="nx-row-where">In moss and leaf litter under oak and beech, often on slopes.</span>
+  </a>
+  <button type="button" class="star-btn" data-star="black-trumpet" data-star-body="" data-client-id="" aria-pressed="false" aria-label="Star Black trumpet" title="Star">
+  <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></svg>
+  
+</button>
+
+</li>
+<li class="nx-row" data-plant="bleeding-tooth" data-months="7 8 9 10" data-regions="pacific-northwest northeast rockies" data-habitat="trees" data-group="tooth" data-danger="" data-notice="2" data-text="bleeding tooth hydnellum peckii on soil under conifers." data-name="Bleeding tooth">
+  <a href="/mushroom-id/species/bleeding-tooth/">
+    <span>
+      <span class="nx-row-name">Bleeding tooth</span>
+      <span class="nx-sci" style="display:block;margin-top:.3rem">Hydnellum peckii</span>
+      <span class="nx-row-meta"><span class="verdict" data-season-badge hidden></span></span>
+    </span>
+    <span class="nx-row-th"><img src="/mushroom-id/static/fungi/bleeding-tooth.18d6bd2ebade.webp" width="1100" height="825" alt="" loading="lazy" decoding="async">
+</span>
+    <span class="nx-row-where">On soil under conifers.</span>
+  </a>
+  <button type="button" class="star-btn" data-star="bleeding-tooth" data-star-body="" data-client-id="" aria-pressed="false" aria-label="Star Bleeding tooth" title="Star">
+  <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></svg>
+  
+</button>
+
+</li>
+<li class="nx-row" data-plant="chaga" data-months="1 2 3 4 5 6 7 8 9 10 11 12" data-regions="northeast midwest rockies" data-habitat="wood" data-group="other" data-danger="" data-notice="2" data-text="chaga inonotus obliquus on living birch trunks in northern forests." data-name="Chaga">
+  <a href="/mushroom-id/species/chaga/">
+    <span>
+      <span class="nx-row-name">Chaga</span>
+      <span class="nx-sci" style="display:block;margin-top:.3rem">Inonotus obliquus</span>
+      <span class="nx-row-meta"><span class="verdict" data-season-badge hidden></span></span>
+    </span>
+    <span class="nx-row-th"><img src="/mushroom-id/static/fungi/chaga.9674d24a17d1.webp" width="800" height="600" alt="" loading="lazy" decoding="async">
+</span>
+    <span class="nx-row-where">On living birch trunks in northern forests.</span>
+  </a>
+  <button type="button" class="star-btn" data-star="chaga" data-star-body="" data-client-id="" aria-pressed="false" aria-label="Star Chaga" title="Star">
+  <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></svg>
+  
+</button>
+
+</li>
+<li class="nx-row" data-plant="chanterelle" data-months="6 7 8 9 10 11 12" data-regions="northeast southeast midwest south-central rockies pacific-northwest california" data-habitat="trees" data-group="gilled" data-danger="" data-notice="2" data-text="chanterelle cantharellus species singly or scattered on soil under oak, beech, and other hardwoods in the east; under douglas-fir and other conifers in the west." data-name="Chanterelle">
+  <a href="/mushroom-id/species/chanterelle/">
+    <span>
+      <span class="nx-row-name">Chanterelle</span>
+      <span class="nx-sci" style="display:block;margin-top:.3rem">Cantharellus species</span>
+      <span class="nx-row-meta"><span class="verdict" data-season-badge hidden></span></span>
+    </span>
+    <span class="nx-row-th"><img src="/mushroom-id/static/fungi/chanterelle.7fc5fcd8ac1a.webp" width="1100" height="825" alt="" loading="lazy" decoding="async">
+</span>
+    <span class="nx-row-where">Singly or scattered on soil under oak, beech, and other hardwoods in the East; under Douglas-fir and other conifers in the West.</span>
+  </a>
+  <button type="button" class="star-btn" data-star="chanterelle" data-star-body="" data-client-id="" aria-pressed="false" aria-label="Star Chanterelle" title="Star">
+  <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></svg>
+  
+</button>
+
+</li>
+<li class="nx-row" data-plant="chicken-of-the-woods" data-months="6 7 8 9 10" data-regions="northeast southeast midwest south-central" data-habitat="wood" data-group="polypore" data-danger="" data-notice="3" data-text="chicken of the woods laetiporus sulphureus overlapping shelves on living or dead hardwoods, especially oak." data-name="Chicken of the woods">
+  <a href="/mushroom-id/species/chicken-of-the-woods/">
+    <span>
+      <span class="nx-row-name">Chicken of the woods</span>
+      <span class="nx-sci" style="display:block;margin-top:.3rem">Laetiporus sulphureus</span>
+      <span class="nx-row-meta"><span class="verdict" data-season-badge hidden></span></span>
+    </span>
+    <span class="nx-row-th"><img src="/mushroom-id/static/fungi/chicken-of-the-woods.eed87dd8cfb7.webp" width="734" height="1100" alt="" loading="lazy" decoding="async">
+</span>
+    <span class="nx-row-where">Overlapping shelves on living or dead hardwoods, especially oak.</span>
+  </a>
+  <button type="button" class="star-btn" data-star="chicken-of-the-woods" data-star-body="" data-client-id="" aria-pressed="false" aria-label="Star Chicken of the woods" title="Star">
+  <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></svg>
+  
+</button>
+
+</li>
+<li class="nx-row" data-plant="common-ink-cap" data-months="4 5 6 7 8 9 10" data-regions="northeast southeast midwest south-central rockies pacific-northwest california" data-habitat="lawn wood" data-group="gilled" data-danger="toxic" data-notice="2" data-text="common ink cap coprinopsis atramentaria clusters in grass, often over buried wood or roots." data-name="Common ink cap">
+  <a href="/mushroom-id/species/common-ink-cap/">
+    <span>
+      <span class="nx-row-name">Common ink cap</span>
+      <span class="nx-sci" style="display:block;margin-top:.3rem">Coprinopsis atramentaria</span>
+      <span class="nx-row-meta"><span class="verdict" data-season-badge hidden></span><span class="nx-k nx-danger">Poisonous</span></span>
+    </span>
+    <span class="nx-row-th"><img src="/mushroom-id/static/fungi/common-ink-cap.4c8bee83e191.webp" width="640" height="426" alt="" loading="lazy" decoding="async">
+</span>
+    <span class="nx-row-where">Clusters in grass, often over buried wood or roots.</span>
+  </a>
+  <button type="button" class="star-btn" data-star="common-ink-cap" data-star-body="" data-client-id="" aria-pressed="false" aria-label="Star Common ink cap" title="Star">
+  <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></svg>
+  
+</button>
+
+</li>
+<li class="nx-row" data-plant="deadly-galerina" data-months="4 5 6 9 10 11 12" data-regions="northeast southeast midwest south-central rockies pacific-northwest california" data-habitat="wood" data-group="gilled" data-danger="deadly" data-notice="1" data-text="deadly galerina galerina marginata on rotting wood, especially conifer logs, often among moss." data-name="Deadly galerina">
+  <a href="/mushroom-id/species/deadly-galerina/">
+    <span>
+      <span class="nx-row-name">Deadly galerina</span>
+      <span class="nx-sci" style="display:block;margin-top:.3rem">Galerina marginata</span>
+      <span class="nx-row-meta"><span class="verdict" data-season-badge hidden></span><span class="nx-k nx-danger">Deadly</span></span>
+    </span>
+    <span class="nx-row-th"><img src="/mushroom-id/static/fungi/deadly-galerina.24f1bfb2c6d6.webp" width="1100" height="950" alt="" loading="lazy" decoding="async">
+</span>
+    <span class="nx-row-where">On rotting wood, especially conifer logs, often among moss.</span>
+  </a>
+  <button type="button" class="star-btn" data-star="deadly-galerina" data-star-body="" data-client-id="" aria-pressed="false" aria-label="Star Deadly galerina" title="Star">
+  <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></svg>
+  
+</button>
+
+</li>
+<li class="nx-row" data-plant="death-cap" data-months="1 2 9 10 11 12" data-regions="california pacific-northwest northeast" data-habitat="trees" data-group="gilled" data-danger="deadly" data-notice="2" data-text="death cap amanita phalloides on soil under oaks and introduced trees; common in coastal california and spreading in the pacific northwest. rare and local in the northeast." data-name="Death cap">
+  <a href="/mushroom-id/species/death-cap/">
+    <span>
+      <span class="nx-row-name">Death cap</span>
+      <span class="nx-sci" style="display:block;margin-top:.3rem">Amanita phalloides</span>
+      <span class="nx-row-meta"><span class="verdict" data-season-badge hidden></span><span class="nx-k nx-danger">Deadly</span></span>
+    </span>
+    <span class="nx-row-th"><img src="/mushroom-id/static/fungi/death-cap.d33d4df2512a.webp" width="825" height="1100" alt="" loading="lazy" decoding="async">
+</span>
+    <span class="nx-row-where">On soil under oaks and introduced trees; common in coastal California and spreading in the Pacific Northwest. Rare and local in the Northeast.</span>
+  </a>
+  <button type="button" class="star-btn" data-star="death-cap" data-star-body="" data-client-id="" aria-pressed="false" aria-label="Star Death cap" title="Star">
+  <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></svg>
+  
+</button>
+
+</li>
+<li class="nx-row" data-plant="destroying-angel" data-months="6 7 8 9 10" data-regions="northeast southeast midwest south-central california" data-habitat="trees lawn" data-group="gilled" data-danger="deadly" data-notice="2" data-text="destroying angel amanita bisporigera (east), a. ocreata (california) on soil in woods and at wood edges, sometimes in lawns near trees." data-name="Destroying angel">
+  <a href="/mushroom-id/species/destroying-angel/">
+    <span>
+      <span class="nx-row-name">Destroying angel</span>
+      <span class="nx-sci" style="display:block;margin-top:.3rem">Amanita bisporigera (East), A. ocreata (California)</span>
+      <span class="nx-row-meta"><span class="verdict" data-season-badge hidden></span><span class="nx-k nx-danger">Deadly</span></span>
+    </span>
+    <span class="nx-row-th"><img src="/mushroom-id/static/fungi/destroying-angel.2bfa37ac84b3.webp" width="825" height="1100" alt="" loading="lazy" decoding="async">
+</span>
+    <span class="nx-row-where">On soil in woods and at wood edges, sometimes in lawns near trees.</span>
+  </a>
+  <button type="button" class="star-btn" data-star="destroying-angel" data-star-body="" data-client-id="" aria-pressed="false" aria-label="Star Destroying angel" title="Star">
+  <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></svg>
+  
+</button>
+
+</li>
+<li class="nx-row" data-plant="dryads-saddle" data-months="4 5 6 9 10" data-regions="northeast midwest southeast" data-habitat="wood" data-group="polypore" data-danger="" data-notice="3" data-text="dryad&#x27;s saddle (pheasant back) cerioporus squamosus on dead or dying elm, maple, and other hardwoods." data-name="Dryad&#x27;s saddle (pheasant back)">
+  <a href="/mushroom-id/species/dryads-saddle/">
+    <span>
+      <span class="nx-row-name">Dryad&#x27;s saddle (pheasant back)</span>
+      <span class="nx-sci" style="display:block;margin-top:.3rem">Cerioporus squamosus</span>
+      <span class="nx-row-meta"><span class="verdict" data-season-badge hidden></span></span>
+    </span>
+    <span class="nx-row-th"><img src="/mushroom-id/static/fungi/dryads-saddle.28be835c60ef.webp" width="1100" height="825" alt="" loading="lazy" decoding="async">
+</span>
+    <span class="nx-row-where">On dead or dying elm, maple, and other hardwoods.</span>
+  </a>
+  <button type="button" class="star-btn" data-star="dryads-saddle" data-star-body="" data-client-id="" aria-pressed="false" aria-label="Star Dryad&#x27;s saddle (pheasant back)" title="Star">
+  <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></svg>
+  
+</button>
+
+</li>
+<li class="nx-row" data-plant="fairy-ring-mushroom" data-months="5 6 7 8 9 10" data-regions="northeast southeast midwest south-central rockies pacific-northwest california" data-habitat="lawn" data-group="gilled" data-danger="" data-notice="2" data-text="fairy ring mushroom marasmius oreades in rings or arcs in lawns and pastures, often with a ring of darker grass." data-name="Fairy ring mushroom">
+  <a href="/mushroom-id/species/fairy-ring-mushroom/">
+    <span>
+      <span class="nx-row-name">Fairy ring mushroom</span>
+      <span class="nx-sci" style="display:block;margin-top:.3rem">Marasmius oreades</span>
+      <span class="nx-row-meta"><span class="verdict" data-season-badge hidden></span></span>
+    </span>
+    <span class="nx-row-th"><img src="/mushroom-id/static/fungi/fairy-ring-mushroom.d5dd835b9469.webp" width="1100" height="733" alt="" loading="lazy" decoding="async">
+</span>
+    <span class="nx-row-where">In rings or arcs in lawns and pastures, often with a ring of darker grass.</span>
+  </a>
+  <button type="button" class="star-btn" data-star="fairy-ring-mushroom" data-star-body="" data-client-id="" aria-pressed="false" aria-label="Star Fairy ring mushroom" title="Star">
+  <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></svg>
+  
+</button>
+
+</li>
+<li class="nx-row" data-plant="false-morel" data-months="4 5 6" data-regions="northeast midwest pacific-northwest rockies" data-habitat="trees" data-group="morel" data-danger="toxic" data-notice="2" data-text="false morel gyromitra esculenta on soil under conifers, especially pine and aspen-pine woods, in spring." data-name="False morel">
+  <a href="/mushroom-id/species/false-morel/">
+    <span>
+      <span class="nx-row-name">False morel</span>
+      <span class="nx-sci" style="display:block;margin-top:.3rem">Gyromitra esculenta</span>
+      <span class="nx-row-meta"><span class="verdict" data-season-badge hidden></span><span class="nx-k nx-danger">Poisonous</span></span>
+    </span>
+    <span class="nx-row-th"><img src="/mushroom-id/static/fungi/false-morel.3e2fa226aa67.webp" width="823" height="1100" alt="" loading="lazy" decoding="async">
+</span>
+    <span class="nx-row-where">On soil under conifers, especially pine and aspen-pine woods, in spring.</span>
+  </a>
+  <button type="button" class="star-btn" data-star="false-morel" data-star-body="" data-client-id="" aria-pressed="false" aria-label="Star False morel" title="Star">
+  <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></svg>
+  
+</button>
+
+</li>
+<li class="nx-row" data-plant="fly-agaric" data-months="7 8 9 10 11" data-regions="northeast southeast midwest south-central rockies pacific-northwest california" data-habitat="trees" data-group="gilled" data-danger="toxic" data-notice="3" data-text="fly agaric amanita muscaria on soil under conifers and birch, often in rings." data-name="Fly agaric">
+  <a href="/mushroom-id/species/fly-agaric/">
+    <span>
+      <span class="nx-row-name">Fly agaric</span>
+      <span class="nx-sci" style="display:block;margin-top:.3rem">Amanita muscaria</span>
+      <span class="nx-row-meta"><span class="verdict" data-season-badge hidden></span><span class="nx-k nx-danger">Poisonous</span></span>
+    </span>
+    <span class="nx-row-th"><img src="/mushroom-id/static/fungi/fly-agaric.48dc4742e2fd.webp" width="1100" height="825" alt="" loading="lazy" decoding="async">
+</span>
+    <span class="nx-row-where">On soil under conifers and birch, often in rings.</span>
+  </a>
+  <button type="button" class="star-btn" data-star="fly-agaric" data-star-body="" data-client-id="" aria-pressed="false" aria-label="Star Fly agaric" title="Star">
+  <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></svg>
+  
+</button>
+
+</li>
+<li class="nx-row" data-plant="gem-studded-puffball" data-months="7 8 9 10" data-regions="northeast southeast midwest south-central rockies pacific-northwest california" data-habitat="trees lawn" data-group="puffball" data-danger="" data-notice="2" data-text="gem-studded puffball lycoperdon perlatum on soil and leaf litter in woods, along trails, and sometimes in grass." data-name="Gem-studded puffball">
+  <a href="/mushroom-id/species/gem-studded-puffball/">
+    <span>
+      <span class="nx-row-name">Gem-studded puffball</span>
+      <span class="nx-sci" style="display:block;margin-top:.3rem">Lycoperdon perlatum</span>
+      <span class="nx-row-meta"><span class="verdict" data-season-badge hidden></span></span>
+    </span>
+    <span class="nx-row-th"><img src="/mushroom-id/static/fungi/gem-studded-puffball.766233ac4003.webp" width="848" height="1100" alt="" loading="lazy" decoding="async">
+</span>
+    <span class="nx-row-where">On soil and leaf litter in woods, along trails, and sometimes in grass.</span>
+  </a>
+  <button type="button" class="star-btn" data-star="gem-studded-puffball" data-star-body="" data-client-id="" aria-pressed="false" aria-label="Star Gem-studded puffball" title="Star">
+  <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></svg>
+  
+</button>
+
+</li>
+<li class="nx-row" data-plant="giant-puffball" data-months="8 9 10" data-regions="northeast midwest southeast rockies pacific-northwest" data-habitat="lawn" data-group="puffball" data-danger="" data-notice="3" data-text="giant puffball calvatia gigantea lawns, pastures, field edges, and open woods." data-name="Giant puffball">
+  <a href="/mushroom-id/species/giant-puffball/">
+    <span>
+      <span class="nx-row-name">Giant puffball</span>
+      <span class="nx-sci" style="display:block;margin-top:.3rem">Calvatia gigantea</span>
+      <span class="nx-row-meta"><span class="verdict" data-season-badge hidden></span></span>
+    </span>
+    <span class="nx-row-th"><img src="/mushroom-id/static/fungi/giant-puffball.65841f4eec09.webp" width="1100" height="733" alt="" loading="lazy" decoding="async">
+</span>
+    <span class="nx-row-where">Lawns, pastures, field edges, and open woods.</span>
+  </a>
+  <button type="button" class="star-btn" data-star="giant-puffball" data-star-body="" data-client-id="" aria-pressed="false" aria-label="Star Giant puffball" title="Star">
+  <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></svg>
+  
+</button>
+
+</li>
+<li class="nx-row" data-plant="green-spored-parasol" data-months="6 7 8 9 10" data-regions="southeast south-central midwest california northeast" data-habitat="lawn" data-group="gilled" data-danger="toxic" data-notice="3" data-text="green-spored parasol chlorophyllum molybdites lawns and parks, often in large rings or arcs." data-name="Green-spored parasol">
+  <a href="/mushroom-id/species/green-spored-parasol/">
+    <span>
+      <span class="nx-row-name">Green-spored parasol</span>
+      <span class="nx-sci" style="display:block;margin-top:.3rem">Chlorophyllum molybdites</span>
+      <span class="nx-row-meta"><span class="verdict" data-season-badge hidden></span><span class="nx-k nx-danger">Poisonous</span></span>
+    </span>
+    <span class="nx-row-th"><img src="/mushroom-id/static/fungi/green-spored-parasol.135bc7ebff82.webp" width="1100" height="752" alt="" loading="lazy" decoding="async">
+</span>
+    <span class="nx-row-where">Lawns and parks, often in large rings or arcs.</span>
+  </a>
+  <button type="button" class="star-btn" data-star="green-spored-parasol" data-star-body="" data-client-id="" aria-pressed="false" aria-label="Star Green-spored parasol" title="Star">
+  <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></svg>
+  
+</button>
+
+</li>
+<li class="nx-row" data-plant="hemlock-varnish-shelf" data-months="5 6 7 8 9 10" data-regions="northeast midwest southeast" data-habitat="wood" data-group="polypore" data-danger="" data-notice="3" data-text="hemlock varnish shelf ganoderma tsugae on dead or dying eastern hemlock, sometimes other conifers." data-name="Hemlock varnish shelf">
+  <a href="/mushroom-id/species/hemlock-varnish-shelf/">
+    <span>
+      <span class="nx-row-name">Hemlock varnish shelf</span>
+      <span class="nx-sci" style="display:block;margin-top:.3rem">Ganoderma tsugae</span>
+      <span class="nx-row-meta"><span class="verdict" data-season-badge hidden></span></span>
+    </span>
+    <span class="nx-row-th"><img src="/mushroom-id/static/fungi/hemlock-varnish-shelf.49d776293459.webp" width="1100" height="825" alt="" loading="lazy" decoding="async">
+</span>
+    <span class="nx-row-where">On dead or dying eastern hemlock, sometimes other conifers.</span>
+  </a>
+  <button type="button" class="star-btn" data-star="hemlock-varnish-shelf" data-star-body="" data-client-id="" aria-pressed="false" aria-label="Star Hemlock varnish shelf" title="Star">
+  <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></svg>
+  
+</button>
+
+</li>
+<li class="nx-row" data-plant="hen-of-the-woods" data-months="9 10 11" data-regions="northeast southeast midwest" data-habitat="trees wood" data-group="polypore" data-danger="" data-notice="3" data-text="hen of the woods (maitake) grifola frondosa a large rosette at the base of oaks, usually living ones, often in the same spot each year." data-name="Hen of the woods (maitake)">
+  <a href="/mushroom-id/species/hen-of-the-woods/">
+    <span>
+      <span class="nx-row-name">Hen of the woods (maitake)</span>
+      <span class="nx-sci" style="display:block;margin-top:.3rem">Grifola frondosa</span>
+      <span class="nx-row-meta"><span class="verdict" data-season-badge hidden></span></span>
+    </span>
+    <span class="nx-row-th"><img src="/mushroom-id/static/fungi/hen-of-the-woods.b873119c8d3c.webp" width="1100" height="782" alt="" loading="lazy" decoding="async">
+</span>
+    <span class="nx-row-where">A large rosette at the base of oaks, usually living ones, often in the same spot each year.</span>
+  </a>
+  <button type="button" class="star-btn" data-star="hen-of-the-woods" data-star-body="" data-client-id="" aria-pressed="false" aria-label="Star Hen of the woods (maitake)" title="Star">
+  <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></svg>
+  
+</button>
+
+</li>
+<li class="nx-row" data-plant="honey-mushroom" data-months="8 9 10 11" data-regions="northeast southeast midwest south-central rockies pacific-northwest california" data-habitat="wood trees" data-group="gilled" data-danger="" data-notice="3" data-text="honey mushroom armillaria mellea group dense clusters at the base of living or dead trees and stumps, or from buried roots." data-name="Honey mushroom">
+  <a href="/mushroom-id/species/honey-mushroom/">
+    <span>
+      <span class="nx-row-name">Honey mushroom</span>
+      <span class="nx-sci" style="display:block;margin-top:.3rem">Armillaria mellea group</span>
+      <span class="nx-row-meta"><span class="verdict" data-season-badge hidden></span></span>
+    </span>
+    <span class="nx-row-th"><img src="/mushroom-id/static/fungi/honey-mushroom.9baf03b43d21.webp" width="1100" height="733" alt="" loading="lazy" decoding="async">
+</span>
+    <span class="nx-row-where">Dense clusters at the base of living or dead trees and stumps, or from buried roots.</span>
+  </a>
+  <button type="button" class="star-btn" data-star="honey-mushroom" data-star-body="" data-client-id="" aria-pressed="false" aria-label="Star Honey mushroom" title="Star">
+  <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></svg>
+  
+</button>
+
+</li>
+<li class="nx-row" data-plant="jack-o-lantern" data-months="7 8 9 10" data-regions="northeast southeast midwest south-central" data-habitat="wood trees" data-group="gilled" data-danger="toxic" data-notice="3" data-text="jack-o&#x27;-lantern omphalotus illudens clusters at the base of hardwood stumps, especially oak, or from buried roots." data-name="Jack-o&#x27;-lantern">
+  <a href="/mushroom-id/species/jack-o-lantern/">
+    <span>
+      <span class="nx-row-name">Jack-o&#x27;-lantern</span>
+      <span class="nx-sci" style="display:block;margin-top:.3rem">Omphalotus illudens</span>
+      <span class="nx-row-meta"><span class="verdict" data-season-badge hidden></span><span class="nx-k nx-danger">Poisonous</span></span>
+    </span>
+    <span class="nx-row-th"><img src="/mushroom-id/static/fungi/jack-o-lantern.f7dbb7b9f0fd.webp" width="1100" height="1100" alt="" loading="lazy" decoding="async">
+</span>
+    <span class="nx-row-where">Clusters at the base of hardwood stumps, especially oak, or from buried roots.</span>
+  </a>
+  <button type="button" class="star-btn" data-star="jack-o-lantern" data-star-body="" data-client-id="" aria-pressed="false" aria-label="Star Jack-o&#x27;-lantern" title="Star">
+  <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></svg>
+  
+</button>
+
+</li>
+<li class="nx-row" data-plant="king-bolete" data-months="7 8 9 10 11" data-regions="northeast midwest rockies pacific-northwest california" data-habitat="trees" data-group="bolete" data-danger="" data-notice="2" data-text="king bolete boletus edulis group on soil under spruce, pine, fir, and hemlock; in places also birch and oak." data-name="King bolete">
+  <a href="/mushroom-id/species/king-bolete/">
+    <span>
+      <span class="nx-row-name">King bolete</span>
+      <span class="nx-sci" style="display:block;margin-top:.3rem">Boletus edulis group</span>
+      <span class="nx-row-meta"><span class="verdict" data-season-badge hidden></span></span>
+    </span>
+    <span class="nx-row-th"><img src="/mushroom-id/static/fungi/king-bolete.220d31e6917e.webp" width="825" height="1100" alt="" loading="lazy" decoding="async">
+</span>
+    <span class="nx-row-where">On soil under spruce, pine, fir, and hemlock; in places also birch and oak.</span>
+  </a>
+  <button type="button" class="star-btn" data-star="king-bolete" data-star-body="" data-client-id="" aria-pressed="false" aria-label="Star King bolete" title="Star">
+  <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></svg>
+  
+</button>
+
+</li>
+<li class="nx-row" data-plant="lions-mane" data-months="8 9 10 11" data-regions="northeast southeast midwest pacific-northwest california" data-habitat="wood" data-group="tooth" data-danger="" data-notice="3" data-text="lion&#x27;s mane hericium erinaceus on wounds of living hardwoods or dead logs, especially oak, beech, and maple." data-name="Lion&#x27;s mane">
+  <a href="/mushroom-id/species/lions-mane/">
+    <span>
+      <span class="nx-row-name">Lion&#x27;s mane</span>
+      <span class="nx-sci" style="display:block;margin-top:.3rem">Hericium erinaceus</span>
+      <span class="nx-row-meta"><span class="verdict" data-season-badge hidden></span></span>
+    </span>
+    <span class="nx-row-th"><img src="/mushroom-id/static/fungi/lions-mane.773a33709fea.webp" width="825" height="1100" alt="" loading="lazy" decoding="async">
+</span>
+    <span class="nx-row-where">On wounds of living hardwoods or dead logs, especially oak, beech, and maple.</span>
+  </a>
+  <button type="button" class="star-btn" data-star="lions-mane" data-star-body="" data-client-id="" aria-pressed="false" aria-label="Star Lion&#x27;s mane" title="Star">
+  <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></svg>
+  
+</button>
+
+</li>
+<li class="nx-row" data-plant="lobster-mushroom" data-months="7 8 9 10" data-regions="northeast southeast midwest pacific-northwest" data-habitat="trees" data-group="other" data-danger="" data-notice="3" data-text="lobster mushroom hypomyces lactifluorum on soil in mixed woods; it is a mold that covers certain russula and lactifluus mushrooms." data-name="Lobster mushroom">
+  <a href="/mushroom-id/species/lobster-mushroom/">
+    <span>
+      <span class="nx-row-name">Lobster mushroom</span>
+      <span class="nx-sci" style="display:block;margin-top:.3rem">Hypomyces lactifluorum</span>
+      <span class="nx-row-meta"><span class="verdict" data-season-badge hidden></span></span>
+    </span>
+    <span class="nx-row-th"><img src="/mushroom-id/static/fungi/lobster-mushroom.2cdbec7c9ff5.webp" width="1100" height="731" alt="" loading="lazy" decoding="async">
+</span>
+    <span class="nx-row-where">On soil in mixed woods; it is a mold that covers certain Russula and Lactifluus mushrooms.</span>
+  </a>
+  <button type="button" class="star-btn" data-star="lobster-mushroom" data-star-body="" data-client-id="" aria-pressed="false" aria-label="Star Lobster mushroom" title="Star">
+  <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></svg>
+  
+</button>
+
+</li>
+<li class="nx-row" data-plant="meadow-mushroom" data-months="8 9 10" data-regions="northeast southeast midwest south-central rockies pacific-northwest california" data-habitat="lawn" data-group="gilled" data-danger="" data-notice="2" data-text="meadow mushroom agaricus campestris lawns, pastures, and grassy fields, often after rain." data-name="Meadow mushroom">
+  <a href="/mushroom-id/species/meadow-mushroom/">
+    <span>
+      <span class="nx-row-name">Meadow mushroom</span>
+      <span class="nx-sci" style="display:block;margin-top:.3rem">Agaricus campestris</span>
+      <span class="nx-row-meta"><span class="verdict" data-season-badge hidden></span></span>
+    </span>
+    <span class="nx-row-th"><img src="/mushroom-id/static/fungi/meadow-mushroom.5275ae326f72.webp" width="1100" height="825" alt="" loading="lazy" decoding="async">
+</span>
+    <span class="nx-row-where">Lawns, pastures, and grassy fields, often after rain.</span>
+  </a>
+  <button type="button" class="star-btn" data-star="meadow-mushroom" data-star-body="" data-client-id="" aria-pressed="false" aria-label="Star Meadow mushroom" title="Star">
+  <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></svg>
+  
+</button>
+
+</li>
+<li class="nx-row" data-plant="morel" data-months="3 4 5 6" data-regions="northeast southeast midwest south-central rockies pacific-northwest california" data-habitat="trees" data-group="morel" data-danger="" data-notice="1" data-text="morel morchella species on soil near dying elms, ash, old apple orchards, and tulip poplar; in the west, also on burns." data-name="Morel">
+  <a href="/mushroom-id/species/morel/">
+    <span>
+      <span class="nx-row-name">Morel</span>
+      <span class="nx-sci" style="display:block;margin-top:.3rem">Morchella species</span>
+      <span class="nx-row-meta"><span class="verdict" data-season-badge hidden></span></span>
+    </span>
+    <span class="nx-row-th"><img src="/mushroom-id/static/fungi/morel.7d6f9d76a728.webp" width="823" height="1100" alt="" loading="lazy" decoding="async">
+</span>
+    <span class="nx-row-where">On soil near dying elms, ash, old apple orchards, and tulip poplar; in the West, also on burns.</span>
+  </a>
+  <button type="button" class="star-btn" data-star="morel" data-star-body="" data-client-id="" aria-pressed="false" aria-label="Star Morel" title="Star">
+  <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></svg>
+  
+</button>
+
+</li>
+<li class="nx-row" data-plant="old-man-of-the-woods" data-months="7 8 9 10" data-regions="northeast southeast midwest" data-habitat="trees" data-group="bolete" data-danger="" data-notice="2" data-text="old man of the woods strobilomyces strobilaceus group on soil under oaks and other hardwoods." data-name="Old man of the woods">
+  <a href="/mushroom-id/species/old-man-of-the-woods/">
+    <span>
+      <span class="nx-row-name">Old man of the woods</span>
+      <span class="nx-sci" style="display:block;margin-top:.3rem">Strobilomyces strobilaceus group</span>
+      <span class="nx-row-meta"><span class="verdict" data-season-badge hidden></span></span>
+    </span>
+    <span class="nx-row-th"><img src="/mushroom-id/static/fungi/old-man-of-the-woods.e279687a1d87.webp" width="921" height="1100" alt="" loading="lazy" decoding="async">
+</span>
+    <span class="nx-row-where">On soil under oaks and other hardwoods.</span>
+  </a>
+  <button type="button" class="star-btn" data-star="old-man-of-the-woods" data-star-body="" data-client-id="" aria-pressed="false" aria-label="Star Old man of the woods" title="Star">
+  <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></svg>
+  
+</button>
+
+</li>
+<li class="nx-row" data-plant="oyster-mushroom" data-months="1 2 3 4 5 10 11 12" data-regions="northeast southeast midwest south-central rockies pacific-northwest california" data-habitat="wood" data-group="gilled" data-danger="" data-notice="3" data-text="oyster mushroom pleurotus ostreatus group overlapping shelves on dead or dying hardwoods." data-name="Oyster mushroom">
+  <a href="/mushroom-id/species/oyster-mushroom/">
+    <span>
+      <span class="nx-row-name">Oyster mushroom</span>
+      <span class="nx-sci" style="display:block;margin-top:.3rem">Pleurotus ostreatus group</span>
+      <span class="nx-row-meta"><span class="verdict" data-season-badge hidden></span></span>
+    </span>
+    <span class="nx-row-th"><img src="/mushroom-id/static/fungi/oyster-mushroom.31a97adfe9f3.webp" width="1100" height="825" alt="" loading="lazy" decoding="async">
+</span>
+    <span class="nx-row-where">Overlapping shelves on dead or dying hardwoods.</span>
+  </a>
+  <button type="button" class="star-btn" data-star="oyster-mushroom" data-star-body="" data-client-id="" aria-pressed="false" aria-label="Star Oyster mushroom" title="Star">
+  <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></svg>
+  
+</button>
+
+</li>
+<li class="nx-row" data-plant="pigskin-poison-puffball" data-months="7 8 9 10" data-regions="northeast southeast midwest" data-habitat="trees" data-group="puffball" data-danger="toxic" data-notice="2" data-text="pigskin poison puffball (earthball) scleroderma citrinum on soil or rotting wood under hardwoods and conifers." data-name="Pigskin poison puffball (earthball)">
+  <a href="/mushroom-id/species/pigskin-poison-puffball/">
+    <span>
+      <span class="nx-row-name">Pigskin poison puffball (earthball)</span>
+      <span class="nx-sci" style="display:block;margin-top:.3rem">Scleroderma citrinum</span>
+      <span class="nx-row-meta"><span class="verdict" data-season-badge hidden></span><span class="nx-k nx-danger">Poisonous</span></span>
+    </span>
+    <span class="nx-row-th"><img src="/mushroom-id/static/fungi/pigskin-poison-puffball.66283362fa71.webp" width="800" height="600" alt="" loading="lazy" decoding="async">
+</span>
+    <span class="nx-row-where">On soil or rotting wood under hardwoods and conifers.</span>
+  </a>
+  <button type="button" class="star-btn" data-star="pigskin-poison-puffball" data-star-body="" data-client-id="" aria-pressed="false" aria-label="Star Pigskin poison puffball (earthball)" title="Star">
+  <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></svg>
+  
+</button>
+
+</li>
+<li class="nx-row" data-plant="shaggy-mane" data-months="4 5 6 8 9 10 11" data-regions="northeast southeast midwest south-central rockies pacific-northwest california" data-habitat="lawn" data-group="gilled" data-danger="" data-notice="3" data-text="shaggy mane coprinus comatus lawns, roadsides, wood chips, and disturbed ground, often in groups." data-name="Shaggy mane">
+  <a href="/mushroom-id/species/shaggy-mane/">
+    <span>
+      <span class="nx-row-name">Shaggy mane</span>
+      <span class="nx-sci" style="display:block;margin-top:.3rem">Coprinus comatus</span>
+      <span class="nx-row-meta"><span class="verdict" data-season-badge hidden></span></span>
+    </span>
+    <span class="nx-row-th"><img src="/mushroom-id/static/fungi/shaggy-mane.b164ec69e0b5.webp" width="1100" height="1097" alt="" loading="lazy" decoding="async">
+</span>
+    <span class="nx-row-where">Lawns, roadsides, wood chips, and disturbed ground, often in groups.</span>
+  </a>
+  <button type="button" class="star-btn" data-star="shaggy-mane" data-star-body="" data-client-id="" aria-pressed="false" aria-label="Star Shaggy mane" title="Star">
+  <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></svg>
+  
+</button>
+
+</li>
+<li class="nx-row" data-plant="dog-stinkhorn" data-months="7 8 9 10" data-regions="northeast southeast midwest south-central" data-habitat="mulch" data-group="other" data-danger="" data-notice="3" data-text="stinkhorns phallus ravenelii and mutinus elegans in wood chips, mulch, and rich soil, often in gardens." data-name="Stinkhorns">
+  <a href="/mushroom-id/species/dog-stinkhorn/">
+    <span>
+      <span class="nx-row-name">Stinkhorns</span>
+      <span class="nx-sci" style="display:block;margin-top:.3rem">Phallus ravenelii and Mutinus elegans</span>
+      <span class="nx-row-meta"><span class="verdict" data-season-badge hidden></span></span>
+    </span>
+    <span class="nx-row-th"><img src="/mushroom-id/static/fungi/dog-stinkhorn.dcce589cd25d.webp" width="960" height="720" alt="" loading="lazy" decoding="async">
+</span>
+    <span class="nx-row-where">In wood chips, mulch, and rich soil, often in gardens.</span>
+  </a>
+  <button type="button" class="star-btn" data-star="dog-stinkhorn" data-star-body="" data-client-id="" aria-pressed="false" aria-label="Star Stinkhorns" title="Star">
+  <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></svg>
+  
+</button>
+
+</li>
+<li class="nx-row" data-plant="sulfur-tuft" data-months="5 6 7 8 9 10 11" data-regions="northeast southeast midwest south-central rockies pacific-northwest california" data-habitat="wood" data-group="gilled" data-danger="toxic" data-notice="3" data-text="sulfur tuft hypholoma fasciculare dense clusters on stumps and logs, hardwood and conifer." data-name="Sulfur tuft">
+  <a href="/mushroom-id/species/sulfur-tuft/">
+    <span>
+      <span class="nx-row-name">Sulfur tuft</span>
+      <span class="nx-sci" style="display:block;margin-top:.3rem">Hypholoma fasciculare</span>
+      <span class="nx-row-meta"><span class="verdict" data-season-badge hidden></span><span class="nx-k nx-danger">Poisonous</span></span>
+    </span>
+    <span class="nx-row-th"><img src="/mushroom-id/static/fungi/sulfur-tuft.d6ea6573b1fc.webp" width="1100" height="825" alt="" loading="lazy" decoding="async">
+</span>
+    <span class="nx-row-where">Dense clusters on stumps and logs, hardwood and conifer.</span>
+  </a>
+  <button type="button" class="star-btn" data-star="sulfur-tuft" data-star-body="" data-client-id="" aria-pressed="false" aria-label="Star Sulfur tuft" title="Star">
+  <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></svg>
+  
+</button>
+
+</li>
+<li class="nx-row" data-plant="turkey-tail" data-months="1 2 3 4 5 6 7 8 9 10 11 12" data-regions="northeast southeast midwest south-central rockies pacific-northwest california" data-habitat="wood" data-group="polypore" data-danger="" data-notice="3" data-text="turkey tail trametes versicolor overlapping shelves on dead hardwood logs, stumps, and branches." data-name="Turkey tail">
+  <a href="/mushroom-id/species/turkey-tail/">
+    <span>
+      <span class="nx-row-name">Turkey tail</span>
+      <span class="nx-sci" style="display:block;margin-top:.3rem">Trametes versicolor</span>
+      <span class="nx-row-meta"><span class="verdict" data-season-badge hidden></span></span>
+    </span>
+    <span class="nx-row-th"><img src="/mushroom-id/static/fungi/turkey-tail.a163c00ac695.webp" width="1100" height="825" alt="" loading="lazy" decoding="async">
+</span>
+    <span class="nx-row-where">Overlapping shelves on dead hardwood logs, stumps, and branches.</span>
+  </a>
+  <button type="button" class="star-btn" data-star="turkey-tail" data-star-body="" data-client-id="" aria-pressed="false" aria-label="Star Turkey tail" title="Star">
+  <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></svg>
+  
+</button>
+
+</li>
+<li class="nx-row" data-plant="velvet-foot" data-months="1 2 3 4 10 11 12" data-regions="northeast southeast midwest south-central rockies pacific-northwest california" data-habitat="wood" data-group="gilled" data-danger="" data-notice="2" data-text="velvet foot flammulina velutipes in clusters on dead hardwood, especially elm and willow, in cold weather and even winter thaws." data-name="Velvet foot">
+  <a href="/mushroom-id/species/velvet-foot/">
+    <span>
+      <span class="nx-row-name">Velvet foot</span>
+      <span class="nx-sci" style="display:block;margin-top:.3rem">Flammulina velutipes</span>
+      <span class="nx-row-meta"><span class="verdict" data-season-badge hidden></span></span>
+    </span>
+    <span class="nx-row-th"><img src="/mushroom-id/static/fungi/velvet-foot.0d0001ed00a4.webp" width="600" height="460" alt="" loading="lazy" decoding="async">
+</span>
+    <span class="nx-row-where">In clusters on dead hardwood, especially elm and willow, in cold weather and even winter thaws.</span>
+  </a>
+  <button type="button" class="star-btn" data-star="velvet-foot" data-star-body="" data-client-id="" aria-pressed="false" aria-label="Star Velvet foot" title="Star">
+  <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></svg>
+  
+</button>
+
+</li>
+<li class="nx-row" data-plant="wine-cap" data-months="5 6 7 8 9 10" data-regions="northeast southeast midwest south-central rockies pacific-northwest california" data-habitat="mulch" data-group="gilled" data-danger="" data-notice="2" data-text="wine cap stropharia rugosoannulata in wood chips, garden beds, and mulched paths." data-name="Wine cap">
+  <a href="/mushroom-id/species/wine-cap/">
+    <span>
+      <span class="nx-row-name">Wine cap</span>
+      <span class="nx-sci" style="display:block;margin-top:.3rem">Stropharia rugosoannulata</span>
+      <span class="nx-row-meta"><span class="verdict" data-season-badge hidden></span></span>
+    </span>
+    <span class="nx-row-th"><img src="/mushroom-id/static/fungi/wine-cap.4216757d0b13.webp" width="1100" height="733" alt="" loading="lazy" decoding="async">
+</span>
+    <span class="nx-row-where">In wood chips, garden beds, and mulched paths.</span>
+  </a>
+  <button type="button" class="star-btn" data-star="wine-cap" data-star-body="" data-client-id="" aria-pressed="false" aria-label="Star Wine cap" title="Star">
+  <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></svg>
+  
+</button>
+
+</li>
+<li class="nx-row" data-plant="witchs-butter" data-months="1 2 3 4 5 6 7 8 9 10 11 12" data-regions="northeast southeast midwest south-central rockies pacific-northwest california" data-habitat="wood" data-group="jelly" data-danger="" data-notice="2" data-text="witch&#x27;s butter tremella mesenterica on dead hardwood branches, often appearing after rain in cool weather." data-name="Witch&#x27;s butter">
+  <a href="/mushroom-id/species/witchs-butter/">
+    <span>
+      <span class="nx-row-name">Witch&#x27;s butter</span>
+      <span class="nx-sci" style="display:block;margin-top:.3rem">Tremella mesenterica</span>
+      <span class="nx-row-meta"><span class="verdict" data-season-badge hidden></span></span>
+    </span>
+    <span class="nx-row-th"><img src="/mushroom-id/static/fungi/witchs-butter.48d6f6117e53.webp" width="1100" height="781" alt="" loading="lazy" decoding="async">
+</span>
+    <span class="nx-row-where">On dead hardwood branches, often appearing after rain in cool weather.</span>
+  </a>
+  <button type="button" class="star-btn" data-star="witchs-butter" data-star-body="" data-client-id="" aria-pressed="false" aria-label="Star Witch&#x27;s butter" title="Star">
+  <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></svg>
+  
+</button>
+
+</li>
+<li class="nx-row" data-plant="wood-ear" data-months="4 5 6 7 8 9 10 11" data-regions="northeast southeast midwest south-central rockies pacific-northwest california" data-habitat="wood" data-group="jelly" data-danger="" data-notice="2" data-text="wood ear auricularia americana group on dead hardwood or conifer branches and logs." data-name="Wood ear">
+  <a href="/mushroom-id/species/wood-ear/">
+    <span>
+      <span class="nx-row-name">Wood ear</span>
+      <span class="nx-sci" style="display:block;margin-top:.3rem">Auricularia americana group</span>
+      <span class="nx-row-meta"><span class="verdict" data-season-badge hidden></span></span>
+    </span>
+    <span class="nx-row-th"><img src="/mushroom-id/static/fungi/wood-ear.7850d2dc65dd.webp" width="1100" height="825" alt="" loading="lazy" decoding="async">
+</span>
+    <span class="nx-row-where">On dead hardwood or conifer branches and logs.</span>
+  </a>
+  <button type="button" class="star-btn" data-star="wood-ear" data-star-body="" data-client-id="" aria-pressed="false" aria-label="Star Wood ear" title="Star">
+  <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></svg>
+  
+</button>
+
+</li>
+
+  </ul>
+  <p class="empty nx-pad mt-3" data-fungi-empty hidden>Nothing matches that filter.</p>
+  <nav class="nx-chapters nx-pad" aria-label="Chapters" style="margin-left:var(--gut);margin-right:var(--gut);padding:0">
+  
+    <a class="nx-chapter" href="/mushroom-id/look-alikes/">
+      <span class="nx-chapter-ph"><img src="/mushroom-id/static/fungi/jack-o-lantern.f7dbb7b9f0fd.webp" width="1100" height="1100" alt="" loading="lazy" decoding="async">
+</span>
+      <span class="nx-k">Chapter 1</span>
+      <span class="nx-chapter-t">Look-alikes</span>
+      <span class="nx-sci">Side by side: the edible-looking and the dangerous.</span>
+    </a>
+  
+    <a class="nx-chapter" href="/mushroom-id/deadly/">
+      <span class="nx-chapter-ph"><img src="/mushroom-id/static/fungi/death-cap.d33d4df2512a.webp" width="825" height="1100" alt="" loading="lazy" decoding="async">
+</span>
+      <span class="nx-k">Chapter 2</span>
+      <span class="nx-chapter-t">The deadly three</span>
+      <span class="nx-sci">The species behind most fatal poisonings.</span>
+    </a>
+  
+    <a class="nx-chapter" href="/mushroom-id/anatomy/">
+      <span class="nx-chapter-ph"><img src="/mushroom-id/static/fungi/destroying-angel.2bfa37ac84b3.webp" width="825" height="1100" alt="" loading="lazy" decoding="async">
+</span>
+      <span class="nx-k">Chapter 3</span>
+      <span class="nx-chapter-t">Reading a mushroom</span>
+      <span class="nx-sci">Six things to check, in order.</span>
+    </a>
+  
+    <a class="nx-chapter" href="/mushroom-id/calendar/">
+      <span class="nx-chapter-ph"><img src="/mushroom-id/static/fungi/turkey-tail.a163c00ac695.webp" width="1100" height="825" alt="" loading="lazy" decoding="async">
+</span>
+      <span class="nx-k">Chapter 4</span>
+      <span class="nx-chapter-t">The year in fungi</span>
+      <span class="nx-sci">What fruits in which month.</span>
+    </a>
+  
+    <a class="nx-chapter" href="/mushroom-id/habitats/">
+      <span class="nx-chapter-ph"><img src="/mushroom-id/static/fungi/giant-puffball.65841f4eec09.webp" width="1100" height="733" alt="" loading="lazy" decoding="async">
+</span>
+      <span class="nx-k">Chapter 5</span>
+      <span class="nx-chapter-t">Where to look</span>
+      <span class="nx-sci">Lawns, wood, soil under trees, and mulch.</span>
+    </a>
+  
+</nav>
+
+  <aside class="nx-safe" role="note">For learning, not for eating. Never eat a wild mushroom based on this guide, a photo, or an app. Some deadly species look like common edible ones. Have a local expert check the actual mushroom in person first.<small>If someone may have eaten a wild mushroom, call Poison Control right away: 1-800-222-1222 in the US.</small></aside>
+
+
+
+  </main>
+  
+  <dialog class="lightbox" aria-label="Photo viewer" data-lightbox>
+    <div class="lightbox-frame">
+      <div class="lightbox-bar">
+        <p class="lightbox-count num" data-lightbox-count aria-live="polite"></p>
+        <button type="button" class="lightbox-btn" data-lightbox-close aria-label="Close photo viewer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+      </div>
+      <div class="lightbox-stage" data-lightbox-stage>
+        <img alt="" data-lightbox-img>
+        <button type="button" class="lightbox-btn lightbox-prev" data-lightbox-prev aria-label="Previous photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+        <button type="button" class="lightbox-btn lightbox-next" data-lightbox-next aria-label="Next photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+      </div>
+      <p class="lightbox-caption photo-credit" data-lightbox-caption></p>
+    </div>
+  </dialog>
+
+  <footer class="site-footer" data-print-hide>
+    <div class="page-col-inner">
+      <button type="button" class="footer-link" data-download-copy>Download a copy</button>
+      <span class="text-muted">Stars and notes are saved on this device. Accounts to sync them come later.</span>
+    </div>
+  </footer>
+  
+  <script src="/mushroom-id/static/js/app.5fb1647e93ca.js"></script>
+
+</body>
+</html>
