@@ -1,14 +1,14 @@
-/* Pasture forage service worker. Version 093cbf88c56b.
+/* Pasture forage service worker. Version 6fee03ba473e.
  * Shell assets: cache first. Pages: network first, the last copy kept for
  * offline use. Sign-in pages, admin, exports, and anything that is not a
  * GET are never cached. */
-const VERSION = "093cbf88c56b";
+const VERSION = "6fee03ba473e";
 const SHELL = "pf-shell-" + VERSION;
 const PAGES = "pf-pages";
 const BASE = "/forage\u002Dguide/";
 const STATIC = "/forage\u002Dguide/static/";
 const OFFLINE_URL = BASE + "offline/";
-const SHELL_URLS = [OFFLINE_URL, BASE + "catalog.json", BASE + "manifest.webmanifest", "/forage\u002Dguide/static/css/app.880ed8745454.css", "/forage\u002Dguide/static/js/app.3f29a6292ee0.js", "/forage\u002Dguide/static/icons/icon\u002D192.224cd406f46c.png", "/forage\u002Dguide/static/icons/apple\u002Dtouch\u002Dicon.f9c7d501b927.png", "/forage\u002Dguide/static/fonts/instrument\u002Dsans\u002Dlatin\u002Dvar.fa41c43a3d8e.woff2", "/forage\u002Dguide/static/fonts/dm\u002Dmono\u002Dlatin\u002D400\u002Dnormal.e1ed461ac183.woff2", "/forage\u002Dguide/static/fonts/dm\u002Dmono\u002Dlatin\u002D500\u002Dnormal.c4598219c4b8.woff2"];
+const SHELL_URLS = [OFFLINE_URL, BASE + "catalog.json", BASE + "manifest.webmanifest", "/forage\u002Dguide/static/css/app.13643ba6ecd1.css", "/forage\u002Dguide/static/js/app.3f29a6292ee0.js", "/forage\u002Dguide/static/icons/icon\u002D192.224cd406f46c.png", "/forage\u002Dguide/static/icons/apple\u002Dtouch\u002Dicon.f9c7d501b927.png", "/forage\u002Dguide/static/fonts/instrument\u002Dsans\u002Dlatin\u002Dvar.fa41c43a3d8e.woff2", "/forage\u002Dguide/static/fonts/dm\u002Dmono\u002Dlatin\u002D400\u002Dnormal.e1ed461ac183.woff2", "/forage\u002Dguide/static/fonts/dm\u002Dmono\u002Dlatin\u002D500\u002Dnormal.c4598219c4b8.woff2"];
 const MAX_PAGES = 40;
 // Plant photos: small copies at install, larger ones as they are opened.
 const PHOTOS = "pf-photos";
