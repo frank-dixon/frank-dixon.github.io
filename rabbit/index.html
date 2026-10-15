@@ -5,11 +5,11 @@
     <link rel="icon" type="image/svg+xml" href="/rabbit/favicon.svg" />
     <link rel="apple-touch-icon" href="/rabbit/apple-touch-icon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#141815" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#062A2E" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#062A2E" media="(prefers-color-scheme: dark)" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@1,8..60,400&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
     <meta
       name="description"
       content="Predict meat rabbit progeny coat and eye colors from parent crosses."
@@ -27,10 +27,32 @@
         root.style.colorScheme = theme;
       })();
     </script>
-    <script type="module" crossorigin src="/rabbit/assets/index-DKnVfO6K.js"></script>
-    <link rel="stylesheet" crossorigin href="/rabbit/assets/index-N1ijreYC.css">
+    <script type="module" crossorigin src="/rabbit/assets/index-Buz8KmMv.js"></script>
+    <link rel="stylesheet" crossorigin href="/rabbit/assets/index-DRgIoVn6.css">
   <link rel="manifest" href="/rabbit/manifest.webmanifest"></head>
   <body>
+    <div class="hex-bg" aria-hidden="true">
+      <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+        <defs>
+          <pattern id="hex-tile" width="69.282" height="120" patternUnits="userSpaceOnUse" patternTransform="rotate(4)">
+            <g fill="none" stroke="#fff" stroke-width="1.4">
+              <path d="M69.282,20 L69.282,60 L30,80 L0,60 L0,20 L30,0 Z"/>
+              <path d="M69.282,20 L30,0 L0,20 L0,60 L30,80 L69.282,60 Z" transform="translate(-30,60)"/>
+              <path d="M69.282,20 L30,0 L0,20 L0,60 L30,80 L69.282,60 Z" transform="translate(30,60)"/>
+              <path d="M69.282,20 L30,0 L0,20 L0,60 L30,80 L69.282,60 Z" transform="translate(-30,-60)"/>
+              <path d="M69.282,20 L30,0 L0,20 L0,60 L30,80 L69.282,60 Z" transform="translate(30,-60)"/>
+              <path d="M69.282,20 L30,0 L0,20 L0,60 L30,80 L69.282,60 Z" transform="translate(0,120)"/>
+            </g>
+          </pattern>
+          <mask id="hex-mask"><rect width="100%" height="100%" fill="url(#hex-tile)"/></mask>
+          <linearGradient id="hex-tint" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#3a4241"/>
+            <stop offset="1" stop-color="#49252a"/>
+          </linearGradient>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#hex-tint)" mask="url(#hex-mask)"/>
+      </svg>
+    </div>
     <div id="root"></div>
   </body>
 </html>
