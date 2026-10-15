@@ -32,14 +32,16 @@
         view = saved;
       }
       root.setAttribute("data-plant-view", view);
+      // The nav panel stays open for this tab's session if it was left open.
+      try { if (sessionStorage.getItem("pf-nav-open") === "1") root.classList.add("nav-open"); } catch (err) {}
     })();
   </script>
   <title>Goose · Forage guide</title>
   
-  <meta name="csrf-token" content="N9B4gnTkjesAOIYurmLvcqBhH31AeF2H9Qloqc9qHBRDVjCrzcmK7eHJH8dRM7jV">
+  <meta name="csrf-token" content="R494xK2RairjzfZAeh55M9SY3AwfjWnhFudyu0vqA5LM1ZGiU2I0bIvdGv02BYLs">
   
   <link rel="preload" href="/forage-guide/static/fonts/instrument-sans-latin-var.fa41c43a3d8e.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="/forage-guide/static/css/app.13643ba6ecd1.css">
+  <link rel="stylesheet" href="/forage-guide/static/css/app.8191cb422f64.css">
   <link rel="manifest" href="/forage-guide/manifest.webmanifest">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="mobile-web-app-capable" content="yes">
@@ -69,26 +71,13 @@
 </head>
 <body class="min-h-dvh bg-canvas text-ink antialiased dark:bg-canvas dark:text-ink">
   <a class="skip" href="#content">Skip to content</a>
-  <header class="topbar" data-print-hide>
-    <button type="button" class="menu-btn" aria-controls="side-nav" aria-expanded="false" data-nav-open>
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
-      <span class="sr-only">Menu</span>
-    </button>
-    <a class="brand" href="/forage-guide/"><span class="brand-mark" aria-hidden="true"></span>Forage guide</a>
-    <div class="topbar-tools">
-      
-    </div>
-  </header>
+  <button type="button" class="nav-toggle" aria-controls="side-nav" aria-expanded="false" data-nav-open data-print-hide>
+    <svg class="nav-toggle-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    <svg class="nav-toggle-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+    <span class="sr-only">Menu</span>
+  </button>
   
-  <div class="nav-backdrop" data-nav-backdrop hidden></div>
   <nav class="side-nav" id="side-nav" aria-label="Main" data-print-hide data-side-nav>
-    <div class="side-head">
-      <span class="brand"><span class="brand-mark" aria-hidden="true"></span>Forage guide</span>
-      <button type="button" class="menu-btn" data-nav-close>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
-        <span class="sr-only">Close menu</span>
-      </button>
-    </div>
     <ul>
       
         <li>
@@ -121,6 +110,14 @@
       <p class="side-foot side-note">Accounts aren't available here. Your data stays on this device.</p>
     
   </nav>
+  <div class="nav-backdrop" data-nav-backdrop aria-hidden="true"></div>
+  <div class="page-shell" data-page-shell>
+  <header class="topbar" data-print-hide>
+    <a class="brand" href="/forage-guide/"><span class="brand-mark" aria-hidden="true"></span>Forage guide</a>
+    <div class="topbar-tools">
+      
+    </div>
+  </header>
   <main id="content" data-page class="page-col">
     
   <p class="net-banner" role="status" data-connection-status hidden></p>
@@ -3237,7 +3234,7 @@
 
   <h2>Your note</h2>
   <form class="grid gap-3" method="post" action="/forage-guide/notes/" data-note-form data-offline-queue="Note">
-    <input type="hidden" name="csrfmiddlewaretoken" value="N9B4gnTkjesAOIYurmLvcqBhH31AeF2H9Qloqc9qHBRDVjCrzcmK7eHJH8dRM7jV">
+    <input type="hidden" name="csrfmiddlewaretoken" value="R494xK2RairjzfZAeh55M9SY3AwfjWnhFudyu0vqA5LM1ZGiU2I0bIvdGv02BYLs">
     <input type="hidden" name="plant" value="alfalfa">
     <input type="hidden" name="client_id" value="">
     <input type="hidden" name="op_id" value="">
@@ -3568,7 +3565,7 @@
 
   <h2>Your note</h2>
   <form class="grid gap-3" method="post" action="/forage-guide/notes/" data-note-form data-offline-queue="Note">
-    <input type="hidden" name="csrfmiddlewaretoken" value="N9B4gnTkjesAOIYurmLvcqBhH31AeF2H9Qloqc9qHBRDVjCrzcmK7eHJH8dRM7jV">
+    <input type="hidden" name="csrfmiddlewaretoken" value="R494xK2RairjzfZAeh55M9SY3AwfjWnhFudyu0vqA5LM1ZGiU2I0bIvdGv02BYLs">
     <input type="hidden" name="plant" value="alsike-clover">
     <input type="hidden" name="client_id" value="">
     <input type="hidden" name="op_id" value="">
@@ -3910,7 +3907,7 @@
 
   <h2>Your note</h2>
   <form class="grid gap-3" method="post" action="/forage-guide/notes/" data-note-form data-offline-queue="Note">
-    <input type="hidden" name="csrfmiddlewaretoken" value="N9B4gnTkjesAOIYurmLvcqBhH31AeF2H9Qloqc9qHBRDVjCrzcmK7eHJH8dRM7jV">
+    <input type="hidden" name="csrfmiddlewaretoken" value="R494xK2RairjzfZAeh55M9SY3AwfjWnhFudyu0vqA5LM1ZGiU2I0bIvdGv02BYLs">
     <input type="hidden" name="plant" value="elderberry">
     <input type="hidden" name="client_id" value="">
     <input type="hidden" name="op_id" value="">
@@ -4233,7 +4230,7 @@
 
   <h2>Your note</h2>
   <form class="grid gap-3" method="post" action="/forage-guide/notes/" data-note-form data-offline-queue="Note">
-    <input type="hidden" name="csrfmiddlewaretoken" value="N9B4gnTkjesAOIYurmLvcqBhH31AeF2H9Qloqc9qHBRDVjCrzcmK7eHJH8dRM7jV">
+    <input type="hidden" name="csrfmiddlewaretoken" value="R494xK2RairjzfZAeh55M9SY3AwfjWnhFudyu0vqA5LM1ZGiU2I0bIvdGv02BYLs">
     <input type="hidden" name="plant" value="apple">
     <input type="hidden" name="client_id" value="">
     <input type="hidden" name="op_id" value="">
@@ -4558,7 +4555,7 @@
 
   <h2>Your note</h2>
   <form class="grid gap-3" method="post" action="/forage-guide/notes/" data-note-form data-offline-queue="Note">
-    <input type="hidden" name="csrfmiddlewaretoken" value="N9B4gnTkjesAOIYurmLvcqBhH31AeF2H9Qloqc9qHBRDVjCrzcmK7eHJH8dRM7jV">
+    <input type="hidden" name="csrfmiddlewaretoken" value="R494xK2RairjzfZAeh55M9SY3AwfjWnhFudyu0vqA5LM1ZGiU2I0bIvdGv02BYLs">
     <input type="hidden" name="plant" value="birdsfoot-trefoil">
     <input type="hidden" name="client_id" value="">
     <input type="hidden" name="op_id" value="">
@@ -4908,7 +4905,7 @@
 
   <h2>Your note</h2>
   <form class="grid gap-3" method="post" action="/forage-guide/notes/" data-note-form data-offline-queue="Note">
-    <input type="hidden" name="csrfmiddlewaretoken" value="N9B4gnTkjesAOIYurmLvcqBhH31AeF2H9Qloqc9qHBRDVjCrzcmK7eHJH8dRM7jV">
+    <input type="hidden" name="csrfmiddlewaretoken" value="R494xK2RairjzfZAeh55M9SY3AwfjWnhFudyu0vqA5LM1ZGiU2I0bIvdGv02BYLs">
     <input type="hidden" name="plant" value="bittersweet-nightshade">
     <input type="hidden" name="client_id" value="">
     <input type="hidden" name="op_id" value="">
@@ -5242,7 +5239,7 @@
 
   <h2>Your note</h2>
   <form class="grid gap-3" method="post" action="/forage-guide/notes/" data-note-form data-offline-queue="Note">
-    <input type="hidden" name="csrfmiddlewaretoken" value="N9B4gnTkjesAOIYurmLvcqBhH31AeF2H9Qloqc9qHBRDVjCrzcmK7eHJH8dRM7jV">
+    <input type="hidden" name="csrfmiddlewaretoken" value="R494xK2RairjzfZAeh55M9SY3AwfjWnhFudyu0vqA5LM1ZGiU2I0bIvdGv02BYLs">
     <input type="hidden" name="plant" value="black-cherry">
     <input type="hidden" name="client_id" value="">
     <input type="hidden" name="op_id" value="">
@@ -5602,7 +5599,7 @@
 
   <h2>Your note</h2>
   <form class="grid gap-3" method="post" action="/forage-guide/notes/" data-note-form data-offline-queue="Note">
-    <input type="hidden" name="csrfmiddlewaretoken" value="N9B4gnTkjesAOIYurmLvcqBhH31AeF2H9Qloqc9qHBRDVjCrzcmK7eHJH8dRM7jV">
+    <input type="hidden" name="csrfmiddlewaretoken" value="R494xK2RairjzfZAeh55M9SY3AwfjWnhFudyu0vqA5LM1ZGiU2I0bIvdGv02BYLs">
     <input type="hidden" name="plant" value="black-locust">
     <input type="hidden" name="client_id" value="">
     <input type="hidden" name="op_id" value="">
@@ -5921,7 +5918,7 @@
 
   <h2>Your note</h2>
   <form class="grid gap-3" method="post" action="/forage-guide/notes/" data-note-form data-offline-queue="Note">
-    <input type="hidden" name="csrfmiddlewaretoken" value="N9B4gnTkjesAOIYurmLvcqBhH31AeF2H9Qloqc9qHBRDVjCrzcmK7eHJH8dRM7jV">
+    <input type="hidden" name="csrfmiddlewaretoken" value="R494xK2RairjzfZAeh55M9SY3AwfjWnhFudyu0vqA5LM1ZGiU2I0bIvdGv02BYLs">
     <input type="hidden" name="plant" value="blackberry">
     <input type="hidden" name="client_id" value="">
     <input type="hidden" name="op_id" value="">
@@ -6266,7 +6263,7 @@
 
   <h2>Your note</h2>
   <form class="grid gap-3" method="post" action="/forage-guide/notes/" data-note-form data-offline-queue="Note">
-    <input type="hidden" name="csrfmiddlewaretoken" value="N9B4gnTkjesAOIYurmLvcqBhH31AeF2H9Qloqc9qHBRDVjCrzcmK7eHJH8dRM7jV">
+    <input type="hidden" name="csrfmiddlewaretoken" value="R494xK2RairjzfZAeh55M9SY3AwfjWnhFudyu0vqA5LM1ZGiU2I0bIvdGv02BYLs">
     <input type="hidden" name="plant" value="bracken-fern">
     <input type="hidden" name="client_id" value="">
     <input type="hidden" name="op_id" value="">
@@ -6606,7 +6603,7 @@
 
   <h2>Your note</h2>
   <form class="grid gap-3" method="post" action="/forage-guide/notes/" data-note-form data-offline-queue="Note">
-    <input type="hidden" name="csrfmiddlewaretoken" value="N9B4gnTkjesAOIYurmLvcqBhH31AeF2H9Qloqc9qHBRDVjCrzcmK7eHJH8dRM7jV">
+    <input type="hidden" name="csrfmiddlewaretoken" value="R494xK2RairjzfZAeh55M9SY3AwfjWnhFudyu0vqA5LM1ZGiU2I0bIvdGv02BYLs">
     <input type="hidden" name="plant" value="buttercup">
     <input type="hidden" name="client_id" value="">
     <input type="hidden" name="op_id" value="">
@@ -6906,7 +6903,7 @@
 
   <h2>Your note</h2>
   <form class="grid gap-3" method="post" action="/forage-guide/notes/" data-note-form data-offline-queue="Note">
-    <input type="hidden" name="csrfmiddlewaretoken" value="N9B4gnTkjesAOIYurmLvcqBhH31AeF2H9Qloqc9qHBRDVjCrzcmK7eHJH8dRM7jV">
+    <input type="hidden" name="csrfmiddlewaretoken" value="R494xK2RairjzfZAeh55M9SY3AwfjWnhFudyu0vqA5LM1ZGiU2I0bIvdGv02BYLs">
     <input type="hidden" name="plant" value="carrot">
     <input type="hidden" name="client_id" value="">
     <input type="hidden" name="op_id" value="">
@@ -7244,7 +7241,7 @@
 
   <h2>Your note</h2>
   <form class="grid gap-3" method="post" action="/forage-guide/notes/" data-note-form data-offline-queue="Note">
-    <input type="hidden" name="csrfmiddlewaretoken" value="N9B4gnTkjesAOIYurmLvcqBhH31AeF2H9Qloqc9qHBRDVjCrzcmK7eHJH8dRM7jV">
+    <input type="hidden" name="csrfmiddlewaretoken" value="R494xK2RairjzfZAeh55M9SY3AwfjWnhFudyu0vqA5LM1ZGiU2I0bIvdGv02BYLs">
     <input type="hidden" name="plant" value="comfrey">
     <input type="hidden" name="client_id" value="">
     <input type="hidden" name="op_id" value="">
@@ -7561,7 +7558,7 @@
 
   <h2>Your note</h2>
   <form class="grid gap-3" method="post" action="/forage-guide/notes/" data-note-form data-offline-queue="Note">
-    <input type="hidden" name="csrfmiddlewaretoken" value="N9B4gnTkjesAOIYurmLvcqBhH31AeF2H9Qloqc9qHBRDVjCrzcmK7eHJH8dRM7jV">
+    <input type="hidden" name="csrfmiddlewaretoken" value="R494xK2RairjzfZAeh55M9SY3AwfjWnhFudyu0vqA5LM1ZGiU2I0bIvdGv02BYLs">
     <input type="hidden" name="plant" value="chickweed">
     <input type="hidden" name="client_id" value="">
     <input type="hidden" name="op_id" value="">
@@ -7917,7 +7914,7 @@
 
   <h2>Your note</h2>
   <form class="grid gap-3" method="post" action="/forage-guide/notes/" data-note-form data-offline-queue="Note">
-    <input type="hidden" name="csrfmiddlewaretoken" value="N9B4gnTkjesAOIYurmLvcqBhH31AeF2H9Qloqc9qHBRDVjCrzcmK7eHJH8dRM7jV">
+    <input type="hidden" name="csrfmiddlewaretoken" value="R494xK2RairjzfZAeh55M9SY3AwfjWnhFudyu0vqA5LM1ZGiU2I0bIvdGv02BYLs">
     <input type="hidden" name="plant" value="common-milkweed">
     <input type="hidden" name="client_id" value="">
     <input type="hidden" name="op_id" value="">
@@ -8251,7 +8248,7 @@
 
   <h2>Your note</h2>
   <form class="grid gap-3" method="post" action="/forage-guide/notes/" data-note-form data-offline-queue="Note">
-    <input type="hidden" name="csrfmiddlewaretoken" value="N9B4gnTkjesAOIYurmLvcqBhH31AeF2H9Qloqc9qHBRDVjCrzcmK7eHJH8dRM7jV">
+    <input type="hidden" name="csrfmiddlewaretoken" value="R494xK2RairjzfZAeh55M9SY3AwfjWnhFudyu0vqA5LM1ZGiU2I0bIvdGv02BYLs">
     <input type="hidden" name="plant" value="st-johns-wort">
     <input type="hidden" name="client_id" value="">
     <input type="hidden" name="op_id" value="">
@@ -8566,7 +8563,7 @@
 
   <h2>Your note</h2>
   <form class="grid gap-3" method="post" action="/forage-guide/notes/" data-note-form data-offline-queue="Note">
-    <input type="hidden" name="csrfmiddlewaretoken" value="N9B4gnTkjesAOIYurmLvcqBhH31AeF2H9Qloqc9qHBRDVjCrzcmK7eHJH8dRM7jV">
+    <input type="hidden" name="csrfmiddlewaretoken" value="R494xK2RairjzfZAeh55M9SY3AwfjWnhFudyu0vqA5LM1ZGiU2I0bIvdGv02BYLs">
     <input type="hidden" name="plant" value="crabgrass">
     <input type="hidden" name="client_id" value="">
     <input type="hidden" name="op_id" value="">
@@ -8898,7 +8895,7 @@
 
   <h2>Your note</h2>
   <form class="grid gap-3" method="post" action="/forage-guide/notes/" data-note-form data-offline-queue="Note">
-    <input type="hidden" name="csrfmiddlewaretoken" value="N9B4gnTkjesAOIYurmLvcqBhH31AeF2H9Qloqc9qHBRDVjCrzcmK7eHJH8dRM7jV">
+    <input type="hidden" name="csrfmiddlewaretoken" value="R494xK2RairjzfZAeh55M9SY3AwfjWnhFudyu0vqA5LM1ZGiU2I0bIvdGv02BYLs">
     <input type="hidden" name="plant" value="crown-vetch">
     <input type="hidden" name="client_id" value="">
     <input type="hidden" name="op_id" value="">
@@ -9233,7 +9230,7 @@
 
   <h2>Your note</h2>
   <form class="grid gap-3" method="post" action="/forage-guide/notes/" data-note-form data-offline-queue="Note">
-    <input type="hidden" name="csrfmiddlewaretoken" value="N9B4gnTkjesAOIYurmLvcqBhH31AeF2H9Qloqc9qHBRDVjCrzcmK7eHJH8dRM7jV">
+    <input type="hidden" name="csrfmiddlewaretoken" value="R494xK2RairjzfZAeh55M9SY3AwfjWnhFudyu0vqA5LM1ZGiU2I0bIvdGv02BYLs">
     <input type="hidden" name="plant" value="curly-dock">
     <input type="hidden" name="client_id" value="">
     <input type="hidden" name="op_id" value="">
@@ -9555,7 +9552,7 @@
 
   <h2>Your note</h2>
   <form class="grid gap-3" method="post" action="/forage-guide/notes/" data-note-form data-offline-queue="Note">
-    <input type="hidden" name="csrfmiddlewaretoken" value="N9B4gnTkjesAOIYurmLvcqBhH31AeF2H9Qloqc9qHBRDVjCrzcmK7eHJH8dRM7jV">
+    <input type="hidden" name="csrfmiddlewaretoken" value="R494xK2RairjzfZAeh55M9SY3AwfjWnhFudyu0vqA5LM1ZGiU2I0bIvdGv02BYLs">
     <input type="hidden" name="plant" value="daffodil">
     <input type="hidden" name="client_id" value="">
     <input type="hidden" name="op_id" value="">
@@ -9874,7 +9871,7 @@
 
   <h2>Your note</h2>
   <form class="grid gap-3" method="post" action="/forage-guide/notes/" data-note-form data-offline-queue="Note">
-    <input type="hidden" name="csrfmiddlewaretoken" value="N9B4gnTkjesAOIYurmLvcqBhH31AeF2H9Qloqc9qHBRDVjCrzcmK7eHJH8dRM7jV">
+    <input type="hidden" name="csrfmiddlewaretoken" value="R494xK2RairjzfZAeh55M9SY3AwfjWnhFudyu0vqA5LM1ZGiU2I0bIvdGv02BYLs">
     <input type="hidden" name="plant" value="dandelion">
     <input type="hidden" name="client_id" value="">
     <input type="hidden" name="op_id" value="">
@@ -10202,7 +10199,7 @@
 
   <h2>Your note</h2>
   <form class="grid gap-3" method="post" action="/forage-guide/notes/" data-note-form data-offline-queue="Note">
-    <input type="hidden" name="csrfmiddlewaretoken" value="N9B4gnTkjesAOIYurmLvcqBhH31AeF2H9Qloqc9qHBRDVjCrzcmK7eHJH8dRM7jV">
+    <input type="hidden" name="csrfmiddlewaretoken" value="R494xK2RairjzfZAeh55M9SY3AwfjWnhFudyu0vqA5LM1ZGiU2I0bIvdGv02BYLs">
     <input type="hidden" name="plant" value="false-hellebore">
     <input type="hidden" name="client_id" value="">
     <input type="hidden" name="op_id" value="">
@@ -10550,7 +10547,7 @@
 
   <h2>Your note</h2>
   <form class="grid gap-3" method="post" action="/forage-guide/notes/" data-note-form data-offline-queue="Note">
-    <input type="hidden" name="csrfmiddlewaretoken" value="N9B4gnTkjesAOIYurmLvcqBhH31AeF2H9Qloqc9qHBRDVjCrzcmK7eHJH8dRM7jV">
+    <input type="hidden" name="csrfmiddlewaretoken" value="R494xK2RairjzfZAeh55M9SY3AwfjWnhFudyu0vqA5LM1ZGiU2I0bIvdGv02BYLs">
     <input type="hidden" name="plant" value="foxglove">
     <input type="hidden" name="client_id" value="">
     <input type="hidden" name="op_id" value="">
@@ -10867,7 +10864,7 @@
 
   <h2>Your note</h2>
   <form class="grid gap-3" method="post" action="/forage-guide/notes/" data-note-form data-offline-queue="Note">
-    <input type="hidden" name="csrfmiddlewaretoken" value="N9B4gnTkjesAOIYurmLvcqBhH31AeF2H9Qloqc9qHBRDVjCrzcmK7eHJH8dRM7jV">
+    <input type="hidden" name="csrfmiddlewaretoken" value="R494xK2RairjzfZAeh55M9SY3AwfjWnhFudyu0vqA5LM1ZGiU2I0bIvdGv02BYLs">
     <input type="hidden" name="plant" value="garden-pea">
     <input type="hidden" name="client_id" value="">
     <input type="hidden" name="op_id" value="">
@@ -11182,7 +11179,7 @@
 
   <h2>Your note</h2>
   <form class="grid gap-3" method="post" action="/forage-guide/notes/" data-note-form data-offline-queue="Note">
-    <input type="hidden" name="csrfmiddlewaretoken" value="N9B4gnTkjesAOIYurmLvcqBhH31AeF2H9Qloqc9qHBRDVjCrzcmK7eHJH8dRM7jV">
+    <input type="hidden" name="csrfmiddlewaretoken" value="R494xK2RairjzfZAeh55M9SY3AwfjWnhFudyu0vqA5LM1ZGiU2I0bIvdGv02BYLs">
     <input type="hidden" name="plant" value="garlic-mustard">
     <input type="hidden" name="client_id" value="">
     <input type="hidden" name="op_id" value="">
@@ -11504,7 +11501,7 @@
 
   <h2>Your note</h2>
   <form class="grid gap-3" method="post" action="/forage-guide/notes/" data-note-form data-offline-queue="Note">
-    <input type="hidden" name="csrfmiddlewaretoken" value="N9B4gnTkjesAOIYurmLvcqBhH31AeF2H9Qloqc9qHBRDVjCrzcmK7eHJH8dRM7jV">
+    <input type="hidden" name="csrfmiddlewaretoken" value="R494xK2RairjzfZAeh55M9SY3AwfjWnhFudyu0vqA5LM1ZGiU2I0bIvdGv02BYLs">
     <input type="hidden" name="plant" value="glossy-buckthorn">
     <input type="hidden" name="client_id" value="">
     <input type="hidden" name="op_id" value="">
@@ -11827,7 +11824,7 @@
 
   <h2>Your note</h2>
   <form class="grid gap-3" method="post" action="/forage-guide/notes/" data-note-form data-offline-queue="Note">
-    <input type="hidden" name="csrfmiddlewaretoken" value="N9B4gnTkjesAOIYurmLvcqBhH31AeF2H9Qloqc9qHBRDVjCrzcmK7eHJH8dRM7jV">
+    <input type="hidden" name="csrfmiddlewaretoken" value="R494xK2RairjzfZAeh55M9SY3AwfjWnhFudyu0vqA5LM1ZGiU2I0bIvdGv02BYLs">
     <input type="hidden" name="plant" value="ground-ivy">
     <input type="hidden" name="client_id" value="">
     <input type="hidden" name="op_id" value="">
@@ -12152,7 +12149,7 @@
 
   <h2>Your note</h2>
   <form class="grid gap-3" method="post" action="/forage-guide/notes/" data-note-form data-offline-queue="Note">
-    <input type="hidden" name="csrfmiddlewaretoken" value="N9B4gnTkjesAOIYurmLvcqBhH31AeF2H9Qloqc9qHBRDVjCrzcmK7eHJH8dRM7jV">
+    <input type="hidden" name="csrfmiddlewaretoken" value="R494xK2RairjzfZAeh55M9SY3AwfjWnhFudyu0vqA5LM1ZGiU2I0bIvdGv02BYLs">
     <input type="hidden" name="plant" value="hairy-vetch">
     <input type="hidden" name="client_id" value="">
     <input type="hidden" name="op_id" value="">
@@ -12467,7 +12464,7 @@
 
   <h2>Your note</h2>
   <form class="grid gap-3" method="post" action="/forage-guide/notes/" data-note-form data-offline-queue="Note">
-    <input type="hidden" name="csrfmiddlewaretoken" value="N9B4gnTkjesAOIYurmLvcqBhH31AeF2H9Qloqc9qHBRDVjCrzcmK7eHJH8dRM7jV">
+    <input type="hidden" name="csrfmiddlewaretoken" value="R494xK2RairjzfZAeh55M9SY3AwfjWnhFudyu0vqA5LM1ZGiU2I0bIvdGv02BYLs">
     <input type="hidden" name="plant" value="highbush-blueberry">
     <input type="hidden" name="client_id" value="">
     <input type="hidden" name="op_id" value="">
@@ -12831,7 +12828,7 @@
 
   <h2>Your note</h2>
   <form class="grid gap-3" method="post" action="/forage-guide/notes/" data-note-form data-offline-queue="Note">
-    <input type="hidden" name="csrfmiddlewaretoken" value="N9B4gnTkjesAOIYurmLvcqBhH31AeF2H9Qloqc9qHBRDVjCrzcmK7eHJH8dRM7jV">
+    <input type="hidden" name="csrfmiddlewaretoken" value="R494xK2RairjzfZAeh55M9SY3AwfjWnhFudyu0vqA5LM1ZGiU2I0bIvdGv02BYLs">
     <input type="hidden" name="plant" value="horsenettle">
     <input type="hidden" name="client_id" value="">
     <input type="hidden" name="op_id" value="">
@@ -13171,7 +13168,7 @@
 
   <h2>Your note</h2>
   <form class="grid gap-3" method="post" action="/forage-guide/notes/" data-note-form data-offline-queue="Note">
-    <input type="hidden" name="csrfmiddlewaretoken" value="N9B4gnTkjesAOIYurmLvcqBhH31AeF2H9Qloqc9qHBRDVjCrzcmK7eHJH8dRM7jV">
+    <input type="hidden" name="csrfmiddlewaretoken" value="R494xK2RairjzfZAeh55M9SY3AwfjWnhFudyu0vqA5LM1ZGiU2I0bIvdGv02BYLs">
     <input type="hidden" name="plant" value="jack-in-the-pulpit">
     <input type="hidden" name="client_id" value="">
     <input type="hidden" name="op_id" value="">
@@ -13549,7 +13546,7 @@
 
   <h2>Your note</h2>
   <form class="grid gap-3" method="post" action="/forage-guide/notes/" data-note-form data-offline-queue="Note">
-    <input type="hidden" name="csrfmiddlewaretoken" value="N9B4gnTkjesAOIYurmLvcqBhH31AeF2H9Qloqc9qHBRDVjCrzcmK7eHJH8dRM7jV">
+    <input type="hidden" name="csrfmiddlewaretoken" value="R494xK2RairjzfZAeh55M9SY3AwfjWnhFudyu0vqA5LM1ZGiU2I0bIvdGv02BYLs">
     <input type="hidden" name="plant" value="jimsonweed">
     <input type="hidden" name="client_id" value="">
     <input type="hidden" name="op_id" value="">
@@ -13892,7 +13889,7 @@
 
   <h2>Your note</h2>
   <form class="grid gap-3" method="post" action="/forage-guide/notes/" data-note-form data-offline-queue="Note">
-    <input type="hidden" name="csrfmiddlewaretoken" value="N9B4gnTkjesAOIYurmLvcqBhH31AeF2H9Qloqc9qHBRDVjCrzcmK7eHJH8dRM7jV">
+    <input type="hidden" name="csrfmiddlewaretoken" value="R494xK2RairjzfZAeh55M9SY3AwfjWnhFudyu0vqA5LM1ZGiU2I0bIvdGv02BYLs">
     <input type="hidden" name="plant" value="kale">
     <input type="hidden" name="client_id" value="">
     <input type="hidden" name="op_id" value="">
@@ -14223,7 +14220,7 @@
 
   <h2>Your note</h2>
   <form class="grid gap-3" method="post" action="/forage-guide/notes/" data-note-form data-offline-queue="Note">
-    <input type="hidden" name="csrfmiddlewaretoken" value="N9B4gnTkjesAOIYurmLvcqBhH31AeF2H9Qloqc9qHBRDVjCrzcmK7eHJH8dRM7jV">
+    <input type="hidden" name="csrfmiddlewaretoken" value="R494xK2RairjzfZAeh55M9SY3AwfjWnhFudyu0vqA5LM1ZGiU2I0bIvdGv02BYLs">
     <input type="hidden" name="plant" value="kentucky-bluegrass">
     <input type="hidden" name="client_id" value="">
     <input type="hidden" name="op_id" value="">
@@ -14557,7 +14554,7 @@
 
   <h2>Your note</h2>
   <form class="grid gap-3" method="post" action="/forage-guide/notes/" data-note-form data-offline-queue="Note">
-    <input type="hidden" name="csrfmiddlewaretoken" value="N9B4gnTkjesAOIYurmLvcqBhH31AeF2H9Qloqc9qHBRDVjCrzcmK7eHJH8dRM7jV">
+    <input type="hidden" name="csrfmiddlewaretoken" value="R494xK2RairjzfZAeh55M9SY3AwfjWnhFudyu0vqA5LM1ZGiU2I0bIvdGv02BYLs">
     <input type="hidden" name="plant" value="lambsquarters">
     <input type="hidden" name="client_id" value="">
     <input type="hidden" name="op_id" value="">
@@ -14881,7 +14878,7 @@
 
   <h2>Your note</h2>
   <form class="grid gap-3" method="post" action="/forage-guide/notes/" data-note-form data-offline-queue="Note">
-    <input type="hidden" name="csrfmiddlewaretoken" value="N9B4gnTkjesAOIYurmLvcqBhH31AeF2H9Qloqc9qHBRDVjCrzcmK7eHJH8dRM7jV">
+    <input type="hidden" name="csrfmiddlewaretoken" value="R494xK2RairjzfZAeh55M9SY3AwfjWnhFudyu0vqA5LM1ZGiU2I0bIvdGv02BYLs">
     <input type="hidden" name="plant" value="lettuce">
     <input type="hidden" name="client_id" value="">
     <input type="hidden" name="op_id" value="">
@@ -15227,7 +15224,7 @@
 
   <h2>Your note</h2>
   <form class="grid gap-3" method="post" action="/forage-guide/notes/" data-note-form data-offline-queue="Note">
-    <input type="hidden" name="csrfmiddlewaretoken" value="N9B4gnTkjesAOIYurmLvcqBhH31AeF2H9Qloqc9qHBRDVjCrzcmK7eHJH8dRM7jV">
+    <input type="hidden" name="csrfmiddlewaretoken" value="R494xK2RairjzfZAeh55M9SY3AwfjWnhFudyu0vqA5LM1ZGiU2I0bIvdGv02BYLs">
     <input type="hidden" name="plant" value="lily-of-the-valley">
     <input type="hidden" name="client_id" value="">
     <input type="hidden" name="op_id" value="">
@@ -15577,7 +15574,7 @@
 
   <h2>Your note</h2>
   <form class="grid gap-3" method="post" action="/forage-guide/notes/" data-note-form data-offline-queue="Note">
-    <input type="hidden" name="csrfmiddlewaretoken" value="N9B4gnTkjesAOIYurmLvcqBhH31AeF2H9Qloqc9qHBRDVjCrzcmK7eHJH8dRM7jV">
+    <input type="hidden" name="csrfmiddlewaretoken" value="R494xK2RairjzfZAeh55M9SY3AwfjWnhFudyu0vqA5LM1ZGiU2I0bIvdGv02BYLs">
     <input type="hidden" name="plant" value="mountain-laurel">
     <input type="hidden" name="client_id" value="">
     <input type="hidden" name="op_id" value="">
@@ -15896,7 +15893,7 @@
 
   <h2>Your note</h2>
   <form class="grid gap-3" method="post" action="/forage-guide/notes/" data-note-form data-offline-queue="Note">
-    <input type="hidden" name="csrfmiddlewaretoken" value="N9B4gnTkjesAOIYurmLvcqBhH31AeF2H9Qloqc9qHBRDVjCrzcmK7eHJH8dRM7jV">
+    <input type="hidden" name="csrfmiddlewaretoken" value="R494xK2RairjzfZAeh55M9SY3AwfjWnhFudyu0vqA5LM1ZGiU2I0bIvdGv02BYLs">
     <input type="hidden" name="plant" value="multiflora-rose">
     <input type="hidden" name="client_id" value="">
     <input type="hidden" name="op_id" value="">
@@ -16225,7 +16222,7 @@
 
   <h2>Your note</h2>
   <form class="grid gap-3" method="post" action="/forage-guide/notes/" data-note-form data-offline-queue="Note">
-    <input type="hidden" name="csrfmiddlewaretoken" value="N9B4gnTkjesAOIYurmLvcqBhH31AeF2H9Qloqc9qHBRDVjCrzcmK7eHJH8dRM7jV">
+    <input type="hidden" name="csrfmiddlewaretoken" value="R494xK2RairjzfZAeh55M9SY3AwfjWnhFudyu0vqA5LM1ZGiU2I0bIvdGv02BYLs">
     <input type="hidden" name="plant" value="onion">
     <input type="hidden" name="client_id" value="">
     <input type="hidden" name="op_id" value="">
@@ -16560,7 +16557,7 @@
 
   <h2>Your note</h2>
   <form class="grid gap-3" method="post" action="/forage-guide/notes/" data-note-form data-offline-queue="Note">
-    <input type="hidden" name="csrfmiddlewaretoken" value="N9B4gnTkjesAOIYurmLvcqBhH31AeF2H9Qloqc9qHBRDVjCrzcmK7eHJH8dRM7jV">
+    <input type="hidden" name="csrfmiddlewaretoken" value="R494xK2RairjzfZAeh55M9SY3AwfjWnhFudyu0vqA5LM1ZGiU2I0bIvdGv02BYLs">
     <input type="hidden" name="plant" value="orchardgrass">
     <input type="hidden" name="client_id" value="">
     <input type="hidden" name="op_id" value="">
@@ -16879,7 +16876,7 @@
 
   <h2>Your note</h2>
   <form class="grid gap-3" method="post" action="/forage-guide/notes/" data-note-form data-offline-queue="Note">
-    <input type="hidden" name="csrfmiddlewaretoken" value="N9B4gnTkjesAOIYurmLvcqBhH31AeF2H9Qloqc9qHBRDVjCrzcmK7eHJH8dRM7jV">
+    <input type="hidden" name="csrfmiddlewaretoken" value="R494xK2RairjzfZAeh55M9SY3AwfjWnhFudyu0vqA5LM1ZGiU2I0bIvdGv02BYLs">
     <input type="hidden" name="plant" value="plantain">
     <input type="hidden" name="client_id" value="">
     <input type="hidden" name="op_id" value="">
@@ -17283,7 +17280,7 @@
 
   <h2>Your note</h2>
   <form class="grid gap-3" method="post" action="/forage-guide/notes/" data-note-form data-offline-queue="Note">
-    <input type="hidden" name="csrfmiddlewaretoken" value="N9B4gnTkjesAOIYurmLvcqBhH31AeF2H9Qloqc9qHBRDVjCrzcmK7eHJH8dRM7jV">
+    <input type="hidden" name="csrfmiddlewaretoken" value="R494xK2RairjzfZAeh55M9SY3AwfjWnhFudyu0vqA5LM1ZGiU2I0bIvdGv02BYLs">
     <input type="hidden" name="plant" value="poison-hemlock">
     <input type="hidden" name="client_id" value="">
     <input type="hidden" name="op_id" value="">
@@ -17673,7 +17670,7 @@
 
   <h2>Your note</h2>
   <form class="grid gap-3" method="post" action="/forage-guide/notes/" data-note-form data-offline-queue="Note">
-    <input type="hidden" name="csrfmiddlewaretoken" value="N9B4gnTkjesAOIYurmLvcqBhH31AeF2H9Qloqc9qHBRDVjCrzcmK7eHJH8dRM7jV">
+    <input type="hidden" name="csrfmiddlewaretoken" value="R494xK2RairjzfZAeh55M9SY3AwfjWnhFudyu0vqA5LM1ZGiU2I0bIvdGv02BYLs">
     <input type="hidden" name="plant" value="poison-ivy">
     <input type="hidden" name="client_id" value="">
     <input type="hidden" name="op_id" value="">
@@ -18011,7 +18008,7 @@
 
   <h2>Your note</h2>
   <form class="grid gap-3" method="post" action="/forage-guide/notes/" data-note-form data-offline-queue="Note">
-    <input type="hidden" name="csrfmiddlewaretoken" value="N9B4gnTkjesAOIYurmLvcqBhH31AeF2H9Qloqc9qHBRDVjCrzcmK7eHJH8dRM7jV">
+    <input type="hidden" name="csrfmiddlewaretoken" value="R494xK2RairjzfZAeh55M9SY3AwfjWnhFudyu0vqA5LM1ZGiU2I0bIvdGv02BYLs">
     <input type="hidden" name="plant" value="pokeweed">
     <input type="hidden" name="client_id" value="">
     <input type="hidden" name="op_id" value="">
@@ -18361,7 +18358,7 @@
 
   <h2>Your note</h2>
   <form class="grid gap-3" method="post" action="/forage-guide/notes/" data-note-form data-offline-queue="Note">
-    <input type="hidden" name="csrfmiddlewaretoken" value="N9B4gnTkjesAOIYurmLvcqBhH31AeF2H9Qloqc9qHBRDVjCrzcmK7eHJH8dRM7jV">
+    <input type="hidden" name="csrfmiddlewaretoken" value="R494xK2RairjzfZAeh55M9SY3AwfjWnhFudyu0vqA5LM1ZGiU2I0bIvdGv02BYLs">
     <input type="hidden" name="plant" value="potato">
     <input type="hidden" name="client_id" value="">
     <input type="hidden" name="op_id" value="">
@@ -18682,7 +18679,7 @@
 
   <h2>Your note</h2>
   <form class="grid gap-3" method="post" action="/forage-guide/notes/" data-note-form data-offline-queue="Note">
-    <input type="hidden" name="csrfmiddlewaretoken" value="N9B4gnTkjesAOIYurmLvcqBhH31AeF2H9Qloqc9qHBRDVjCrzcmK7eHJH8dRM7jV">
+    <input type="hidden" name="csrfmiddlewaretoken" value="R494xK2RairjzfZAeh55M9SY3AwfjWnhFudyu0vqA5LM1ZGiU2I0bIvdGv02BYLs">
     <input type="hidden" name="plant" value="purslane">
     <input type="hidden" name="client_id" value="">
     <input type="hidden" name="op_id" value="">
@@ -18991,7 +18988,7 @@
 
   <h2>Your note</h2>
   <form class="grid gap-3" method="post" action="/forage-guide/notes/" data-note-form data-offline-queue="Note">
-    <input type="hidden" name="csrfmiddlewaretoken" value="N9B4gnTkjesAOIYurmLvcqBhH31AeF2H9Qloqc9qHBRDVjCrzcmK7eHJH8dRM7jV">
+    <input type="hidden" name="csrfmiddlewaretoken" value="R494xK2RairjzfZAeh55M9SY3AwfjWnhFudyu0vqA5LM1ZGiU2I0bIvdGv02BYLs">
     <input type="hidden" name="plant" value="quaking-aspen">
     <input type="hidden" name="client_id" value="">
     <input type="hidden" name="op_id" value="">
@@ -19311,7 +19308,7 @@
 
   <h2>Your note</h2>
   <form class="grid gap-3" method="post" action="/forage-guide/notes/" data-note-form data-offline-queue="Note">
-    <input type="hidden" name="csrfmiddlewaretoken" value="N9B4gnTkjesAOIYurmLvcqBhH31AeF2H9Qloqc9qHBRDVjCrzcmK7eHJH8dRM7jV">
+    <input type="hidden" name="csrfmiddlewaretoken" value="R494xK2RairjzfZAeh55M9SY3AwfjWnhFudyu0vqA5LM1ZGiU2I0bIvdGv02BYLs">
     <input type="hidden" name="plant" value="queen-annes-lace">
     <input type="hidden" name="client_id" value="">
     <input type="hidden" name="op_id" value="">
@@ -19642,7 +19639,7 @@
 
   <h2>Your note</h2>
   <form class="grid gap-3" method="post" action="/forage-guide/notes/" data-note-form data-offline-queue="Note">
-    <input type="hidden" name="csrfmiddlewaretoken" value="N9B4gnTkjesAOIYurmLvcqBhH31AeF2H9Qloqc9qHBRDVjCrzcmK7eHJH8dRM7jV">
+    <input type="hidden" name="csrfmiddlewaretoken" value="R494xK2RairjzfZAeh55M9SY3AwfjWnhFudyu0vqA5LM1ZGiU2I0bIvdGv02BYLs">
     <input type="hidden" name="plant" value="red-clover">
     <input type="hidden" name="client_id" value="">
     <input type="hidden" name="op_id" value="">
@@ -19965,7 +19962,7 @@
 
   <h2>Your note</h2>
   <form class="grid gap-3" method="post" action="/forage-guide/notes/" data-note-form data-offline-queue="Note">
-    <input type="hidden" name="csrfmiddlewaretoken" value="N9B4gnTkjesAOIYurmLvcqBhH31AeF2H9Qloqc9qHBRDVjCrzcmK7eHJH8dRM7jV">
+    <input type="hidden" name="csrfmiddlewaretoken" value="R494xK2RairjzfZAeh55M9SY3AwfjWnhFudyu0vqA5LM1ZGiU2I0bIvdGv02BYLs">
     <input type="hidden" name="plant" value="red-maple">
     <input type="hidden" name="client_id" value="">
     <input type="hidden" name="op_id" value="">
@@ -20284,7 +20281,7 @@
 
   <h2>Your note</h2>
   <form class="grid gap-3" method="post" action="/forage-guide/notes/" data-note-form data-offline-queue="Note">
-    <input type="hidden" name="csrfmiddlewaretoken" value="N9B4gnTkjesAOIYurmLvcqBhH31AeF2H9Qloqc9qHBRDVjCrzcmK7eHJH8dRM7jV">
+    <input type="hidden" name="csrfmiddlewaretoken" value="R494xK2RairjzfZAeh55M9SY3AwfjWnhFudyu0vqA5LM1ZGiU2I0bIvdGv02BYLs">
     <input type="hidden" name="plant" value="raspberry">
     <input type="hidden" name="client_id" value="">
     <input type="hidden" name="op_id" value="">
@@ -20618,7 +20615,7 @@
 
   <h2>Your note</h2>
   <form class="grid gap-3" method="post" action="/forage-guide/notes/" data-note-form data-offline-queue="Note">
-    <input type="hidden" name="csrfmiddlewaretoken" value="N9B4gnTkjesAOIYurmLvcqBhH31AeF2H9Qloqc9qHBRDVjCrzcmK7eHJH8dRM7jV">
+    <input type="hidden" name="csrfmiddlewaretoken" value="R494xK2RairjzfZAeh55M9SY3AwfjWnhFudyu0vqA5LM1ZGiU2I0bIvdGv02BYLs">
     <input type="hidden" name="plant" value="redroot-pigweed">
     <input type="hidden" name="client_id" value="">
     <input type="hidden" name="op_id" value="">
@@ -20949,7 +20946,7 @@
 
   <h2>Your note</h2>
   <form class="grid gap-3" method="post" action="/forage-guide/notes/" data-note-form data-offline-queue="Note">
-    <input type="hidden" name="csrfmiddlewaretoken" value="N9B4gnTkjesAOIYurmLvcqBhH31AeF2H9Qloqc9qHBRDVjCrzcmK7eHJH8dRM7jV">
+    <input type="hidden" name="csrfmiddlewaretoken" value="R494xK2RairjzfZAeh55M9SY3AwfjWnhFudyu0vqA5LM1ZGiU2I0bIvdGv02BYLs">
     <input type="hidden" name="plant" value="reed-canarygrass">
     <input type="hidden" name="client_id" value="">
     <input type="hidden" name="op_id" value="">
@@ -21277,7 +21274,7 @@
 
   <h2>Your note</h2>
   <form class="grid gap-3" method="post" action="/forage-guide/notes/" data-note-form data-offline-queue="Note">
-    <input type="hidden" name="csrfmiddlewaretoken" value="N9B4gnTkjesAOIYurmLvcqBhH31AeF2H9Qloqc9qHBRDVjCrzcmK7eHJH8dRM7jV">
+    <input type="hidden" name="csrfmiddlewaretoken" value="R494xK2RairjzfZAeh55M9SY3AwfjWnhFudyu0vqA5LM1ZGiU2I0bIvdGv02BYLs">
     <input type="hidden" name="plant" value="rhododendron">
     <input type="hidden" name="client_id" value="">
     <input type="hidden" name="op_id" value="">
@@ -21605,7 +21602,7 @@
 
   <h2>Your note</h2>
   <form class="grid gap-3" method="post" action="/forage-guide/notes/" data-note-form data-offline-queue="Note">
-    <input type="hidden" name="csrfmiddlewaretoken" value="N9B4gnTkjesAOIYurmLvcqBhH31AeF2H9Qloqc9qHBRDVjCrzcmK7eHJH8dRM7jV">
+    <input type="hidden" name="csrfmiddlewaretoken" value="R494xK2RairjzfZAeh55M9SY3AwfjWnhFudyu0vqA5LM1ZGiU2I0bIvdGv02BYLs">
     <input type="hidden" name="plant" value="rhubarb">
     <input type="hidden" name="client_id" value="">
     <input type="hidden" name="op_id" value="">
@@ -21959,7 +21956,7 @@
 
   <h2>Your note</h2>
   <form class="grid gap-3" method="post" action="/forage-guide/notes/" data-note-form data-offline-queue="Note">
-    <input type="hidden" name="csrfmiddlewaretoken" value="N9B4gnTkjesAOIYurmLvcqBhH31AeF2H9Qloqc9qHBRDVjCrzcmK7eHJH8dRM7jV">
+    <input type="hidden" name="csrfmiddlewaretoken" value="R494xK2RairjzfZAeh55M9SY3AwfjWnhFudyu0vqA5LM1ZGiU2I0bIvdGv02BYLs">
     <input type="hidden" name="plant" value="sheep-laurel">
     <input type="hidden" name="client_id" value="">
     <input type="hidden" name="op_id" value="">
@@ -22277,7 +22274,7 @@
 
   <h2>Your note</h2>
   <form class="grid gap-3" method="post" action="/forage-guide/notes/" data-note-form data-offline-queue="Note">
-    <input type="hidden" name="csrfmiddlewaretoken" value="N9B4gnTkjesAOIYurmLvcqBhH31AeF2H9Qloqc9qHBRDVjCrzcmK7eHJH8dRM7jV">
+    <input type="hidden" name="csrfmiddlewaretoken" value="R494xK2RairjzfZAeh55M9SY3AwfjWnhFudyu0vqA5LM1ZGiU2I0bIvdGv02BYLs">
     <input type="hidden" name="plant" value="skunk-cabbage">
     <input type="hidden" name="client_id" value="">
     <input type="hidden" name="op_id" value="">
@@ -22600,7 +22597,7 @@
 
   <h2>Your note</h2>
   <form class="grid gap-3" method="post" action="/forage-guide/notes/" data-note-form data-offline-queue="Note">
-    <input type="hidden" name="csrfmiddlewaretoken" value="N9B4gnTkjesAOIYurmLvcqBhH31AeF2H9Qloqc9qHBRDVjCrzcmK7eHJH8dRM7jV">
+    <input type="hidden" name="csrfmiddlewaretoken" value="R494xK2RairjzfZAeh55M9SY3AwfjWnhFudyu0vqA5LM1ZGiU2I0bIvdGv02BYLs">
     <input type="hidden" name="plant" value="smooth-brome">
     <input type="hidden" name="client_id" value="">
     <input type="hidden" name="op_id" value="">
@@ -22919,7 +22916,7 @@
 
   <h2>Your note</h2>
   <form class="grid gap-3" method="post" action="/forage-guide/notes/" data-note-form data-offline-queue="Note">
-    <input type="hidden" name="csrfmiddlewaretoken" value="N9B4gnTkjesAOIYurmLvcqBhH31AeF2H9Qloqc9qHBRDVjCrzcmK7eHJH8dRM7jV">
+    <input type="hidden" name="csrfmiddlewaretoken" value="R494xK2RairjzfZAeh55M9SY3AwfjWnhFudyu0vqA5LM1ZGiU2I0bIvdGv02BYLs">
     <input type="hidden" name="plant" value="staghorn-sumac">
     <input type="hidden" name="client_id" value="">
     <input type="hidden" name="op_id" value="">
@@ -23241,7 +23238,7 @@
 
   <h2>Your note</h2>
   <form class="grid gap-3" method="post" action="/forage-guide/notes/" data-note-form data-offline-queue="Note">
-    <input type="hidden" name="csrfmiddlewaretoken" value="N9B4gnTkjesAOIYurmLvcqBhH31AeF2H9Qloqc9qHBRDVjCrzcmK7eHJH8dRM7jV">
+    <input type="hidden" name="csrfmiddlewaretoken" value="R494xK2RairjzfZAeh55M9SY3AwfjWnhFudyu0vqA5LM1ZGiU2I0bIvdGv02BYLs">
     <input type="hidden" name="plant" value="stinging-nettle">
     <input type="hidden" name="client_id" value="">
     <input type="hidden" name="op_id" value="">
@@ -23562,7 +23559,7 @@
 
   <h2>Your note</h2>
   <form class="grid gap-3" method="post" action="/forage-guide/notes/" data-note-form data-offline-queue="Note">
-    <input type="hidden" name="csrfmiddlewaretoken" value="N9B4gnTkjesAOIYurmLvcqBhH31AeF2H9Qloqc9qHBRDVjCrzcmK7eHJH8dRM7jV">
+    <input type="hidden" name="csrfmiddlewaretoken" value="R494xK2RairjzfZAeh55M9SY3AwfjWnhFudyu0vqA5LM1ZGiU2I0bIvdGv02BYLs">
     <input type="hidden" name="plant" value="sugar-maple">
     <input type="hidden" name="client_id" value="">
     <input type="hidden" name="op_id" value="">
@@ -23879,7 +23876,7 @@
 
   <h2>Your note</h2>
   <form class="grid gap-3" method="post" action="/forage-guide/notes/" data-note-form data-offline-queue="Note">
-    <input type="hidden" name="csrfmiddlewaretoken" value="N9B4gnTkjesAOIYurmLvcqBhH31AeF2H9Qloqc9qHBRDVjCrzcmK7eHJH8dRM7jV">
+    <input type="hidden" name="csrfmiddlewaretoken" value="R494xK2RairjzfZAeh55M9SY3AwfjWnhFudyu0vqA5LM1ZGiU2I0bIvdGv02BYLs">
     <input type="hidden" name="plant" value="swiss-chard">
     <input type="hidden" name="client_id" value="">
     <input type="hidden" name="op_id" value="">
@@ -24200,7 +24197,7 @@
 
   <h2>Your note</h2>
   <form class="grid gap-3" method="post" action="/forage-guide/notes/" data-note-form data-offline-queue="Note">
-    <input type="hidden" name="csrfmiddlewaretoken" value="N9B4gnTkjesAOIYurmLvcqBhH31AeF2H9Qloqc9qHBRDVjCrzcmK7eHJH8dRM7jV">
+    <input type="hidden" name="csrfmiddlewaretoken" value="R494xK2RairjzfZAeh55M9SY3AwfjWnhFudyu0vqA5LM1ZGiU2I0bIvdGv02BYLs">
     <input type="hidden" name="plant" value="tall-fescue">
     <input type="hidden" name="client_id" value="">
     <input type="hidden" name="op_id" value="">
@@ -24534,7 +24531,7 @@
 
   <h2>Your note</h2>
   <form class="grid gap-3" method="post" action="/forage-guide/notes/" data-note-form data-offline-queue="Note">
-    <input type="hidden" name="csrfmiddlewaretoken" value="N9B4gnTkjesAOIYurmLvcqBhH31AeF2H9Qloqc9qHBRDVjCrzcmK7eHJH8dRM7jV">
+    <input type="hidden" name="csrfmiddlewaretoken" value="R494xK2RairjzfZAeh55M9SY3AwfjWnhFudyu0vqA5LM1ZGiU2I0bIvdGv02BYLs">
     <input type="hidden" name="plant" value="tansy-ragwort">
     <input type="hidden" name="client_id" value="">
     <input type="hidden" name="op_id" value="">
@@ -24861,7 +24858,7 @@
 
   <h2>Your note</h2>
   <form class="grid gap-3" method="post" action="/forage-guide/notes/" data-note-form data-offline-queue="Note">
-    <input type="hidden" name="csrfmiddlewaretoken" value="N9B4gnTkjesAOIYurmLvcqBhH31AeF2H9Qloqc9qHBRDVjCrzcmK7eHJH8dRM7jV">
+    <input type="hidden" name="csrfmiddlewaretoken" value="R494xK2RairjzfZAeh55M9SY3AwfjWnhFudyu0vqA5LM1ZGiU2I0bIvdGv02BYLs">
     <input type="hidden" name="plant" value="timothy">
     <input type="hidden" name="client_id" value="">
     <input type="hidden" name="op_id" value="">
@@ -25203,7 +25200,7 @@
 
   <h2>Your note</h2>
   <form class="grid gap-3" method="post" action="/forage-guide/notes/" data-note-form data-offline-queue="Note">
-    <input type="hidden" name="csrfmiddlewaretoken" value="N9B4gnTkjesAOIYurmLvcqBhH31AeF2H9Qloqc9qHBRDVjCrzcmK7eHJH8dRM7jV">
+    <input type="hidden" name="csrfmiddlewaretoken" value="R494xK2RairjzfZAeh55M9SY3AwfjWnhFudyu0vqA5LM1ZGiU2I0bIvdGv02BYLs">
     <input type="hidden" name="plant" value="tomato">
     <input type="hidden" name="client_id" value="">
     <input type="hidden" name="op_id" value="">
@@ -25525,7 +25522,7 @@
 
   <h2>Your note</h2>
   <form class="grid gap-3" method="post" action="/forage-guide/notes/" data-note-form data-offline-queue="Note">
-    <input type="hidden" name="csrfmiddlewaretoken" value="N9B4gnTkjesAOIYurmLvcqBhH31AeF2H9Qloqc9qHBRDVjCrzcmK7eHJH8dRM7jV">
+    <input type="hidden" name="csrfmiddlewaretoken" value="R494xK2RairjzfZAeh55M9SY3AwfjWnhFudyu0vqA5LM1ZGiU2I0bIvdGv02BYLs">
     <input type="hidden" name="plant" value="virginia-creeper">
     <input type="hidden" name="client_id" value="">
     <input type="hidden" name="op_id" value="">
@@ -25891,7 +25888,7 @@
 
   <h2>Your note</h2>
   <form class="grid gap-3" method="post" action="/forage-guide/notes/" data-note-form data-offline-queue="Note">
-    <input type="hidden" name="csrfmiddlewaretoken" value="N9B4gnTkjesAOIYurmLvcqBhH31AeF2H9Qloqc9qHBRDVjCrzcmK7eHJH8dRM7jV">
+    <input type="hidden" name="csrfmiddlewaretoken" value="R494xK2RairjzfZAeh55M9SY3AwfjWnhFudyu0vqA5LM1ZGiU2I0bIvdGv02BYLs">
     <input type="hidden" name="plant" value="water-hemlock">
     <input type="hidden" name="client_id" value="">
     <input type="hidden" name="op_id" value="">
@@ -26211,7 +26208,7 @@
 
   <h2>Your note</h2>
   <form class="grid gap-3" method="post" action="/forage-guide/notes/" data-note-form data-offline-queue="Note">
-    <input type="hidden" name="csrfmiddlewaretoken" value="N9B4gnTkjesAOIYurmLvcqBhH31AeF2H9Qloqc9qHBRDVjCrzcmK7eHJH8dRM7jV">
+    <input type="hidden" name="csrfmiddlewaretoken" value="R494xK2RairjzfZAeh55M9SY3AwfjWnhFudyu0vqA5LM1ZGiU2I0bIvdGv02BYLs">
     <input type="hidden" name="plant" value="white-baneberry">
     <input type="hidden" name="client_id" value="">
     <input type="hidden" name="op_id" value="">
@@ -26540,7 +26537,7 @@
 
   <h2>Your note</h2>
   <form class="grid gap-3" method="post" action="/forage-guide/notes/" data-note-form data-offline-queue="Note">
-    <input type="hidden" name="csrfmiddlewaretoken" value="N9B4gnTkjesAOIYurmLvcqBhH31AeF2H9Qloqc9qHBRDVjCrzcmK7eHJH8dRM7jV">
+    <input type="hidden" name="csrfmiddlewaretoken" value="R494xK2RairjzfZAeh55M9SY3AwfjWnhFudyu0vqA5LM1ZGiU2I0bIvdGv02BYLs">
     <input type="hidden" name="plant" value="white-clover">
     <input type="hidden" name="client_id" value="">
     <input type="hidden" name="op_id" value="">
@@ -26860,7 +26857,7 @@
 
   <h2>Your note</h2>
   <form class="grid gap-3" method="post" action="/forage-guide/notes/" data-note-form data-offline-queue="Note">
-    <input type="hidden" name="csrfmiddlewaretoken" value="N9B4gnTkjesAOIYurmLvcqBhH31AeF2H9Qloqc9qHBRDVjCrzcmK7eHJH8dRM7jV">
+    <input type="hidden" name="csrfmiddlewaretoken" value="R494xK2RairjzfZAeh55M9SY3AwfjWnhFudyu0vqA5LM1ZGiU2I0bIvdGv02BYLs">
     <input type="hidden" name="plant" value="white-mulberry">
     <input type="hidden" name="client_id" value="">
     <input type="hidden" name="op_id" value="">
@@ -27200,7 +27197,7 @@
 
   <h2>Your note</h2>
   <form class="grid gap-3" method="post" action="/forage-guide/notes/" data-note-form data-offline-queue="Note">
-    <input type="hidden" name="csrfmiddlewaretoken" value="N9B4gnTkjesAOIYurmLvcqBhH31AeF2H9Qloqc9qHBRDVjCrzcmK7eHJH8dRM7jV">
+    <input type="hidden" name="csrfmiddlewaretoken" value="R494xK2RairjzfZAeh55M9SY3AwfjWnhFudyu0vqA5LM1ZGiU2I0bIvdGv02BYLs">
     <input type="hidden" name="plant" value="white-oak">
     <input type="hidden" name="client_id" value="">
     <input type="hidden" name="op_id" value="">
@@ -27558,7 +27555,7 @@
 
   <h2>Your note</h2>
   <form class="grid gap-3" method="post" action="/forage-guide/notes/" data-note-form data-offline-queue="Note">
-    <input type="hidden" name="csrfmiddlewaretoken" value="N9B4gnTkjesAOIYurmLvcqBhH31AeF2H9Qloqc9qHBRDVjCrzcmK7eHJH8dRM7jV">
+    <input type="hidden" name="csrfmiddlewaretoken" value="R494xK2RairjzfZAeh55M9SY3AwfjWnhFudyu0vqA5LM1ZGiU2I0bIvdGv02BYLs">
     <input type="hidden" name="plant" value="white-snakeroot">
     <input type="hidden" name="client_id" value="">
     <input type="hidden" name="op_id" value="">
@@ -27874,7 +27871,7 @@
 
   <h2>Your note</h2>
   <form class="grid gap-3" method="post" action="/forage-guide/notes/" data-note-form data-offline-queue="Note">
-    <input type="hidden" name="csrfmiddlewaretoken" value="N9B4gnTkjesAOIYurmLvcqBhH31AeF2H9Qloqc9qHBRDVjCrzcmK7eHJH8dRM7jV">
+    <input type="hidden" name="csrfmiddlewaretoken" value="R494xK2RairjzfZAeh55M9SY3AwfjWnhFudyu0vqA5LM1ZGiU2I0bIvdGv02BYLs">
     <input type="hidden" name="plant" value="wild-parsnip">
     <input type="hidden" name="client_id" value="">
     <input type="hidden" name="op_id" value="">
@@ -28193,7 +28190,7 @@
 
   <h2>Your note</h2>
   <form class="grid gap-3" method="post" action="/forage-guide/notes/" data-note-form data-offline-queue="Note">
-    <input type="hidden" name="csrfmiddlewaretoken" value="N9B4gnTkjesAOIYurmLvcqBhH31AeF2H9Qloqc9qHBRDVjCrzcmK7eHJH8dRM7jV">
+    <input type="hidden" name="csrfmiddlewaretoken" value="R494xK2RairjzfZAeh55M9SY3AwfjWnhFudyu0vqA5LM1ZGiU2I0bIvdGv02BYLs">
     <input type="hidden" name="plant" value="willow">
     <input type="hidden" name="client_id" value="">
     <input type="hidden" name="op_id" value="">
@@ -28522,7 +28519,7 @@
 
   <h2>Your note</h2>
   <form class="grid gap-3" method="post" action="/forage-guide/notes/" data-note-form data-offline-queue="Note">
-    <input type="hidden" name="csrfmiddlewaretoken" value="N9B4gnTkjesAOIYurmLvcqBhH31AeF2H9Qloqc9qHBRDVjCrzcmK7eHJH8dRM7jV">
+    <input type="hidden" name="csrfmiddlewaretoken" value="R494xK2RairjzfZAeh55M9SY3AwfjWnhFudyu0vqA5LM1ZGiU2I0bIvdGv02BYLs">
     <input type="hidden" name="plant" value="yellow-sweet-clover">
     <input type="hidden" name="client_id" value="">
     <input type="hidden" name="op_id" value="">
@@ -28893,7 +28890,7 @@
 
   <h2>Your note</h2>
   <form class="grid gap-3" method="post" action="/forage-guide/notes/" data-note-form data-offline-queue="Note">
-    <input type="hidden" name="csrfmiddlewaretoken" value="N9B4gnTkjesAOIYurmLvcqBhH31AeF2H9Qloqc9qHBRDVjCrzcmK7eHJH8dRM7jV">
+    <input type="hidden" name="csrfmiddlewaretoken" value="R494xK2RairjzfZAeh55M9SY3AwfjWnhFudyu0vqA5LM1ZGiU2I0bIvdGv02BYLs">
     <input type="hidden" name="plant" value="canada-yew">
     <input type="hidden" name="client_id" value="">
     <input type="hidden" name="op_id" value="">
@@ -28951,8 +28948,9 @@
       <span class="text-muted">Notes and favorites are saved on this device. Accounts aren't available on this version.</span>
     </div>
   </footer>
+  </div>
   
-  <script src="/forage-guide/static/js/app.3f29a6292ee0.js"></script>
+  <script src="/forage-guide/static/js/app.4fb88913aa9e.js"></script>
 
 </body>
 </html>

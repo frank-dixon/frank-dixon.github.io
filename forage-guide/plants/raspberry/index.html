@@ -32,14 +32,16 @@
         view = saved;
       }
       root.setAttribute("data-plant-view", view);
+      // The nav panel stays open for this tab's session if it was left open.
+      try { if (sessionStorage.getItem("pf-nav-open") === "1") root.classList.add("nav-open"); } catch (err) {}
     })();
   </script>
   <title>Red raspberry · Forage guide</title>
   
-  <meta name="csrf-token" content="rzcWh827Cvpg0IOB8CTZRMwdnflq8SyMNgWgrXid0SOj7jsygsueMACFnkxHGkP0">
+  <meta name="csrf-token" content="paazFJlU4rjbzx7giuBtfE8XuXiabhBmdAe3CZOtueDE1hOYYfeoEdLc7SMXtjZx">
   
   <link rel="preload" href="/forage-guide/static/fonts/instrument-sans-latin-var.fa41c43a3d8e.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="/forage-guide/static/css/app.13643ba6ecd1.css">
+  <link rel="stylesheet" href="/forage-guide/static/css/app.8191cb422f64.css">
   <link rel="manifest" href="/forage-guide/manifest.webmanifest">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="mobile-web-app-capable" content="yes">
@@ -69,26 +71,13 @@
 </head>
 <body class="min-h-dvh bg-canvas text-ink antialiased dark:bg-canvas dark:text-ink">
   <a class="skip" href="#content">Skip to content</a>
-  <header class="topbar" data-print-hide>
-    <button type="button" class="menu-btn" aria-controls="side-nav" aria-expanded="false" data-nav-open>
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
-      <span class="sr-only">Menu</span>
-    </button>
-    <a class="brand" href="/forage-guide/"><span class="brand-mark" aria-hidden="true"></span>Forage guide</a>
-    <div class="topbar-tools">
-      
-    </div>
-  </header>
+  <button type="button" class="nav-toggle" aria-controls="side-nav" aria-expanded="false" data-nav-open data-print-hide>
+    <svg class="nav-toggle-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    <svg class="nav-toggle-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+    <span class="sr-only">Menu</span>
+  </button>
   
-  <div class="nav-backdrop" data-nav-backdrop hidden></div>
   <nav class="side-nav" id="side-nav" aria-label="Main" data-print-hide data-side-nav>
-    <div class="side-head">
-      <span class="brand"><span class="brand-mark" aria-hidden="true"></span>Forage guide</span>
-      <button type="button" class="menu-btn" data-nav-close>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
-        <span class="sr-only">Close menu</span>
-      </button>
-    </div>
     <ul>
       
         <li>
@@ -121,6 +110,14 @@
       <p class="side-foot side-note">Accounts aren't available here. Your data stays on this device.</p>
     
   </nav>
+  <div class="nav-backdrop" data-nav-backdrop aria-hidden="true"></div>
+  <div class="page-shell" data-page-shell>
+  <header class="topbar" data-print-hide>
+    <a class="brand" href="/forage-guide/"><span class="brand-mark" aria-hidden="true"></span>Forage guide</a>
+    <div class="topbar-tools">
+      
+    </div>
+  </header>
   <main id="content" data-page class="page-col">
     
   <p class="net-banner" role="status" data-connection-status hidden></p>
@@ -415,7 +412,7 @@
 
   <h2>Your note</h2>
   <form class="grid gap-3" method="post" action="/forage-guide/notes/" data-note-form data-offline-queue="Note">
-    <input type="hidden" name="csrfmiddlewaretoken" value="rzcWh827Cvpg0IOB8CTZRMwdnflq8SyMNgWgrXid0SOj7jsygsueMACFnkxHGkP0">
+    <input type="hidden" name="csrfmiddlewaretoken" value="paazFJlU4rjbzx7giuBtfE8XuXiabhBmdAe3CZOtueDE1hOYYfeoEdLc7SMXtjZx">
     <input type="hidden" name="plant" value="raspberry">
     <input type="hidden" name="client_id" value="">
     <input type="hidden" name="op_id" value="">
@@ -468,8 +465,9 @@
       <span class="text-muted">Notes and favorites are saved on this device. Accounts aren't available on this version.</span>
     </div>
   </footer>
+  </div>
   
-  <script src="/forage-guide/static/js/app.3f29a6292ee0.js"></script>
+  <script src="/forage-guide/static/js/app.4fb88913aa9e.js"></script>
 
 </body>
 </html>
