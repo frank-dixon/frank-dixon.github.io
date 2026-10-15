@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en" data-style="riso" data-account-theme="system" data-plant-view="grid" data-account-animals="">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f3f1eb">
+  <meta name="pf-base" content="/forage-guide/">
+  <script>
+    (function () {
+      var key = "pf-theme";
+      var root = document.documentElement;
+      var account = root.getAttribute("data-account-theme") || "";
+      var stored = "";
+      try { stored = localStorage.getItem(key) || ""; } catch (err) { stored = ""; }
+      var theme = stored === "light" || stored === "dark" || stored === "system" ? stored : (account === "light" || account === "dark" || account === "system" ? account : "system");
+      if (stored !== theme) {
+        try { localStorage.setItem(key, theme); } catch (err) {}
+      }
+      var dark = theme === "dark" || (theme === "system" && window.matchMedia("(prefers-color-scheme: dark)").matches);
+      root.classList.toggle("dark", dark);
+      root.style.colorScheme = dark ? "dark" : "light";
+      root.setAttribute("data-theme", theme);
+      var meta = document.querySelector('meta[name="theme-color"]');
+      if (meta) meta.setAttribute("content", dark ? "#141815" : "#f3f1eb");
+      // Grid or List: a ?view= link wins, then this device, then the account.
+      var view = root.getAttribute("data-plant-view") === "list" ? "list" : "grid";
+      var saved = "";
+      try { saved = localStorage.getItem("pf-plant-view") || ""; } catch (err) { saved = ""; }
+      if (root.hasAttribute("data-plant-view-asked")) {
+        try { localStorage.setItem("pf-plant-view", view); } catch (err) {}
+      } else if (saved === "grid" || saved === "list") {
+        view = saved;
+      }
+      root.setAttribute("data-plant-view", view);
+    })();
+  </script>
+  <title>Buttercup · Forage guide</title>
+  
+  <meta name="csrf-token" content="kaDZ3VXwKWDd6DnpVXKbhj1SDKFoJRNbWGlmrh2sIRacrmtzIHbDsVm3ASJ9VLFc">
+  
+  <link rel="preload" href="/forage-guide/static/fonts/instrument-sans-latin-var.fa41c43a3d8e.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/forage-guide/static/css/app.880ed8745454.css">
+  <link rel="manifest" href="/forage-guide/manifest.webmanifest">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Forage">
+  <meta name="description" content="A New England reference for harvesting forage to feed rabbits, poultry, goats, sheep, and other livestock.">
+  <link rel="apple-touch-icon" href="/forage-guide/static/icons/apple-touch-icon.f9c7d501b927.png">
+  <link rel="icon" type="image/svg+xml" href="/forage-guide/static/icons/icon.b826095f50e3.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/forage-guide/static/icons/favicon-32.401ee745adea.png">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait) and (prefers-color-scheme: light)" href="/forage-guide/static/icons/splash-750x1334-light.ff790231a3a7.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait) and (prefers-color-scheme: dark)" href="/forage-guide/static/icons/splash-750x1334-dark.a8a3bbbf6108.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait) and (prefers-color-scheme: light)" href="/forage-guide/static/icons/splash-828x1792-light.c12d61c7b473.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait) and (prefers-color-scheme: dark)" href="/forage-guide/static/icons/splash-828x1792-dark.33bca0a0b104.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="/forage-guide/static/icons/splash-1125x2436-light.f36e8c5a0b32.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="/forage-guide/static/icons/splash-1125x2436-dark.583eadeeec92.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="/forage-guide/static/icons/splash-1170x2532-light.4dcb2e876564.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="/forage-guide/static/icons/splash-1170x2532-dark.28e0ea2192e1.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 393px) and (device-height: 852px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="/forage-guide/static/icons/splash-1179x2556-light.77d4279694d9.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 393px) and (device-height: 852px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="/forage-guide/static/icons/splash-1179x2556-dark.101d81f6401e.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="/forage-guide/static/icons/splash-1284x2778-light.12275a7dbcce.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="/forage-guide/static/icons/splash-1284x2778-dark.ca665c70f9f6.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="/forage-guide/static/icons/splash-1290x2796-light.72a10464b3e4.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="/forage-guide/static/icons/splash-1290x2796-dark.1b3d1306bb14.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait) and (prefers-color-scheme: light)" href="/forage-guide/static/icons/splash-2048x2732-light.d6ee2f81b1f2.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait) and (prefers-color-scheme: dark)" href="/forage-guide/static/icons/splash-2048x2732-dark.37211a5cf809.png">
+
+</head>
+<body class="min-h-dvh bg-canvas text-ink antialiased dark:bg-canvas dark:text-ink">
+  <a class="skip" href="#content">Skip to content</a>
+  <header class="topbar" data-print-hide>
+    <button type="button" class="menu-btn" aria-controls="side-nav" aria-expanded="false" data-nav-open>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      <span class="sr-only">Menu</span>
+    </button>
+    <a class="brand" href="/forage-guide/"><span class="brand-mark" aria-hidden="true"></span>Forage guide</a>
+    <div class="topbar-tools">
+      
+    </div>
+  </header>
+  
+  <div class="nav-backdrop" data-nav-backdrop hidden></div>
+  <nav class="side-nav" id="side-nav" aria-label="Main" data-print-hide data-side-nav>
+    <div class="side-head">
+      <span class="brand"><span class="brand-mark" aria-hidden="true"></span>Forage guide</span>
+      <button type="button" class="menu-btn" data-nav-close>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+        <span class="sr-only">Close menu</span>
+      </button>
+    </div>
+    <ul>
+      
+        <li>
+          <a class="side-link is-active" href="/forage-guide/" aria-current="page">
+            <svg class="h-[1.15rem] w-[1.15rem] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 19C5 11 12 5 19 5c0 8-7 14-14 14zM9 15c2-2 4-5 7-8"/></svg>
+
+            <span>Plants</span>
+          </a>
+        </li>
+      
+        <li>
+          <a class="side-link" href="/forage-guide/saved/">
+            <svg class="h-[1.15rem] w-[1.15rem] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 21s-7-4.4-7-10a4 4 0 0 1 7-2 4 4 0 0 1 7 2c0 5.6-7 10-7 10z"/></svg>
+
+            <span>Saved</span>
+          </a>
+        </li>
+      
+        <li>
+          <a class="side-link" href="/forage-guide/settings/">
+            <svg class="h-[1.15rem] w-[1.15rem] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 7h10M18 7h2M4 17h4M12 17h8M16 5v4M10 15v4"/></svg>
+
+            <span>Settings</span>
+          </a>
+        </li>
+      
+    </ul>
+  </nav>
+  <main id="content" data-page class="page-col">
+    
+  <p class="net-banner" role="status" data-connection-status hidden></p>
+  
+  <section class="card mb-4 anon-bar">
+    <p class="text-sm">This version of the guide runs entirely in your browser. Accounts aren't available here. Favorites, notes, and settings stay on this device.</p>
+  </section>
+
+
+  
+  <script id="pf-snapshot" type="application/json">""</script>
+  
+  
+<header class="poster-head is-toxic-plant">
+  <p><a class="back-link" href="/forage-guide/">All plants</a></p>
+  <div class="poster-art" aria-hidden="true"><img class="arch" src="/forage-guide/static/plants/buttercup/0-a661944f-640.5ecc5e01d481.webp" alt=""></div>
+  <p class="poster-kicker num">Forb · Spring · Summer</p>
+  <h1 class="poster-title" style="--chars:9">Buttercup</h1>
+  <p class="poster-sci">Ranunculus acris</p>
+  <div class="plant-actions">
+    
+<button type="button" class="star-btn star-btn-lg" data-star="buttercup" data-star-body="" data-client-id="" aria-pressed="false" aria-label="Star Buttercup" title="Star">
+  <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></svg>
+  <span class="star-text" data-star-text>Star</span>
+</button>
+
+    
+<p class="mine-summary" data-mine-summary><span data-mine-names>Showing all animals</span> · <a class="mine-change" href="/forage-guide/settings/">Change</a></p>
+
+  </div>
+</header>
+<p class="tox-band" role="note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M8.5 3h7L21 8.5v7L15.5 21h-7L3 15.5v-7z"/><path d="M12 7.5v5.5M12 16.2v.3"/></svg><strong>Toxic</strong><span>Rabbit, Chicken, Duck, Goose, Turkey, Quail, Guinea pig, Goat, Sheep, Pig, Cattle · Whole plant</span></p>
+
+<ul class="vblocks" aria-label="Verdict by animal, worst first">
+  
+    <li class="vb vb-toxic" data-vb="rabbit"><span class="vb-animal">Rabbit</span><span class="vb-word"><i aria-hidden="true">✕</i> Toxic</span></li>
+  
+    <li class="vb vb-toxic" data-vb="chicken"><span class="vb-animal">Chicken</span><span class="vb-word"><i aria-hidden="true">✕</i> Toxic</span></li>
+  
+    <li class="vb vb-toxic" data-vb="duck"><span class="vb-animal">Duck</span><span class="vb-word"><i aria-hidden="true">✕</i> Toxic</span></li>
+  
+    <li class="vb vb-toxic" data-vb="goose"><span class="vb-animal">Goose</span><span class="vb-word"><i aria-hidden="true">✕</i> Toxic</span></li>
+  
+    <li class="vb vb-toxic" data-vb="turkey"><span class="vb-animal">Turkey</span><span class="vb-word"><i aria-hidden="true">✕</i> Toxic</span></li>
+  
+    <li class="vb vb-toxic" data-vb="quail"><span class="vb-animal">Quail</span><span class="vb-word"><i aria-hidden="true">✕</i> Toxic</span></li>
+  
+    <li class="vb vb-toxic" data-vb="guinea_pig"><span class="vb-animal">Guinea pig</span><span class="vb-word"><i aria-hidden="true">✕</i> Toxic</span></li>
+  
+    <li class="vb vb-toxic" data-vb="goat"><span class="vb-animal">Goat</span><span class="vb-word"><i aria-hidden="true">✕</i> Toxic</span></li>
+  
+    <li class="vb vb-toxic" data-vb="sheep"><span class="vb-animal">Sheep</span><span class="vb-word"><i aria-hidden="true">✕</i> Toxic</span></li>
+  
+    <li class="vb vb-toxic" data-vb="pig"><span class="vb-animal">Pig</span><span class="vb-word"><i aria-hidden="true">✕</i> Toxic</span></li>
+  
+    <li class="vb vb-toxic" data-vb="cattle"><span class="vb-animal">Cattle</span><span class="vb-word"><i aria-hidden="true">✕</i> Toxic</span></li>
+  
+</ul>
+
+
+
+
+  <div class="mt-6" data-plant-page="buttercup" data-name="Buttercup" data-thumb="/forage-guide/static/plants/buttercup/0-a661944f-320.5375a5afbe6c.webp">
+    <article class="prose-farm" data-v="rabbit:toxic,chicken:toxic,duck:toxic,goose:toxic,turkey:toxic,quail:toxic,guinea_pig:toxic,goat:toxic,sheep:toxic,pig:toxic,cattle:toxic">
+  <div class="toxic-warning" role="alert" data-toxic-warning hidden>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 4 2.5 20h19zM12 10v4M12 17.5v.01"/></svg>
+    <div><p class="toxic-warning-title" data-toxic-title></p><p class="toxic-warning-text">Do not feed it to them. Details are under Who can eat it.</p></div>
+  </div>
+  
+
+  <section class="plant-photos" aria-label="Photos of Buttercup" data-gallery="buttercup">
+    <figure class="photo-hero">
+      
+        <button type="button" class="photo-button" data-lightbox-item data-index="0" data-full="/forage-guide/static/plants/buttercup/0-a661944f-1024.6eff68a1f341.webp" data-srcset="/forage-guide/static/plants/buttercup/0-a661944f-320.5375a5afbe6c.webp 320w, /forage-guide/static/plants/buttercup/0-a661944f-640.5ecc5e01d481.webp 640w, /forage-guide/static/plants/buttercup/0-a661944f-1024.6eff68a1f341.webp 1024w" data-w="1024" data-h="1858" data-alt="Buttercup" data-caption="Photo" data-author="Alinja" data-license="CC BY-SA 4.0" data-license-url="https://creativecommons.org/licenses/by-sa/4.0" data-source="https://commons.wikimedia.org/wiki/File:Ranunculus_acris_niittyleinikki.jpg" aria-label="Open photo: Buttercup">
+          <img src="/forage-guide/static/plants/buttercup/0-a661944f-640.5ecc5e01d481.webp" srcset="/forage-guide/static/plants/buttercup/0-a661944f-320.5375a5afbe6c.webp 320w, /forage-guide/static/plants/buttercup/0-a661944f-640.5ecc5e01d481.webp 640w, /forage-guide/static/plants/buttercup/0-a661944f-1024.6eff68a1f341.webp 1024w" sizes="(min-width: 768px) 40rem, 100vw" width="1024" height="1858" alt="Buttercup" loading="lazy" decoding="async">
+        </button>
+        <figcaption class="photo-credit"><span class="photo-caption">Photo</span> <span class="photo-attrib">Photo: Alinja, <a href="https://creativecommons.org/licenses/by-sa/4.0" rel="license noopener" target="_blank">CC BY-SA 4.0</a>, via <a href="https://commons.wikimedia.org/wiki/File:Ranunculus_acris_niittyleinikki.jpg" rel="noopener" target="_blank">Wikimedia Commons</a></span>
+</figcaption>
+      
+    </figure>
+    
+      <ul class="photo-strip" aria-label="More photos">
+        
+          <li>
+            <button type="button" class="photo-button" data-lightbox-item data-index="1" data-full="/forage-guide/static/plants/buttercup/1-1351ef99-1024.f636d2b408c1.webp" data-srcset="/forage-guide/static/plants/buttercup/1-1351ef99-320.2a53dfd98067.webp 320w, /forage-guide/static/plants/buttercup/1-1351ef99-640.66e519eddbfa.webp 640w, /forage-guide/static/plants/buttercup/1-1351ef99-1024.f636d2b408c1.webp 1024w" data-w="1024" data-h="1366" data-alt="Buttercup, whole plant" data-caption="Whole plant" data-author="Dominicus Johannes Bergsma" data-license="CC BY-SA 3.0" data-license-url="https://creativecommons.org/licenses/by-sa/3.0" data-source="https://commons.wikimedia.org/wiki/File:Scherpe_boterbloem_(Ranunculus_acris)_02.JPG" aria-label="Open photo: Buttercup, whole plant">
+              <img src="/forage-guide/static/plants/buttercup/1-1351ef99-320.2a53dfd98067.webp" srcset="/forage-guide/static/plants/buttercup/1-1351ef99-320.2a53dfd98067.webp 320w, /forage-guide/static/plants/buttercup/1-1351ef99-640.66e519eddbfa.webp 640w, /forage-guide/static/plants/buttercup/1-1351ef99-1024.f636d2b408c1.webp 1024w" sizes="(min-width: 768px) 10rem, 25vw" width="1024" height="1366" alt="" loading="lazy" decoding="async">
+              <span class="photo-tag">Whole plant</span>
+            </button>
+          </li>
+        
+          <li>
+            <button type="button" class="photo-button" data-lightbox-item data-index="2" data-full="/forage-guide/static/plants/buttercup/3-dac55db9-1024.13df1005234b.webp" data-srcset="/forage-guide/static/plants/buttercup/3-dac55db9-320.d740f017f5d7.webp 320w, /forage-guide/static/plants/buttercup/3-dac55db9-640.1e15f9224131.webp 640w, /forage-guide/static/plants/buttercup/3-dac55db9-1024.13df1005234b.webp 1024w" data-w="1024" data-h="1225" data-alt="Buttercup, leaves" data-caption="Leaves" data-author="Stefan.lefnaer" data-license="CC BY-SA 4.0" data-license-url="https://creativecommons.org/licenses/by-sa/4.0" data-source="https://commons.wikimedia.org/wiki/File:Ranunculus_acris_subsp._acris_sl22.jpg" aria-label="Open photo: Buttercup, leaves">
+              <img src="/forage-guide/static/plants/buttercup/3-dac55db9-320.d740f017f5d7.webp" srcset="/forage-guide/static/plants/buttercup/3-dac55db9-320.d740f017f5d7.webp 320w, /forage-guide/static/plants/buttercup/3-dac55db9-640.1e15f9224131.webp 640w, /forage-guide/static/plants/buttercup/3-dac55db9-1024.13df1005234b.webp 1024w" sizes="(min-width: 768px) 10rem, 25vw" width="1024" height="1225" alt="" loading="lazy" decoding="async">
+              <span class="photo-tag">Leaves</span>
+            </button>
+          </li>
+        
+          <li>
+            <button type="button" class="photo-button" data-lightbox-item data-index="3" data-full="/forage-guide/static/plants/buttercup/4-75310392-1024.99679d19416f.webp" data-srcset="/forage-guide/static/plants/buttercup/4-75310392-320.2f081747a7f6.webp 320w, /forage-guide/static/plants/buttercup/4-75310392-640.97abf1fd0590.webp 640w, /forage-guide/static/plants/buttercup/4-75310392-1024.99679d19416f.webp 1024w" data-w="1024" data-h="768" data-alt="Buttercup, stem and bark" data-caption="Stem and bark" data-author="Stefan.lefnaer" data-license="CC BY-SA 4.0" data-license-url="https://creativecommons.org/licenses/by-sa/4.0" data-source="https://commons.wikimedia.org/wiki/File:Ranunculus_acris_subsp._acris_sl3.jpg" aria-label="Open photo: Buttercup, stem and bark">
+              <img src="/forage-guide/static/plants/buttercup/4-75310392-320.2f081747a7f6.webp" srcset="/forage-guide/static/plants/buttercup/4-75310392-320.2f081747a7f6.webp 320w, /forage-guide/static/plants/buttercup/4-75310392-640.97abf1fd0590.webp 640w, /forage-guide/static/plants/buttercup/4-75310392-1024.99679d19416f.webp 1024w" sizes="(min-width: 768px) 10rem, 25vw" width="1024" height="768" alt="" loading="lazy" decoding="async">
+              <span class="photo-tag">Stem and bark</span>
+            </button>
+          </li>
+        
+      </ul>
+    
+  </section>
+
+
+  <p class="chip-row">
+    <span class="chip chip-static">Forb</span>
+    <span class="verdict verdict-toxic">Toxic to some animals</span>
+    
+      <a class="chip chip-static" href="/forage-guide/seasons/spring/">Spring</a>
+    
+      <a class="chip chip-static" href="/forage-guide/seasons/summer/">Summer</a>
+    
+  </p>
+  <p class="text-sm text-muted">Ranunculus acris · tall buttercup, meadow buttercup</p>
+  <p>A common meadow flower. Fresh plants blister mouths.</p>
+  
+
+  <h2>Who can eat it</h2>
+  <ul class="grid gap-3">
+    
+      <li class="card verdict-card is-toxic" data-animal="rabbit" data-verdict="toxic" data-label="Rabbit">
+        <div class="flex flex-wrap items-center gap-2">
+          <a class="font-semibold" href="/forage-guide/animals/rabbit/">Rabbit</a>
+          <span class="verdict verdict-toxic">Toxic</span>
+          
+        </div>
+        <p class="mt-2 text-sm">Fresh buttercup contains protoanemonin, which blisters the mouth and gut. Drying destroys most of it, but a fresh cutting is not safe.</p>
+        <p class="mt-1 text-sm text-muted">Pull it out of a mixed green bundle.</p>
+      </li>
+    
+      <li class="card verdict-card is-toxic" data-animal="chicken" data-verdict="toxic" data-label="Chicken">
+        <div class="flex flex-wrap items-center gap-2">
+          <a class="font-semibold" href="/forage-guide/animals/chicken/">Chicken</a>
+          <span class="verdict verdict-toxic">Toxic</span>
+          
+        </div>
+        <p class="mt-2 text-sm">Fresh buttercup contains protoanemonin, which blisters the mouth and gut. Drying destroys most of it, but a fresh cutting is not safe.</p>
+        <p class="mt-1 text-sm text-muted">Pull it out of a mixed green bundle.</p>
+      </li>
+    
+      <li class="card verdict-card is-toxic" data-animal="duck" data-verdict="toxic" data-label="Duck">
+        <div class="flex flex-wrap items-center gap-2">
+          <a class="font-semibold" href="/forage-guide/animals/duck/">Duck</a>
+          <span class="verdict verdict-toxic">Toxic</span>
+          
+        </div>
+        <p class="mt-2 text-sm">Fresh buttercup contains protoanemonin, which blisters the mouth and gut. Drying destroys most of it, but a fresh cutting is not safe.</p>
+        <p class="mt-1 text-sm text-muted">Pull it out of a mixed green bundle.</p>
+      </li>
+    
+      <li class="card verdict-card is-toxic" data-animal="goose" data-verdict="toxic" data-label="Goose">
+        <div class="flex flex-wrap items-center gap-2">
+          <a class="font-semibold" href="/forage-guide/animals/goose/">Goose</a>
+          <span class="verdict verdict-toxic">Toxic</span>
+          
+        </div>
+        <p class="mt-2 text-sm">Fresh buttercup contains protoanemonin, which blisters the mouth and gut. Drying destroys most of it, but a fresh cutting is not safe.</p>
+        <p class="mt-1 text-sm text-muted">Pull it out of a mixed green bundle.</p>
+      </li>
+    
+      <li class="card verdict-card is-toxic" data-animal="turkey" data-verdict="toxic" data-label="Turkey">
+        <div class="flex flex-wrap items-center gap-2">
+          <a class="font-semibold" href="/forage-guide/animals/turkey/">Turkey</a>
+          <span class="verdict verdict-toxic">Toxic</span>
+          
+        </div>
+        <p class="mt-2 text-sm">Fresh buttercup contains protoanemonin, which blisters the mouth and gut. Drying destroys most of it, but a fresh cutting is not safe.</p>
+        <p class="mt-1 text-sm text-muted">Pull it out of a mixed green bundle.</p>
+      </li>
+    
+      <li class="card verdict-card is-toxic" data-animal="quail" data-verdict="toxic" data-label="Quail">
+        <div class="flex flex-wrap items-center gap-2">
+          <a class="font-semibold" href="/forage-guide/animals/quail/">Quail</a>
+          <span class="verdict verdict-toxic">Toxic</span>
+          
+        </div>
+        <p class="mt-2 text-sm">Fresh buttercup contains protoanemonin, which blisters the mouth and gut. Drying destroys most of it, but a fresh cutting is not safe.</p>
+        <p class="mt-1 text-sm text-muted">Pull it out of a mixed green bundle.</p>
+      </li>
+    
+      <li class="card verdict-card is-toxic" data-animal="guinea_pig" data-verdict="toxic" data-label="Guinea pig">
+        <div class="flex flex-wrap items-center gap-2">
+          <a class="font-semibold" href="/forage-guide/animals/guinea_pig/">Guinea pig</a>
+          <span class="verdict verdict-toxic">Toxic</span>
+          
+        </div>
+        <p class="mt-2 text-sm">Fresh buttercup contains protoanemonin, which blisters the mouth and gut. Drying destroys most of it, but a fresh cutting is not safe.</p>
+        <p class="mt-1 text-sm text-muted">Pull it out of a mixed green bundle.</p>
+      </li>
+    
+      <li class="card verdict-card is-toxic" data-animal="goat" data-verdict="toxic" data-label="Goat">
+        <div class="flex flex-wrap items-center gap-2">
+          <a class="font-semibold" href="/forage-guide/animals/goat/">Goat</a>
+          <span class="verdict verdict-toxic">Toxic</span>
+          
+        </div>
+        <p class="mt-2 text-sm">Fresh buttercup contains protoanemonin, which blisters the mouth and gut. Drying destroys most of it, but a fresh cutting is not safe.</p>
+        <p class="mt-1 text-sm text-muted">Pull it out of a mixed green bundle.</p>
+      </li>
+    
+      <li class="card verdict-card is-toxic" data-animal="sheep" data-verdict="toxic" data-label="Sheep">
+        <div class="flex flex-wrap items-center gap-2">
+          <a class="font-semibold" href="/forage-guide/animals/sheep/">Sheep</a>
+          <span class="verdict verdict-toxic">Toxic</span>
+          
+        </div>
+        <p class="mt-2 text-sm">Fresh buttercup contains protoanemonin, which blisters the mouth and gut. Drying destroys most of it, but a fresh cutting is not safe.</p>
+        <p class="mt-1 text-sm text-muted">Pull it out of a mixed green bundle.</p>
+      </li>
+    
+      <li class="card verdict-card is-toxic" data-animal="pig" data-verdict="toxic" data-label="Pig">
+        <div class="flex flex-wrap items-center gap-2">
+          <a class="font-semibold" href="/forage-guide/animals/pig/">Pig</a>
+          <span class="verdict verdict-toxic">Toxic</span>
+          
+        </div>
+        <p class="mt-2 text-sm">Fresh buttercup contains protoanemonin, which blisters the mouth and gut. Drying destroys most of it, but a fresh cutting is not safe.</p>
+        <p class="mt-1 text-sm text-muted">Pull it out of a mixed green bundle.</p>
+      </li>
+    
+      <li class="card verdict-card is-toxic" data-animal="cattle" data-verdict="toxic" data-label="Cattle">
+        <div class="flex flex-wrap items-center gap-2">
+          <a class="font-semibold" href="/forage-guide/animals/cattle/">Cattle</a>
+          <span class="verdict verdict-toxic">Toxic</span>
+          
+        </div>
+        <p class="mt-2 text-sm">Fresh buttercup contains protoanemonin, which blisters the mouth and gut. Drying destroys most of it, but a fresh cutting is not safe.</p>
+        <p class="mt-1 text-sm text-muted">Pull it out of a mixed green bundle.</p>
+      </li>
+    
+  </ul>
+
+  
+
+  
+    <p class="unsourced" role="note"><strong>Not yet sourced:</strong> summary, identification, lookalikes, parts, harvest, preparation. These notes are awaiting a citation to a published source. Check them before you rely on them.</p>
+  
+
+  <h2>Identification</h2>
+  <p>Shiny yellow flowers with five petals and divided leaves. Several species grow in New England. All fresh buttercups get the same caution.</p>
+  <h2>Lookalikes</h2>
+  <p>Cinquefoil has strawberry-like leaves and is not this plant. Lesser celandine grows low and wet in early spring and is also not a feed.</p>
+  <h2>Parts to feed</h2>
+  <p>Do not feed fresh plants.</p>
+  <h2>New England timing</h2>
+  <p>Flowers from May into July in New England hay meadows. The fresh plant is the problem. Fully dried hay loses most of the irritant.</p>
+  <h2>Harvest</h2>
+  <p>Do not add buttercup to a fresh bundle.</p>
+  <h2>Preparation</h2>
+  <p>This guide is about fresh harvest. Do not cut buttercup for fresh feed. Hay that is fully dry is a different product, and a bale that is mostly buttercup is still poor feed.</p>
+
+  <h2>Sources</h2>
+  <ul class="grid gap-2">
+    
+      <li class="text-sm">Verdict: <a class="text-link" href="https://poisonousplants.ansci.cornell.edu/php/plants.php?action=indiv&amp;byname=scientific&amp;keynum=71" rel="noopener">Ranunculus spp. (Buttercup, Crowfoot)</a>, Cornell University Department of Animal Science, Plants Poisonous to Livestock (accessed Oct 15, 2026)</li>
+    
+      <li class="text-sm">Verdict: <a class="text-link" href="https://poisonousplants.ansci.cornell.edu/php/plants.php?action=indiv&amp;byname=scientific&amp;keynum=71" rel="noopener">Ranunculus spp. (Buttercup, Crowfoot)</a>, Cornell University Department of Animal Science, Plants Poisonous to Livestock (accessed Oct 15, 2026)</li>
+    
+      <li class="text-sm">Toxic parts: <a class="text-link" href="https://poisonousplants.ansci.cornell.edu/php/plants.php?action=indiv&amp;byname=scientific&amp;keynum=71" rel="noopener">Ranunculus spp. (Buttercup, Crowfoot)</a>, Cornell University Department of Animal Science, Plants Poisonous to Livestock (accessed Oct 15, 2026)</li>
+    
+      <li class="text-sm">Toxic parts: <a class="text-link" href="https://plants.ces.ncsu.edu/plants/ranunculus-acris/" rel="noopener">Ranunculus acris
+        (Bitter Buttercup, Buttercup, Common Buttercup, Meadow Buttercup, Tall Buttercup)</a>, NC State Extension, North Carolina Extension Gardener Plant Toolbox (accessed Oct 15, 2026)</li>
+    
+      <li class="text-sm">Verdict: <a class="text-link" href="https://poisonousplants.cvmbs.colostate.edu/plant/88" rel="noopener">Buttercup, crowsfoot (Ranunculus spp. Among the buttercups considered more toxic to animals than others are R. scleratus, R. flammula, R. parviflora, R. acris,  R. abortivus, R. repens, R. cymbalaria, and R. testiculatus)</a>, Colorado State University College of Veterinary Medicine, Guide to Poisonous Plants (accessed Oct 15, 2026)</li>
+    
+      <li class="text-sm">Toxic parts: <a class="text-link" href="https://poisonousplants.cvmbs.colostate.edu/plant/88" rel="noopener">Buttercup, crowsfoot (Ranunculus spp. Among the buttercups considered more toxic to animals than others are R. scleratus, R. flammula, R. parviflora, R. acris,  R. abortivus, R. repens, R. cymbalaria, and R. testiculatus)</a>, Colorado State University College of Veterinary Medicine, Guide to Poisonous Plants (accessed Oct 15, 2026)</li>
+    
+      <li class="text-sm">Verdict: <a class="text-link" href="https://naturalresources.extension.iastate.edu/encyclopedia/poisonous-plants-commonly-found-woodlands" rel="noopener">Poisonous Plants Commonly Found in Woodlands</a>, Iowa State University Extension and Outreach, Natural Resources (accessed Oct 15, 2026)</li>
+    
+      <li class="text-sm">Verdict: <a class="text-link" href="https://naturalresources.extension.iastate.edu/encyclopedia/poisonous-plants-commonly-found-woodlands" rel="noopener">Poisonous Plants Commonly Found in Woodlands</a>, Iowa State University Extension and Outreach, Natural Resources (accessed Oct 15, 2026)</li>
+    
+      <li class="text-sm">Verdict: <a class="text-link" href="https://naturalresources.extension.iastate.edu/encyclopedia/poisonous-plants-commonly-found-woodlands" rel="noopener">Poisonous Plants Commonly Found in Woodlands</a>, Iowa State University Extension and Outreach, Natural Resources (accessed Oct 15, 2026)</li>
+    
+      <li class="text-sm">Verdict: <a class="text-link" href="https://naturalresources.extension.iastate.edu/encyclopedia/poisonous-plants-commonly-found-woodlands" rel="noopener">Poisonous Plants Commonly Found in Woodlands</a>, Iowa State University Extension and Outreach, Natural Resources (accessed Oct 15, 2026)</li>
+    
+      <li class="text-sm">Verdict: <a class="text-link" href="https://naturalresources.extension.iastate.edu/encyclopedia/poisonous-plants-commonly-found-woodlands" rel="noopener">Poisonous Plants Commonly Found in Woodlands</a>, Iowa State University Extension and Outreach, Natural Resources (accessed Oct 15, 2026)</li>
+    
+      <li class="text-sm">Verdict: <a class="text-link" href="https://naturalresources.extension.iastate.edu/encyclopedia/poisonous-plants-commonly-found-woodlands" rel="noopener">Poisonous Plants Commonly Found in Woodlands</a>, Iowa State University Extension and Outreach, Natural Resources (accessed Oct 15, 2026)</li>
+    
+      <li class="text-sm">Verdict: <a class="text-link" href="https://naturalresources.extension.iastate.edu/encyclopedia/poisonous-plants-commonly-found-woodlands" rel="noopener">Poisonous Plants Commonly Found in Woodlands</a>, Iowa State University Extension and Outreach, Natural Resources (accessed Oct 15, 2026)</li>
+    
+      <li class="text-sm">Verdict: <a class="text-link" href="https://naturalresources.extension.iastate.edu/encyclopedia/poisonous-plants-commonly-found-woodlands" rel="noopener">Poisonous Plants Commonly Found in Woodlands</a>, Iowa State University Extension and Outreach, Natural Resources (accessed Oct 15, 2026)</li>
+    
+      <li class="text-sm">Verdict: <a class="text-link" href="https://naturalresources.extension.iastate.edu/encyclopedia/poisonous-plants-commonly-found-woodlands" rel="noopener">Poisonous Plants Commonly Found in Woodlands</a>, Iowa State University Extension and Outreach, Natural Resources (accessed Oct 15, 2026)</li>
+    
+      <li class="text-sm">Verdict: <a class="text-link" href="https://naturalresources.extension.iastate.edu/encyclopedia/poisonous-plants-commonly-found-woodlands" rel="noopener">Poisonous Plants Commonly Found in Woodlands</a>, Iowa State University Extension and Outreach, Natural Resources (accessed Oct 15, 2026)</li>
+    
+      <li class="text-sm">Verdict: <a class="text-link" href="https://naturalresources.extension.iastate.edu/encyclopedia/poisonous-plants-commonly-found-woodlands" rel="noopener">Poisonous Plants Commonly Found in Woodlands</a>, Iowa State University Extension and Outreach, Natural Resources (accessed Oct 15, 2026)</li>
+    
+    
+      <li class="text-sm text-muted">Background reading: Cornell University Department of Animal Science, Plants Poisonous to Livestock.</li>
+    
+      <li class="text-sm text-muted">Background reading: Merck Veterinary Manual, toxicology and species nutrition chapters.</li>
+    
+  </ul>
+  
+    <h2>Photo credits</h2>
+    <ul class="grid gap-1.5">
+      
+        <li class="text-sm text-muted photo-credit"><span class="photo-caption">Photo</span> <span class="photo-attrib">Photo: Alinja, <a href="https://creativecommons.org/licenses/by-sa/4.0" rel="license noopener" target="_blank">CC BY-SA 4.0</a>, via <a href="https://commons.wikimedia.org/wiki/File:Ranunculus_acris_niittyleinikki.jpg" rel="noopener" target="_blank">Wikimedia Commons</a></span>
+. Changes: resized and converted to WebP.</li>
+      
+        <li class="text-sm text-muted photo-credit"><span class="photo-caption">Whole plant</span> <span class="photo-attrib">Photo: Dominicus Johannes Bergsma, <a href="https://creativecommons.org/licenses/by-sa/3.0" rel="license noopener" target="_blank">CC BY-SA 3.0</a>, via <a href="https://commons.wikimedia.org/wiki/File:Scherpe_boterbloem_(Ranunculus_acris)_02.JPG" rel="noopener" target="_blank">Wikimedia Commons</a></span>
+. Changes: resized and converted to WebP.</li>
+      
+        <li class="text-sm text-muted photo-credit"><span class="photo-caption">Leaves</span> <span class="photo-attrib">Photo: Stefan.lefnaer, <a href="https://creativecommons.org/licenses/by-sa/4.0" rel="license noopener" target="_blank">CC BY-SA 4.0</a>, via <a href="https://commons.wikimedia.org/wiki/File:Ranunculus_acris_subsp._acris_sl22.jpg" rel="noopener" target="_blank">Wikimedia Commons</a></span>
+. Changes: resized and converted to WebP.</li>
+      
+        <li class="text-sm text-muted photo-credit"><span class="photo-caption">Stem and bark</span> <span class="photo-attrib">Photo: Stefan.lefnaer, <a href="https://creativecommons.org/licenses/by-sa/4.0" rel="license noopener" target="_blank">CC BY-SA 4.0</a>, via <a href="https://commons.wikimedia.org/wiki/File:Ranunculus_acris_subsp._acris_sl3.jpg" rel="noopener" target="_blank">Wikimedia Commons</a></span>
+. Changes: resized and converted to WebP.</li>
+      
+    </ul>
+  
+
+  <h2>Your note</h2>
+  <form class="grid gap-3" method="post" action="/forage-guide/notes/" data-note-form data-offline-queue="Note">
+    <input type="hidden" name="csrfmiddlewaretoken" value="kaDZ3VXwKWDd6DnpVXKbhj1SDKFoJRNbWGlmrh2sIRacrmtzIHbDsVm3ASJ9VLFc">
+    <input type="hidden" name="plant" value="buttercup">
+    <input type="hidden" name="client_id" value="">
+    <input type="hidden" name="op_id" value="">
+    <label class="flex items-center gap-2 text-sm font-medium">
+      <input type="checkbox" name="favorite"  data-star-check>
+      Starred
+    </label>
+    <label class="grid gap-1 text-sm font-medium">Note
+      <textarea class="field" name="body" rows="3" maxlength="4000"></textarea>
+    </label>
+    <div>
+      
+  <button type="submit" class="btn ">Save note</button>
+
+
+    </div>
+    <p class="text-sm text-muted" data-note-status></p>
+  </form>
+
+  <nav class="plant-pager" aria-label="Other plants">
+    <a class="pager-link" href="/forage-guide/plants/bracken-fern/" data-open="bracken-fern" rel="prev"><span class="pager-dir">Previous</span><span class="pager-name">Bracken fern</span></a>
+    <a class="pager-link pager-next" href="/forage-guide/plants/carrot/" data-open="carrot" rel="next"><span class="pager-dir">Next</span><span class="pager-name">Carrot tops</span></a>
+  </nav>
+</article>
+
+  </div>
+
+
+  </main>
+  
+  <dialog class="lightbox" aria-label="Photo viewer" data-lightbox>
+    <div class="lightbox-frame">
+      <div class="lightbox-bar">
+        <p class="lightbox-count num" data-lightbox-count aria-live="polite"></p>
+        <button type="button" class="lightbox-btn" data-lightbox-close aria-label="Close photo viewer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+      </div>
+      <div class="lightbox-stage" data-lightbox-stage>
+        <img alt="" data-lightbox-img>
+        <button type="button" class="lightbox-btn lightbox-prev" data-lightbox-prev aria-label="Previous photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+        <button type="button" class="lightbox-btn lightbox-next" data-lightbox-next aria-label="Next photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+      </div>
+      <p class="lightbox-caption photo-credit" data-lightbox-caption></p>
+    </div>
+  </dialog>
+
+  <footer class="site-footer" data-print-hide>
+    <div class="page-col-inner">
+      <button type="button" class="footer-link" data-download-copy>Download a copy</button>
+      <a class="footer-link" href="/forage-guide/sources/">Sources</a>
+      <span class="text-muted">Notes and favorites are saved on this device. Accounts aren't available on this version.</span>
+    </div>
+  </footer>
+  
+  <script src="/forage-guide/static/js/app.3f29a6292ee0.js"></script>
+
+</body>
+</html>

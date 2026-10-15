@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en" data-style="riso" data-account-theme="system" data-plant-view="grid" data-account-animals="">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f3f1eb">
+  <meta name="pf-base" content="/forage-guide/">
+  <script>
+    (function () {
+      var key = "pf-theme";
+      var root = document.documentElement;
+      var account = root.getAttribute("data-account-theme") || "";
+      var stored = "";
+      try { stored = localStorage.getItem(key) || ""; } catch (err) { stored = ""; }
+      var theme = stored === "light" || stored === "dark" || stored === "system" ? stored : (account === "light" || account === "dark" || account === "system" ? account : "system");
+      if (stored !== theme) {
+        try { localStorage.setItem(key, theme); } catch (err) {}
+      }
+      var dark = theme === "dark" || (theme === "system" && window.matchMedia("(prefers-color-scheme: dark)").matches);
+      root.classList.toggle("dark", dark);
+      root.style.colorScheme = dark ? "dark" : "light";
+      root.setAttribute("data-theme", theme);
+      var meta = document.querySelector('meta[name="theme-color"]');
+      if (meta) meta.setAttribute("content", dark ? "#141815" : "#f3f1eb");
+      // Grid or List: a ?view= link wins, then this device, then the account.
+      var view = root.getAttribute("data-plant-view") === "list" ? "list" : "grid";
+      var saved = "";
+      try { saved = localStorage.getItem("pf-plant-view") || ""; } catch (err) { saved = ""; }
+      if (root.hasAttribute("data-plant-view-asked")) {
+        try { localStorage.setItem("pf-plant-view", view); } catch (err) {}
+      } else if (saved === "grid" || saved === "list") {
+        view = saved;
+      }
+      root.setAttribute("data-plant-view", view);
+    })();
+  </script>
+  <title>Sources · Forage guide</title>
+  
+  <meta name="csrf-token" content="QeXxaIQFzqAYSOOB4U6Ec8rXw6YtSUM1sKFUy4VBxl7XdxULREx6nKM8te2e4OE2">
+  
+  <link rel="preload" href="/forage-guide/static/fonts/instrument-sans-latin-var.fa41c43a3d8e.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/forage-guide/static/css/app.880ed8745454.css">
+  <link rel="manifest" href="/forage-guide/manifest.webmanifest">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Forage">
+  <meta name="description" content="A New England reference for harvesting forage to feed rabbits, poultry, goats, sheep, and other livestock.">
+  <link rel="apple-touch-icon" href="/forage-guide/static/icons/apple-touch-icon.f9c7d501b927.png">
+  <link rel="icon" type="image/svg+xml" href="/forage-guide/static/icons/icon.b826095f50e3.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/forage-guide/static/icons/favicon-32.401ee745adea.png">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait) and (prefers-color-scheme: light)" href="/forage-guide/static/icons/splash-750x1334-light.ff790231a3a7.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait) and (prefers-color-scheme: dark)" href="/forage-guide/static/icons/splash-750x1334-dark.a8a3bbbf6108.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait) and (prefers-color-scheme: light)" href="/forage-guide/static/icons/splash-828x1792-light.c12d61c7b473.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait) and (prefers-color-scheme: dark)" href="/forage-guide/static/icons/splash-828x1792-dark.33bca0a0b104.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="/forage-guide/static/icons/splash-1125x2436-light.f36e8c5a0b32.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="/forage-guide/static/icons/splash-1125x2436-dark.583eadeeec92.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="/forage-guide/static/icons/splash-1170x2532-light.4dcb2e876564.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="/forage-guide/static/icons/splash-1170x2532-dark.28e0ea2192e1.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 393px) and (device-height: 852px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="/forage-guide/static/icons/splash-1179x2556-light.77d4279694d9.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 393px) and (device-height: 852px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="/forage-guide/static/icons/splash-1179x2556-dark.101d81f6401e.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="/forage-guide/static/icons/splash-1284x2778-light.12275a7dbcce.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="/forage-guide/static/icons/splash-1284x2778-dark.ca665c70f9f6.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="/forage-guide/static/icons/splash-1290x2796-light.72a10464b3e4.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="/forage-guide/static/icons/splash-1290x2796-dark.1b3d1306bb14.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait) and (prefers-color-scheme: light)" href="/forage-guide/static/icons/splash-2048x2732-light.d6ee2f81b1f2.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait) and (prefers-color-scheme: dark)" href="/forage-guide/static/icons/splash-2048x2732-dark.37211a5cf809.png">
+
+</head>
+<body class="min-h-dvh bg-canvas text-ink antialiased dark:bg-canvas dark:text-ink">
+  <a class="skip" href="#content">Skip to content</a>
+  <header class="topbar" data-print-hide>
+    <button type="button" class="menu-btn" aria-controls="side-nav" aria-expanded="false" data-nav-open>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      <span class="sr-only">Menu</span>
+    </button>
+    <a class="brand" href="/forage-guide/"><span class="brand-mark" aria-hidden="true"></span>Forage guide</a>
+    <div class="topbar-tools">
+      
+    </div>
+  </header>
+  
+  <div class="nav-backdrop" data-nav-backdrop hidden></div>
+  <nav class="side-nav" id="side-nav" aria-label="Main" data-print-hide data-side-nav>
+    <div class="side-head">
+      <span class="brand"><span class="brand-mark" aria-hidden="true"></span>Forage guide</span>
+      <button type="button" class="menu-btn" data-nav-close>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+        <span class="sr-only">Close menu</span>
+      </button>
+    </div>
+    <ul>
+      
+        <li>
+          <a class="side-link" href="/forage-guide/">
+            <svg class="h-[1.15rem] w-[1.15rem] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 19C5 11 12 5 19 5c0 8-7 14-14 14zM9 15c2-2 4-5 7-8"/></svg>
+
+            <span>Plants</span>
+          </a>
+        </li>
+      
+        <li>
+          <a class="side-link" href="/forage-guide/saved/">
+            <svg class="h-[1.15rem] w-[1.15rem] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 21s-7-4.4-7-10a4 4 0 0 1 7-2 4 4 0 0 1 7 2c0 5.6-7 10-7 10z"/></svg>
+
+            <span>Saved</span>
+          </a>
+        </li>
+      
+        <li>
+          <a class="side-link" href="/forage-guide/settings/">
+            <svg class="h-[1.15rem] w-[1.15rem] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 7h10M18 7h2M4 17h4M12 17h8M16 5v4M10 15v4"/></svg>
+
+            <span>Settings</span>
+          </a>
+        </li>
+      
+    </ul>
+  </nav>
+  <main id="content" data-page class="page-col">
+    
+  <p class="net-banner" role="status" data-connection-status hidden></p>
+  
+  <section class="card mb-4 anon-bar">
+    <p class="text-sm">This version of the guide runs entirely in your browser. Accounts aren't available here. Favorites, notes, and settings stay on this device.</p>
+  </section>
+
+
+  
+  <script id="pf-snapshot" type="application/json">""</script>
+  
+  <header class="page-header">
+  
+  <div class="flex flex-wrap items-end justify-between gap-3">
+    <div class="min-w-0">
+      <h1 class="text-[1.7rem] font-semibold leading-tight tracking-tight md:text-4xl">Sources</h1>
+      <p class="mt-2 max-w-xl text-muted">Where the verdicts and notes in this guide come from.</p>
+    </div>
+    
+  </div>
+</header>
+
+  <div class="mt-6 grid gap-4">
+    <section class="card settings-block">
+      <h2 class="settings-title">About this guide</h2>
+      <p class="settings-help">A New England reference for harvesting forage for rabbits, poultry, goats, sheep, and other livestock. 78 of 78 plants cite at least one published source. Each plant page shows the passage behind each claim, and marks claims that still need a source. When sources disagree, the plant page says so.</p>
+      <p class="settings-help mt-2">This is a reference, not veterinary advice. When in doubt, leave it out and ask a vet.</p>
+    </section>
+    <section class="card settings-block" aria-labelledby="sources-title">
+      <h2 class="settings-title" id="sources-title">Publications cited</h2>
+      <ul class="mt-3 grid gap-3">
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://poisonousplants.ansci.cornell.edu/php/plants.php?action=indiv&amp;byname=scientific&amp;keynum=56" rel="noopener">Medicago sativa (Alfalfa, Lucerne)</a>
+            <span class="block text-sm text-muted">Cornell University Department of Animal Science, Plants Poisonous to Livestock · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://poisonousplants.ansci.cornell.edu/php/plants.php?action=indiv&amp;byname=scientific&amp;keynum=76" rel="noopener">Sambucus canadensis (Elderberry)</a>
+            <span class="block text-sm text-muted">Cornell University Department of Animal Science, Plants Poisonous to Livestock · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://poisonousplants.ansci.cornell.edu/php/plants.php?action=indiv&amp;byname=scientific&amp;keynum=54" rel="noopener">Lotus corniculatus (Birdsfoot Trefoil)</a>
+            <span class="block text-sm text-muted">Cornell University Department of Animal Science, Plants Poisonous to Livestock · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://poisonousplants.ansci.cornell.edu/php/plants.php?action=indiv&amp;byname=scientific&amp;keynum=74" rel="noopener">Robinia pseudoacacia (Black Locust)</a>
+            <span class="block text-sm text-muted">Cornell University Department of Animal Science, Plants Poisonous to Livestock · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://poisonousplants.ansci.cornell.edu/php/plants.php?action=indiv&amp;byname=scientific&amp;keynum=46" rel="noopener">Hypericum perforatum (St. Johns Wort, Klamath Weed)</a>
+            <span class="block text-sm text-muted">Cornell University Department of Animal Science, Plants Poisonous to Livestock · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://poisonousplants.ansci.cornell.edu/php/plants.php?action=indiv&amp;byname=scientific&amp;keynum=35" rel="noopener">Digitalis purpurea (Foxglove)</a>
+            <span class="block text-sm text-muted">Cornell University Department of Animal Science, Plants Poisonous to Livestock · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://poisonousplants.ansci.cornell.edu/php/plants.php?action=indiv&amp;byname=scientific&amp;keynum=25" rel="noopener">Chenopodium album (Lambs Quarters)</a>
+            <span class="block text-sm text-muted">Cornell University Department of Animal Science, Plants Poisonous to Livestock · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://poisonousplants.ansci.cornell.edu/php/plants.php?action=indiv&amp;byname=scientific&amp;keynum=64" rel="noopener">Phytolacca americana (Pokeweed)</a>
+            <span class="block text-sm text-muted">Cornell University Department of Animal Science, Plants Poisonous to Livestock · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://poisonousplants.ansci.cornell.edu/php/plants.php?action=indiv&amp;byname=scientific&amp;keynum=28" rel="noopener">Conium maculatum (Poison Hemlock)</a>
+            <span class="block text-sm text-muted">Cornell University Department of Animal Science, Plants Poisonous to Livestock · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://poisonousplants.ansci.cornell.edu/php/plants.php?action=indiv&amp;byname=scientific&amp;keynum=30" rel="noopener">Convallaria majalis (Lily of the Valley)</a>
+            <span class="block text-sm text-muted">Cornell University Department of Animal Science, Plants Poisonous to Livestock · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://poisonousplants.ansci.cornell.edu/php/plants.php?action=indiv&amp;byname=scientific&amp;keynum=37" rel="noopener">Eupatorium rugosum (White Snakeroot)</a>
+            <span class="block text-sm text-muted">Cornell University Department of Animal Science, Plants Poisonous to Livestock · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://poisonousplants.ansci.cornell.edu/php/plants.php?action=indiv&amp;byname=scientific&amp;keynum=40" rel="noopener">Festuca arundinacea (Tall Fescue)</a>
+            <span class="block text-sm text-muted">Cornell University Department of Animal Science, Plants Poisonous to Livestock · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://poisonousplants.ansci.cornell.edu/php/plants.php?action=indiv&amp;byname=scientific&amp;keynum=57" rel="noopener">Metilotus alba and Melilotus officinalis (White Sweetclover, Yellow Sweetclover)</a>
+            <span class="block text-sm text-muted">Cornell University Department of Animal Science, Plants Poisonous to Livestock · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://poisonousplants.ansci.cornell.edu/php/plants.php?action=indiv&amp;byname=scientific&amp;keynum=96" rel="noopener">Acer rubrum (Red maple, Swamp maple, Soft maple)</a>
+            <span class="block text-sm text-muted">Cornell University Department of Animal Science, Plants Poisonous to Livestock · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://poisonousplants.ansci.cornell.edu/php/plants.php?action=indiv&amp;byname=scientific&amp;keynum=97" rel="noopener">Acer saccharum (Sugar maple, Rock maple, Hard maple)</a>
+            <span class="block text-sm text-muted">Cornell University Department of Animal Science, Plants Poisonous to Livestock · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://poisonousplants.ansci.cornell.edu/php/plants.php?action=indiv&amp;byname=scientific&amp;keynum=82" rel="noopener">Symplocarpus foetidus (Eastern Skunk Cabbage)</a>
+            <span class="block text-sm text-muted">Cornell University Department of Animal Science, Plants Poisonous to Livestock · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://poisonousplants.ansci.cornell.edu/php/plants.php?action=indiv&amp;byname=scientific&amp;keynum=20" rel="noopener">Brassica spp, (Rape, Cabbage, Turnips, Broccoli, Mustard)</a>
+            <span class="block text-sm text-muted">Cornell University Department of Animal Science, Plants Poisonous to Livestock · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://poisonousplants.ansci.cornell.edu/php/plants.php?action=indiv&amp;byname=scientific&amp;keynum=7" rel="noopener">Allium spp. (Commercial Onions, Wild Onions, Swamp Onions, Chives)</a>
+            <span class="block text-sm text-muted">Cornell University Department of Animal Science, Plants Poisonous to Livestock · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://poisonousplants.ansci.cornell.edu/php/plants.php?action=indiv&amp;byname=scientific&amp;keynum=12" rel="noopener">Amaranthus spp. (Pigweed)</a>
+            <span class="block text-sm text-muted">Cornell University Department of Animal Science, Plants Poisonous to Livestock · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://poisonousplants.ansci.cornell.edu/php/plants.php?action=indiv&amp;byname=scientific&amp;keynum=16" rel="noopener">Arisaema spp. (Jack in the Pulpit)</a>
+            <span class="block text-sm text-muted">Cornell University Department of Animal Science, Plants Poisonous to Livestock · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://poisonousplants.ansci.cornell.edu/php/plants.php?action=indiv&amp;byname=scientific&amp;keynum=17" rel="noopener">Asclepias spp. (Milkweed)</a>
+            <span class="block text-sm text-muted">Cornell University Department of Animal Science, Plants Poisonous to Livestock · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://poisonousplants.ansci.cornell.edu/php/plants.php?action=indiv&amp;byname=scientific&amp;keynum=26" rel="noopener">Cicuta spp. (Water Hemlock, Cowbane)</a>
+            <span class="block text-sm text-muted">Cornell University Department of Animal Science, Plants Poisonous to Livestock · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://poisonousplants.ansci.cornell.edu/php/plants.php?action=indiv&amp;byname=scientific&amp;keynum=32" rel="noopener">Datura spp. (Jimsonweed, Downy Thornapple, Devils Trumpet, Angels Trumpet)</a>
+            <span class="block text-sm text-muted">Cornell University Department of Animal Science, Plants Poisonous to Livestock · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://poisonousplants.ansci.cornell.edu/php/plants.php?action=indiv&amp;byname=scientific&amp;keynum=42" rel="noopener">Glechoma spp. (Ground Ivy, Creeping Charlie, Gill over the ground)</a>
+            <span class="block text-sm text-muted">Cornell University Department of Animal Science, Plants Poisonous to Livestock · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://poisonousplants.ansci.cornell.edu/php/plants.php?action=indiv&amp;byname=scientific&amp;keynum=68" rel="noopener">Prunus spp. (Wild Cherries, Black Cherry, Bitter Cherry, Choke Cherry, Pin Cherry)</a>
+            <span class="block text-sm text-muted">Cornell University Department of Animal Science, Plants Poisonous to Livestock · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://poisonousplants.ansci.cornell.edu/php/plants.php?action=indiv&amp;byname=scientific&amp;keynum=69" rel="noopener">Pteridium aquilinium (Bracken Fern)</a>
+            <span class="block text-sm text-muted">Cornell University Department of Animal Science, Plants Poisonous to Livestock · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://poisonousplants.ansci.cornell.edu/php/plants.php?action=indiv&amp;byname=scientific&amp;keynum=70" rel="noopener">Quercus spp. (Oak Trees)</a>
+            <span class="block text-sm text-muted">Cornell University Department of Animal Science, Plants Poisonous to Livestock · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://poisonousplants.ansci.cornell.edu/php/plants.php?action=indiv&amp;byname=scientific&amp;keynum=71" rel="noopener">Ranunculus spp. (Buttercup, Crowfoot)</a>
+            <span class="block text-sm text-muted">Cornell University Department of Animal Science, Plants Poisonous to Livestock · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://poisonousplants.ansci.cornell.edu/php/plants.php?action=indiv&amp;byname=scientific&amp;keynum=75" rel="noopener">Rumex spp. (Dock)</a>
+            <span class="block text-sm text-muted">Cornell University Department of Animal Science, Plants Poisonous to Livestock · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://poisonousplants.ansci.cornell.edu/php/plants.php?action=indiv&amp;byname=scientific&amp;keynum=79" rel="noopener">Senecio spp. (Senecio, Groundsels, Ragwort)</a>
+            <span class="block text-sm text-muted">Cornell University Department of Animal Science, Plants Poisonous to Livestock · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://poisonousplants.ansci.cornell.edu/php/plants.php?action=indiv&amp;byname=scientific&amp;keynum=80" rel="noopener">Solanum spp. (Common Nightshade, Black Nightshade, Horse Nettle, Buffalo Bur, Potato)</a>
+            <span class="block text-sm text-muted">Cornell University Department of Animal Science, Plants Poisonous to Livestock · 4 plants · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://poisonousplants.ansci.cornell.edu/php/plants.php?action=indiv&amp;byname=scientific&amp;keynum=88" rel="noopener">Trifolium spp. (Alsike Clover, Red Clover, White Clover)</a>
+            <span class="block text-sm text-muted">Cornell University Department of Animal Science, Plants Poisonous to Livestock · 3 plants · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://poisonousplants.ansci.cornell.edu/php/plants.php?action=indiv&amp;byname=scientific&amp;keynum=91" rel="noopener">Vicia spp. (Common Vetch, Hairy Vetch, Narrow leafed vetch, purple vetch, broad beans)</a>
+            <span class="block text-sm text-muted">Cornell University Department of Animal Science, Plants Poisonous to Livestock · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://poisonousplants.ansci.cornell.edu/php/plants.php?action=indiv&amp;byname=scientific&amp;keynum=90" rel="noopener">Urtica spp. (Stinging Nettle)</a>
+            <span class="block text-sm text-muted">Cornell University Department of Animal Science, Plants Poisonous to Livestock · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://poisonousplants.ansci.cornell.edu/php/plants.php?action=indiv&amp;byname=scientific&amp;keynum=3" rel="noopener">Actaea spp. (Baneberry, Dolls Eyes, White Cohosh, Snakeberry)</a>
+            <span class="block text-sm text-muted">Cornell University Department of Animal Science, Plants Poisonous to Livestock · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://www.merckvetmanual.com/toxicology/poisonous-plants/range-plants-of-temperate-north-america" rel="noopener">Range Plants of Temperate North America</a>
+            <span class="block text-sm text-muted">Merck Veterinary Manual · 25 plants · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://plants.ces.ncsu.edu/plants/sambucus-canadensis/" rel="noopener">Sambucus canadensis
+        (American Elder, American Elderberry, Common Elderberry, Elderberry)</a>
+            <span class="block text-sm text-muted">NC State Extension, North Carolina Extension Gardener Plant Toolbox · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://plants.ces.ncsu.edu/plants/solanum-dulcamara/" rel="noopener">Solanum dulcamara
+        (Bitter Nightshade, Bittersweet, Bittersweet Nightshade, Blue Blindweed, Blue Nightshade, Climbing Nightshade, Devil&#x27;s Apple, European Bittersweet, Fellonwort, Felonwood, Poisonous Nightshade, Scarlet Berry, Snakeberry, Soda Apple, Violet Bloom, Wolfgrape, Woody Nightshade)</a>
+            <span class="block text-sm text-muted">NC State Extension, North Carolina Extension Gardener Plant Toolbox · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://plants.ces.ncsu.edu/plants/prunus-serotina/" rel="noopener">Prunus serotina
+        (Black Cherry, Eastern Wild Black Cherry, Wild Cherry, Wild Rum Cherry)</a>
+            <span class="block text-sm text-muted">NC State Extension, North Carolina Extension Gardener Plant Toolbox · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://plants.ces.ncsu.edu/plants/robinia-pseudoacacia/" rel="noopener">Robinia pseudoacacia
+        (Black Locust, Common Locust, False Acacia, Green Locust, Pea Flower Locust, White Locust, Yellow Locust)</a>
+            <span class="block text-sm text-muted">NC State Extension, North Carolina Extension Gardener Plant Toolbox · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://plants.ces.ncsu.edu/plants/ranunculus-acris/" rel="noopener">Ranunculus acris
+        (Bitter Buttercup, Buttercup, Common Buttercup, Meadow Buttercup, Tall Buttercup)</a>
+            <span class="block text-sm text-muted">NC State Extension, North Carolina Extension Gardener Plant Toolbox · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://plants.ces.ncsu.edu/plants/daucus-carota/" rel="noopener">Daucus carota
+        (Bee&#x27;s Nest-Plant, Bird&#x27;s-Nest, Devil&#x27;s Plague, Queen Anne&#x27;s Lace, Wild Carrot)</a>
+            <span class="block text-sm text-muted">NC State Extension, North Carolina Extension Gardener Plant Toolbox · 2 plants · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://plants.ces.ncsu.edu/plants/symphytum-officinale/" rel="noopener">Symphytum officinale
+        (Black wort, Boneset, Bruise wort, Comfrey, Common Comfrey, Consound, Cultivated Comfrey, Knitbone, Quaker Comfrey, Slippery-Root, True Comfrey)</a>
+            <span class="block text-sm text-muted">NC State Extension, North Carolina Extension Gardener Plant Toolbox · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://plants.ces.ncsu.edu/plants/hypericum-perforatum/" rel="noopener">Hypericum perforatum
+        (Common St. John&#x27;s-wort, Goatweed, Klamath Weed, St. Johns Wort)</a>
+            <span class="block text-sm text-muted">NC State Extension, North Carolina Extension Gardener Plant Toolbox · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://plants.ces.ncsu.edu/plants/asclepias-syriaca/" rel="noopener">Asclepias syriaca
+        (Common Milkweed)</a>
+            <span class="block text-sm text-muted">NC State Extension, North Carolina Extension Gardener Plant Toolbox · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://plants.ces.ncsu.edu/plants/securigera-varia/" rel="noopener">Coronilla varia
+        (Crown Vetch, Purple Crown Vetch)</a>
+            <span class="block text-sm text-muted">NC State Extension, North Carolina Extension Gardener Plant Toolbox · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://plants.ces.ncsu.edu/plants/narcissus/" rel="noopener">Narcissus
+        (Daffodils, Jonquils, Narcissus, Paper White, Paperwhites, Tazettas)</a>
+            <span class="block text-sm text-muted">NC State Extension, North Carolina Extension Gardener Plant Toolbox · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://plants.ces.ncsu.edu/plants/veratrum-viride/" rel="noopener">Veratrum viride
+        (American White Hellebore, Corn Lily, False Hellebore, Hellebore, Indian Poke)</a>
+            <span class="block text-sm text-muted">NC State Extension, North Carolina Extension Gardener Plant Toolbox · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://plants.ces.ncsu.edu/plants/digitalis-purpurea/" rel="noopener">Digitalis purpurea
+        (Common Foxglove, Foxglove)</a>
+            <span class="block text-sm text-muted">NC State Extension, North Carolina Extension Gardener Plant Toolbox · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://plants.ces.ncsu.edu/plants/frangula-alnus/" rel="noopener">Frangula alnus
+        (Alder Buckthorn, Glossy Buckthorn)</a>
+            <span class="block text-sm text-muted">NC State Extension, North Carolina Extension Gardener Plant Toolbox · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://plants.ces.ncsu.edu/plants/solanum-carolinense/" rel="noopener">Solanum carolinense
+        (Apple of Sodom, Bull Nettle, Carolina Horse-Nettle, Devil&#x27;s Potato, Devil&#x27;s Tomato, Horsenettle, Horse Nettle, Poisonous Potato, Thorn Apple, Wild Tomato)</a>
+            <span class="block text-sm text-muted">NC State Extension, North Carolina Extension Gardener Plant Toolbox · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://plants.ces.ncsu.edu/plants/arisaema-triphyllum/" rel="noopener">Arisaema triphyllum
+        (Bog onion, Brown dragon, Common Jack-in-the-Pulpit, Devil&#x27;s ear, Dragon root, Indian Cradle, Indian Jack in The Pulpit, Indian Turnip, Jack-in-the-pulpit, Lady-in-a-chaise, Lord-and-Lady, Memory root, Parson-in-the-Pulpit, Pepper turnip, Starch wort, Three-leaved indian turnip, Wake robin, Wild turnip)</a>
+            <span class="block text-sm text-muted">NC State Extension, North Carolina Extension Gardener Plant Toolbox · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://plants.ces.ncsu.edu/plants/datura-stramonium/" rel="noopener">Datura stramonium
+        (Datura, Devil&#x27;s Snare, Devil&#x27;s Trumpet, Jamestown Weed, Jimsonweed, Moonflower, Stinkweed, Stinkwort, Thorn-apple, Yugoslavian Stramonium)</a>
+            <span class="block text-sm text-muted">NC State Extension, North Carolina Extension Gardener Plant Toolbox · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://plants.ces.ncsu.edu/plants/chenopodium-album/" rel="noopener">Chenopodium album
+        (Baconweed, Bacon Weed, Fat Hen, Frost-blite, Goosefoot, Lambsquarters, Lamb&#x27;s-quarters, Pigweed, White Goosefoot)</a>
+            <span class="block text-sm text-muted">NC State Extension, North Carolina Extension Gardener Plant Toolbox · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://plants.ces.ncsu.edu/plants/lactuca-sativa/" rel="noopener">Lactuca sativa
+        (Butterhead, Butterheads, Cos, Head Lettuce, Lactuca, Leaf Lettuce, Lettuce, Lettuces, Romaine, Romaines)</a>
+            <span class="block text-sm text-muted">NC State Extension, North Carolina Extension Gardener Plant Toolbox · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://plants.ces.ncsu.edu/plants/convallaria-majalis/" rel="noopener">Convallaria majalis
+        (Lily of the Valley, Lily-of-the-valley)</a>
+            <span class="block text-sm text-muted">NC State Extension, North Carolina Extension Gardener Plant Toolbox · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://plants.ces.ncsu.edu/plants/kalmia-latifolia/" rel="noopener">Kalmia latifolia
+        (Calico Bush, Ivy Bush, Laurel, Mountain Ivy, Mountain Laurel, Sheepkill, Spoonwood)</a>
+            <span class="block text-sm text-muted">NC State Extension, North Carolina Extension Gardener Plant Toolbox · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://plants.ces.ncsu.edu/plants/conium-maculatum/" rel="noopener">Conium maculatum
+        (Deadly Hemlock, Poison Fool&#x27;s Parsley, Poison Hemlock, Poison Parsley, Spotted Parsley)</a>
+            <span class="block text-sm text-muted">NC State Extension, North Carolina Extension Gardener Plant Toolbox · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://plants.ces.ncsu.edu/plants/toxicodendron-radicans/" rel="noopener">Toxicodendron radicans
+        (Eastern Poison Ivy, Poison Ivy, Poison Oak)</a>
+            <span class="block text-sm text-muted">NC State Extension, North Carolina Extension Gardener Plant Toolbox · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://plants.ces.ncsu.edu/plants/phytolacca-americana/" rel="noopener">Phytolacca americana
+        (American Pokeweed, Common Pokeweed, Garnet, Pidgeon Berry, Poke, Pokeberry, Pokeweed, Scoke)</a>
+            <span class="block text-sm text-muted">NC State Extension, North Carolina Extension Gardener Plant Toolbox · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://plants.ces.ncsu.edu/plants/solanum-tuberosum/" rel="noopener">Solanum tuberosum
+        (Irish Potato, Irish Potatoes, Pomme de Terre, Potato, Potatoes, White Potato, White Potatoes)</a>
+            <span class="block text-sm text-muted">NC State Extension, North Carolina Extension Gardener Plant Toolbox · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://plants.ces.ncsu.edu/plants/amaranthus-retroflexus/" rel="noopener">Amaranthus retroflexus
+        (Careless Weed, Common Amaranth, Common Tumbleweed, Pigweed, Pigweed Amaranth, Red Root Amaranth, Red-Root Amaranth, Redroot Amaranth, Red Root Pigweed, Red-Root Pigweed, Redroot Pigweed, Rough Pigweed, Wild Beet Amaranth)</a>
+            <span class="block text-sm text-muted">NC State Extension, North Carolina Extension Gardener Plant Toolbox · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://plants.ces.ncsu.edu/plants/rhododendron/" rel="noopener">Rhododendron
+        (Azalea, Rhododendron, Rosebay)</a>
+            <span class="block text-sm text-muted">NC State Extension, North Carolina Extension Gardener Plant Toolbox · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://plants.ces.ncsu.edu/plants/rheum-rhabarbarum/" rel="noopener">Rheum rhabarbarum
+        (Pie Plant, Rhubarb)</a>
+            <span class="block text-sm text-muted">NC State Extension, North Carolina Extension Gardener Plant Toolbox · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://plants.ces.ncsu.edu/plants/kalmia-angustifolia/" rel="noopener">Kalmia angustifolia
+        (Lambkill, Northern Sheepkill, Sheep Laurel, Wicky)</a>
+            <span class="block text-sm text-muted">NC State Extension, North Carolina Extension Gardener Plant Toolbox · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://plants.ces.ncsu.edu/plants/symplocarpus-foetidus/" rel="noopener">Symplocarpus foetidus
+        (Eastern Skunk Cabbage, Meadow Cabbage, Polecat Weed, Skunk Cabbage, Skunk Weed, Swamp Cabbage)</a>
+            <span class="block text-sm text-muted">NC State Extension, North Carolina Extension Gardener Plant Toolbox · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://plants.ces.ncsu.edu/plants/urtica-dioica/" rel="noopener">Urtica dioica
+        (Common Nettle, Stinging Nettle)</a>
+            <span class="block text-sm text-muted">NC State Extension, North Carolina Extension Gardener Plant Toolbox · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://plants.ces.ncsu.edu/plants/jacobaea-vulgaris/" rel="noopener">Senecio vulgaris
+        (Birdseed, Chickenweed, Common Butterweed, Common Groundsel, Grimsel, Grinsel, Ground Gutton, Groundsel, Grundsel, Grundy Swallow, Old Man In the Spring, Old-Man-In-the-Spring, Ragwort, Simson)</a>
+            <span class="block text-sm text-muted">NC State Extension, North Carolina Extension Gardener Plant Toolbox · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://plants.ces.ncsu.edu/plants/solanum-lycopersicum/" rel="noopener">Solanum lycopersicum
+        (Tomato, Tomatoes)</a>
+            <span class="block text-sm text-muted">NC State Extension, North Carolina Extension Gardener Plant Toolbox · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://plants.ces.ncsu.edu/plants/parthenocissus-quinquefolia/" rel="noopener">Parthenocissus quinquefolia
+        (Virginia Creeper, Virginia-creeper, Woodbine)</a>
+            <span class="block text-sm text-muted">NC State Extension, North Carolina Extension Gardener Plant Toolbox · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://plants.ces.ncsu.edu/plants/cicuta-maculata/" rel="noopener">Cicuta maculata
+        (Beaver Poison, Cowbane, Spotted Cowbane, Spotted Hemlock, Spotted Water Hemlock, Water Hemlock)</a>
+            <span class="block text-sm text-muted">NC State Extension, North Carolina Extension Gardener Plant Toolbox · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://plants.ces.ncsu.edu/plants/actaea-pachypoda/" rel="noopener">Actaea pachypoda
+        (Baneberry, Doll&#x27;s Eyes, Dolls-eyes, Necklace Weed, Toadroot, White Baneberry, White Beads, White-beads, White Cohosh)</a>
+            <span class="block text-sm text-muted">NC State Extension, North Carolina Extension Gardener Plant Toolbox · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://plants.ces.ncsu.edu/plants/morus-alba/" rel="noopener">Morus alba
+        (White Mulberry)</a>
+            <span class="block text-sm text-muted">NC State Extension, North Carolina Extension Gardener Plant Toolbox · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://plants.ces.ncsu.edu/plants/quercus-alba/" rel="noopener">Quercus alba
+        (American White Oak, Eastern White Oak, Forked-leaf White Oak, Northern White Oak, Oaks, Quebec Oak, White Oak)</a>
+            <span class="block text-sm text-muted">NC State Extension, North Carolina Extension Gardener Plant Toolbox · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://plants.ces.ncsu.edu/plants/ageratina-altissima/" rel="noopener">Ageratina altissima
+        (Fall Poison, Richweed, Tremetol, White Sanicle, White Snakeroot)</a>
+            <span class="block text-sm text-muted">NC State Extension, North Carolina Extension Gardener Plant Toolbox · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://plants.ces.ncsu.edu/plants/pastinaca-sativa/" rel="noopener">Pastinaca sativa
+        (Parsnip, Parsnips, Wild Parsnip, Wild Parsnips)</a>
+            <span class="block text-sm text-muted">NC State Extension, North Carolina Extension Gardener Plant Toolbox · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://houserabbit.org/diet" rel="noopener">Diet</a>
+            <span class="block text-sm text-muted">House Rabbit Society · 7 plants · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://poisonousplants.cvmbs.colostate.edu/plant/66" rel="noopener">Alsike clover (Trifolium hybridum (ITIS) Trifolium elegans Savi, Trifolium hybridum ssp. elegans (Savi) Asch. &amp; Graebn., Trifolium hybridum var. elegans (Savi) Boiss.,Trifolium hybridum var. pratense Rabenh.))</a>
+            <span class="block text-sm text-muted">Colorado State University College of Veterinary Medicine, Guide to Poisonous Plants · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://poisonousplants.cvmbs.colostate.edu/plant/45" rel="noopener">Black Locust, locust, false acacia (Robinia pseudoacacia)</a>
+            <span class="block text-sm text-muted">Colorado State University College of Veterinary Medicine, Guide to Poisonous Plants · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://poisonousplants.cvmbs.colostate.edu/plant/50" rel="noopener">Bracken fern, brake fern, eagle fern (Pteridium aquilinum L. Kuhn)</a>
+            <span class="block text-sm text-muted">Colorado State University College of Veterinary Medicine, Guide to Poisonous Plants · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://poisonousplants.cvmbs.colostate.edu/plant/88" rel="noopener">Buttercup, crowsfoot (Ranunculus spp. Among the buttercups considered more toxic to animals than others are R. scleratus, R. flammula, R. parviflora, R. acris,  R. abortivus, R. repens, R. cymbalaria, and R. testiculatus)</a>
+            <span class="block text-sm text-muted">Colorado State University College of Veterinary Medicine, Guide to Poisonous Plants · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://poisonousplants.cvmbs.colostate.edu/plant/43" rel="noopener">St. John&#x27;s wort, Klamath weed, goat weed, tipton weed (Hypericum perforatum L.)</a>
+            <span class="block text-sm text-muted">Colorado State University College of Veterinary Medicine, Guide to Poisonous Plants · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://poisonousplants.cvmbs.colostate.edu/plant/11" rel="noopener">Milkweed (Asclepias l. species)</a>
+            <span class="block text-sm text-muted">Colorado State University College of Veterinary Medicine, Guide to Poisonous Plants · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://poisonousplants.cvmbs.colostate.edu/plant/103" rel="noopener">Crown vetch (Securigera varia (L.) Lassen)</a>
+            <span class="block text-sm text-muted">Colorado State University College of Veterinary Medicine, Guide to Poisonous Plants · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://poisonousplants.cvmbs.colostate.edu/plant/83" rel="noopener">Curly leafed dock, sorrel, (Rumex crispus L.)</a>
+            <span class="block text-sm text-muted">Colorado State University College of Veterinary Medicine, Guide to Poisonous Plants · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://poisonousplants.cvmbs.colostate.edu/plant/116" rel="noopener">Narcissus, daffodil, paper white (Narcissus L. species)</a>
+            <span class="block text-sm text-muted">Colorado State University College of Veterinary Medicine, Guide to Poisonous Plants · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://poisonousplants.cvmbs.colostate.edu/plant/35" rel="noopener">False-hellebore, Skunk cabbage, corn-lily. (Veratrum californicum Durand. American false hellebore (V. viride) is the most common and is found in most northern States from East to West including Canada. Others species include V. alblum)</a>
+            <span class="block text-sm text-muted">Colorado State University College of Veterinary Medicine, Guide to Poisonous Plants · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://poisonousplants.cvmbs.colostate.edu/plant/59" rel="noopener">Foxglove (Digitalis purpurea L.)</a>
+            <span class="block text-sm text-muted">Colorado State University College of Veterinary Medicine, Guide to Poisonous Plants · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://poisonousplants.cvmbs.colostate.edu/plant/106" rel="noopener">Hairy Vetch (Vicia villosa)</a>
+            <span class="block text-sm text-muted">Colorado State University College of Veterinary Medicine, Guide to Poisonous Plants · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://poisonousplants.cvmbs.colostate.edu/plant/91" rel="noopener">Horse nettle, Carolina horse nettle, bull nettle (Solanum carolinense L.)</a>
+            <span class="block text-sm text-muted">Colorado State University College of Veterinary Medicine, Guide to Poisonous Plants · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://poisonousplants.cvmbs.colostate.edu/plant/7" rel="noopener">Jimson weed, Thorn apple (Datura stramonium L.)</a>
+            <span class="block text-sm text-muted">Colorado State University College of Veterinary Medicine, Guide to Poisonous Plants · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://poisonousplants.cvmbs.colostate.edu/plant/123" rel="noopener">Lily of the valley (Convallaria majalis L.)</a>
+            <span class="block text-sm text-muted">Colorado State University College of Veterinary Medicine, Guide to Poisonous Plants · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://poisonousplants.cvmbs.colostate.edu/plant/100" rel="noopener">Hemlock, poison hemlock, spotted hemlock. (Conium maculatum L.)</a>
+            <span class="block text-sm text-muted">Colorado State University College of Veterinary Medicine, Guide to Poisonous Plants · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://poisonousplants.cvmbs.colostate.edu/plant/146" rel="noopener">Red Clover (Trifolium pratense L.)</a>
+            <span class="block text-sm text-muted">Colorado State University College of Veterinary Medicine, Guide to Poisonous Plants · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://poisonousplants.cvmbs.colostate.edu/plant/81" rel="noopener">Pig weed, amaranth (Amaranthus retroflexus)</a>
+            <span class="block text-sm text-muted">Colorado State University College of Veterinary Medicine, Guide to Poisonous Plants · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://poisonousplants.cvmbs.colostate.edu/plant/111" rel="noopener">Rhododendron (Rhododendron L.)</a>
+            <span class="block text-sm text-muted">Colorado State University College of Veterinary Medicine, Guide to Poisonous Plants · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://poisonousplants.cvmbs.colostate.edu/plant/128" rel="noopener">White snakeroot, Rich weed, white sanicle, white top, squaw weed, (Ageratina altissimaÂ (L.) R.M. King &amp; H. Rob.)</a>
+            <span class="block text-sm text-muted">Colorado State University College of Veterinary Medicine, Guide to Poisonous Plants · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://poisonousplants.cvmbs.colostate.edu/plant/9" rel="noopener">Yellow sweet clover, white sweet clover (Melilotus officinalis (L.) Lam.)</a>
+            <span class="block text-sm text-muted">Colorado State University College of Veterinary Medicine, Guide to Poisonous Plants · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://poisonousplants.cvmbs.colostate.edu/plant/112" rel="noopener">Laurel , mountain laurel, calico bush (Kalmia L.)</a>
+            <span class="block text-sm text-muted">Colorado State University College of Veterinary Medicine, Guide to Poisonous Plants · 2 plants · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://poisonousplants.cvmbs.colostate.edu/plant/57" rel="noopener">Yew (Taxus spp.)</a>
+            <span class="block text-sm text-muted">Colorado State University College of Veterinary Medicine, Guide to Poisonous Plants · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://poisonousplants.cvmbs.colostate.edu/plant/32" rel="noopener">Elderberry (Sambucus L.)</a>
+            <span class="block text-sm text-muted">Colorado State University College of Veterinary Medicine, Guide to Poisonous Plants · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://poisonousplants.cvmbs.colostate.edu/plant/86" rel="noopener">Onions, wild onions, domestic onions (Allium  L.)</a>
+            <span class="block text-sm text-muted">Colorado State University College of Veterinary Medicine, Guide to Poisonous Plants · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://poisonousplants.cvmbs.colostate.edu/plant/75" rel="noopener">Lamb&#x27;s Quarter (Chenopodium L.)</a>
+            <span class="block text-sm text-muted">Colorado State University College of Veterinary Medicine, Guide to Poisonous Plants · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://poisonousplants.cvmbs.colostate.edu/plant/82" rel="noopener">Purslane, pusley (Portulaca L.)</a>
+            <span class="block text-sm text-muted">Colorado State University College of Veterinary Medicine, Guide to Poisonous Plants · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://poisonousplants.cvmbs.colostate.edu/plant/41" rel="noopener">Senecio, groundsel, tansy ragwort (Senecio species: Senecio L.)</a>
+            <span class="block text-sm text-muted">Colorado State University College of Veterinary Medicine, Guide to Poisonous Plants · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://poisonousplants.cvmbs.colostate.edu/plant/141" rel="noopener">Virginia creeper, woodbine (Parthenocissus quinquefolia (L.) Planch.)</a>
+            <span class="block text-sm text-muted">Colorado State University College of Veterinary Medicine, Guide to Poisonous Plants · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://poisonousplants.cvmbs.colostate.edu/plant/109" rel="noopener">Poison ivy (Toxicodendron radicans (L.) Kuntze)</a>
+            <span class="block text-sm text-muted">Colorado State University College of Veterinary Medicine, Guide to Poisonous Plants · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://naturalresources.extension.iastate.edu/encyclopedia/poisonous-plants-commonly-found-woodlands" rel="noopener">Poisonous Plants Commonly Found in Woodlands</a>
+            <span class="block text-sm text-muted">Iowa State University Extension and Outreach, Natural Resources · 9 plants · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://extension.oregonstate.edu/sites/extd8/files/documents/1/pppyrrolizidinealkaloidpoisoning.pdf" rel="noopener">Pyrrolizidine Alkaloid Poisoning (Poisonous Plants series)</a>
+            <span class="block text-sm text-muted">Oregon State University Extension Service · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://poisonousplants.massey.ac.nz/data/rhubarb/rhub.html" rel="noopener">Rhubarb (Rheum rhaponticum)</a>
+            <span class="block text-sm text-muted">Massey University, New Zealand Poisonous Plants · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://richmond.ces.ncsu.edu/news/extensionyourservice-is-your-backyard-chicken-proof/" rel="noopener">Extension@YourService: Is Your Backyard Chicken Proof?</a>
+            <span class="block text-sm text-muted">N.C. Cooperative Extension, Richmond County Center · 7 plants · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://hospital.cvm.ncsu.edu/services/small-animals/nutrition/caring-for-your-pet-guinea-pig/" rel="noopener">Caring for Your Pet Guinea Pig</a>
+            <span class="block text-sm text-muted">NC State Veterinary Hospital · 3 plants · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://smallanimal.vethospital.ufl.edu/clinical-services/zoological-medicine/how-to-care-for-your-pet-guinea-pig/" rel="noopener">How to care for your pet guinea pig</a>
+            <span class="block text-sm text-muted">University of Florida Small Animal Hospital · 5 plants · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://extension.psu.edu/kentucky-bluegrass" rel="noopener">Kentucky Bluegrass</a>
+            <span class="block text-sm text-muted">Penn State Extension · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://extension.psu.edu/orchardgrass" rel="noopener">Orchardgrass</a>
+            <span class="block text-sm text-muted">Penn State Extension · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://extension.psu.edu/reed-canarygrass" rel="noopener">Reed Canarygrass</a>
+            <span class="block text-sm text-muted">Penn State Extension · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://extension.psu.edu/tall-fescue" rel="noopener">Tall Fescue</a>
+            <span class="block text-sm text-muted">Penn State Extension · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://www.umass.edu/agriculture-food-environment/crops-dairy-livestock-equine/fact-sheets/selecting-forage-species" rel="noopener">Selecting Forage Species</a>
+            <span class="block text-sm text-muted">UMass Amherst Center for Agriculture, Food, and the Environment · 11 plants · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            <a class="text-link inline-flex min-h-11 items-center" href="https://www.uaex.uada.edu/farm-ranch/pest-management/weed/poisonous_weeds.pdf" rel="noopener">Plants Poisonous to Livestock in the Southern US</a>
+            <span class="block text-sm text-muted">University of Arkansas Cooperative Extension Service · 1 plant · accessed Oct 15, 2026</span>
+          </li>
+        
+          <li>
+            USDA Natural Resources Conservation Service plant guide
+            <span class="block text-sm text-muted">25 plants</span>
+          </li>
+        
+          <li>
+            toxicology and species nutrition chapters
+            <span class="block text-sm text-muted">Merck Veterinary Manual · 56 plants</span>
+          </li>
+        
+          <li>
+            suggested greens and foods to avoid
+            <span class="block text-sm text-muted">House Rabbit Society · 29 plants</span>
+          </li>
+        
+          <li>
+            forage and poisonous-plant publications
+            <span class="block text-sm text-muted">Penn State Extension · 12 plants</span>
+          </li>
+        
+          <li>
+            Plants Poisonous to Livestock
+            <span class="block text-sm text-muted">Cornell University Department of Animal Science · 45 plants</span>
+          </li>
+        
+          <li>
+            E (Kika) de la Garza American Institute for Goat Research, goat nutrition materials
+            <span class="block text-sm text-muted">Langston University · 10 plants</span>
+          </li>
+        
+          <li>
+            poultry and small-ruminant forage publications
+            <span class="block text-sm text-muted">ATTRA / NCAT · 14 plants</span>
+          </li>
+        
+          <li>
+            forage guidance
+            <span class="block text-sm text-muted">University of Maine Cooperative Extension · 6 plants</span>
+          </li>
+        
+          <li>
+            used here as a companion-animal caution alongside a veterinary source
+            <span class="block text-sm text-muted">ASPCA Animal Poison Control Center toxic-plant list · 7 plants</span>
+          </li>
+        
+          <li>
+            pasture and livestock guidance
+            <span class="block text-sm text-muted">University of New Hampshire Extension · 2 plants</span>
+          </li>
+        
+      </ul>
+    </section>
+  </div>
+
+
+  </main>
+  
+  <dialog class="lightbox" aria-label="Photo viewer" data-lightbox>
+    <div class="lightbox-frame">
+      <div class="lightbox-bar">
+        <p class="lightbox-count num" data-lightbox-count aria-live="polite"></p>
+        <button type="button" class="lightbox-btn" data-lightbox-close aria-label="Close photo viewer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+      </div>
+      <div class="lightbox-stage" data-lightbox-stage>
+        <img alt="" data-lightbox-img>
+        <button type="button" class="lightbox-btn lightbox-prev" data-lightbox-prev aria-label="Previous photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+        <button type="button" class="lightbox-btn lightbox-next" data-lightbox-next aria-label="Next photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+      </div>
+      <p class="lightbox-caption photo-credit" data-lightbox-caption></p>
+    </div>
+  </dialog>
+
+  <footer class="site-footer" data-print-hide>
+    <div class="page-col-inner">
+      <button type="button" class="footer-link" data-download-copy>Download a copy</button>
+      <a class="footer-link" href="/forage-guide/sources/">Sources</a>
+      <span class="text-muted">Notes and favorites are saved on this device. Accounts aren't available on this version.</span>
+    </div>
+  </footer>
+  
+  <script src="/forage-guide/static/js/app.3f29a6292ee0.js"></script>
+
+</body>
+</html>

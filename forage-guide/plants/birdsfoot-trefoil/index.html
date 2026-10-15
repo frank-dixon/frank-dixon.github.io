@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en" data-style="riso" data-account-theme="system" data-plant-view="grid" data-account-animals="">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f3f1eb">
+  <meta name="pf-base" content="/forage-guide/">
+  <script>
+    (function () {
+      var key = "pf-theme";
+      var root = document.documentElement;
+      var account = root.getAttribute("data-account-theme") || "";
+      var stored = "";
+      try { stored = localStorage.getItem(key) || ""; } catch (err) { stored = ""; }
+      var theme = stored === "light" || stored === "dark" || stored === "system" ? stored : (account === "light" || account === "dark" || account === "system" ? account : "system");
+      if (stored !== theme) {
+        try { localStorage.setItem(key, theme); } catch (err) {}
+      }
+      var dark = theme === "dark" || (theme === "system" && window.matchMedia("(prefers-color-scheme: dark)").matches);
+      root.classList.toggle("dark", dark);
+      root.style.colorScheme = dark ? "dark" : "light";
+      root.setAttribute("data-theme", theme);
+      var meta = document.querySelector('meta[name="theme-color"]');
+      if (meta) meta.setAttribute("content", dark ? "#141815" : "#f3f1eb");
+      // Grid or List: a ?view= link wins, then this device, then the account.
+      var view = root.getAttribute("data-plant-view") === "list" ? "list" : "grid";
+      var saved = "";
+      try { saved = localStorage.getItem("pf-plant-view") || ""; } catch (err) { saved = ""; }
+      if (root.hasAttribute("data-plant-view-asked")) {
+        try { localStorage.setItem("pf-plant-view", view); } catch (err) {}
+      } else if (saved === "grid" || saved === "list") {
+        view = saved;
+      }
+      root.setAttribute("data-plant-view", view);
+    })();
+  </script>
+  <title>Birdsfoot trefoil · Forage guide</title>
+  
+  <meta name="csrf-token" content="5mXAvg8hOMlIeAPMRRXxi5tf7nOeIFQkHSFXTCddMHSHzjVWEBoZtHOq4vSZUzIl">
+  
+  <link rel="preload" href="/forage-guide/static/fonts/instrument-sans-latin-var.fa41c43a3d8e.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/forage-guide/static/css/app.880ed8745454.css">
+  <link rel="manifest" href="/forage-guide/manifest.webmanifest">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Forage">
+  <meta name="description" content="A New England reference for harvesting forage to feed rabbits, poultry, goats, sheep, and other livestock.">
+  <link rel="apple-touch-icon" href="/forage-guide/static/icons/apple-touch-icon.f9c7d501b927.png">
+  <link rel="icon" type="image/svg+xml" href="/forage-guide/static/icons/icon.b826095f50e3.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/forage-guide/static/icons/favicon-32.401ee745adea.png">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait) and (prefers-color-scheme: light)" href="/forage-guide/static/icons/splash-750x1334-light.ff790231a3a7.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait) and (prefers-color-scheme: dark)" href="/forage-guide/static/icons/splash-750x1334-dark.a8a3bbbf6108.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait) and (prefers-color-scheme: light)" href="/forage-guide/static/icons/splash-828x1792-light.c12d61c7b473.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait) and (prefers-color-scheme: dark)" href="/forage-guide/static/icons/splash-828x1792-dark.33bca0a0b104.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="/forage-guide/static/icons/splash-1125x2436-light.f36e8c5a0b32.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="/forage-guide/static/icons/splash-1125x2436-dark.583eadeeec92.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="/forage-guide/static/icons/splash-1170x2532-light.4dcb2e876564.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="/forage-guide/static/icons/splash-1170x2532-dark.28e0ea2192e1.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 393px) and (device-height: 852px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="/forage-guide/static/icons/splash-1179x2556-light.77d4279694d9.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 393px) and (device-height: 852px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="/forage-guide/static/icons/splash-1179x2556-dark.101d81f6401e.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="/forage-guide/static/icons/splash-1284x2778-light.12275a7dbcce.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="/forage-guide/static/icons/splash-1284x2778-dark.ca665c70f9f6.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="/forage-guide/static/icons/splash-1290x2796-light.72a10464b3e4.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="/forage-guide/static/icons/splash-1290x2796-dark.1b3d1306bb14.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait) and (prefers-color-scheme: light)" href="/forage-guide/static/icons/splash-2048x2732-light.d6ee2f81b1f2.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait) and (prefers-color-scheme: dark)" href="/forage-guide/static/icons/splash-2048x2732-dark.37211a5cf809.png">
+
+</head>
+<body class="min-h-dvh bg-canvas text-ink antialiased dark:bg-canvas dark:text-ink">
+  <a class="skip" href="#content">Skip to content</a>
+  <header class="topbar" data-print-hide>
+    <button type="button" class="menu-btn" aria-controls="side-nav" aria-expanded="false" data-nav-open>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      <span class="sr-only">Menu</span>
+    </button>
+    <a class="brand" href="/forage-guide/"><span class="brand-mark" aria-hidden="true"></span>Forage guide</a>
+    <div class="topbar-tools">
+      
+    </div>
+  </header>
+  
+  <div class="nav-backdrop" data-nav-backdrop hidden></div>
+  <nav class="side-nav" id="side-nav" aria-label="Main" data-print-hide data-side-nav>
+    <div class="side-head">
+      <span class="brand"><span class="brand-mark" aria-hidden="true"></span>Forage guide</span>
+      <button type="button" class="menu-btn" data-nav-close>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+        <span class="sr-only">Close menu</span>
+      </button>
+    </div>
+    <ul>
+      
+        <li>
+          <a class="side-link is-active" href="/forage-guide/" aria-current="page">
+            <svg class="h-[1.15rem] w-[1.15rem] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 19C5 11 12 5 19 5c0 8-7 14-14 14zM9 15c2-2 4-5 7-8"/></svg>
+
+            <span>Plants</span>
+          </a>
+        </li>
+      
+        <li>
+          <a class="side-link" href="/forage-guide/saved/">
+            <svg class="h-[1.15rem] w-[1.15rem] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 21s-7-4.4-7-10a4 4 0 0 1 7-2 4 4 0 0 1 7 2c0 5.6-7 10-7 10z"/></svg>
+
+            <span>Saved</span>
+          </a>
+        </li>
+      
+        <li>
+          <a class="side-link" href="/forage-guide/settings/">
+            <svg class="h-[1.15rem] w-[1.15rem] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 7h10M18 7h2M4 17h4M12 17h8M16 5v4M10 15v4"/></svg>
+
+            <span>Settings</span>
+          </a>
+        </li>
+      
+    </ul>
+  </nav>
+  <main id="content" data-page class="page-col">
+    
+  <p class="net-banner" role="status" data-connection-status hidden></p>
+  
+  <section class="card mb-4 anon-bar">
+    <p class="text-sm">This version of the guide runs entirely in your browser. Accounts aren't available here. Favorites, notes, and settings stay on this device.</p>
+  </section>
+
+
+  
+  <script id="pf-snapshot" type="application/json">""</script>
+  
+  
+<header class="poster-head">
+  <p><a class="back-link" href="/forage-guide/">All plants</a></p>
+  <div class="poster-art" aria-hidden="true"><img class="arch" src="/forage-guide/static/plants/birdsfoot-trefoil/0-21bc76b0-640.f3135cd71f3b.webp" alt=""></div>
+  <p class="poster-kicker num">Legume · Summer</p>
+  <h1 class="poster-title" style="--chars:9">Birdsfoot trefoil</h1>
+  <p class="poster-sci">Lotus corniculatus</p>
+  <div class="plant-actions">
+    
+<button type="button" class="star-btn star-btn-lg" data-star="birdsfoot-trefoil" data-star-body="" data-client-id="" aria-pressed="false" aria-label="Star Birdsfoot trefoil" title="Star">
+  <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></svg>
+  <span class="star-text" data-star-text>Star</span>
+</button>
+
+    
+<p class="mine-summary" data-mine-summary><span data-mine-names>Showing all animals</span> · <a class="mine-change" href="/forage-guide/settings/">Change</a></p>
+
+  </div>
+</header>
+
+
+<ul class="vblocks" aria-label="Verdict by animal, worst first">
+  
+    <li class="vb vb-limit" data-vb="rabbit"><span class="vb-animal">Rabbit</span><span class="vb-word"><i aria-hidden="true">!</i> Limit</span></li>
+  
+    <li class="vb vb-limit" data-vb="chicken"><span class="vb-animal">Chicken</span><span class="vb-word"><i aria-hidden="true">!</i> Limit</span></li>
+  
+    <li class="vb vb-limit" data-vb="duck"><span class="vb-animal">Duck</span><span class="vb-word"><i aria-hidden="true">!</i> Limit</span></li>
+  
+    <li class="vb vb-limit" data-vb="goose"><span class="vb-animal">Goose</span><span class="vb-word"><i aria-hidden="true">!</i> Limit</span></li>
+  
+    <li class="vb vb-limit" data-vb="turkey"><span class="vb-animal">Turkey</span><span class="vb-word"><i aria-hidden="true">!</i> Limit</span></li>
+  
+    <li class="vb vb-limit" data-vb="quail"><span class="vb-animal">Quail</span><span class="vb-word"><i aria-hidden="true">!</i> Limit</span></li>
+  
+    <li class="vb vb-limit" data-vb="guinea_pig"><span class="vb-animal">Guinea pig</span><span class="vb-word"><i aria-hidden="true">!</i> Limit</span></li>
+  
+    <li class="vb vb-limit" data-vb="goat"><span class="vb-animal">Goat</span><span class="vb-word"><i aria-hidden="true">!</i> Limit</span></li>
+  
+    <li class="vb vb-limit" data-vb="sheep"><span class="vb-animal">Sheep</span><span class="vb-word"><i aria-hidden="true">!</i> Limit</span></li>
+  
+    <li class="vb vb-limit" data-vb="pig"><span class="vb-animal">Pig</span><span class="vb-word"><i aria-hidden="true">!</i> Limit</span></li>
+  
+    <li class="vb vb-limit" data-vb="cattle"><span class="vb-animal">Cattle</span><span class="vb-word"><i aria-hidden="true">!</i> Limit</span></li>
+  
+</ul>
+
+
+
+
+  <div class="mt-6" data-plant-page="birdsfoot-trefoil" data-name="Birdsfoot trefoil" data-thumb="/forage-guide/static/plants/birdsfoot-trefoil/0-21bc76b0-320.4886d2c9b6f2.webp">
+    <article class="prose-farm" data-v="rabbit:limit,chicken:limit,duck:limit,goose:limit,turkey:limit,quail:limit,guinea_pig:limit,goat:limit,sheep:limit,pig:limit,cattle:limit">
+  <div class="toxic-warning" role="alert" data-toxic-warning hidden>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 4 2.5 20h19zM12 10v4M12 17.5v.01"/></svg>
+    <div><p class="toxic-warning-title" data-toxic-title></p><p class="toxic-warning-text">Do not feed it to them. Details are under Who can eat it.</p></div>
+  </div>
+  
+
+  <section class="plant-photos" aria-label="Photos of Birdsfoot trefoil" data-gallery="birdsfoot-trefoil">
+    <figure class="photo-hero">
+      
+        <button type="button" class="photo-button" data-lightbox-item data-index="0" data-full="/forage-guide/static/plants/birdsfoot-trefoil/0-21bc76b0-1024.637c6c390d00.webp" data-srcset="/forage-guide/static/plants/birdsfoot-trefoil/0-21bc76b0-320.4886d2c9b6f2.webp 320w, /forage-guide/static/plants/birdsfoot-trefoil/0-21bc76b0-640.f3135cd71f3b.webp 640w, /forage-guide/static/plants/birdsfoot-trefoil/0-21bc76b0-1024.637c6c390d00.webp 1024w" data-w="1024" data-h="566" data-alt="Birdsfoot trefoil, whole plant" data-caption="Whole plant" data-author="Didier Descouens" data-license="CC BY-SA 4.0" data-license-url="https://creativecommons.org/licenses/by-sa/4.0" data-source="https://commons.wikimedia.org/wiki/File:(MHNT)_Lotus_corniculatus_-_Plant_habit.jpg" aria-label="Open photo: Birdsfoot trefoil, whole plant">
+          <img src="/forage-guide/static/plants/birdsfoot-trefoil/0-21bc76b0-640.f3135cd71f3b.webp" srcset="/forage-guide/static/plants/birdsfoot-trefoil/0-21bc76b0-320.4886d2c9b6f2.webp 320w, /forage-guide/static/plants/birdsfoot-trefoil/0-21bc76b0-640.f3135cd71f3b.webp 640w, /forage-guide/static/plants/birdsfoot-trefoil/0-21bc76b0-1024.637c6c390d00.webp 1024w" sizes="(min-width: 768px) 40rem, 100vw" width="1024" height="566" alt="Birdsfoot trefoil, whole plant" loading="lazy" decoding="async">
+        </button>
+        <figcaption class="photo-credit"><span class="photo-caption">Whole plant</span> <span class="photo-attrib">Photo: Didier Descouens, <a href="https://creativecommons.org/licenses/by-sa/4.0" rel="license noopener" target="_blank">CC BY-SA 4.0</a>, via <a href="https://commons.wikimedia.org/wiki/File:(MHNT)_Lotus_corniculatus_-_Plant_habit.jpg" rel="noopener" target="_blank">Wikimedia Commons</a></span>
+</figcaption>
+      
+    </figure>
+    
+      <ul class="photo-strip" aria-label="More photos">
+        
+          <li>
+            <button type="button" class="photo-button" data-lightbox-item data-index="1" data-full="/forage-guide/static/plants/birdsfoot-trefoil/1-96cd3bd6-1024.8fcff63c67e4.webp" data-srcset="/forage-guide/static/plants/birdsfoot-trefoil/1-96cd3bd6-320.66fcf8c3ab7c.webp 320w, /forage-guide/static/plants/birdsfoot-trefoil/1-96cd3bd6-640.e394c89f7b3d.webp 640w, /forage-guide/static/plants/birdsfoot-trefoil/1-96cd3bd6-1024.8fcff63c67e4.webp 1024w" data-w="1024" data-h="683" data-alt="Birdsfoot trefoil, flowers" data-caption="Flowers" data-author="Krzysztof Golik" data-license="CC BY-SA 4.0" data-license-url="https://creativecommons.org/licenses/by-sa/4.0" data-source="https://commons.wikimedia.org/wiki/File:Lotus_corniculatus_in_Aveyron_(2).jpg" aria-label="Open photo: Birdsfoot trefoil, flowers">
+              <img src="/forage-guide/static/plants/birdsfoot-trefoil/1-96cd3bd6-320.66fcf8c3ab7c.webp" srcset="/forage-guide/static/plants/birdsfoot-trefoil/1-96cd3bd6-320.66fcf8c3ab7c.webp 320w, /forage-guide/static/plants/birdsfoot-trefoil/1-96cd3bd6-640.e394c89f7b3d.webp 640w, /forage-guide/static/plants/birdsfoot-trefoil/1-96cd3bd6-1024.8fcff63c67e4.webp 1024w" sizes="(min-width: 768px) 10rem, 25vw" width="1024" height="683" alt="" loading="lazy" decoding="async">
+              <span class="photo-tag">Flowers</span>
+            </button>
+          </li>
+        
+          <li>
+            <button type="button" class="photo-button" data-lightbox-item data-index="2" data-full="/forage-guide/static/plants/birdsfoot-trefoil/2-6b44cfd5-1024.d0b2322f5305.webp" data-srcset="/forage-guide/static/plants/birdsfoot-trefoil/2-6b44cfd5-320.dfdce9c2ac74.webp 320w, /forage-guide/static/plants/birdsfoot-trefoil/2-6b44cfd5-640.f6ccbd1fc979.webp 640w, /forage-guide/static/plants/birdsfoot-trefoil/2-6b44cfd5-1024.d0b2322f5305.webp 1024w" data-w="1024" data-h="768" data-alt="Birdsfoot trefoil" data-caption="Photo" data-author="Rorolinus" data-license="CC BY-SA 4.0" data-license-url="https://creativecommons.org/licenses/by-sa/4.0" data-source="https://commons.wikimedia.org/wiki/File:Lotus_corniculatus,_Ari%C3%A8ge,_France.JPG" aria-label="Open photo: Birdsfoot trefoil">
+              <img src="/forage-guide/static/plants/birdsfoot-trefoil/2-6b44cfd5-320.dfdce9c2ac74.webp" srcset="/forage-guide/static/plants/birdsfoot-trefoil/2-6b44cfd5-320.dfdce9c2ac74.webp 320w, /forage-guide/static/plants/birdsfoot-trefoil/2-6b44cfd5-640.f6ccbd1fc979.webp 640w, /forage-guide/static/plants/birdsfoot-trefoil/2-6b44cfd5-1024.d0b2322f5305.webp 1024w" sizes="(min-width: 768px) 10rem, 25vw" width="1024" height="768" alt="" loading="lazy" decoding="async">
+              <span class="photo-tag">Photo</span>
+            </button>
+          </li>
+        
+          <li>
+            <button type="button" class="photo-button" data-lightbox-item data-index="3" data-full="/forage-guide/static/plants/birdsfoot-trefoil/3-6e2ad905-1024.fb4acf168af6.webp" data-srcset="/forage-guide/static/plants/birdsfoot-trefoil/3-6e2ad905-320.be7f93828d8c.webp 320w, /forage-guide/static/plants/birdsfoot-trefoil/3-6e2ad905-640.7a4690b4bb2e.webp 640w, /forage-guide/static/plants/birdsfoot-trefoil/3-6e2ad905-1024.fb4acf168af6.webp 1024w" data-w="1024" data-h="756" data-alt="Birdsfoot trefoil" data-caption="Photo" data-author="Robert Flogaus-Faust" data-license="CC BY 4.0" data-license-url="https://creativecommons.org/licenses/by/4.0" data-source="https://commons.wikimedia.org/wiki/File:Lotus_corniculatus_RF.jpg" aria-label="Open photo: Birdsfoot trefoil">
+              <img src="/forage-guide/static/plants/birdsfoot-trefoil/3-6e2ad905-320.be7f93828d8c.webp" srcset="/forage-guide/static/plants/birdsfoot-trefoil/3-6e2ad905-320.be7f93828d8c.webp 320w, /forage-guide/static/plants/birdsfoot-trefoil/3-6e2ad905-640.7a4690b4bb2e.webp 640w, /forage-guide/static/plants/birdsfoot-trefoil/3-6e2ad905-1024.fb4acf168af6.webp 1024w" sizes="(min-width: 768px) 10rem, 25vw" width="1024" height="756" alt="" loading="lazy" decoding="async">
+              <span class="photo-tag">Photo</span>
+            </button>
+          </li>
+        
+          <li>
+            <button type="button" class="photo-button" data-lightbox-item data-index="4" data-full="/forage-guide/static/plants/birdsfoot-trefoil/4-2de5b472-1024.28a89b3c0e42.webp" data-srcset="/forage-guide/static/plants/birdsfoot-trefoil/4-2de5b472-320.8e343c94f489.webp 320w, /forage-guide/static/plants/birdsfoot-trefoil/4-2de5b472-640.b989a989d3b8.webp 640w, /forage-guide/static/plants/birdsfoot-trefoil/4-2de5b472-1024.28a89b3c0e42.webp 1024w" data-w="1024" data-h="1024" data-alt="Birdsfoot trefoil" data-caption="Photo" data-author="Krzysztof Golik" data-license="CC BY-SA 4.0" data-license-url="https://creativecommons.org/licenses/by-sa/4.0" data-source="https://commons.wikimedia.org/wiki/File:Lotus_corniculatus_at_Lac_des_Plagnes_(2).jpg" aria-label="Open photo: Birdsfoot trefoil">
+              <img src="/forage-guide/static/plants/birdsfoot-trefoil/4-2de5b472-320.8e343c94f489.webp" srcset="/forage-guide/static/plants/birdsfoot-trefoil/4-2de5b472-320.8e343c94f489.webp 320w, /forage-guide/static/plants/birdsfoot-trefoil/4-2de5b472-640.b989a989d3b8.webp 640w, /forage-guide/static/plants/birdsfoot-trefoil/4-2de5b472-1024.28a89b3c0e42.webp 1024w" sizes="(min-width: 768px) 10rem, 25vw" width="1024" height="1024" alt="" loading="lazy" decoding="async">
+              <span class="photo-tag">Photo</span>
+            </button>
+          </li>
+        
+      </ul>
+    
+  </section>
+
+
+  <p class="chip-row">
+    <span class="chip chip-static">Legume</span>
+    
+    
+      <a class="chip chip-static" href="/forage-guide/seasons/summer/">Summer</a>
+    
+  </p>
+  <p class="text-sm text-muted">Lotus corniculatus</p>
+  <p>A yellow-flowered pasture legume that is less likely to cause bloat than alfalfa or clover.</p>
+  
+
+  <h2>Who can eat it</h2>
+  <ul class="grid gap-3">
+    
+      <li class="card verdict-card " data-animal="rabbit" data-verdict="limit" data-label="Rabbit">
+        <div class="flex flex-wrap items-center gap-2">
+          <a class="font-semibold" href="/forage-guide/animals/rabbit/">Rabbit</a>
+          <span class="verdict verdict-limit">Limit</span>
+          
+        </div>
+        <p class="mt-2 text-sm">Birdsfoot trefoil is a legitimate forage. Tannins make bloat uncommon but a pure, heavy feeding is still not the goal.</p>
+        <p class="mt-1 text-sm text-muted">Use it as a portion of the cutting.</p>
+      </li>
+    
+      <li class="card verdict-card " data-animal="chicken" data-verdict="limit" data-label="Chicken">
+        <div class="flex flex-wrap items-center gap-2">
+          <a class="font-semibold" href="/forage-guide/animals/chicken/">Chicken</a>
+          <span class="verdict verdict-limit">Limit</span>
+          
+        </div>
+        <p class="mt-2 text-sm">Birdsfoot trefoil is a legitimate forage. Tannins make bloat uncommon but a pure, heavy feeding is still not the goal.</p>
+        <p class="mt-1 text-sm text-muted">Use it as a portion of the cutting.</p>
+      </li>
+    
+      <li class="card verdict-card " data-animal="duck" data-verdict="limit" data-label="Duck">
+        <div class="flex flex-wrap items-center gap-2">
+          <a class="font-semibold" href="/forage-guide/animals/duck/">Duck</a>
+          <span class="verdict verdict-limit">Limit</span>
+          <span class="verdict verdict-limit">Uncertain</span>
+        </div>
+        <p class="mt-2 text-sm">Birdsfoot trefoil is a legitimate forage. Tannins make bloat uncommon but a pure, heavy feeding is still not the goal.</p>
+        <p class="mt-1 text-sm text-muted">Use it as a portion of the cutting. This follows poultry guidance used for chickens. A duck-specific reference was not used, so it is marked uncertain.</p>
+      </li>
+    
+      <li class="card verdict-card " data-animal="goose" data-verdict="limit" data-label="Goose">
+        <div class="flex flex-wrap items-center gap-2">
+          <a class="font-semibold" href="/forage-guide/animals/goose/">Goose</a>
+          <span class="verdict verdict-limit">Limit</span>
+          <span class="verdict verdict-limit">Uncertain</span>
+        </div>
+        <p class="mt-2 text-sm">Birdsfoot trefoil is a legitimate forage. Tannins make bloat uncommon but a pure, heavy feeding is still not the goal.</p>
+        <p class="mt-1 text-sm text-muted">Use it as a portion of the cutting. This follows poultry guidance used for chickens. A goose-specific reference was not used, so it is marked uncertain.</p>
+      </li>
+    
+      <li class="card verdict-card " data-animal="turkey" data-verdict="limit" data-label="Turkey">
+        <div class="flex flex-wrap items-center gap-2">
+          <a class="font-semibold" href="/forage-guide/animals/turkey/">Turkey</a>
+          <span class="verdict verdict-limit">Limit</span>
+          <span class="verdict verdict-limit">Uncertain</span>
+        </div>
+        <p class="mt-2 text-sm">Birdsfoot trefoil is a legitimate forage. Tannins make bloat uncommon but a pure, heavy feeding is still not the goal.</p>
+        <p class="mt-1 text-sm text-muted">Use it as a portion of the cutting. This follows poultry guidance used for chickens. A turkey-specific reference was not used, so it is marked uncertain.</p>
+      </li>
+    
+      <li class="card verdict-card " data-animal="quail" data-verdict="limit" data-label="Quail">
+        <div class="flex flex-wrap items-center gap-2">
+          <a class="font-semibold" href="/forage-guide/animals/quail/">Quail</a>
+          <span class="verdict verdict-limit">Limit</span>
+          <span class="verdict verdict-limit">Uncertain</span>
+        </div>
+        <p class="mt-2 text-sm">Birdsfoot trefoil is a legitimate forage. Tannins make bloat uncommon but a pure, heavy feeding is still not the goal.</p>
+        <p class="mt-1 text-sm text-muted">Use it as a portion of the cutting. This follows poultry guidance used for chickens. A quail-specific reference was not used, so it is marked uncertain.</p>
+      </li>
+    
+      <li class="card verdict-card " data-animal="guinea_pig" data-verdict="limit" data-label="Guinea pig">
+        <div class="flex flex-wrap items-center gap-2">
+          <a class="font-semibold" href="/forage-guide/animals/guinea_pig/">Guinea pig</a>
+          <span class="verdict verdict-limit">Limit</span>
+          <span class="verdict verdict-limit">Uncertain</span>
+        </div>
+        <p class="mt-2 text-sm">Birdsfoot trefoil is a legitimate forage. Tannins make bloat uncommon but a pure, heavy feeding is still not the goal.</p>
+        <p class="mt-1 text-sm text-muted">Use it as a portion of the cutting. Guinea-pig trials for this plant are limited, so this follows the rabbit verdict and is marked uncertain.</p>
+      </li>
+    
+      <li class="card verdict-card " data-animal="goat" data-verdict="limit" data-label="Goat">
+        <div class="flex flex-wrap items-center gap-2">
+          <a class="font-semibold" href="/forage-guide/animals/goat/">Goat</a>
+          <span class="verdict verdict-limit">Limit</span>
+          
+        </div>
+        <p class="mt-2 text-sm">Birdsfoot trefoil is a legitimate forage. Tannins make bloat uncommon but a pure, heavy feeding is still not the goal.</p>
+        <p class="mt-1 text-sm text-muted">Use it as a portion of the cutting.</p>
+      </li>
+    
+      <li class="card verdict-card " data-animal="sheep" data-verdict="limit" data-label="Sheep">
+        <div class="flex flex-wrap items-center gap-2">
+          <a class="font-semibold" href="/forage-guide/animals/sheep/">Sheep</a>
+          <span class="verdict verdict-limit">Limit</span>
+          
+        </div>
+        <p class="mt-2 text-sm">Birdsfoot trefoil is a legitimate forage. Tannins make bloat uncommon but a pure, heavy feeding is still not the goal.</p>
+        <p class="mt-1 text-sm text-muted">Use it as a portion of the cutting.</p>
+      </li>
+    
+      <li class="card verdict-card " data-animal="pig" data-verdict="limit" data-label="Pig">
+        <div class="flex flex-wrap items-center gap-2">
+          <a class="font-semibold" href="/forage-guide/animals/pig/">Pig</a>
+          <span class="verdict verdict-limit">Limit</span>
+          
+        </div>
+        <p class="mt-2 text-sm">Birdsfoot trefoil is a legitimate forage. Tannins make bloat uncommon but a pure, heavy feeding is still not the goal.</p>
+        <p class="mt-1 text-sm text-muted">Use it as a portion of the cutting.</p>
+      </li>
+    
+      <li class="card verdict-card " data-animal="cattle" data-verdict="limit" data-label="Cattle">
+        <div class="flex flex-wrap items-center gap-2">
+          <a class="font-semibold" href="/forage-guide/animals/cattle/">Cattle</a>
+          <span class="verdict verdict-limit">Limit</span>
+          
+        </div>
+        <p class="mt-2 text-sm">Birdsfoot trefoil is a legitimate forage. Tannins make bloat uncommon but a pure, heavy feeding is still not the goal.</p>
+        <p class="mt-1 text-sm text-muted">Use it as a portion of the cutting.</p>
+      </li>
+    
+  </ul>
+
+  
+
+  
+    <p class="unsourced" role="note"><strong>Not yet sourced:</strong> summary, identification, lookalikes, parts, harvest, preparation. These notes are awaiting a citation to a published source. Check them before you rely on them.</p>
+  
+
+  <h2>Identification</h2>
+  <p>Five leaflets (three at the tip, two at the base) and yellow pea flowers. The pods spread like a bird&#x27;s foot.</p>
+  <h2>Lookalikes</h2>
+  <p>Crown vetch has pink flowers and climbs. Yellow sweet clover is much taller, with tiny flowers along the stem.</p>
+  <h2>Parts to feed</h2>
+  <p>Leafy tops.</p>
+  <h2>New England timing</h2>
+  <p>Flowers and pods in July and August. It is planted in New England pastures and also escapes.</p>
+  <h2>Harvest</h2>
+  <p>Cut in flower or just before. It is a pasture plant more than a bulk hay plant.</p>
+  <h2>Preparation</h2>
+  <p>Fresh or dried, as part of a mix. It contains tannins, which is why bloat is less common, and those tannins are a reason not to overdo it.</p>
+
+  <h2>Sources</h2>
+  <ul class="grid gap-2">
+    
+      <li class="text-sm">Verdict: <a class="text-link" href="https://poisonousplants.ansci.cornell.edu/php/plants.php?action=indiv&amp;byname=scientific&amp;keynum=54" rel="noopener">Lotus corniculatus (Birdsfoot Trefoil)</a>, Cornell University Department of Animal Science, Plants Poisonous to Livestock (accessed Oct 15, 2026)</li>
+    
+      <li class="text-sm">Verdict: <a class="text-link" href="https://poisonousplants.ansci.cornell.edu/php/plants.php?action=indiv&amp;byname=scientific&amp;keynum=54" rel="noopener">Lotus corniculatus (Birdsfoot Trefoil)</a>, Cornell University Department of Animal Science, Plants Poisonous to Livestock (accessed Oct 15, 2026)</li>
+    
+      <li class="text-sm">Verdict: <a class="text-link" href="https://www.umass.edu/agriculture-food-environment/crops-dairy-livestock-equine/fact-sheets/selecting-forage-species" rel="noopener">Selecting Forage Species</a>, UMass Amherst Center for Agriculture, Food, and the Environment (accessed Oct 15, 2026)</li>
+    
+      <li class="text-sm">Verdict: <a class="text-link" href="https://www.umass.edu/agriculture-food-environment/crops-dairy-livestock-equine/fact-sheets/selecting-forage-species" rel="noopener">Selecting Forage Species</a>, UMass Amherst Center for Agriculture, Food, and the Environment (accessed Oct 15, 2026)</li>
+    
+      <li class="text-sm">Verdict: <a class="text-link" href="https://www.umass.edu/agriculture-food-environment/crops-dairy-livestock-equine/fact-sheets/selecting-forage-species" rel="noopener">Selecting Forage Species</a>, UMass Amherst Center for Agriculture, Food, and the Environment (accessed Oct 15, 2026)</li>
+    
+    
+      <li class="text-sm text-muted">Background reading: USDA Natural Resources Conservation Service plant guide.</li>
+    
+      <li class="text-sm text-muted">Background reading: Penn State Extension, forage and poisonous-plant publications.</li>
+    
+      <li class="text-sm text-muted">Background reading: Langston University, E (Kika) de la Garza American Institute for Goat Research, goat nutrition materials.</li>
+    
+  </ul>
+  
+    <h2>Photo credits</h2>
+    <ul class="grid gap-1.5">
+      
+        <li class="text-sm text-muted photo-credit"><span class="photo-caption">Whole plant</span> <span class="photo-attrib">Photo: Didier Descouens, <a href="https://creativecommons.org/licenses/by-sa/4.0" rel="license noopener" target="_blank">CC BY-SA 4.0</a>, via <a href="https://commons.wikimedia.org/wiki/File:(MHNT)_Lotus_corniculatus_-_Plant_habit.jpg" rel="noopener" target="_blank">Wikimedia Commons</a></span>
+. Changes: resized and converted to WebP.</li>
+      
+        <li class="text-sm text-muted photo-credit"><span class="photo-caption">Flowers</span> <span class="photo-attrib">Photo: Krzysztof Golik, <a href="https://creativecommons.org/licenses/by-sa/4.0" rel="license noopener" target="_blank">CC BY-SA 4.0</a>, via <a href="https://commons.wikimedia.org/wiki/File:Lotus_corniculatus_in_Aveyron_(2).jpg" rel="noopener" target="_blank">Wikimedia Commons</a></span>
+. Changes: resized and converted to WebP.</li>
+      
+        <li class="text-sm text-muted photo-credit"><span class="photo-caption">Photo</span> <span class="photo-attrib">Photo: Rorolinus, <a href="https://creativecommons.org/licenses/by-sa/4.0" rel="license noopener" target="_blank">CC BY-SA 4.0</a>, via <a href="https://commons.wikimedia.org/wiki/File:Lotus_corniculatus,_Ari%C3%A8ge,_France.JPG" rel="noopener" target="_blank">Wikimedia Commons</a></span>
+. Changes: resized and converted to WebP.</li>
+      
+        <li class="text-sm text-muted photo-credit"><span class="photo-caption">Photo</span> <span class="photo-attrib">Photo: Robert Flogaus-Faust, <a href="https://creativecommons.org/licenses/by/4.0" rel="license noopener" target="_blank">CC BY 4.0</a>, via <a href="https://commons.wikimedia.org/wiki/File:Lotus_corniculatus_RF.jpg" rel="noopener" target="_blank">Wikimedia Commons</a></span>
+. Changes: resized and converted to WebP.</li>
+      
+        <li class="text-sm text-muted photo-credit"><span class="photo-caption">Photo</span> <span class="photo-attrib">Photo: Krzysztof Golik, <a href="https://creativecommons.org/licenses/by-sa/4.0" rel="license noopener" target="_blank">CC BY-SA 4.0</a>, via <a href="https://commons.wikimedia.org/wiki/File:Lotus_corniculatus_at_Lac_des_Plagnes_(2).jpg" rel="noopener" target="_blank">Wikimedia Commons</a></span>
+. Changes: resized and converted to WebP.</li>
+      
+    </ul>
+  
+
+  <h2>Your note</h2>
+  <form class="grid gap-3" method="post" action="/forage-guide/notes/" data-note-form data-offline-queue="Note">
+    <input type="hidden" name="csrfmiddlewaretoken" value="5mXAvg8hOMlIeAPMRRXxi5tf7nOeIFQkHSFXTCddMHSHzjVWEBoZtHOq4vSZUzIl">
+    <input type="hidden" name="plant" value="birdsfoot-trefoil">
+    <input type="hidden" name="client_id" value="">
+    <input type="hidden" name="op_id" value="">
+    <label class="flex items-center gap-2 text-sm font-medium">
+      <input type="checkbox" name="favorite"  data-star-check>
+      Starred
+    </label>
+    <label class="grid gap-1 text-sm font-medium">Note
+      <textarea class="field" name="body" rows="3" maxlength="4000"></textarea>
+    </label>
+    <div>
+      
+  <button type="submit" class="btn ">Save note</button>
+
+
+    </div>
+    <p class="text-sm text-muted" data-note-status></p>
+  </form>
+
+  <nav class="plant-pager" aria-label="Other plants">
+    <a class="pager-link" href="/forage-guide/plants/apple/" data-open="apple" rel="prev"><span class="pager-dir">Previous</span><span class="pager-name">Apple</span></a>
+    <a class="pager-link pager-next" href="/forage-guide/plants/bittersweet-nightshade/" data-open="bittersweet-nightshade" rel="next"><span class="pager-dir">Next</span><span class="pager-name">Bittersweet nightshade</span></a>
+  </nav>
+</article>
+
+  </div>
+
+
+  </main>
+  
+  <dialog class="lightbox" aria-label="Photo viewer" data-lightbox>
+    <div class="lightbox-frame">
+      <div class="lightbox-bar">
+        <p class="lightbox-count num" data-lightbox-count aria-live="polite"></p>
+        <button type="button" class="lightbox-btn" data-lightbox-close aria-label="Close photo viewer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+      </div>
+      <div class="lightbox-stage" data-lightbox-stage>
+        <img alt="" data-lightbox-img>
+        <button type="button" class="lightbox-btn lightbox-prev" data-lightbox-prev aria-label="Previous photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+        <button type="button" class="lightbox-btn lightbox-next" data-lightbox-next aria-label="Next photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+      </div>
+      <p class="lightbox-caption photo-credit" data-lightbox-caption></p>
+    </div>
+  </dialog>
+
+  <footer class="site-footer" data-print-hide>
+    <div class="page-col-inner">
+      <button type="button" class="footer-link" data-download-copy>Download a copy</button>
+      <a class="footer-link" href="/forage-guide/sources/">Sources</a>
+      <span class="text-muted">Notes and favorites are saved on this device. Accounts aren't available on this version.</span>
+    </div>
+  </footer>
+  
+  <script src="/forage-guide/static/js/app.3f29a6292ee0.js"></script>
+
+</body>
+</html>
