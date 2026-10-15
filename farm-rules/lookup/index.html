@@ -1,0 +1,250 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lookup · Livestock Rules</title>
+  <meta name="description" content="Federal, Massachusetts, and town rules for raising, processing, and selling animals.">
+  <meta name="theme-color" content="#1f4d32">
+  <meta name="csrf-token" content="">
+  <meta name="lr-base" content="/farm-rules/">
+  <meta name="lr-static" content="1">
+  <meta name="lr-user" content="">
+  <link rel="manifest" href="/farm-rules/manifest.webmanifest">
+  <link rel="icon" href="/farm-rules/static/icons/favicon-32.961c04c5cda0.png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/farm-rules/static/icons/apple-touch-icon.11ca77ad0f64.png">
+  <link rel="preload" href="/farm-rules/static/fonts/instrument-sans-latin-var.fa41c43a3d8e.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/farm-rules/static/css/app.f15c4b63841e.css">
+</head>
+<body class="flex min-h-screen flex-col bg-canvas text-ink antialiased">
+  <a class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:bg-surface focus:px-3 focus:py-2" href="#main">Skip to content</a>
+  
+
+
+<button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Open menu" data-menu-button>
+  <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path class="menu-bar menu-bar-1" d="M4 7h16"/><path class="menu-bar menu-bar-2" d="M4 12h16"/><path class="menu-bar menu-bar-3" d="M4 17h16"/></g></svg>
+</button>
+<nav id="site-menu" class="menu-panel" aria-label="Site" tabindex="-1" hidden data-menu-panel>
+  <p class="menu-kicker">Livestock Rules · Menu</p>
+  <ol class="menu-list">
+    <li><a href="/farm-rules/" aria-current="page">Look up rules</a></li>
+    
+      <li><a href="/farm-rules/saved/">Saved lookups</a></li>
+    
+    
+    <li><a href="/farm-rules/about/">About the sources</a></li>
+    <li><a href="/farm-rules/terms/">Terms of use</a></li>
+  </ol>
+  <p class="menu-disc">This is general information, not legal advice. Rules change. Check the cited sources and confirm with the listed office before relying on anything.</p>
+  
+  <div class="menu-actions" data-menu-auth="static">
+    <p class="menu-note">Accounts come later. Lookups you save are kept on this device.</p>
+  </div>
+  
+  <div class="menu-foot">
+    <img src="/farm-rules/static/img/photos/barn-800.50ce8c6d7fe1.webp" alt="" width="120" height="80" loading="lazy" decoding="async">
+    <p>
+<span class="credit">Hulbert Outdoor Center barn in early autumn. Photo: Sdkb, <a href="https://commons.wikimedia.org/wiki/File:Hulbert_Outdoor_Center_barn_in_early_autumn.jpg" rel="noopener noreferrer">Wikimedia Commons</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="noopener noreferrer">CC BY-SA 4.0</a>, resized and color graded.</span>
+ <a href="/farm-rules/about/#photos">All photo credits</a></p>
+  </div>
+</nav>
+
+
+  <p data-connection-status hidden class="border-b border-line bg-accent-soft px-4 py-2 text-center text-sm text-ink" role="status"></p>
+  
+  
+  <main id="main" class="flex-1" data-static-results data-catalog="/farm-rules/data/rules.json">
+    <div class="grid lg:grid-cols-[30rem_minmax(0,1fr)]">
+      
+<aside class="rail" aria-label="Lookup">
+  <p class="rail-title" aria-hidden="true">Livestock Rules</p>
+  <div class="stack">
+    <span class="stack-frame" aria-hidden="true"></span>
+    <figure class="print print-main">
+      <img src="/farm-rules/static/img/photos/barn-1440.f6bccee018e2.webp" srcset="/farm-rules/static/img/photos/barn-800.50ce8c6d7fe1.webp 800w, /farm-rules/static/img/photos/barn-1440.f6bccee018e2.webp 1440w" sizes="(min-width: 1024px) 24rem, 80vw" alt="" decoding="async">
+    </figure>
+    <figure class="print print-small">
+      <img src="/farm-rules/static/img/photos/rabbit-400.645e1745ba15.webp" alt="" decoding="async">
+    </figure>
+  </div>
+  <p class="rail-brand" aria-hidden="true"><span>Livestock</span><span>Rules</span></p>
+  
+    <form class="grid gap-4" method="get" action="/farm-rules/lookup/">
+  
+  
+<div>
+  <label class="kicker block" for="id_town">Town</label>
+  
+  <select
+    class="field-select mt-1 block w-full min-h-12 rounded-[0.6rem] border bg-field-bg text-base font-semibold text-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-accent border-field"
+    id="id_town"
+    name="town"
+    
+  >
+    <option value="">Choose a town</option>
+    
+      <option value="amherst">Amherst · Hampshire County</option>
+    
+      <option value="chicopee">Chicopee · Hampden County</option>
+    
+      <option value="hadley">Hadley · Hampshire County</option>
+    
+      <option value="leverett">Leverett · Franklin County</option>
+    
+      <option value="south-hadley">South Hadley · Hampshire County</option>
+    
+      <option value="southwick">Southwick · Hampden County</option>
+    
+  </select>
+  
+</div>
+
+  
+<div>
+  <label class="kicker block" for="id_species">Species</label>
+  
+  <select
+    class="field-select mt-1 block w-full min-h-12 rounded-[0.6rem] border bg-field-bg text-base font-semibold text-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-accent border-field"
+    id="id_species"
+    name="species"
+    
+  >
+    <option value="">Choose a species</option>
+    
+      <option value="rabbits">Rabbits</option>
+    
+      <option value="broilers_turkeys">Broilers and turkeys</option>
+    
+      <option value="laying_hens">Laying hens</option>
+    
+      <option value="cattle">Cattle</option>
+    
+  </select>
+  
+</div>
+
+  
+<div>
+  <label class="kicker block" for="id_activity">Activity</label>
+  
+  <select
+    class="field-select mt-1 block w-full min-h-12 rounded-[0.6rem] border bg-field-bg text-base font-semibold text-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-accent border-field"
+    id="id_activity"
+    name="activity"
+    
+  >
+    <option value="">Choose an activity</option>
+    
+      <option value="keep">Keep animals on the property</option>
+    
+      <option value="home_slaughter">Slaughter for your household</option>
+    
+      <option value="sell_meat">Sell meat</option>
+    
+      <option value="sell_live">Sell a live animal</option>
+    
+      <option value="sell_eggs">Sell eggs</option>
+    
+      <option value="sell_farmers_market">Sell at a farmers market</option>
+    
+  </select>
+  
+</div>
+
+  
+
+  <button
+    type="submit"
+    
+    class="inline-flex items-center justify-center rounded-full font-semibold focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-canvas min-h-12 px-5 text-base w-full bg-coral text-white hover:bg-coral-deep"
+  >Show the rules</button>
+
+
+</form>
+
+  
+  
+    <nav class="level-index" aria-label="Layers" data-static-index hidden></nav>
+  
+  <aside class="disclaimer-prominent" role="note">
+  
+    <p class="disc-title">Check the citations.</p>
+    <p class="mt-2 text-[0.95rem] font-semibold leading-relaxed">This is general information, not legal advice. Rules change. Check the cited sources and confirm with the listed office before relying on anything.</p>
+  
+</aside>
+
+  
+    <dl class="facts" data-static-facts>
+      <div><dt>Towns</dt><dd>6</dd></div>
+      <div><dt>Layers</dt><dd>4</dd></div>
+      <div><dt>Cost</dt><dd>Free</dd></div>
+    </dl>
+  
+  <p class="text-xs text-muted">Photos: Sdkb and Niftypen, Wikimedia Commons. <a class="underline" href="/farm-rules/about/#photos">Credits</a></p>
+</aside>
+
+      <div class="flex flex-col">
+        
+<section class="hero">
+  <img src="/farm-rules/static/img/photos/cattle-1200.e5e1cb528449.webp" srcset="/farm-rules/static/img/photos/cattle-600.8298a4ae8bbf.webp 600w, /farm-rules/static/img/photos/cattle-1200.e5e1cb528449.webp 1200w" sizes="(min-width: 1024px) 60vw, 100vw" alt="" loading="eager" decoding="async">
+  <p class="hero-credit">
+<span class="credit">Hereford cattle on pasture. Photo: King of Hearts, <a href="https://commons.wikimedia.org/wiki/File:Hereford_cattle_Big_Sur_May_2011_001.jpg" rel="noopener noreferrer">Wikimedia Commons</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="noopener noreferrer">CC BY-SA 4.0</a>, resized and color graded.</span>
+</p>
+  <div class="hero-body">
+    <p class="hero-kicker" data-hero-kicker>Lookup</p>
+    <h1 class="hero-title" data-hero-title>Choose a town,<br><em>a species, an activity.</em></h1>
+  </div>
+</section>
+
+        <div class="grid gap-5 px-5 py-8 md:px-10">
+          <p class="kicker" data-static-county></p>
+          <h1 class="sr-only" data-static-heading>Lookup</h1>
+          <p class="max-w-2xl font-serif text-base leading-relaxed text-muted" data-static-intro>Use the form to run a lookup.</p>
+          <noscript><p class="rule-card max-w-2xl">This copy needs JavaScript to show a lookup.</p></noscript>
+          <div data-static-save hidden>
+            <button type="button" class="inline-flex min-h-12 items-center justify-center rounded-full border border-field bg-surface px-5 text-base font-semibold text-ink hover:border-accent" data-static-save-button>Save this lookup on this device</button>
+            <p class="mt-2 text-sm text-muted" role="status" data-static-save-note>Accounts come later. Saved lookups stay in this browser.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mx-auto w-full max-w-6xl overflow-hidden px-5 pb-12 md:px-10" data-static-layers></div>
+  </main>
+
+  <footer class="border-t border-line bg-surface">
+    <div class="mx-auto max-w-7xl px-4 py-8">
+      <aside class="disclaimer" role="note">
+  
+    <p class="kicker">Not legal advice. Check the citations.</p>
+    <p class="mt-2 text-sm leading-relaxed">This is general information, not legal advice. Rules change. Check the cited sources and confirm with the listed office before relying on anything.</p>
+  
+</aside>
+
+      <p class="mt-4 text-sm text-muted">
+        <a class="underline decoration-line underline-offset-2 hover:decoration-ink" href="/farm-rules/about/">About</a>
+        <span aria-hidden="true"> · </span>
+        <a class="underline decoration-line underline-offset-2 hover:decoration-ink" href="/farm-rules/terms/">Terms of use</a>
+        <span aria-hidden="true"> · </span>
+        <a class="underline decoration-line underline-offset-2 hover:decoration-ink" href="/farm-rules/about/#photos">Photo credits</a>
+      </p>
+    </div>
+  </footer>
+  <dialog class="ack-dialog" data-acknowledge aria-labelledby="ack-title">
+  <p class="kicker">Before you use this</p>
+  <h2 id="ack-title" class="mt-2 text-2xl font-semibold tracking-tight">Read this first</h2>
+  <p class="mt-4 text-base leading-relaxed">This is general information, not legal advice. Rules change. Check the cited sources and confirm with the listed office before relying on anything.</p>
+  <p class="mt-3 text-sm leading-relaxed text-muted">A result can be incomplete. An empty section is not a finding that no rule exists.</p>
+  <p class="mt-3 text-sm leading-relaxed text-muted">
+    <a class="underline" href="/farm-rules/terms/">Terms of use</a>
+    <span aria-hidden="true"> · </span>
+    <a class="underline" href="/farm-rules/about/">About the sources</a>
+  </p>
+  <form class="mt-6" method="dialog">
+    <button class="inline-flex min-h-12 items-center justify-center rounded-full bg-accent px-5 font-semibold text-on-accent" type="submit" data-acknowledge-accept>I understand</button>
+  </form>
+</dialog>
+
+  <script src="/farm-rules/static/js/app.2ae503fe0bad.js" defer></script>
+</body>
+</html>

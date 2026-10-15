@@ -1,0 +1,15 @@
+Photographs in this folder come from Wikimedia Commons. Each was resized,
+converted to WebP, and given a light warm color grade for this site.
+The edited files are shared under the same license as the original.
+
+barn-*.webp   "Hulbert Outdoor Center barn in early autumn" by Sdkb, CC BY-SA 4.0
+              https://commons.wikimedia.org/wiki/File:Hulbert_Outdoor_Center_barn_in_early_autumn.jpg
+cattle-*.webp "Hereford cattle Big Sur May 2011 001" by King of Hearts, CC BY-SA 4.0
+              https://commons.wikimedia.org/wiki/File:Hereford_cattle_Big_Sur_May_2011_001.jpg
+rabbit-*.webp "Domestic white rabbit sitting in a meadow" by Niftypen, CC BY 4.0
+              https://commons.wikimedia.org/wiki/File:Domestic_white_rabbit_sitting_in_a_meadow.jpg
+hen-*.webp    "Chicken in the Pleasure Grounds at Parham Park, West Sussex, England 1" by Acabashi, CC BY-SA 4.0
+              https://commons.wikimedia.org/wiki/File:Chicken_in_the_Pleasure_Grounds_at_Parham_Park,_West_Sussex,_England_1.jpg
+
+CC BY-SA 4.0: https://creativecommons.org/licenses/by-sa/4.0/
+CC BY 4.0:    https://creativecommons.org/licenses/by/4.0/
