@@ -5,13 +5,15 @@
 const VERSION = "7ae3a68fa6cc";
 const SHELL = "fd-shell-" + VERSION;
 const PAGES = "fd-pages";
+const BASE = "/";
 const OFFLINE_URL = "/offline/";
-const SHELL_URLS = ["/", OFFLINE_URL, "/notes/", "/manifest.webmanifest", "/static/css/app.2a69eb996410.css", "/static/vendor/htmx.min.19a573773be4.js", "/static/icons/icon.278160a8b048.svg", "/static/icons/icon\u002D192.836425a88f77.png"];
+const SHELL_URLS = [BASE, OFFLINE_URL, "/notes/", "/manifest.webmanifest", "/static/css/app.2a69eb996410.css", "/static/vendor/htmx.min.19a573773be4.js", "/static/icons/icon.278160a8b048.svg", "/static/icons/icon\u002D192.836425a88f77.png"];
 const MAX_PAGES = 80;
 {# The static site shares its origin (frank-dixon.github.io) with other apps at
    /rabbit/, /shellwork/, /gallery/ and so on. Only handle this site's own
    paths so the worker never caches or intercepts another app. #}
-const OWN = [/^\/$/, /^\/(projects|notes|tag|offline|static|media)\//, /^\/manifest\.webmanifest$/];
+const OWN_PATHS = ["", "projects/", "notes/", "tag/", "offline/", "static/", "media/", "manifest.webmanifest"];
+const own = (path) => path.startsWith(BASE) && OWN_PATHS.some((p) => p === "" ? path === BASE : path.slice(BASE.length).startsWith(p));
 
 self.addEventListener("install", (event) => {
   event.waitUntil(caches.open(SHELL).then((cache) => cache.addAll(SHELL_URLS)).then(() => self.skipWaiting()));
@@ -51,8 +53,8 @@ async function networkFirst(request) {
 self.addEventListener("fetch", (event) => {
   const url = new URL(event.request.url);
   if (event.request.method !== "GET" || url.origin !== location.origin) return;
-  if (!OWN.some((re) => re.test(url.pathname))) return;  // admin, sw.js and other apps
-  if (url.pathname.startsWith("/static/")) {
+  if (!own(url.pathname)) return;  // admin, sw.js and other apps
+  if (url.pathname.startsWith(BASE + "static/")) {
     event.respondWith(caches.match(event.request).then((hit) => hit || fetch(event.request)));
     return;
   }

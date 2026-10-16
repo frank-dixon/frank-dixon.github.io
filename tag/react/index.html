@@ -395,7 +395,7 @@
       }, { passive: true });
     }
     if ("serviceWorker" in navigator) {
-      addEventListener("load", () => navigator.serviceWorker.register("/sw.js"));
+      addEventListener("load", () => navigator.serviceWorker.register("/sw.js", { scope: "/" }));
     }
   </script>
 </body>

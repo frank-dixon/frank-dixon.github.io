@@ -252,7 +252,7 @@
   
   
     
-    <img src="/media/projects/forage-guide.jpg" alt="Screenshot of Forage Guide" class="aspect-video w-full object-cover" loading="lazy">
+    <img src="/media/projects/forage-guide_lu4pGJ3.jpg" alt="Screenshot of Forage Guide" class="aspect-video w-full object-cover" loading="lazy">
   
   <div class="flex flex-1 flex-col p-5">
     <h3 class="display text-2xl"><a href="/projects/forage-guide/" class="hover:opacity-80">Forage Guide</a></h3>
@@ -285,7 +285,7 @@
     
     
     <p class="mt-4 flex gap-4 text-sm">
-      
+      <a class="text-accent hover:underline" href="https://frank-dixon.github.io/forage-guide/" rel="noopener">Live →</a>
       
     </p>
     
@@ -560,7 +560,7 @@
       }, { passive: true });
     }
     if ("serviceWorker" in navigator) {
-      addEventListener("load", () => navigator.serviceWorker.register("/sw.js"));
+      addEventListener("load", () => navigator.serviceWorker.register("/sw.js", { scope: "/" }));
     }
   </script>
 </body>
