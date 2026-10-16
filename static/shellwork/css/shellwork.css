@@ -256,3 +256,6 @@ a{color:var(--mint)}a:hover{color:var(--lav)}
 .spec th a.gl{color:inherit;text-decoration:underline dotted;text-underline-offset:3px}
 .pc{user-select:text}
 .cmp__col[hidden],.paircard[hidden]{display:none}
+/* iOS: stop double-tap zoom on the knobs and drum controls without disabling pinch-zoom. .wheel keeps touch-action:none for dragging. */
+.desk,.knob,.ctl,.ctl .btn,#filters .chip{touch-action:manipulation}
+input,select,textarea{font-size:max(16px,1em)}

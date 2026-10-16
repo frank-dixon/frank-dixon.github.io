@@ -20,7 +20,7 @@ document.getElementById('down').onclick=document.getElementById('kr').onclick=()
 wheel.addEventListener('selectstart',e=>e.preventDefault());wheel.addEventListener('dragstart',e=>e.preventDefault());
 wheel.addEventListener('wheel',e=>{e.preventDefault();stepTo(Math.sign(e.deltaY))},{passive:false});
 wheel.onpointerdown=e=>{if(e.button>0)return;e.preventDefault();window.getSelection()?.removeAllRanges();wheel.setPointerCapture(e.pointerId);drum.classList.add('drag');const sy=e.clientY,a0=ang;let mv=0;
- wheel.onpointermove=ev=>{mv=Math.max(mv,Math.abs(ev.clientY-sy));ang=a0+(ev.clientY-sy)*.5;set()};
+ wheel.onpointermove=ev=>{mv=Math.max(mv,Math.abs(ev.clientY-sy));ang=a0-(ev.clientY-sy)*.5;/* minus: cards follow the finger (next card sits below) */set()};
  wheel.onpointerup=()=>{wheel.onpointermove=null;drum.classList.remove('drag');ang=Math.round(ang/step)*step;set();if(!match(cur))stepTo(1);if(mv<5)open()}};
 addEventListener('keydown',e=>{if(!pulled.hidden){if(e.key=='Escape')close();if(e.key=='Enter'&&!e.target.closest('a,button'))pin.click();return}
  if(e.target.closest('input,textarea'))return;if(e.key=='ArrowUp'){e.preventDefault();stepTo(-1)}if(e.key=='ArrowDown'){e.preventDefault();stepTo(1)}if(e.key=='Enter'&&e.target===wheel)open()});
