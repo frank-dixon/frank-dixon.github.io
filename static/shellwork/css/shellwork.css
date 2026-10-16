@@ -9,7 +9,7 @@ a{color:var(--mint)}a:hover{color:var(--lav)}
 :focus-visible{outline:2px solid var(--lav);outline-offset:3px}
 .display{font:800 clamp(64px,9vw,126px)/.84 var(--disp);letter-spacing:-.03em;color:var(--ink)}
 .display::after{content:"";display:block;width:min(240px,40%);height:4px;margin-top:.22em;border-radius:2px;background:var(--rule)}
-.display span{color:inherit}
+.display span{color:var(--mint)}
 .display--md{font-size:clamp(40px,6vw,76px);line-height:.95;padding-bottom:.08em}.display--sm{font-size:clamp(32px,4vw,52px);line-height:1}
 .btn{font:600 12px var(--mono);background:var(--panel);color:var(--ink);border:1px solid var(--line2);border-radius:6px;padding:10px 16px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
 .btn:hover{border-color:var(--lav);color:var(--ink)}
@@ -24,7 +24,7 @@ a{color:var(--mint)}a:hover{color:var(--lav)}
 .top__brand{font:800 20px var(--disp);color:var(--ink);text-decoration:none;letter-spacing:-.02em}.top__brand span{color:var(--mint)}
 .top__nav{display:flex;gap:22px;flex-wrap:wrap}.top__nav a{color:var(--muted);text-decoration:none;font-size:12px}.top__nav a:hover{color:var(--mint)}
 .home .top__brand{visibility:hidden}
-.top__brand span{color:inherit}
+.top__brand span{color:var(--mint)}
 
 /* ===== CSS egg ===== */
 .egg{--w:calc(var(--base,64px)*var(--k,1));--spec:.62;--sheen:.30;--bloom:0;position:relative;display:inline-block;width:var(--w);height:calc(var(--w)*1.3);flex:none;isolation:isolate;vertical-align:bottom}
@@ -266,3 +266,17 @@ input,select,textarea{font-size:max(16px,1em)}
 .pc{overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;touch-action:pan-y}
 @media(max-width:900px){.pulled__in{height:calc(100vh - 32px);height:calc(100dvh - 32px - env(safe-area-inset-top) - env(safe-area-inset-bottom))}}
 body.sw-lock{position:fixed;left:0;right:0;width:100%;overflow:hidden}
+
+/* v9 mock */
+.pulled__in{cursor:default}
+.pc__credit{font-size:9px;line-height:1.5;text-align:right;color:#55576a}
+/* open card fits its content; capped at the viewport, scrolls inside when taller */
+.pulled__in{height:auto;display:flex;flex-direction:column}
+@media(max-width:900px){.pulled__in{height:auto}}
+.pc{position:relative;inset:auto;flex:0 1 auto;min-height:0}
+/* card: egg illustration + egg photo centered together on their own row under the hen photo */
+.pc__media .eggpair{width:100%;justify-content:center}
+.pc__credits{margin-top:10px;text-align:right}
+.pc__ctog{font:600 10px var(--mono);color:#4a4c5e;background:none;border:0;padding:4px 0;cursor:pointer;text-decoration:underline;text-decoration-color:rgba(74,76,94,.5);text-underline-offset:2px}
+.pc__ctog:hover{color:var(--violet)}
+.pc__credits .pc__credit{margin-top:4px}.pc__credit .credit{font-size:inherit}

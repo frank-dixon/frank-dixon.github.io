@@ -13,8 +13,7 @@ let lockY=0;function lock(){if(document.body.classList.contains('sw-lock'))retur
 function unlock(){if(!document.body.classList.contains('sw-lock'))return;document.body.classList.remove('sw-lock');document.body.style.top='';window.scrollTo(0,lockY)}
 function open(){if(!match(cur))return;lock();const t=document.getElementById('t-'+cards[cur].dataset.slug);pin.replaceChildren(t.content.cloneNode(true));pulled.className='pulled';pulled.hidden=false;pin.style.animation='none';pin.offsetHeight;pin.style.animation='';pin.focus?.()}
 function close(){pulled.hidden=true;pulled.className='pulled';unlock()}
-pin.addEventListener('click',e=>{if(e.target.closest('a,button'))return;if(String(window.getSelection()||'').length)return; // selecting text in the pulled card shouldn't flip it
- if(pulled.classList.contains('flip'))close();else pulled.classList.add('flip')});
+pin.addEventListener('click',e=>{const t=e.target.closest('.pc__ctog');if(!t)return;const on=t.getAttribute('aria-expanded')!='true';t.setAttribute('aria-expanded',on);document.getElementById(t.getAttribute('aria-controls')).hidden=!on});
 pulled.addEventListener('click',e=>{if(e.target===pulled)close()});
 document.getElementById('pull').onclick=open;
 document.getElementById('up').onclick=document.getElementById('kl').onclick=()=>stepTo(-1);
