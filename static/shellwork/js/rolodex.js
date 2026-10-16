@@ -9,8 +9,10 @@ function stepTo(dir){for(let k=1;k<=N;k++){const j=((cur+dir*k)%N+N)%N;if(match(
 function apply(){cards.forEach((c,i)=>c.classList.toggle('dim',!match(i)));const m=cards.map((_,i)=>i).filter(match);cnt.textContent=m.length+' of '+N+' breeds match';if(m.length&&!match(cur))go(m[0]);
  document.querySelectorAll('#filters .chip').forEach(b=>b.classList.toggle('on',b.dataset.k!='x'&&f[b.dataset.k]==b.dataset.v))}
 document.querySelectorAll('#filters .chip').forEach(b=>b.onclick=()=>{if(b.dataset.k=='x')f={c:null,s:null,h:null};else f[b.dataset.k]=f[b.dataset.k]==b.dataset.v?null:b.dataset.v;apply()});
-function open(){if(!match(cur))return;const t=document.getElementById('t-'+cards[cur].dataset.slug);pin.replaceChildren(t.content.cloneNode(true));pulled.className='pulled';pulled.hidden=false;pin.style.animation='none';pin.offsetHeight;pin.style.animation='';pin.focus?.()}
-function close(){pulled.hidden=true;pulled.className='pulled'}
+let lockY=0;function lock(){if(document.body.classList.contains('sw-lock'))return;lockY=window.scrollY;document.body.style.top=-lockY+'px';document.body.classList.add('sw-lock')}
+function unlock(){if(!document.body.classList.contains('sw-lock'))return;document.body.classList.remove('sw-lock');document.body.style.top='';window.scrollTo(0,lockY)}
+function open(){if(!match(cur))return;lock();const t=document.getElementById('t-'+cards[cur].dataset.slug);pin.replaceChildren(t.content.cloneNode(true));pulled.className='pulled';pulled.hidden=false;pin.style.animation='none';pin.offsetHeight;pin.style.animation='';pin.focus?.()}
+function close(){pulled.hidden=true;pulled.className='pulled';unlock()}
 pin.addEventListener('click',e=>{if(e.target.closest('a,button'))return;if(String(window.getSelection()||'').length)return; // selecting text in the pulled card shouldn't flip it
  if(pulled.classList.contains('flip'))close();else pulled.classList.add('flip')});
 pulled.addEventListener('click',e=>{if(e.target===pulled)close()});
@@ -19,7 +21,7 @@ document.getElementById('up').onclick=document.getElementById('kl').onclick=()=>
 document.getElementById('down').onclick=document.getElementById('kr').onclick=()=>stepTo(1);
 wheel.addEventListener('selectstart',e=>e.preventDefault());wheel.addEventListener('dragstart',e=>e.preventDefault());
 wheel.addEventListener('wheel',e=>{e.preventDefault();stepTo(Math.sign(e.deltaY))},{passive:false});
-wheel.onpointerdown=e=>{if(e.button>0)return;e.preventDefault();window.getSelection()?.removeAllRanges();wheel.setPointerCapture(e.pointerId);drum.classList.add('drag');const sy=e.clientY,a0=ang;let mv=0;
+wheel.onpointerdown=e=>{if(e.button>0||!pulled.hidden||e.target.closest('#pulled'))return;e.preventDefault();window.getSelection()?.removeAllRanges();wheel.setPointerCapture(e.pointerId);drum.classList.add('drag');const sy=e.clientY,a0=ang;let mv=0;
  wheel.onpointermove=ev=>{mv=Math.max(mv,Math.abs(ev.clientY-sy));ang=a0-(ev.clientY-sy)*.5;/* minus: cards follow the finger (next card sits below) */set()};
  wheel.onpointerup=()=>{wheel.onpointermove=null;drum.classList.remove('drag');ang=Math.round(ang/step)*step;set();if(!match(cur))stepTo(1);if(mv<5)open()}};
 addEventListener('keydown',e=>{if(!pulled.hidden){if(e.key=='Escape')close();if(e.key=='Enter'&&!e.target.closest('a,button'))pin.click();return}

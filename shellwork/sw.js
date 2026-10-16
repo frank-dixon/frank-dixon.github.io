@@ -1,5 +1,5 @@
-const CACHE='shellwork-b9eb05ed15e2';
-const SHELL=["/static/shellwork/css/shellwork.a5f00436148f.css", "/static/shellwork/js/rolodex.2f28800be579.js", "/static/shellwork/js/compare.a10907f3ff26.js", "/static/shellwork/js/helper.11f7cc9338e8.js", "/static/shellwork/js/compare-page.d85b45e3af7c.js", "/static/shellwork/icons/icon-192.db3ea9654ab1.png", "/static/shellwork/icons/icon-512.ea6d3589c94f.png"];
+const CACHE='shellwork-62d357cee273';
+const SHELL=["/static/shellwork/css/shellwork.2a631109a19a.css", "/static/shellwork/js/rolodex.505243d336dd.js", "/static/shellwork/js/compare.a10907f3ff26.js", "/static/shellwork/js/helper.11f7cc9338e8.js", "/static/shellwork/js/compare-page.d85b45e3af7c.js", "/static/shellwork/icons/icon-192.db3ea9654ab1.png", "/static/shellwork/icons/icon-512.ea6d3589c94f.png"];
 const OFFLINE='/shellwork/offline/';
 self.addEventListener('install',e=>{e.waitUntil(caches.open(CACHE).then(c=>c.addAll(SHELL.concat([OFFLINE,'/shellwork/']))).then(()=>self.skipWaiting()))});
 self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k.startsWith('shellwork-')&&k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim()))});

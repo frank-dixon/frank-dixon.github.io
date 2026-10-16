@@ -259,3 +259,10 @@ a{color:var(--mint)}a:hover{color:var(--lav)}
 /* iOS: stop double-tap zoom on the knobs and drum controls without disabling pinch-zoom. .wheel keeps touch-action:none for dragging. */
 .desk,.knob,.ctl,.ctl .btn,#filters .chip{touch-action:manipulation}
 input,select,textarea{font-size:max(16px,1em)}
+/* Pulled card on mobile: fit the visible viewport (dvh, vh fallback), scroll inside the card, never chain to the page. */
+.pulled{height:100vh;height:100dvh;max-height:100vh;max-height:100dvh;overflow:hidden;overscroll-behavior:contain;touch-action:pan-y;
+ padding:max(16px,env(safe-area-inset-top)) max(16px,env(safe-area-inset-right)) max(16px,env(safe-area-inset-bottom)) max(16px,env(safe-area-inset-left))}
+.pulled__in{max-height:calc(100vh - 32px);max-height:calc(100dvh - 32px - env(safe-area-inset-top) - env(safe-area-inset-bottom))}
+.pc{overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;touch-action:pan-y}
+@media(max-width:900px){.pulled__in{height:calc(100vh - 32px);height:calc(100dvh - 32px - env(safe-area-inset-top) - env(safe-area-inset-bottom))}}
+body.sw-lock{position:fixed;left:0;right:0;width:100%;overflow:hidden}
