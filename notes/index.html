@@ -1,73 +1,50 @@
 
 <!doctype html>
 
-<html lang="en" data-theme="tri-stop-teal-lilac-coral" data-motion="none">
+
+<html lang="en" data-theme="graphite-cut" data-card="corner" data-texture="fade" data-emphasis="color" data-scheme="dark">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Notes · Frank Dixon · Senior front-end engineer</title>
   <meta name="description" content="Front-end engineer on a busy e-commerce site. Builds small tools for rabbits, hens and the plants around them.">
-  <meta name="theme-color" content="#062A2E">
+  <meta name="theme-color" content="#141619">
   
-  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@400;500;700&display=swap">
   <link rel="manifest" href="/manifest.webmanifest">
   <link rel="icon" href="/static/icons/icon.278160a8b048.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/static/icons/icon-192.836425a88f77.png">
-  <link rel="stylesheet" href="/static/css/app.76a82c96eaf3.css">
+  <link rel="stylesheet" href="/static/css/app.a15734607bdc.css">
   
-  <style>[data-theme="tri-stop-teal-lilac-coral"]{--bg-from:#062A2E;--bg-to:#1E0F2B;--hex-tone:#3A4241;--hex-shade:#49252A;--accent:#FF7F66;--on-accent:#062A2E;--glass:rgba(255,255,255,.12);--glass-border:rgba(255,255,255,.2);--base-a:#7EE4AA;--base-c:#B2D2FF;--base-g:#ECEFF2;--base-t:#FFC0C0;--accent-word:#FFFFFF;--ink:#EDE7EF;--label:#C9D9DE;--link:#FFC1B6;--heading:#8DFBED;--heading-fill:linear-gradient(100deg,#8DFBED,#2BF8DE)}</style>
+  <style>[data-theme="graphite-cut"]{--bg:#141619;--surface:#1C1F23;--band:#181B1E;--ink:#ECEEF0;--muted:#A2AAB3;--line:#2E3339;--accent:#FF6B2C;--on-accent:#140A04;--accent-ink:#FF8A57;--font-display-stack:'Inter Tight', ui-sans-serif, system-ui, sans-serif;--font-body-stack:'Inter Tight', ui-sans-serif, system-ui, sans-serif;--font-mono-stack:'JetBrains Mono', ui-monospace, monospace;--radius:10px}</style>
   
   <script src="/static/vendor/htmx.min.19a573773be4.js" defer></script>
 </head>
 <body class="min-h-screen">
-  
-<div class="hex-bg" aria-hidden="true">
-  <svg xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <pattern id="hex-tile" width="69.282" height="120" patternUnits="userSpaceOnUse" patternTransform="rotate(4)">
-        <g fill="none" stroke="#fff" stroke-width="1.4">
-          
-          <path d="M69.282,20 L69.282,60 L30,80 L0,60 L0,20 L30,0 Z" transform="translate(0,0)"/>
-          <path d="M69.282,20 L30,0 L0,20 L0,60 L30,80 L69.282,60 Z" transform="translate(-30,60)"/>
-          <path d="M69.282,20 L30,0 L0,20 L0,60 L30,80 L69.282,60 Z" transform="translate(30,60)"/>
-          <path d="M69.282,20 L30,0 L0,20 L0,60 L30,80 L69.282,60 Z" transform="translate(-30,-60)"/>
-          <path d="M69.282,20 L30,0 L0,20 L0,60 L30,80 L69.282,60 Z" transform="translate(30,-60)"/>
-          <path d="M69.282,20 L30,0 L0,20 L0,60 L30,80 L69.282,60 Z" transform="translate(0,120)"/>
-        </g>
-      </pattern>
-      <mask id="hex-mask"><rect width="100%" height="100%" fill="url(#hex-tile)"/></mask>
-      <linearGradient id="hex-tint" x1="0" y1="0" x2="1" y2="1">
-        <stop offset="0" style="stop-color:var(--hex-tone)"/>
-        <stop offset="1" style="stop-color:var(--hex-shade)"/>
-      </linearGradient>
-    </defs>
-    <rect width="100%" height="100%" fill="url(#hex-tint)" mask="url(#hex-mask)"/>
-  </svg>
-</div>
-
   <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:p-3">Skip to content</a>
   
 
 
 <div class="sticky top-2 z-50 px-2 sm:top-3 sm:px-3">
-<nav aria-label="Main" class="nav-float mx-auto flex max-w-6xl items-center justify-between gap-3 px-3 font-mono text-[11px] uppercase tracking-[.12em] sm:px-4 sm:text-xs sm:tracking-[.14em]">
-  <a href="/" class="shrink-0 font-bold text-ink" >Frank Dixon</a>
-  <ul class="flex gap-3 overflow-x-auto whitespace-nowrap text-accent sm:gap-5">
-    <li><a class="hover:text-ink" href="/#projects">Projects</a></li>
-    <li><a class="hover:text-ink" href="/#work">Work</a></li>
-    <li><a class="hover:text-ink text-ink" href="/notes/" aria-current="page">Notes</a></li>
-    <li><a class="hover:text-ink" href="/#contact">Contact</a></li>
+<nav aria-label="Main" class="nav-float mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 text-sm sm:px-5">
+  <a href="/" class="display shrink-0 text-base tracking-tight" >Frank Dixon</a>
+  <ul class="flex gap-4 overflow-x-auto whitespace-nowrap text-ink sm:gap-7">
+    <li><a class="hover:text-accent" href="/#projects">Apps</a></li>
+    <li><a class="hover:text-accent" href="/#experience">Experience</a></li>
+    <li><a class="hover:text-accent" href="/#contact">Contact</a></li>
+    <li><a class="hover:text-accent" href="https://frank-dixon.github.io/resume.pdf">Résumé</a></li>
   </ul>
 </nav>
 </div>
 
-  <main id="main" class="mx-auto max-w-6xl px-5">
+  <main id="main" class="mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
 <section aria-labelledby="notes-title" class="py-12">
   
-<header class="mb-8">
-  <p class="eyebrow glass inline-block px-2 py-1">Notes</p>
-  <h2 id="notes-title" class="display mt-3 text-4xl sm:text-6xl">Build logs and notes.</h2>
+<header class="mb-8 flex flex-wrap items-end justify-between gap-6">
+  <div>
+    <p class="eyebrow mb-3"><span class="tick" aria-hidden="true"></span>Notes</p>
+    <h2 id="notes-title" class="display text-3xl sm:text-4xl">Build logs and notes.</h2>
+  </div>
+  
 </header>
 
   
@@ -79,7 +56,7 @@
 </section>
 </main>
   
-<footer class="glass mx-auto mt-24 mb-8 max-w-6xl px-5 py-6 text-sm text-muted">
+<footer class="mx-auto mt-24 mb-10 max-w-7xl border-t border-line px-5 pt-6 text-sm text-muted sm:px-8 lg:px-12">
   <ul class="flex flex-wrap gap-5">
     <li><a class="hover:text-ink" href="mailto:fdixon7@gmail.com">fdixon7@gmail.com</a></li>
     <li><a class="hover:text-ink" href="https://www.linkedin.com/in/frank-dixon-senior-developer" rel="noopener">LinkedIn</a></li>
@@ -94,13 +71,6 @@
     
     const markScrolled = () => document.documentElement.classList.toggle("is-scrolled", scrollY > 8);
     addEventListener("scroll", markScrolled, { passive: true }); markScrolled();
-    
-    if (document.documentElement.dataset.motion === "lens" && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      addEventListener("pointermove", (e) => {
-        const s = document.documentElement.style;
-        s.setProperty("--mx", e.clientX + "px"); s.setProperty("--my", e.clientY + "px");
-      }, { passive: true });
-    }
     if ("serviceWorker" in navigator) {
       addEventListener("load", () => navigator.serviceWorker.register("/sw.js", { scope: "/" }));
     }

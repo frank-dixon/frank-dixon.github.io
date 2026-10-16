@@ -1,117 +1,135 @@
 
 <!doctype html>
 
-<html lang="en" data-theme="tri-stop-teal-lilac-coral" data-motion="none">
+
+<html lang="en" data-theme="graphite-cut" data-card="corner" data-texture="fade" data-emphasis="color" data-scheme="dark">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Frank Dixon · Senior front-end engineer</title>
   <meta name="description" content="Front-end engineer on a busy e-commerce site. Builds small tools for rabbits, hens and the plants around them.">
-  <meta name="theme-color" content="#062A2E">
+  <meta name="theme-color" content="#141619">
   
-  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@400;500;700&display=swap">
   <link rel="manifest" href="/manifest.webmanifest">
   <link rel="icon" href="/static/icons/icon.278160a8b048.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/static/icons/icon-192.836425a88f77.png">
-  <link rel="stylesheet" href="/static/css/app.76a82c96eaf3.css">
+  <link rel="stylesheet" href="/static/css/app.a15734607bdc.css">
   
-  <style>[data-theme="tri-stop-teal-lilac-coral"]{--bg-from:#062A2E;--bg-to:#1E0F2B;--hex-tone:#3A4241;--hex-shade:#49252A;--accent:#FF7F66;--on-accent:#062A2E;--glass:rgba(255,255,255,.12);--glass-border:rgba(255,255,255,.2);--base-a:#7EE4AA;--base-c:#B2D2FF;--base-g:#ECEFF2;--base-t:#FFC0C0;--accent-word:#FFFFFF;--ink:#EDE7EF;--label:#C9D9DE;--link:#FFC1B6;--heading:#8DFBED;--heading-fill:linear-gradient(100deg,#8DFBED,#2BF8DE)}</style>
+  <style>[data-theme="graphite-cut"]{--bg:#141619;--surface:#1C1F23;--band:#181B1E;--ink:#ECEEF0;--muted:#A2AAB3;--line:#2E3339;--accent:#FF6B2C;--on-accent:#140A04;--accent-ink:#FF8A57;--font-display-stack:'Inter Tight', ui-sans-serif, system-ui, sans-serif;--font-body-stack:'Inter Tight', ui-sans-serif, system-ui, sans-serif;--font-mono-stack:'JetBrains Mono', ui-monospace, monospace;--radius:10px}</style>
   
   <script src="/static/vendor/htmx.min.19a573773be4.js" defer></script>
 </head>
 <body class="min-h-screen">
-  
-<div class="hex-bg" aria-hidden="true">
-  <svg xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <pattern id="hex-tile" width="69.282" height="120" patternUnits="userSpaceOnUse" patternTransform="rotate(4)">
-        <g fill="none" stroke="#fff" stroke-width="1.4">
-          
-          <path d="M69.282,20 L69.282,60 L30,80 L0,60 L0,20 L30,0 Z" transform="translate(0,0)"/>
-          <path d="M69.282,20 L30,0 L0,20 L0,60 L30,80 L69.282,60 Z" transform="translate(-30,60)"/>
-          <path d="M69.282,20 L30,0 L0,20 L0,60 L30,80 L69.282,60 Z" transform="translate(30,60)"/>
-          <path d="M69.282,20 L30,0 L0,20 L0,60 L30,80 L69.282,60 Z" transform="translate(-30,-60)"/>
-          <path d="M69.282,20 L30,0 L0,20 L0,60 L30,80 L69.282,60 Z" transform="translate(30,-60)"/>
-          <path d="M69.282,20 L30,0 L0,20 L0,60 L30,80 L69.282,60 Z" transform="translate(0,120)"/>
-        </g>
-      </pattern>
-      <mask id="hex-mask"><rect width="100%" height="100%" fill="url(#hex-tile)"/></mask>
-      <linearGradient id="hex-tint" x1="0" y1="0" x2="1" y2="1">
-        <stop offset="0" style="stop-color:var(--hex-tone)"/>
-        <stop offset="1" style="stop-color:var(--hex-shade)"/>
-      </linearGradient>
-    </defs>
-    <rect width="100%" height="100%" fill="url(#hex-tint)" mask="url(#hex-mask)"/>
-  </svg>
-</div>
-
   <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:p-3">Skip to content</a>
   
 
 
 <div class="sticky top-2 z-50 px-2 sm:top-3 sm:px-3">
-<nav aria-label="Main" class="nav-float mx-auto flex max-w-6xl items-center justify-between gap-3 px-3 font-mono text-[11px] uppercase tracking-[.12em] sm:px-4 sm:text-xs sm:tracking-[.14em]">
-  <a href="/" class="shrink-0 font-bold text-ink" aria-current="page">Frank Dixon</a>
-  <ul class="flex gap-3 overflow-x-auto whitespace-nowrap text-accent sm:gap-5">
-    <li><a class="hover:text-ink" href="/#projects">Projects</a></li>
-    <li><a class="hover:text-ink" href="/#work">Work</a></li>
-    <li><a class="hover:text-ink " href="/notes/" >Notes</a></li>
-    <li><a class="hover:text-ink" href="/#contact">Contact</a></li>
+<nav aria-label="Main" class="nav-float mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 text-sm sm:px-5">
+  <a href="/" class="display shrink-0 text-base tracking-tight" aria-current="page">Frank Dixon</a>
+  <ul class="flex gap-4 overflow-x-auto whitespace-nowrap text-ink sm:gap-7">
+    <li><a class="hover:text-accent" href="/#projects">Apps</a></li>
+    <li><a class="hover:text-accent" href="/#experience">Experience</a></li>
+    <li><a class="hover:text-accent" href="/#contact">Contact</a></li>
+    <li><a class="hover:text-accent" href="https://frank-dixon.github.io/resume.pdf">Résumé</a></li>
   </ul>
 </nav>
 </div>
 
-  <main id="main" class="mx-auto max-w-6xl px-5">
+  <main id="main" class="mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
+<section aria-label="Introduction" class="grid gap-14 pt-14 pb-16 sm:pt-20 lg:grid-cols-[7fr_5fr] lg:gap-20">
+  <div>
+    <p class="eyebrow"><span class="tick" aria-hidden="true"></span>Technical product designer</p>
+    <h1 class="display mt-5 text-5xl sm:text-6xl lg:text-[76px]">Front end first. Python on the side. <span class="accent-word">Biology</span> in the background.</h1>
+    <p class="mt-7 max-w-2xl text-lg leading-relaxed text-muted">Since 2004 I’ve shipped the pages people click, buy, and come back to. Today that’s Undercover Tourist, where I led the front end through a live framework replacement on a store selling Disney and Universal tickets. Before that: Prudential, and earlier a detour through UMass Amherst into plant science and genomics.</p>
+    <div class="mt-8 flex flex-wrap gap-3">
+      
+<a href="#projects" class="btn btn-solid"
+   >See the apps</a>
 
-<section aria-label="Introduction" class="hero-edge py-14 sm:py-20">
-  <p class="flex flex-wrap items-center gap-3"><span class="rounded-[3px] bg-cta px-2 py-0.5 font-mono text-[11px] font-bold uppercase tracking-widest text-on-cta">Node 00 · Origin</span><span class="eyebrow glass px-2 py-1">Senior front-end engineer</span></p>
-  <h1 class="display mt-6 max-w-5xl text-5xl sm:text-7xl lg:text-[104px]">Front end first.<br>Python on the side.<br><span class="accent-word">Biology</span> in the background.</h1>
-  <p class="glass mt-8 max-w-2xl p-4 leading-relaxed">Since 2004 I’ve shipped the pages people click, buy, and come back to. Today that’s Undercover Tourist, where I led the front end through a live framework replacement on a store selling Disney and Universal tickets. Before that: Prudential, and earlier a detour through UMass Amherst into plant science and genomics.</p>
-  <div class="mt-8 flex flex-wrap gap-3">
-    
-<a href="#contact"
-   class="inline-flex items-center gap-2 rounded-[4px] px-5 py-3 text-sm font-bold uppercase tracking-wider transition border-[3px] border-cta bg-cta text-on-cta hover:brightness-110"
-   >Get in touch</a>
-
-    
-<a href="https://frank-dixon.github.io/resume.pdf"
-   class="inline-flex items-center gap-2 rounded-[4px] px-5 py-3 text-sm font-bold uppercase tracking-wider transition glass text-accent hover:border-accent"
+      
+<a href="https://frank-dixon.github.io/resume.pdf" class="btn btn-ghost"
    >Résumé</a>
 
-    
-<a href="https://github.com/frank-dixon"
-   class="inline-flex items-center gap-2 rounded-[4px] px-5 py-3 text-sm font-bold uppercase tracking-wider transition glass text-accent hover:border-accent"
+      
+<a href="https://github.com/frank-dixon" class="btn btn-ghost"
    target="_blank" rel="noopener">GitHub</a>
 
+    </div>
   </div>
-  <div class="mt-10 grid max-w-3xl grid-cols-1 items-start gap-4 sm:grid-cols-3">
+  <div class="lg:pt-2">
     
-<div class="glass self-start p-4 sm:p-5">
-  <p class="display text-4xl sm:text-6xl">2004</p>
-  <p class="eyebrow mt-3 max-w-[18ch] normal-case tracking-normal" style="text-transform:none;letter-spacing:.02em;font-size:12px">Shipping for the web since</p>
+    <p class="font-mono text-xs uppercase tracking-widest text-muted">Index</p>
+    <ol class="mt-2">
+      
+      <li class="border-t border-line"><a href="#app-bramble-burrow" class="grid grid-cols-[2.25rem_1fr_auto] items-baseline gap-3 py-3 hover:text-accent">
+        <span class="font-mono text-xs text-accent">01</span>
+        <span class="font-semibold">Bramble Burrow</span>
+        <span class="font-mono text-xs text-muted">Django</span>
+      </a></li>
+      
+      <li class="border-t border-line"><a href="#app-rabbit-progeny-predictor" class="grid grid-cols-[2.25rem_1fr_auto] items-baseline gap-3 py-3 hover:text-accent">
+        <span class="font-mono text-xs text-accent">02</span>
+        <span class="font-semibold">Rabbit Progeny Predictor</span>
+        <span class="font-mono text-xs text-muted">React</span>
+      </a></li>
+      
+      <li class="border-t border-line"><a href="#app-forage-guide" class="grid grid-cols-[2.25rem_1fr_auto] items-baseline gap-3 py-3 hover:text-accent">
+        <span class="font-mono text-xs text-accent">03</span>
+        <span class="font-semibold">Forage Guide</span>
+        <span class="font-mono text-xs text-muted">Django</span>
+      </a></li>
+      
+      <li class="border-t border-line"><a href="#app-mushroom-id" class="grid grid-cols-[2.25rem_1fr_auto] items-baseline gap-3 py-3 hover:text-accent">
+        <span class="font-mono text-xs text-accent">04</span>
+        <span class="font-semibold">Mushroom ID</span>
+        <span class="font-mono text-xs text-muted">Django</span>
+      </a></li>
+      
+      <li class="border-t border-line"><a href="#app-farm-rules" class="grid grid-cols-[2.25rem_1fr_auto] items-baseline gap-3 py-3 hover:text-accent">
+        <span class="font-mono text-xs text-accent">05</span>
+        <span class="font-semibold">Farm Rules by State</span>
+        <span class="font-mono text-xs text-muted">Django</span>
+      </a></li>
+      
+      <li class="border-t border-line"><a href="#app-shellwork" class="grid grid-cols-[2.25rem_1fr_auto] items-baseline gap-3 py-3 hover:text-accent">
+        <span class="font-mono text-xs text-accent">06</span>
+        <span class="font-semibold">Shellwork</span>
+        <span class="font-mono text-xs text-muted">Django</span>
+      </a></li>
+      
+    </ol>
+    <div class="mt-10 grid grid-cols-3 gap-6 border-t border-line pt-6">
+      
+<div>
+  <p class="display text-4xl sm:text-5xl">2004</p>
+  <p class="mt-2 max-w-[20ch] text-sm leading-snug text-muted">Shipping for the web since</p>
 </div>
 
-    
-<div class="glass self-start p-4 sm:p-5">
-  <p class="display text-4xl sm:text-6xl">−50%</p>
-  <p class="eyebrow mt-3 max-w-[18ch] normal-case tracking-normal" style="text-transform:none;letter-spacing:.02em;font-size:12px">CSS after replacing a front-end framework while the store stayed open</p>
+      
+<div>
+  <p class="display text-4xl sm:text-5xl">−50%</p>
+  <p class="mt-2 max-w-[20ch] text-sm leading-snug text-muted">CSS after replacing a front-end framework while the store stayed open</p>
 </div>
 
-    
-<div class="glass self-start p-4 sm:p-5">
-  <p class="display text-4xl sm:text-6xl">7×</p>
-  <p class="eyebrow mt-3 max-w-[18ch] normal-case tracking-normal" style="text-transform:none;letter-spacing:.02em;font-size:12px">Prudential Impact Awards</p>
+      
+<div>
+  <p class="display text-4xl sm:text-5xl">7×</p>
+  <p class="mt-2 max-w-[20ch] text-sm leading-snug text-muted">Prudential Impact Awards</p>
 </div>
 
+    </div>
   </div>
 </section>
 
-<section id="projects" aria-labelledby="projects-title" class="py-12">
+<section id="projects" aria-labelledby="projects-title" class="pt-12 pb-28">
   
-<header class="mb-8">
-  <p class="eyebrow glass inline-block px-2 py-1">Node 01 · Projects</p>
-  <h2 id="projects-title" class="display mt-3 text-4xl sm:text-6xl">Tools for how living things work.</h2>
+<header class="mb-8 flex flex-wrap items-end justify-between gap-6">
+  <div>
+    <p class="eyebrow mb-3"><span class="tick" aria-hidden="true"></span>Live apps</p>
+    <h2 id="projects-title" class="display text-3xl sm:text-4xl">Tools for how living things work.</h2>
+  </div>
+  
 </header>
 
   
@@ -142,7 +160,7 @@
 
 <a href="/tag/postgres/"
    
-   class="glass inline-block rounded-[4px] px-2.5 py-0.5 font-mono text-xs text-accent !border-[color:var(--link)]"
+   class="glass inline-block rounded-[4px] px-2.5 py-0.5 font-mono text-xs text-accent !border-[color:var(--accent-ink)]"
    aria-current="true">Postgres</a>
 
 </li><li>
@@ -161,10 +179,10 @@
 
 </li><li>
 
-<a href="/tag/static/"
+<a href="/tag/reference/"
    
    class="glass inline-block rounded-[4px] px-2.5 py-0.5 font-mono text-xs text-muted hover:text-ink"
-   >Static</a>
+   >Reference</a>
 
 </li><li>
 
@@ -180,27 +198,21 @@
    class="glass inline-block rounded-[4px] px-2.5 py-0.5 font-mono text-xs text-muted hover:text-ink"
    >TypeScript</a>
 
-</li><li>
-
-<a href="/tag/zine/"
-   
-   class="glass inline-block rounded-[4px] px-2.5 py-0.5 font-mono text-xs text-muted hover:text-ink"
-   >Zine</a>
-
 </li>
   </ul>
-  <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+  <div class="apps-band">
+  <div class="apps-grid grid gap-8 sm:grid-cols-2 lg:gap-x-14 lg:gap-y-12 lg:pt-10">
     
       
 
-<article class="glass relative flex flex-col overflow-hidden">
+<article id="app-farm-rules" class="project-card">
   
   
     
-    <img src="/media/projects/farm-rules_B2wOqrJ.jpg" alt="Screenshot of Farm Rules by State" class="aspect-video w-full object-cover" loading="lazy">
+    <img src="/media/projects/farm-rules_B2wOqrJ.jpg" alt="Screenshot of Farm Rules by State" class="project-shot lift" loading="lazy">
   
-  <div class="flex flex-1 flex-col p-5">
-    <h3 class="display text-2xl"><a href="/projects/farm-rules/" class="hover:opacity-80">Farm Rules by State</a></h3>
+  <div class="flex flex-1 flex-col p-5 sm:p-6">
+    <h3 class="display text-2xl"><a href="/projects/farm-rules/" class="hover:text-accent">Farm Rules by State</a></h3>
     <p class="mt-2 flex-1 text-sm text-muted">Federal, state and town rules for raising, processing and selling animals, with sources.</p>
     
     <ul class="mt-4 flex flex-wrap gap-2">
@@ -247,139 +259,115 @@
 
     
   </div>
+  </div>
 </div>
 
 </section>
 
-<section id="work" aria-labelledby="work-title" class="py-12">
+
+<section aria-label="Experience and contact" class="grid gap-16 pt-28 lg:grid-cols-[7fr_5fr] lg:gap-20">
+  <div id="experience">
+    
+<header class="mb-8 flex flex-wrap items-end justify-between gap-6">
+  <div>
+    
+    <h2 id="experience-title" class="display text-3xl sm:text-4xl">Experience</h2>
+  </div>
   
-<header class="mb-8">
-  <p class="eyebrow glass inline-block px-2 py-1">Node 02 · Work</p>
-  <h2 id="work-title" class="display mt-3 text-4xl sm:text-6xl">Rebuilt it while it was still selling.</h2>
 </header>
 
-  <ol>
-
-<li class="glass mb-3 grid gap-1 p-5 sm:grid-cols-[10rem_1fr] sm:gap-6">
-  <p class="font-mono text-xs text-muted">May 2021 – now</p>
+    <ol class="border-b border-line">
+<li class="grid gap-1 border-t border-line py-3.5 sm:grid-cols-[9.5rem_1fr] sm:gap-6">
+  <p class="font-mono text-xs leading-6 text-muted">May 2021 – now</p>
   <div>
     <h3 class="font-semibold">Undercover Tourist <span class="font-normal text-muted">· Front-end lead</span></h3>
-    <p class="mt-1 text-sm text-muted">Front end of a hospitality e-commerce store: Disney and Universal tickets, hotels, packages.</p>
-    
-    <ul class="mt-3 list-disc space-y-1 pl-5 text-sm">
-      <li>Replaced a legacy front-end framework in flight with a bespoke UI layer. CSS bundle cut by more than half.</li><li>Led a team of three front-end specialists.</li><li>Drove the accessibility work that made the buy path ADA compliant.</li><li>Shared components, Django admin screens and internal tools, so nobody invents a new UI every sprint.</li>
-    </ul>
     
   </div>
 </li>
 
-
-<li class="glass mb-3 grid gap-1 p-5 sm:grid-cols-[10rem_1fr] sm:gap-6">
-  <p class="font-mono text-xs text-muted">2020 – 21</p>
+<li class="grid gap-1 border-t border-line py-3.5 sm:grid-cols-[9.5rem_1fr] sm:gap-6">
+  <p class="font-mono text-xs leading-6 text-muted">2020 – 21</p>
   <div>
     <h3 class="font-semibold">LATICRETE International <span class="font-normal text-muted">· Senior UX developer</span></h3>
-    <p class="mt-1 text-sm text-muted">Enterprise site rebuild, IA, component library.</p>
     
   </div>
 </li>
 
-
-<li class="glass mb-3 grid gap-1 p-5 sm:grid-cols-[10rem_1fr] sm:gap-6">
-  <p class="font-mono text-xs text-muted">2017 – 20</p>
+<li class="grid gap-1 border-t border-line py-3.5 sm:grid-cols-[9.5rem_1fr] sm:gap-6">
+  <p class="font-mono text-xs leading-6 text-muted">2017 – 20</p>
   <div>
     <h3 class="font-semibold">Prudential Financial</h3>
-    <p class="mt-1 text-sm text-muted">Interactive tools, a templated site builder, vendors and accessibility. Seven Impact Awards.</p>
     
   </div>
 </li>
 
-
-<li class="glass mb-3 grid gap-1 p-5 sm:grid-cols-[10rem_1fr] sm:gap-6">
-  <p class="font-mono text-xs text-muted">2014 – 17</p>
+<li class="grid gap-1 border-t border-line py-3.5 sm:grid-cols-[9.5rem_1fr] sm:gap-6">
+  <p class="font-mono text-xs leading-6 text-muted">2014 – 17</p>
   <div>
     <h3 class="font-semibold">The Walker Group</h3>
-    <p class="mt-1 text-sm text-muted">E-commerce and migrations; one wholesaler site doubled RFQ completions.</p>
     
   </div>
 </li>
 
-
-<li class="glass mb-3 grid gap-1 p-5 sm:grid-cols-[10rem_1fr] sm:gap-6">
-  <p class="font-mono text-xs text-muted">2013 – 14</p>
+<li class="grid gap-1 border-t border-line py-3.5 sm:grid-cols-[9.5rem_1fr] sm:gap-6">
+  <p class="font-mono text-xs leading-6 text-muted">2013 – 14</p>
   <div>
     <h3 class="font-semibold">Idea Agency</h3>
-    <p class="mt-1 text-sm text-muted">Sites, emails and landing pages for higher-ed, banks and small business.</p>
     
   </div>
 </li>
 
-
-<li class="glass mb-3 grid gap-1 p-5 sm:grid-cols-[10rem_1fr] sm:gap-6">
-  <p class="font-mono text-xs text-muted">2008 – 11</p>
+<li class="grid gap-1 border-t border-line py-3.5 sm:grid-cols-[9.5rem_1fr] sm:gap-6">
+  <p class="font-mono text-xs leading-6 text-muted">2008 – 11</p>
   <div>
     <h3 class="font-semibold">UMass Amherst <span class="font-normal text-muted">· Bioinformatics engineer</span></h3>
-    <p class="mt-1 text-sm text-muted">High-throughput genomics, genetic-marker tooling.</p>
     
   </div>
 </li>
 
-
-<li class="glass mb-3 grid gap-1 p-5 sm:grid-cols-[10rem_1fr] sm:gap-6">
-  <p class="font-mono text-xs text-muted">2006 – 08</p>
+<li class="grid gap-1 border-t border-line py-3.5 sm:grid-cols-[9.5rem_1fr] sm:gap-6">
+  <p class="font-mono text-xs leading-6 text-muted">2006 – 08</p>
   <div>
     <h3 class="font-semibold">Windsor Marketing Group</h3>
-    <p class="mt-1 text-sm text-muted">Client-side apps for high-throughput print. Employee of the Year, 2007.</p>
     
   </div>
 </li>
 
-
-<li class="glass mb-3 grid gap-1 p-5 sm:grid-cols-[10rem_1fr] sm:gap-6">
-  <p class="font-mono text-xs text-muted">2004 – 06</p>
+<li class="grid gap-1 border-t border-line py-3.5 sm:grid-cols-[9.5rem_1fr] sm:gap-6">
+  <p class="font-mono text-xs leading-6 text-muted">2004 – 06</p>
   <div>
     <h3 class="font-semibold">Impact Media Group</h3>
-    <p class="mt-1 text-sm text-muted">Small-business sites, digital marketing, sales-team consulting.</p>
     
   </div>
 </li>
 </ol>
-</section>
-
-<section id="notes" aria-labelledby="notes-title" class="py-12">
-  
-<header class="mb-8">
-  <p class="eyebrow glass inline-block px-2 py-1">Node 03 · Notes</p>
-  <h2 id="notes-title" class="display mt-3 text-4xl sm:text-6xl">Build logs and notes.</h2>
-</header>
-
-  <p class="text-muted">Nothing published yet.</p>
-  
-</section>
-
-<section id="contact" aria-labelledby="contact-title" class="py-12">
-  
-<header class="mb-8">
-  <p class="eyebrow glass inline-block px-2 py-1">Node 04 · Contact</p>
-  <h2 id="contact-title" class="display mt-3 text-4xl sm:text-6xl">Not looking, but open to a good conversation.</h2>
-</header>
-
-  <p class="glass max-w-2xl p-4">I’m happy where I am. If you want to talk front ends, accessibility, Python tooling, rabbit genetics, or a role you think fits, my inbox is open.</p>
-  <div class="mt-6 flex flex-wrap gap-3">
+  </div>
+  <div id="contact" aria-labelledby="contact-title">
     
-<a href="mailto:fdixon7@gmail.com"
-   class="inline-flex items-center gap-2 rounded-[4px] px-5 py-3 text-sm font-bold uppercase tracking-wider transition border-[3px] border-cta bg-cta text-on-cta hover:brightness-110"
+<header class="mb-8 flex flex-wrap items-end justify-between gap-6">
+  <div>
+    <p class="eyebrow mb-3"><span class="tick" aria-hidden="true"></span>Contact</p>
+    <h2 id="contact-title" class="display text-3xl sm:text-4xl">Not looking, but open to a good conversation.</h2>
+  </div>
+  
+</header>
+
+    <p class="max-w-md leading-relaxed text-muted">I’m happy where I am. If you want to talk front ends, accessibility, Python tooling, rabbit genetics, or a role you think fits, my inbox is open.</p>
+    <div class="mt-6 flex flex-wrap gap-3">
+      
+<a href="mailto:fdixon7@gmail.com" class="btn btn-solid"
    >Email me</a>
 
-    
-<a href="https://www.linkedin.com/in/frank-dixon-senior-developer"
-   class="inline-flex items-center gap-2 rounded-[4px] px-5 py-3 text-sm font-bold uppercase tracking-wider transition glass text-accent hover:border-accent"
+      
+<a href="https://www.linkedin.com/in/frank-dixon-senior-developer" class="btn btn-ghost"
    target="_blank" rel="noopener">LinkedIn</a>
 
+    </div>
   </div>
 </section>
 </main>
   
-<footer class="glass mx-auto mt-24 mb-8 max-w-6xl px-5 py-6 text-sm text-muted">
+<footer class="mx-auto mt-24 mb-10 max-w-7xl border-t border-line px-5 pt-6 text-sm text-muted sm:px-8 lg:px-12">
   <ul class="flex flex-wrap gap-5">
     <li><a class="hover:text-ink" href="mailto:fdixon7@gmail.com">fdixon7@gmail.com</a></li>
     <li><a class="hover:text-ink" href="https://www.linkedin.com/in/frank-dixon-senior-developer" rel="noopener">LinkedIn</a></li>
@@ -394,13 +382,6 @@
     
     const markScrolled = () => document.documentElement.classList.toggle("is-scrolled", scrollY > 8);
     addEventListener("scroll", markScrolled, { passive: true }); markScrolled();
-    
-    if (document.documentElement.dataset.motion === "lens" && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      addEventListener("pointermove", (e) => {
-        const s = document.documentElement.style;
-        s.setProperty("--mx", e.clientX + "px"); s.setProperty("--my", e.clientY + "px");
-      }, { passive: true });
-    }
     if ("serviceWorker" in navigator) {
       addEventListener("load", () => navigator.serviceWorker.register("/sw.js", { scope: "/" }));
     }
