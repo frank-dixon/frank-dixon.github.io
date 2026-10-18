@@ -1,13 +1,13 @@
-/* Frank Dixon site service worker. Version 1ce3f64a0b64.
+/* Frank Dixon site service worker. Version 782d40d12672.
  * Shell assets: cache first. Pages and images: network first, the last copy
  * kept so visited pages read offline. Admin and non-GET requests are never
  * cached. */
-const VERSION = "1ce3f64a0b64";
+const VERSION = "782d40d12672";
 const SHELL = "fd-shell-" + VERSION;
 const PAGES = "fd-pages";
 const BASE = "/";
 const OFFLINE_URL = "/offline/";
-const SHELL_URLS = [BASE, OFFLINE_URL, "/notes/", "/manifest.webmanifest", "/static/css/app.a15734607bdc.css", "/static/vendor/htmx.min.19a573773be4.js", "/static/icons/icon.278160a8b048.svg", "/static/icons/icon\u002D192.836425a88f77.png"];
+const SHELL_URLS = [BASE, OFFLINE_URL, "/notes/", "/manifest.webmanifest", "/static/css/app.d9861060ded7.css", "/static/vendor/htmx.min.19a573773be4.js", "/static/icons/icon.278160a8b048.svg", "/static/icons/icon\u002D192.836425a88f77.png"];
 const MAX_PAGES = 80;
 /* The static site shares its origin (frank-dixon.github.io) with other apps at
    /rabbit/, /shellwork/, /gallery/ and so on. Only handle this site's own
